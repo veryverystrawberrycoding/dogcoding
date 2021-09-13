@@ -1213,7 +1213,7 @@ function windowLoadInit() {
 		});
 
 		//fixing auto affix bug - toggle affix on click when page is at the top
-		/*$header.on('affix.bs.affix', function(){
+		$header.on('affix.bs.affix', function(){
 			if( !$window.scrollTop() ) return false;
 		});
 
@@ -1222,7 +1222,7 @@ function windowLoadInit() {
 				top: headerOffset,
 				bottom: -10
 			}
-		});*/
+		});
 	}
 
 	//aside affix
