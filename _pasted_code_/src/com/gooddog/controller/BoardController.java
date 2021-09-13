@@ -1,9 +1,9 @@
 package com.gooddog.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.sun.org.slf4j.internal.LoggerFactory;
 
 @Controller
 @RequestMapping("/board")
@@ -35,12 +35,5 @@ public class BoardController {
 	public void friend() {
 		logger.info("friend");
 	}
-	@RequestMapping("/map_List") //http://localhost:8082/board/index
-	public void Map() {
-		logger.info("map_List");
-	}
-	@RequestMapping("/admin/adminheader") //http://localhost:8082/board/index
-	public void test() {
-		logger.info("map_List");
-	}
+	
 }
