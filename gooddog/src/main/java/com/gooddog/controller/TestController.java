@@ -26,7 +26,7 @@ public class TestController {
 	
 	/** * 회원가입
 	 *  * @return */
-	
+	 
 	@PostMapping("member")
 	public TestEntity signUp() { //INSERT
 		final TestEntity member = TestEntity.builder()

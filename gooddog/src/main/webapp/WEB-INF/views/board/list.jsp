@@ -8,5 +8,11 @@
 </head>
 <body>
 리스트다^^*
-</body>
+
+
+<form method="post" action ="../board/list/">
+<input type="text" id="pid" name="pid">
+<input type="submit">
+</form>
+</body>    
 </html>

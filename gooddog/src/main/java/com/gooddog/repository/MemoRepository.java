@@ -9,3 +9,4 @@ import com.gooddog.entity.MemoEntity;
 public interface MemoRepository extends JpaRepository<MemoEntity, Long> {
 	
 }
+  

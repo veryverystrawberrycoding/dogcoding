@@ -75,9 +75,9 @@
 			
 			
 		  <!-- header start -->
-    	 <%@include file ="/WEB-INF/views/header.jsp" %>
+    	 <%@ include file ="/WEB-INF/views/header.jsp" %>
   
- 			<!-- header end -->
+ 			<!-- header end --> 
 
 			
 
@@ -192,8 +192,8 @@
             </div>
          </section>
 
-<!-- footer start -->
-     <%@include file ="/WEB-INF/views/footer.jsp" %>
+<!-- footer start --> 
+     <%@ include file ="/WEB-INF/views/footer.jsp" %>
 
 </body>
 <!-- footer end -->
