@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,12 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="css/shop.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -38,7 +41,7 @@
 	<![endif]-->
 
 	<div class="preloader">
-		<div class="preloader_image"></div>
+		<div class="preloader_image pulse"></div>
 	</div>
 
 	<!-- search modal -->
@@ -74,6 +77,7 @@
 		<div id="box_wrapper">
 
 			<!-- template sections -->
+
 
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
 				<div class="container-fluid">
@@ -663,82 +667,143 @@
 				<span class="toggle_menu"><span></span></span>
 			</header>
 
-			<section class="page_title ls  s-py-5">
+			<!-- <section class="page_title ls  s-py-5">
 				<div class="container">
 					<div class="row">
 
 						<div class="col-md-12 text-center">
-							<h1>Shop - Edit Address</h1>
+							<h1>Single Event with Left Sidebar</h1>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="./">Home</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="#">Shop</a>
+									<a href="#">Pages</a>
 								</li>
 								<li class="breadcrumb-item active">
-									Shop - Edit Address
+									Single Event with Left Sidebar
 								</li>
 							</ol>
 						</div>
 
 					</div>
 				</div>
-			</section>
+			</section> -->
 
 
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-155">
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">
 
-						<main class="col-lg-12">
-							<article>
-								<div >
-									<h4 style="text-align: center;">회원 가입</h4><br>
-								</div>
+						<main class="col-lg-8 order-lg-2">
+							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
 								<div>
-									<div style="text-align: center;">
-										<form action="#">
-											<div>
-												<input type="text" placeholder="아이디" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
-											</div>
-											<div>
-												<input type="password" placeholder="비밀번호" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="password" placeholder="비밀번호 확인" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="이름" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="생년월일" style="width: 700px;"><br><br>
-											</div>
-											<div style="width: 650px;">
-												<b>성별 :</b>&nbsp&nbsp&nbsp<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="" name="user_gender"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="주소" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="연락처" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="연락처" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="닉네임" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
-											</div>
-										</form>
+									<div style="float: left; width: 45%; text-align: center;" >
+									<h4>Map</h4>
+									<table>
+										<tr style="background-color: whitesmoke; border-collapse: collapse;">
+											<td>No.</td>
+											<td>Name</td>
+											<td>Value</td>
+										</tr>
+										<tr style="border-bottom: 1px solid whitesmoke;">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+										</tr>
+									</table>
+									</div>
+									<div style="float: right; width: 45%; text-align: center;">
+									<h4>Gallery</h4>
+									<table>
+										<tr style="background-color: whitesmoke; border-collapse: collapse;">
+											<td>No.</td>
+											<td>Name</td>
+											<td>Value</td>
+										</tr>
+										<tr style="border-bottom: 1px solid whitesmoke;">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+										</tr>
+									</table>
 									</div>
 								</div>
-								
+
+								<div>
+									<div style="float: left; width: 45%; text-align: center;" >
+									<h4>info</h4>
+									<table>
+										<tr style="background-color: whitesmoke; border-collapse: collapse;">
+											<td>No.</td>
+											<td>Name</td>
+											<td>Value</td>
+										</tr>
+										<tr style="border-bottom: 1px solid whitesmoke;">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+										</tr>
+									</table>
+									</div>
+									<div style="float: right; width: 45%; text-align: center;">
+									<h4>ì¤ì¢ì ê³ </h4>
+									<table>
+										<tr style="background-color: whitesmoke; border-collapse: collapse;">
+											<td>No.</td>
+											<td>Name</td>
+											<td>Value</td>
+										</tr>
+										<tr style="border-bottom: 1px solid whitesmoke;">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+										</tr>
+									</table>
+									</div>
+								</div>
 							</article>
+
+
+							
 
 						</main>
 
+						<aside class="col-lg-4 order-lg-1 mb-0">
+
+							
+							<div class="widget widget_categories">
+
+								<h3 class="widget-title">Info List</h3>
+
+								<ul>
+									<li class="cat-item">
+										<a href="blog-right.html">ì´ ì© ë</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">í ì ê´ ë¦¬</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">ê² ì ê¸ ê´ ë¦¬</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">ì  ê³ </a>
+									</li>
+								</ul>
+							</div>
+
+
+
+							<div class="widget widget_calendar">
+
+							</div>
+						</aside>
+
 					</div>
 
+				</div>
+				<div style="float: right; width: 300px; text-align: center;">
+					ì±ë´ ë¤ì´ê° ìë¦¬
 				</div>
 			</section>
 
@@ -758,7 +823,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -769,7 +834,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -862,8 +927,8 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script> 
 
 
 </body>

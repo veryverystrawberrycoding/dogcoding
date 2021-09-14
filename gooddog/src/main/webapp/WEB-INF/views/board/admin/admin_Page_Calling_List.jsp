@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script> 
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -76,58 +80,8 @@
 
 
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
-				<div class="container-fluid">
-					<div class="row align-items-center">
-						<div class="col-lg-3">
-							<div class="">
-								<a href="./" class="logo">
-									<img src="images/logo.png" alt="img">
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="d-flex justify-content-center">
-								<div class="media header-media">
-									<div class="media-body">
-										<h4>
-											mail us
-										</h4>
-										<p>
-											<a href="mailto:canis@support.com">canis@support.com</a>
-										</p>
-									</div>
-								</div>
-
-								<div class="media header-media">
-									<div class="media-body">
-										<h4>
-											working ours
-										</h4>
-										<p>
-											9.00 - 20.00
-										</p>
-									</div>
-								</div>
-
-								<div class="media header-media">
-									<div class="media-body">
-										<h4>
-											call us
-										</h4>
-										<p>
-											<a href="tel:0-800-321-654">0-800-321-654</a>
-										</p>
-									</div>
-								</div>
-
-
-							</div>
-						</div>
-						<div class="col-lg-3 text-right">
-							<a href="#" class="btn btn-maincolor">book training</a>
-						</div>
-
-					</div>
+				<div>
+					gdgdgd
 				</div>
 			</section>
 
@@ -645,11 +599,7 @@
 								<ul class="top-includes d-none d-xl-block">
 									<li>
 										<span class="social-icons">
-
-											<a href="#" class="fa fa-twitter border-icon rounded-icon color-icon" title="twitter"></a>
-											<a href="#" class="fa fa-google border-icon rounded-icon color-icon" title="google"></a>
-											<a href="#" class="fa fa-facebook border-icon rounded-icon color-icon" title="facebook"></a>
-											<a href="#" class="fa fa-linkedin border-icon rounded-icon color-icon" title="linkedin"></a>
+											<!-- ìì´ì½ ìì¹ -->
 
 										</span>
 									</li>
@@ -663,217 +613,64 @@
 				<span class="toggle_menu"><span></span></span>
 			</header>
 
-			<section class="page_title ls  s-py-5">
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
+				
 				<div class="container">
 					<div class="row">
-
-						<div class="col-md-12 text-center">
-							<h1>Extended in 2 columns</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="./">Home</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="#">Pages</a>
-								</li>
-								<li class="breadcrumb-item active">
-									Extended in 2 columns
-								</li>
-							</ol>
+						
+						<div class="col-lg-8 order-lg-2">
+							<b style="color: red;">ì ê³ ê¸ ëª©ë¡</b>
+							<table>
+								<tr style="background-color: whitesmoke; border-collapse: collapse;">
+									<td>No.</td>
+									<td>Name</td>
+									<td>value</td>
+								</tr>
+								<tr style="border-bottom: 1px solid whitesmoke;">
+									<td>1</td>
+									<td>2</td>
+									<td>3</td>
+								</tr>
+							</table>
+							<div style="text-align: center;">
+								ããããã
+							</div>
 						</div>
+						
+						<aside class="col-lg-4 order-lg-1 mb-0">
 
-					</div>
-				</div>
-			</section>
+							
 
+							<div class="widget widget_categories">
 
-			<section class="ls gallery-page s-py-60 s-py-md-90 s-py-xl-160 container-px-15">
-				<div class="container">
-					<div class="row">
+								<h3 class="widget-title">Calling List</h3>
 
-						<div class="col-lg-12">
-							<div class="row justify-content-center mt--10">
-								<div class="col-md-10 col-xl-8">
-									<div class="filters gallery-filters small-text text-lg-right">
-										<a href="#" data-filter="*" class="active selected">All</a>
-										<a href="#" data-filter=".training">training</a>
-										<a href="#" data-filter=".puppies">puppies</a>
-										<a href="#" data-filter=".dogs">dogs</a>
-										<a href="#" data-filter=".breeds">breeds</a>
-										<a href="#" data-filter=".owners">owners</a>
-									</div>
-								</div>
+								<ul>
+									<li class="cat-item">
+										<a href="blog-right.html">ì´ ì© ë</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">í ì ê´ ë¦¬</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">ê² ì ê¸ ê´ ë¦¬</a>
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">ì  ê³ </a>
+									</li>
+								</ul>
 							</div>
 
-							<div class="row isotope-wrapper masonry-layout c-mb-30" data-filters=".gallery-filters">
+							<div class="widget widget_calendar">
 
-								<div class="col-md-4 owners">
-
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/01.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Lorem ipsum dolor sit amet</a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">owners</a>
-											</div>
-											<p class="mt-4 px-lg-3">Lorem ipsum dolor sit amet, consectetur ad icing elit, sed do eiusmod tempor incididunt labore
-												et dolore magna aliqua ut enim ad minim.</p>
-										</div>
-									</div>
-
-								</div>
-
-								<div class="col-md-4 training">
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/09.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Sed do eiusmod tempor</a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">training</a>
-											</div>
-											<p class="mt-4 px-lg-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non.</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-4 puppies">
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/11.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Incididunt ut labore </a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">puppies</a>
-											</div>
-											<p class="mt-4 px-lg-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-												id est laborum. Sed ut perspiciatis unde.</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-4 dogs">
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/15.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Dolore magna aliqua</a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">dogs</a>
-											</div>
-											<p class="mt-4 px-lg-3">Sed ut perspiciatis unde omnis iste natus error
-												sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-4 breeds">
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/16.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Ut enim ad minim veniam</a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">breeds</a>
-											</div>
-											<p class="mt-4 px-lg-3">Nemo enim ipsam voluptatem quia voluptas
-												sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-4 owners">
-									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
-											<img src="images/gallery/08.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="gallery-single.html"></a>
-											</div>
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<a href="gallery-single.html">Quis nostrud exercitation</a>
-											</h4>
-											<div class="small-text mt-md-3">
-												<a class="color-main" href="#">owners</a>
-											</div>
-											<p class="mt-4 px-lg-3">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-												velit, sed quia non numquam eius.</p>
-										</div>
-									</div>
-								</div>
-
-								
-
+							
 							</div>
-							<!-- .isotope-wrapper-->
-
-							<div class="row mt-30">
-								<div class="col-sm-12 text-center">
-									<nav class="navigation pagination " role="navigation">
-										<h2 class="screen-reader-text">Posts navigation</h2>
-										<div class="nav-links">
-											<a class="prev page-numbers" href="blog-right.html">
-												<i class="fa fa-chevron-left"></i>
-												<span class="screen-reader-text">Previous page</span>
-											</a>
-											<span class="page-numbers current">
-												<span class="meta-nav screen-reader-text">Page </span>
-												1
-											</span>
-											<a class="page-numbers" href="blog-right.html">
-												<span class="meta-nav screen-reader-text">Page </span>
-												...
-											</a>
-											<a class="page-numbers" href="blog-right.html">
-												<span class="meta-nav screen-reader-text">Page </span>
-												5
-											</a>
-											<a class="next page-numbers" href="blog-right.html">
-												<span class="screen-reader-text">Next page</span>
-												<i class="fa fa-chevron-right"></i>
-											</a>
-										</div>
-									</nav>
-								</div>
-							</div>
-
-						</div>
-
+						</aside>
+						
 					</div>
 
 				</div>
+			
 			</section>
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
@@ -892,7 +689,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -903,7 +700,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -996,9 +793,9 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
-
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
+ 
 
 </body>
 

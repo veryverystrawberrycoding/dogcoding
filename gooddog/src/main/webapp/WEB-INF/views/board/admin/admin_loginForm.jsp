@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,12 +21,12 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="css/shop.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -77,7 +81,7 @@
 
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block" style="text-align: center;">
 				<div>
-					로고
+					ë¡ê³ 
 				</div>
 			</section>
 
@@ -121,7 +125,7 @@
 										<!-- eof Gallery -->
 										<!-- contacts -->
 										<li>
-											<a href="#" style="color: red;">신고하기</a>
+											<a href="#" style="color: red;">ì ê³ íê¸°</a>
 											
 										</li>
 										<!-- eof contacts -->
@@ -139,9 +143,9 @@
 								<ul class="top-includes d-none d-xl-block">
 									<li>
 										<span class="social-icons">
-											<u>로그인</u>
+											<u>ë¡ê·¸ì¸</u>
 											&nbsp;&nbsp;
-											<u>회원가입</u>
+											<u>íìê°ì</u>
 										</span>
 									</li>
 								</ul>
@@ -187,11 +191,11 @@
 										<form class="woocomerce-form woocommerce-form-login login" method="post" width:50%>
 											<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide text-center">
 
-												<input type="text" placeholder="이메일" class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="">
+												<input type="text" placeholder="ì´ë©ì¼" class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="">
 											</p>
 											<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide text-center">
 
-												<input class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" placeholder="비밀번호*" type="password" name="password" id="password">
+												<input class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" placeholder="ë¹ë°ë²í¸*" type="password" name="password" id="password">
 											</p>
 											<!-- <p class=" d-flex justify-content-start align-items-center">
 												<label class="d-flex align-items-center woocommerce-form__label woocommerce-form__label-for-checkbox inline">
@@ -201,7 +205,7 @@
 											</p> -->
 											<div class="col-md-3" style="float: left;">
 												<input type="submit" class="woocommerce-Button button mt-0" name="login" value="Login">
-												<input type="button" class="woocommerce-Button button mt-0" value="뒤로가기">
+												<input type="button" class="woocommerce-Button button mt-0" value="ë¤ë¡ê°ê¸°">
 											</div>
 											
 											<br>
@@ -237,7 +241,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -248,7 +252,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -341,8 +345,8 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 
 </body>

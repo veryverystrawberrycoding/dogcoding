@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -76,8 +80,58 @@
 
 
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
-				<div>
-					gdgdgd
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<div class="">
+								<a href="./" class="logo">
+									<img src="images/logo.png" alt="img">
+								</a>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="d-flex justify-content-center">
+								<div class="media header-media">
+									<div class="media-body">
+										<h4>
+											mail us
+										</h4>
+										<p>
+											<a href="mailto:canis@support.com">canis@support.com</a>
+										</p>
+									</div>
+								</div>
+
+								<div class="media header-media">
+									<div class="media-body">
+										<h4>
+											working ours
+										</h4>
+										<p>
+											9.00 - 20.00
+										</p>
+									</div>
+								</div>
+
+								<div class="media header-media">
+									<div class="media-body">
+										<h4>
+											call us
+										</h4>
+										<p>
+											<a href="tel:0-800-321-654">0-800-321-654</a>
+										</p>
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+						<div class="col-lg-3 text-right">
+							<a href="#" class="btn btn-maincolor">book training</a>
+						</div>
+
+					</div>
 				</div>
 			</section>
 
@@ -595,7 +649,11 @@
 								<ul class="top-includes d-none d-xl-block">
 									<li>
 										<span class="social-icons">
-											<!-- 아이콘 위치 -->
+
+											<a href="#" class="fa fa-twitter border-icon rounded-icon color-icon" title="twitter"></a>
+											<a href="#" class="fa fa-google border-icon rounded-icon color-icon" title="google"></a>
+											<a href="#" class="fa fa-facebook border-icon rounded-icon color-icon" title="facebook"></a>
+											<a href="#" class="fa fa-linkedin border-icon rounded-icon color-icon" title="linkedin"></a>
 
 										</span>
 									</li>
@@ -609,64 +667,282 @@
 				<span class="toggle_menu"><span></span></span>
 			</header>
 
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
-				
+			<section class="page_title ls  s-py-5">
 				<div class="container">
 					<div class="row">
-						
-						<div class="col-lg-8 order-lg-2">
-							<b style="color: red;">신고글 목록</b>
-							<table>
-								<tr style="background-color: whitesmoke; border-collapse: collapse;">
-									<td>No.</td>
-									<td>Name</td>
-									<td>value</td>
-								</tr>
-								<tr style="border-bottom: 1px solid whitesmoke;">
-									<td>1</td>
-									<td>2</td>
-									<td>3</td>
-								</tr>
-							</table>
-							<div style="text-align: center;">
-								ㅇㅇㅇㅇㅇ
-							</div>
+
+						<div class="col-md-12 text-center">
+							<h1>Single Event without Sidebar</h1>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="./">Home</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">Pages</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Single Event without Sidebar
+								</li>
+							</ol>
 						</div>
-						
-						<aside class="col-lg-4 order-lg-1 mb-0">
 
-							
+					</div>
+				</div>
+			</section>
 
-							<div class="widget widget_categories">
 
-								<h3 class="widget-title">Calling List</h3>
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
+				<div class="container">
+					<div class="row">
 
-								<ul>
-									<li class="cat-item">
-										<a href="blog-right.html">이 용 량</a>
+						<main class="offset-lg-1 col-lg-10">
+							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
+								<div class="item-media post-thumbnail">
+									<img src="images/gallery/15.jpg" alt="img">
+									<p class="item-meta d-flex flex-wrap">
+										<a href="event-single-right.html"><i class="fa fa-calendar color-main"></i>05.02.2018</a>
+										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>admin</a>
+										<a href="event-single-right.html"><i class="fa fa-comment color-main"></i>8 comments</a>
+									</p>
+								</div>
+
+
+								<div class="item-content">
+									<!-- .post-thumbnail -->
+									<h4>
+										<a href="event-single-right.html">Training Workshops and Classes for Pet Lovers</a>
+									</h4>
+
+									<div class="entry-content">
+										<p>
+											At vero eos accusam justo duo dolores et rebum clita kasd gubergren nosea takimata sanctus est dolor sit
+											amet
+										</p>
+
+										<p>
+											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+											sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor amet consetetur sadipscing elitr, sed diam
+											nonumy eirmod tempor invidunt.
+										</p>
+
+										<ul class="list-styled">
+											<li>Consetetur sadipscing elitr, sed diam nonumy</li>
+											<li>Eirmod tempor invidunt ut labore</li>
+											<li>Dolore magna aliquyam erat</li>
+											<li>Sed diam voluptua. At vero eos accusam</li>
+										</ul>
+
+										<p>
+											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+											sanctusamet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+											invidunt ut labore et dolore magna aliquyam erat.
+										</p>
+
+
+									</div>
+									<!-- .entry-content -->
+
+								</div>
+								<!-- .item-content -->
+							</article>
+
+
+							<div id="comments" class="comments-area ">
+
+								<h4 class="comments-title">
+									Comments
+								</h4>
+
+								<ol class="comment-list">
+									<li class="comment">
+										<article class="comment-body">
+											<footer class="comment-meta">
+												<div class="comment-author vcard">
+													<img alt="img" src="images/team/comment_1.jpg">
+													<h4>Gabriel K. Reed</h4>
+													<p class="small-text text-left color-main4">
+														05.02.2018
+													</p>
+												</div>
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+												</div>
+												<!-- .comment-author -->
+												<!-- .comment-metadata -->
+											</footer>
+											<!-- .comment-meta -->
+
+											<div class="comment-content">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+											</div>
+											<!-- .comment-content -->
+
+
+										</article>
+										<!-- .comment-body -->
+										<ol class="children">
+											<li class="comment">
+												<article class="comment-body">
+													<footer class="comment-meta">
+														<div class="comment-author vcard">
+															<img alt="img" src="images/team/comment_2.jpg">
+															<h4>Angela R. Sanford</h4>
+															<p class="small-text text-left color-main4">
+																06.02.2018
+															</p>
+														</div>
+														<div class="reply">
+															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+														</div>
+														<!-- .comment-author -->
+														<!-- .comment-metadata -->
+													</footer>
+													<!-- .comment-meta -->
+
+													<div class="comment-content">
+														<p>Ut enim ad minim veniam, quis nostrud.</p>
+													</div>
+													<!-- .comment-content -->
+
+
+												</article>
+												<!-- .comment-body -->
+											</li>
+											<!-- #comment-## -->
+										</ol>
+										<!-- .children -->
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">회 원 관 리</a>
+									<!-- #comment-## -->
+									<li class="comment">
+										<article class="comment-body">
+											<footer class="comment-meta">
+												<div class="comment-author vcard">
+													<img alt="img" src="images/team/comment_3.jpg">
+													<h4>Thelma J. Gray</h4>
+													<p class="small-text text-left color-main4">
+														26.01.2018
+													</p>
+												</div>
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+												</div>
+												<!-- .comment-author -->
+												<!-- .comment-metadata -->
+											</footer>
+											<!-- .comment-meta -->
+
+											<div class="comment-content">
+												<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+													fugiat nulla pariatur. </p>
+											</div>
+											<!-- .comment-content -->
+
+
+										</article>
+										<!-- .comment-body -->
+										<ol class="children">
+											<li class="comment">
+												<article class="comment-body">
+													<footer class="comment-meta">
+														<div class="comment-author vcard">
+															<img alt="img" src="images/team/comment_4.jpg">
+															<h4>Carl D. Armstrong</h4>
+															<p class="small-text text-left color-main4">
+																26.01.2018
+															</p>
+														</div>
+														<div class="reply">
+															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+														</div>
+														<!-- .comment-author -->
+														<!-- .comment-metadata -->
+													</footer>
+													<!-- .comment-meta -->
+
+													<div class="comment-content">
+														<p>Excepteur sint occaecat cupidatat non proident.</p>
+													</div>
+													<!-- .comment-content -->
+
+
+												</article>
+												<!-- .comment-body -->
+											</li>
+											<!-- #comment-## -->
+										</ol>
+										<!-- .children -->
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">게 시 글 관 리</a>
-									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">신 고</a>
-									</li>
-								</ul>
+									<!-- #comment-## -->
+								</ol>
+								<!-- .comment-list -->
+
+
+								<div id="respond" class="comment-respond ms ls">
+									<h4 id="reply-title" class="comment-reply-title">Leave the comment</h4>
+									<form class="contact-form c-mb-10 c-gutter-10" method="post" action="/">
+
+										<div class="row">
+
+											<div class="col-xl-4">
+												<div class="form-group has-placeholder">
+													<label for="name">your Name <span class="required">*</span></label>
+													<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
+												</div>
+											</div>
+
+											<div class="col-xl-4">
+												<div class="form-group has-placeholder">
+													<label for="phone">Phone<span class="required">*</span></label>
+
+													<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+												</div>
+											</div>
+
+											<div class="col-xl-4">
+												<div class="form-group has-placeholder">
+													<label for="email">email address<span class="required">*</span></label>
+													<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="email Address">
+												</div>
+											</div>
+										</div>
+
+
+										<div class="row">
+
+											<div class="col-sm-12">
+
+												<div class="form-group has-placeholder">
+													<label for="message">Your Comment</label>
+
+													<textarea aria-required="true" rows="4" cols="45" name="message" id="message" class="form-control" placeholder="Your Comment"></textarea>
+												</div>
+											</div>
+
+										</div>
+
+										<div class="row mt-30">
+
+											<div class="col-sm-12 text-left">
+
+												<div class="form-group">
+													<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Comment
+													</button>
+												</div>
+											</div>
+
+										</div>
+
+									</form>
+								</div>
+								<!-- #respond -->
+
 							</div>
 
-							<div class="widget widget_calendar">
+						</main>
 
-							
-							</div>
-						</aside>
-						
 					</div>
 
 				</div>
-			
 			</section>
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
@@ -685,7 +961,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -696,7 +972,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -789,8 +1065,8 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 
 </body>

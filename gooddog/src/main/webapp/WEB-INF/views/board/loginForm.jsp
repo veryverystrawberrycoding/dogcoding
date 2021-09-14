@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -5,7 +9,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-
+ 
 <head>
 	<title>Venator</title>
 	<meta charset="utf-8">
@@ -17,11 +21,12 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/animations.css">
+	<link rel="stylesheet" href="${path}/resources/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/shop.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -37,7 +42,7 @@
 	<![endif]-->
 
 	<div class="preloader">
-		<div class="preloader_image pulse"></div>
+		<div class="preloader_image"></div>
 	</div>
 
 	<!-- search modal -->
@@ -73,7 +78,6 @@
 		<div id="box_wrapper">
 
 			<!-- template sections -->
-
 
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
 				<div class="container-fluid">
@@ -668,16 +672,16 @@
 					<div class="row">
 
 						<div class="col-md-12 text-center">
-							<h1>Contacts 2 Page</h1>
+							<h1>Account - Login</h1>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="./">Home</a>
 								</li>
 								<li class="breadcrumb-item">
-									<a href="#">Pages</a>
+									<a href="#">Shop</a>
 								</li>
 								<li class="breadcrumb-item active">
-									Contacts 2 Page
+									Account - Login
 								</li>
 							</ol>
 						</div>
@@ -686,189 +690,65 @@
 				</div>
 			</section>
 
-			<section class="ls ms page_map" data-draggable="true" data-scrollwheel="true">
-				<div class="marker">
-					<div class="marker-address">sydney, australia, Liverpool street, 66</div>
-					<div class="marker-title">First Marker</div>
-					<div class="marker-description">
-						<img src="images/logo.png" alt="img">
 
-						<ul class="list-unstyled">
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-map-marker"></i>
-									</span>
-
-									<span>
-										Sydney, Australia, Liverpool street, 66
-									</span>
-								</span>
-							</li>
-
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-phone"></i>
-									</span>
-
-									<span>
-										1 (800) 123-45-67
-									</span>
-								</span>
-							</li>
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-envelope"></i>
-									</span>
-
-									<span>
-										mail@example.com
-									</span>
-								</span>
-							</li>
-						</ul>
-					</div>
-
-					<img class="marker-icon" src="images/map_marker_icon.png" alt="img">
-				</div>
-				<!-- .marker -->
-			</section>
-
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-mb-20 c-gutter-60">
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160">
 				<div class="container">
-					<div class="row mt--5">
+					<div class="row">
 
-						<div data-animation="scaleAppear" class=" col-lg-7 animate">
-							<h4 class="text-left mb-35">
-								Contact Form
-							</h4>
-							<form class="contact-form c-mb-20 c-gutter-20" method="post" action="/">
+						<main class="col-lg-12">
+							<article>
+								<!-- .entry-header -->
+								<div class="entry-content">
+									<div class="woocommerce">
 
-								<div class="form-group has-placeholder">
-									<label for="name">Full Name <span class="required">*</span></label>
-									<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
+										<!--
+			<div class="woocommerce-message">Are you sure you want to log out? <a
+				href="shop-account-login.html">Confirm and log out</a>
+			</div>
+			-->
+
+										<form class="woocomerce-form woocommerce-form-login login" method="post" width:50%>
+											<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide text-center">
+
+												<input type="text" placeholder="이메일" class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" value="">
+											</p>
+											<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide text-center">
+
+												<input class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" placeholder="비밀번호*" type="password" name="password" id="password">
+											</p>
+											<!-- <p class=" d-flex justify-content-start align-items-center">
+												<label class="d-flex align-items-center woocommerce-form__label woocommerce-form__label-for-checkbox inline">
+													<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever">
+													<span>Remember me</span>
+												</label>
+											</p> -->
+											<div class="col-md-3" style="float: center; margin:0 auto;">
+												<button type="submit" class="woocommerce-Button button mt-0" name="login" value="Login">로그인</button><br>
+												<button type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin">카카오 로그인</button>
+											</div>
+											
+											<p style="text-align:center;">
+												<u><a href="#">아이디 찾기</a></u>&nbsp;&nbsp;/&nbsp;&nbsp;<u><a href="#">아이디 찾기</a></u>
+											</p>
+											<br>
+											<br>
+											<br>
+											<p style="text-align:center;">
+												<u><a href="#">회원 가입</a></u>
+											</p>
+										</form>
+									</div>
 								</div>
+								<!-- .entry-content -->
+							</article>
 
-								<div class="form-group has-placeholder">
-									<label for="email">Email address<span class="required">*</span></label>
-									<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address">
-								</div>
 
-								<div class="form-group has-placeholder">
-									<label for="phone">Phone<span class="required">*</span></label>
-									<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
-								</div>
-
-								<div class="form-group has-placeholder">
-									<label for="message">Message</label>
-									<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
-								</div>
-
-								<div class="form-group d-flex align-items-center flex-column flex-md-row mt-40">
-									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">your Message
-									</button>
-								</div>
-
-							</form>
-						</div>
-
-						<div class="col-lg-5 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
-
-							<h4 class="text-left mb-20">
-								Contact Info
-							</h4>
-							<ul class="list-unstyled">
-								<li>
-									<span class="icon-inline">
-										<span class="icon-styled mr-4">
-											<i class="fa color-main4 fa-map-marker fs-14"></i>
-										</span>
-
-										<span class="color-darkgrey">
-											3112 Stonecoal Road Toledo, OH 4360
-										</span>
-									</span>
-								</li>
-
-								<li>
-									<span class="icon-inline">
-										<span class="icon-styled mr-4">
-											<i class="fa color-main4 fa-phone fs-14"></i>
-										</span>
-
-										<span class="color-darkgrey">
-											0 (800) 321 654
-										</span>
-									</span>
-								</li>
-								<li>
-									<span class="icon-inline">
-										<span class="icon-styled mr-4">
-											<i class="fa color-main4 fa-envelope fs-14"></i>
-										</span>
-
-										<span class="color-darkgrey">
-											venator@support.com
-										</span>
-									</span>
-								</li>
-							</ul>
-
-							<h4 class="text-left mb-4 mt-40">
-								Open hours
-							</h4>
-
-							<ul class="list-unstyled">
-								<li class="d-flex justify-content-start justify-content-lg-between">
-									<span class="icon-styled color-main4 pr-3">
-										<i class="fa fa-clock-o fs-14"></i>
-									</span>
-									<span class="mr-2 mr-lg-auto">Weekdays</span>
-									<span class="color-darkgrey w-60">
-										9:00-17:00
-									</span>
-								</li>
-								<li class="d-flex justify-content-start justify-content-lg-between">
-									<span class="icon-styled color-main4 pr-3">
-										<i class="fa fa-clock-o fs-14"></i>
-									</span>
-									<span class="mr-2 mr-lg-auto">Saturday</span>
-									<span class="color-darkgrey w-60">
-										10:00-15:00
-									</span>
-								</li>
-								<li class="d-flex justify-content-start justify-content-lg-between">
-									<span class="icon-styled color-main4 pr-3">
-										<i class="fa fa-clock-o fs-14"></i>
-									</span>
-									<span class="mr-2 mr-lg-auto">Sunday</span>
-									<span class="color-darkgrey w-60">
-										Closed
-									</span>
-								</li>
-								<li class="d-flex justify-content-start justify-content-lg-between">
-									<span class="icon-styled color-main4 pr-3">
-										<i class="fa fa-clock-o fs-14"></i>
-									</span>
-									<span class="mr-2 mr-lg-auto">Holidays</span>
-									<span class="color-darkgrey w-60">
-										10:00-13:00
-									</span>
-								</li>
-							</ul>
-
-						</div>
-						<!--.col-* -->
+						</main>
 
 					</div>
-				</div>
-				<div class="mb--25 d-none d-xl-block"></div>
-				<div class="mb--20 hidden-above-xl"></div>
-				<div class="mb--30 hidden-above-md"></div>
-			</section>
 
+				</div>
+			</section>
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
@@ -990,12 +870,9 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
-
-	<!-- Google Map Script -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?callback=templateInitGoogleMap&key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4"></script>
 
 </body>
 

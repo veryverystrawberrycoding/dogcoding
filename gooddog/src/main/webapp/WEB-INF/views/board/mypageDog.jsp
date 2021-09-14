@@ -1,9 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
 <head>
-	<title>GoodDog_gallery_List</title>
+	<title>Venator</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../resources/css/animations.css">
-	<link rel="stylesheet" href="../../resources/css/font-awesome.css">
-	<link rel="stylesheet" href="../../resources/css/main-gooddog.css" class="color-switcher-link">
-	<script src="../../resources/js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -28,9 +36,6 @@
 </head>
 
 <body>
-
-
-
 	<!--[if lt IE 9]>
 		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
 	<![endif]-->
@@ -667,7 +672,7 @@
 					<div class="row">
 
 						<div class="col-md-12 text-center">
-							<h1>Gallery: Tiled layout</h1>
+							<h1>Contacts 2 Page</h1>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="./">Home</a>
@@ -676,7 +681,7 @@
 									<a href="#">Pages</a>
 								</li>
 								<li class="breadcrumb-item active">
-									Gallery: Tiled layout
+									Contacts 2 Page
 								</li>
 							</ol>
 						</div>
@@ -684,271 +689,138 @@
 					</div>
 				</div>
 			</section>
-<!--  -->
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 container-px-0">
-				<div class="container-fluid">
-					<div class="row">
 
-						<div class="col-lg-12">
-							<div class="row justify-content-center mt--10">
-								<div class="col-md-10 col-xl-8">
-									<div class="filters gallery-filters small-text text-lg-right">
-										<a href="#" data-filter="*" class="active selected">All</a>
-										<a href="#" data-filter=".training">training</a>
-										<a href="#" data-filter=".puppies">puppies</a>
-										<a href="#" data-filter=".dogs">dogs</a>
-										<a href="#" data-filter=".breeds">breeds</a>
-										<a href="#" data-filter=".owners">owners</a>
-									</div>
+			<section class="ls ms page_map" data-draggable="true" data-scrollwheel="true">
+				<div class="marker">
+					<div class="marker-address">sydney, australia, Liverpool street, 66</div>
+					<div class="marker-title">First Marker</div>
+					<div class="marker-description">
+						<img src="images/logo.png" alt="img">
+
+						<ul class="list-unstyled">
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-map-marker"></i>
+									</span>
+
+									<span>
+										Sydney, Australia, Liverpool street, 66
+									</span>
+								</span>
+							</li>
+
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-phone"></i>
+									</span>
+
+									<span>
+										1 (800) 123-45-67
+									</span>
+								</span>
+							</li>
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-envelope"></i>
+									</span>
+
+									<span>
+										mail@example.com
+									</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+
+					<img class="marker-icon" src="images/map_marker_icon.png" alt="img">
+				</div>
+				<!-- .marker -->
+			</section>
+
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
+				<div class="container">
+					<div class="row mt--5"> 
+						<div class="col-lg-3">
+							<nav class="woocommerce-MyAccount-navigation">
+								<ul>
+									<li>
+										<a href="shop-account-dashboard.html">Dashboard</a>
+									</li>
+									<li>
+										<a href="shop-account-orders.html">Orders</a>
+									</li>
+									<li> 
+										<a href="shop-account-downloads.html">Downloads</a>
+									</li>
+									<li class="is-active">
+										<a href="shop-account-addresses.html">Addresses</a>
+									</li>
+									<li>
+										<a href="shop-account-details.html">Account details</a>
+									</li>
+									<li>
+										<a href="shop-account-login.html">Logout</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+
+						<div class="col-lg-4 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
+
+							<img src="#" style="width:350px; height:350px; margin: 3px; bottom:20px"></img>
+						</div>  
+						<!--.col-* -->	
+						<div data-animation="scaleAppear" class=" col-lg-5 animate">
+							<h4 class="text-left mb-35">
+								ëì í« ì ë³´
+							</h4>
+							<form class="contact-form c-mb-20 c-gutter-20" method="post" action="/">
+
+								<div class="form-group has-placeholder">
+									<label for="name"> ê°ìì§ ì´ë¦ <span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
 								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="email">ê°ìì§ ì¸ìë²í¸ <span class="required">*</span></label>
+									<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="phone">Phone<span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="message">Message</label>
+									<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
+								</div>
+ 
+								<div class="form-group d-flex-row-reverse align-items-center flex-column flex-md-row mt-40">
+								<div class="container">
+								<div class="row">   
+									<div class='col-md-12'></div> 
+									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor btn-xs" >ìì  
+									</button>        
+									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor btn-xs" >ì­ì     
+									</button>
+									</div>    
+								</div>  
+								</div> 
 							</div>
-
-							<div class="row isotope-wrapper masonry-layout c-gutter-0" data-filters=".gallery-filters">
-
-
-								<div class=" col-xl-4 col-md-6 training">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/01.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/16.jpg"></a>
-													<a class="link-anchor" title="" href="gallery_View"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 puppies">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery-titled/01.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/10.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 dogs">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/03.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/03.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 breeds">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/04.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/04.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 corporate innovations">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/05.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/05.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 owners">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery-titled/02.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/06.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 training">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/06.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/13.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 puppies">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/08.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/08.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 dogs">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery-titled/03.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/09.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 breeds">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/15.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/15.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 owners">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/11.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/11.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-								<div class=" col-xl-4 col-md-6 training">
-									<div class="vertical-item item-gallery content-absolute text-center ds">
-										<div class="item-media">
-											<img src="images/gallery/12.jpg" alt="img">
-											<div class="media-links">
-												<div class="links-wrap">
-													<a class="link-zoom photoswipe-link" href="images/gallery/12.jpg"></a>
-													<a class="link-anchor" title="" href="gallery-single.html"></a>
-												</div>
-											</div>
-										</div>
-										<div class="item-content gradientdarken-background">
-											<h5>
-												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
-											</h5>
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<!-- .isotope-wrapper-->
-
-							<div class="row mt-60">
-								<div class="col-sm-12 text-center">
-									<a href="#" class="btn btn-maincolor mb-0">View More</a>
-								</div>
-							</div>
-
+							</form>
 						</div>
 
 					</div>
-
 				</div>
+				<div class="mb--25 d-none d-xl-block"></div>
+				<div class="mb--20 hidden-above-xl"></div>
+				<div class="mb--30 hidden-above-md"></div>
 			</section>
+
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
@@ -966,7 +838,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -977,7 +849,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -1070,10 +942,13 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="../../resources/js/compressed.js"></script>
-	<script src="../../resources/js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
+
+
+	<!-- Google Map Script -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?callback=templateInitGoogleMap&key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4"></script>
 
 </body>
 
-</html>
-
+</html> 

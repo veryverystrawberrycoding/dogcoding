@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -6,7 +10,7 @@
 <html class="no-js">
 <!--<![endif]-->
 
-<head>
+<head> 
 	<title>Venator</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
@@ -17,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/animations.css">
+	<link rel="stylesheet" href="${path}/resources/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -645,7 +649,11 @@
 								<ul class="top-includes d-none d-xl-block">
 									<li>
 										<span class="social-icons">
-											<!-- 아이콘 위치 -->
+
+											<a href="#" class="fa fa-twitter border-icon rounded-icon color-icon" title="twitter"></a>
+											<a href="#" class="fa fa-google border-icon rounded-icon color-icon" title="google"></a>
+											<a href="#" class="fa fa-facebook border-icon rounded-icon color-icon" title="facebook"></a>
+											<a href="#" class="fa fa-linkedin border-icon rounded-icon color-icon" title="linkedin"></a>
 
 										</span>
 									</li>
@@ -659,71 +667,212 @@
 				<span class="toggle_menu"><span></span></span>
 			</header>
 
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
-				<div class="col-md-4">
-					
-				</div>
+			<section class="page_title ls  s-py-5">
 				<div class="container">
 					<div class="row">
 
-						<main class="col-lg-8 order-lg-2">
-							
-								 <div>
-									<div style="height: 500px;">
-										전체 방문자
-									</div>
-									<div style="height: 250px;">
-										<div style="float: left; width: 50%;">
-											월별 방문자
-										</div>
-										<div style="float: right; width: 50%;">
-											일별 방문자
-										</div>
-									</div>
-	
-								 </div>
-								
-							
-
-
-							
-
-						</main>
-
-						<aside class="col-lg-4 order-lg-1 mb-0">
-
-							
-
-							<div class="widget widget_categories">
-
-								<h3 class="widget-title">admin name</h3>
-
-								<ul>
-									<li class="cat-item">
-										<a href="blog-right.html">이 용 량</a>
-									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">회 원 관 리</a>
-									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">게 시 글 관 리</a>
-									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">신 고</a>
-									</li>
-								</ul>
-							</div>
-
-							<div class="widget widget_calendar">
-
-							
-							</div>
-						</aside>
+						<div class="col-md-12 text-center">
+							<h1>Contacts 2 Page</h1>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="./">Home</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">Pages</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Contacts 2 Page
+								</li>
+							</ol>
+						</div>
 
 					</div>
-
 				</div>
 			</section>
+
+			<section class="ls ms page_map" data-draggable="true" data-scrollwheel="true">
+				<div class="marker">
+					<div class="marker-address">sydney, australia, Liverpool street, 66</div>
+					<div class="marker-title">First Marker</div>
+					<div class="marker-description">
+						<img src="images/logo.png" alt="img">
+
+						<ul class="list-unstyled">
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-map-marker"></i>
+									</span>
+
+									<span>
+										Sydney, Australia, Liverpool street, 66
+									</span>
+								</span>
+							</li>
+
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-phone"></i>
+									</span>
+
+									<span>
+										1 (800) 123-45-67
+									</span>
+								</span>
+							</li>
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-envelope"></i>
+									</span>
+
+									<span>
+										mail@example.com
+									</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+
+					<img class="marker-icon" src="images/map_marker_icon.png" alt="img">
+				</div>
+				<!-- .marker -->
+			</section>
+
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-mb-20 c-gutter-60">
+				<div class="container">
+					<div class="row mt--5">
+
+						<div data-animation="scaleAppear" class=" col-lg-7 animate">
+							<h4 class="text-left mb-35">
+								Contact Form
+							</h4>
+							<form class="contact-form c-mb-20 c-gutter-20" method="post" action="/">
+
+								<div class="form-group has-placeholder">
+									<label for="name">Full Name <span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="email">Email address<span class="required">*</span></label>
+									<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="phone">Phone<span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="message">Message</label>
+									<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
+								</div>
+
+								<div class="form-group d-flex align-items-center flex-column flex-md-row mt-40">
+									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">your Message
+									</button>
+								</div>
+
+							</form>
+						</div>
+
+						<div class="col-lg-5 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
+
+							<h4 class="text-left mb-20">
+								Contact Info
+							</h4>
+							<ul class="list-unstyled">
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-map-marker fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											3112 Stonecoal Road Toledo, OH 4360
+										</span>
+									</span>
+								</li>
+
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-phone fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											0 (800) 321 654
+										</span>
+									</span>
+								</li>
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-envelope fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											venator@support.com
+										</span>
+									</span>
+								</li>
+							</ul>
+
+							<h4 class="text-left mb-4 mt-40">
+								Open hours
+							</h4>
+
+							<ul class="list-unstyled">
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Weekdays</span>
+									<span class="color-darkgrey w-60">
+										9:00-17:00
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Saturday</span>
+									<span class="color-darkgrey w-60">
+										10:00-15:00
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Sunday</span>
+									<span class="color-darkgrey w-60">
+										Closed
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Holidays</span>
+									<span class="color-darkgrey w-60">
+										10:00-13:00
+									</span>
+								</li>
+							</ul>
+
+						</div>
+						<!--.col-* -->
+
+					</div>
+				</div>
+				<div class="mb--25 d-none d-xl-block"></div>
+				<div class="mb--20 hidden-above-xl"></div>
+				<div class="mb--30 hidden-above-md"></div>
+			</section>
+
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
@@ -845,9 +994,12 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
+
+	<!-- Google Map Script -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?callback=templateInitGoogleMap&key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4"></script>
 
 </body>
 

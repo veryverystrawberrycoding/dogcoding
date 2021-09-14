@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -595,7 +599,7 @@
 								<ul class="top-includes d-none d-xl-block">
 									<li>
 										<span class="social-icons">
-											<!-- 아이콘 위치 -->
+											<!-- ìì´ì½ ìì¹ -->
 
 										</span>
 									</li>
@@ -615,7 +619,7 @@
 					<div class="row">
 						
 						<div class="col-lg-8 order-lg-2">
-							<b style="color:black;">회원목록</b>
+							<b style="color:black;">íìëª©ë¡</b>
 							<table>
 								<tr style="background-color: whitesmoke; border-collapse: collapse;">
 									<td>No.</td>
@@ -629,7 +633,7 @@
 								</tr>
 							</table>
 							<div style="text-align: center;">
-								ㅇㅇㅇㅇㅇ
+								ããããã
 							</div>
 						</div>
 						
@@ -643,16 +647,16 @@
 
 								<ul>
 									<li class="cat-item">
-										<a href="blog-right.html">이 용 량</a>
+										<a href="blog-right.html">ì´ ì© ë</a>
 									</li>
 									<li class="cat-item">
-										<a href="blog-right.html">회 원 관 리</a>
+										<a href="blog-right.html">í ì ê´ ë¦¬</a>
 									</li>
 									<li class="cat-item">
-										<a href="blog-right.html">게 시 글 관 리</a>
+										<a href="blog-right.html">ê² ì ê¸ ê´ ë¦¬</a>
 									</li>
 									<li class="cat-item">
-										<a href="blog-right.html">신 고</a>
+										<a href="blog-right.html">ì  ê³ </a>
 									</li>
 								</ul>
 							</div>
@@ -664,7 +668,7 @@
 
 				</div>
 				<div style="float: right; width: 300px; text-align: center;">
-					챗봇 들어갈 자리
+					ì±ë´ ë¤ì´ê° ìë¦¬
 				</div>
 			</section>
 
@@ -684,7 +688,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 									<div class="media">
@@ -695,7 +699,7 @@
 											<p>
 												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
 											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
+											<a href="â">http://on.bcg.com/2enKlr7</a>
 										</div>
 									</div>
 								</div>
@@ -788,8 +792,8 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 
 </body>

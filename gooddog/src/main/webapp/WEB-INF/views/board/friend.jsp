@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html class="no-js">
 <head>
@@ -11,17 +13,17 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../resources/css/animations.css">
-	<link rel="stylesheet" href="../resources/css/font-awesome.css">
-	<link rel="stylesheet" href="../resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	
 	
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 	
-	<script src="../resources/js/vendor/modernizr-custom.js"></script>
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 
 
@@ -986,8 +988,8 @@ p.a{font-weight:900;
 	</div><!-- eof #canvas -->
 
 
-	<script src="../resources/js/compressed.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 
 </body>

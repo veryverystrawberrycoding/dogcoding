@@ -3,11 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
-<head>
-<meta charset="UTF-8">
-	<title>Venator</title>
+<!--<![endif]-->
 
+<head>
+	<title>Venator</title>
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,26 +25,8 @@
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-	
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
-  
-  
-<style >
 
-
-p{font-family: 'Single Day', cursive;
-font-size:60px;
-}
-p.a{font-weight:900;
-}
-
-
-
-</style>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
@@ -66,7 +56,7 @@ p.a{font-weight:900;
 				</div>
 				<button type="submit"></button>
 			</form>
-		</div>
+		</div> 
 	</div>
 
 	<!-- Unyson messages modal -->
@@ -88,14 +78,14 @@ p.a{font-weight:900;
 
 			<!-- template sections -->
 
-			<!--topline section visible only on small screens|-->
+
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
 				<div class="container-fluid">
 					<div class="row align-items-center">
 						<div class="col-lg-3">
 							<div class="">
 								<a href="./" class="logo">
-									<img src="../resources/images/logo.png" alt="img">
+									<img src="images/logo.png" alt="img">
 								</a>
 							</div>
 						</div>
@@ -144,7 +134,7 @@ p.a{font-weight:900;
 					</div>
 				</div>
 			</section>
-			<!--eof topline-->
+
 			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
 			<header class="page_header ls bg-maincolor4 main-style">
 				<div class="container-fluid">
@@ -152,7 +142,7 @@ p.a{font-weight:900;
 						<div class="col-xl-12">
 							<div class="nav-wrap header-main">
 								<a href="./" class="logo logo-ds">
-									<img src="../resources/images/logo_ds.png" alt="img">
+									<img src="images/logo_ds.png" alt="img">
 								</a>
 								<!-- main nav start -->
 								<nav class="top-nav">
@@ -676,263 +666,247 @@ p.a{font-weight:900;
 				<!-- header toggler -->
 				<span class="toggle_menu"><span></span></span>
 			</header>
-		
 
-		
-
-		
-		
-
-		<section class="container">
-		<div class="container"style="padding:50px;">
-			<div class="container">
-			
-			<h3 class="text-left mb-35">
-								Chat
-							</h3>
-			<!--  <button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">방 만들기!</button>-->
-				
-				<p class="a">동해물과 백두산이</p>
-				
-				
-				
-				<!-- fantasy -->
-				
-							
-				
-				<table class = "table table-striped" style="text-align:center; border:1px solid #dddddd" >
-				
-
-						<tr>
-							<!-- <td><font size=100 face= "Arial Black">abcd</font> </td> -->
-							<td ><p class="a">단톡 2번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs">입장</button></td>
-							
-						</tr>
-						
-					
-						<tr>
-							<td ><p class="a">단톡 1번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs">입장</button></td>
-							
-						</tr>
-							<tr>
-							<td ><p class="a">단톡 2번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-						
-						
-							<tr>
-							<td ><p class="a">단톡 3번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-						
-						
-						
-						
-							<tr>
-							<td ><p class="a">단톡 4번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-					
-					
-					<!-- 위치 좌우로 옮겨라 일단 디자인만이니까 ㅇㅋ? -->
-				</table>
-				</div>
-						
-							
-						
-
-				</div>
-			</section>
-			
-  <!--   -------------------------------------------------------------------------------------------------- -->
-			<section id="contacts" class="ds s-py-60 s-py-md-90 s-py-xl-80 s-py-xl-160 s-overlay s-parallax consultation-section">
-				<div class="container">
-					<div class="col-md-10 offset-md-1 text-center mt--5">
-						<p class="top-subtitle">Get in</p>
-						<h3 class="special-heading line-after">Touch</h3>
-					</div>
-					<div class="col-12 col-xl-8 offset-xl-2 px-0 mt-40">
-						<form class="contact-form c-mb-lg-20 c-mb-10 c-gutter-20" method="post" action="/">
-
-							<div class="row">
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="name">Your Name<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control text-center" placeholder="Your Name">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="phone">Your Phone<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control text-center" placeholder="Your Phone">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="email">Email address<span class="required">*</span></label>
-										<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control text-center" placeholder="Email Address">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="subject">Your subject<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="email" id="subject" class="form-control text-center" placeholder="Your subject">
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group has-placeholder">
-										<label for="message">Your Message</label>
-										<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control text-center" placeholder="Your Message"></textarea>
-									</div>
-								</div>
-
-							</div>
-							<div class="row mt-15">
-								<div class="divider-20 hidden-above-lg"></div>
-								<div class="col-sm-12 text-center">
-									<div class="form-group buttons-group">
-										<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Message</button>
-									</div>
-								</div>
-
-							</div>
-
-						</form>
-					</div>
-				</div>
-			</section>
-
-			<section id="partners" class="ls s-py-60 s-py-md-90 container-px-xl-120 partners-section">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="owl-carousel" data-loop="true" data-margin="30" data-nav="false" data-dots="false" data-center="false" data-items="1" data-autoplay="true" data-responsive-xs="2" data-responsive-sm="3" data-responsive-md="4" data-responsive-lg="7">
-								<div class=""><a href="#"><img src="../resources/images/partners/01.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/02.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/03.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/04.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/05.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/06.png" alt="img"></a></div>
-								<div class=""> <a href="#"><img src="../resources/images/partners/07.png" alt="img"></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
-
+			<section class="page_title ls  s-py-5">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
-							<div class="widget widget_twitter">
-								<h3 class="widget-title">Twitter</h3>
-								<div class="twitter-item">
-									<div class="media">
-										<div class="icon-styled color-main fs-18">
-											<i class="fa fa-twitter" aria-hidden="true"></i>
-										</div>
-										<div class="media-body color_1">
-											<p>
-												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
-											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
-										</div>
-									</div>
-									<div class="media">
-										<div class="icon-styled color-main fs-18">
-											<i class="fa fa-twitter" aria-hidden="true"></i>
-										</div>
-										<div class="media-body color_1">
-											<p>
-												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
-											</p>
-											<a href="№">http://on.bcg.com/2enKlr7</a>
-										</div>
-									</div>
-								</div>
-							</div>
+
+						<div class="col-md-12 text-center">
+							<h1>Footer 2</h1>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="./">Home</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">Pages</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Footer 2
+								</li>
+							</ol>
 						</div>
 
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
+					</div>
+				</div>
+			</section>
 
-							<div class="widget widget_icons_list">
-								<h3 class="widget-title">Our Contacts</h3>
+			<section class="ls s-py-50 c-gutter-60 s-py-md-90 s-py-xl-160">
+				<div class="container">
+					<div class="row">
 
-								<ul class="mb-10">
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-map-marker"></i>
-										</div>
-										<p>3112 Stonecoal Road Toledo, OH 43602</p>
+						<div class="hidden-below-md divider-10"></div>
+
+						<aside class="col-lg-4 col-xl-4 mb-0 affix-aside">
+							<div class="widget widget_categories">
+
+								<h3 class="widget-title">Categories</h3>
+
+								<ul>
+									<li class="cat-item">
+										<a href="blog-right.html">Corporate</a>
+										(12)
+										<ul class="children">
+											<li class="cat-item">
+												<a href="blog-right.html">Business
+												</a>
+												(1)
+											</li>
+										</ul>
 									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-envelope"></i>
-										</div>
-										<a href="#">canis@support.com</a>
+									<li class="cat-item">
+										<a href="blog-right.html">Entertainment</a>
+										(21)
 									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-phone"></i>
-										</div>
-										<p>0 (800) 321 654</p>
+									<li class="cat-item">
+										<a href="blog-right.html">Innovations</a>
+										(18)
 									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-clock-o"></i>
-										</div>
-										<p>Working hours: 9.00 - 20.00 </p>
+									<li class="cat-item">
+										<a href="blog-right.html">News</a>
+										(43)
+									</li>
+									<li class="cat-item">
+										<a href="blog-right.html">Knowledge
+										</a>
+										(8)
 									</li>
 								</ul>
+							</div>
 
-								<span class="social-icons">
-									<a href="#" class="fa fa-twitter  rounded-icon color-bg-icon footer-icon" title="twitter"></a>
-									<a href="#" class="fa fa-google  rounded-icon color-bg-icon footer-icon" title="google"></a>
-									<a href="#" class="fa fa-facebook  rounded-icon color-bg-icon footer-icon" title="facebook"></a>
-									<a href="#" class="fa fa-linkedin  rounded-icon color-bg-icon footer-icon" title="linkedin"></a>
-								</span>
+ 
+						</aside>
+
+						<main class="col-lg-4 col-xl-4">
+							<div class="vertical-item box-shadow content-padding text-center text-lg-left">
+								<div class="item-media">
+
+									<img src="images/gallery/04.jpg" alt="img">
+
+								</div> 
+								<div class="item-content">
+									<h4>
+										Lorem Ipsum Dolor
+									</h4>
+									<p class="excerpt">
+										Aspernatur dicta harum odio odit perferendis quasi quis repellendus. Alias, aut corporis earum explicabo iure labore non porro quae recusandae, tempora voluptas!
+									</p>
+
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+ 
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+
+								</div>
+							</div>
+						</main>
+
+						<main class="col-lg-4 col-xl-4">
+							<div class="vertical-item box-shadow content-padding text-center text-lg-left">
+								<div class="item-media">
+
+									<img src="images/gallery/04.jpg" alt="img">
+
+								</div>  
+								<div class="item-content">
+									<h4>
+										Lorem Ipsum Dolor
+									</h4>
+									<p class="excerpt">
+										Aspernatur dicta harum odio odit perferendis quasi quis repellendus. Alias, aut corporis earum explicabo iure labore non porro quae recusandae, tempora voluptas!
+									</p>
+
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+
+									<p>
+										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
+									</p>
+
+								</div>
+							</div>
+						</main>
+
+					
+						<div class="hidden-below-md divider-10"></div>
+					</div>
+
+				</div>
+			</section>
+
+			<footer class="page_footer ds s-py-60 s-py-md-90 s-py-xl-160 c-mb-20 c-gutter-60">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-6 col-xl-3 animate" data-animation="fadeInUp">
+
+							<div class="widget widget_text">
+								<h3 class="widget-title next-image-background">About Us</h3>
+
+
+								<p>
+									Our firm is one of the world's leading management consulting firms. We work with top executives to help them make better decisions.
+								</p>
 							</div>
 						</div>
 
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
-							<div class="widget mb-0">
+						<div class="col-md-6 col-xl-3 animate" data-animation="fadeInUp">
+							<div class="widget widget_working_hours">
+								<h3 class="widget-title">Our Hours</h3>
+								<ul class="list-bordered">
+
+									<li class="d-flex justify-content-between">
+										<span>Weekdays</span>
+										<span class="text-white">9:00 - 17:00</span>
+									</li>
+
+									<li class="d-flex justify-content-between">
+										<span>Saturday</span>
+										<span class="text-white">9:00 - 20:00</span>
+									</li>
+
+									<li class="d-flex justify-content-between">
+										<span>Sunday</span>
+										<span class="text-white">Closed</span>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-xl-3 animate" data-animation="fadeInUp">
+							<div class="widget widget_mailchimp">
 
 								<h3 class="widget-title">Newsletter</h3>
 
-								<p class="color-font mb-3">
-									Subscribe to our Newsletter to be updated,
-									we promise not to spam.
+								<p>
+									Subscribe to our Newsletter to be updated.
+									<br>
+									We promise not to spam.
 								</p>
 
 								<form class="signup" action="/">
+									<label for="mailchimp_email">
+										<span class="screen-reader-text">Subscribe:</span>
+									</label>
 
-									<input id="mailchimp_email" name="email" type="email" class="form-control mailchimp_email text-center text-lg-left" placeholder="Enter Email Address">
+									<input id="mailchimp_email" name="email" type="email" class="form-control mailchimp_email" placeholder="Email Address">
 
-									<button type="submit" class="btn btn-maincolor mt-30">
-										Subscribe
+									<button type="submit" class="search-submit">
+										<span class="screen-reader-text">Subscribe</span>
 									</button>
 									<div class="response"></div>
 								</form>
 
 							</div>
+						</div>
+
+						<div class="col-md-6 col-xl-3 animate" data-animation="fadeInUp">
+							<div class="widget widget_icons_list">
+								<h3 class="widget-title">Contacts</h3>
+
+								<div class="media side-icon-box">
+									<div class="icon-styled color-main fs-14">
+										<i class="fa fa-map-marker"></i>
+									</div>
+									<p class="media-body">90000, New Str. 123, Los Angeles, CA</p>
+								</div>
+								<div class="media side-icon-box">
+									<div class="icon-styled color-main fs-14">
+										<i class="fa fa-phone"></i>
+									</div>
+									<p class="media-body">1-800-123-4567</p>
+								</div>
+								<div class="media side-icon-box">
+									<div class="icon-styled color-main fs-14">
+										<i class="fa fa-envelope"></i>
+									</div>
+									<p class="media-body">
+										<a href="#">email@example.com</a>
+									</p>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="col-md-12 mb-0 text-center animate" data-animation="fadeInUp">
+							<span class="social-icons">
+								<a href="#" class="fa fa-twitter  rounded-icon color-bg-icon footer-icon" title="twitter"></a>
+								<a href="#" class="fa fa-google  rounded-icon color-bg-icon footer-icon" title="google"></a>
+								<a href="#" class="fa fa-facebook  rounded-icon color-bg-icon footer-icon" title="facebook"></a>
+								<a href="#" class="fa fa-linkedin  rounded-icon color-bg-icon footer-icon" title="linkedin"></a>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -951,7 +925,6 @@ p.a{font-weight:900;
 					</div>
 				</div>
 			</section>
-
 
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->

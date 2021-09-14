@@ -1,13 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
-
+<html>
 <head>
-	<title>Venator</title>
+	<title>GoodDog_gallery_List</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,11 +15,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main-gooddog.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -29,9 +27,12 @@
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
 
-</head>
+</head> 
 
 <body>
+
+
+
 	<!--[if lt IE 9]>
 		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
 	<![endif]-->
@@ -668,7 +669,7 @@
 					<div class="row">
 
 						<div class="col-md-12 text-center">
-							<h1>Single Event without Sidebar</h1>
+							<h1>Gallery: Tiled layout</h1>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="./">Home</a>
@@ -677,7 +678,7 @@
 									<a href="#">Pages</a>
 								</li>
 								<li class="breadcrumb-item active">
-									Single Event without Sidebar
+									Gallery: Tiled layout
 								</li>
 							</ol>
 						</div>
@@ -685,256 +686,266 @@
 					</div>
 				</div>
 			</section>
-
-
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
-				<div class="container">
+<!--  -->
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 container-px-0">
+				<div class="container-fluid">
 					<div class="row">
 
-						<main class="offset-lg-1 col-lg-10">
-							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
-								<div class="item-media post-thumbnail">
-									<img src="images/gallery/15.jpg" alt="img">
-									<p class="item-meta d-flex flex-wrap">
-										<a href="event-single-right.html"><i class="fa fa-calendar color-main"></i>05.02.2018</a>
-										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>admin</a>
-										<a href="event-single-right.html"><i class="fa fa-comment color-main"></i>8 comments</a>
-									</p>
-								</div>
-
-
-								<div class="item-content">
-									<!-- .post-thumbnail -->
-									<h4>
-										<a href="event-single-right.html">Training Workshops and Classes for Pet Lovers</a>
-									</h4>
-
-									<div class="entry-content">
-										<p>
-											At vero eos accusam justo duo dolores et rebum clita kasd gubergren nosea takimata sanctus est dolor sit
-											amet
-										</p>
-
-										<p>
-											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-											sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor amet consetetur sadipscing elitr, sed diam
-											nonumy eirmod tempor invidunt.
-										</p>
-
-										<ul class="list-styled">
-											<li>Consetetur sadipscing elitr, sed diam nonumy</li>
-											<li>Eirmod tempor invidunt ut labore</li>
-											<li>Dolore magna aliquyam erat</li>
-											<li>Sed diam voluptua. At vero eos accusam</li>
-										</ul>
-
-										<p>
-											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-											sanctusamet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-											invidunt ut labore et dolore magna aliquyam erat.
-										</p>
-
-
+						<div class="col-lg-12">
+							<div class="row justify-content-center mt--10">
+								<div class="col-md-10 col-xl-8">
+									<div class="filters gallery-filters small-text text-lg-right">
+										<a href="#" data-filter="*" class="active selected">All</a>
+										<a href="#" data-filter=".training">training</a>
+										<a href="#" data-filter=".puppies">puppies</a>
+										<a href="#" data-filter=".dogs">dogs</a>
+										<a href="#" data-filter=".breeds">breeds</a>
+										<a href="#" data-filter=".owners">owners</a>
 									</div>
-									<!-- .entry-content -->
-
 								</div>
-								<!-- .item-content -->
-							</article>
-
-
-							<div id="comments" class="comments-area ">
-
-								<h4 class="comments-title">
-									Comments
-								</h4>
-
-								<ol class="comment-list">
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_1.jpg">
-													<h4>Gabriel K. Reed</h4>
-													<p class="small-text text-left color-main4">
-														05.02.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_2.jpg">
-															<h4>Angela R. Sanford</h4>
-															<p class="small-text text-left color-main4">
-																06.02.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Ut enim ad minim veniam, quis nostrud.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_3.jpg">
-													<h4>Thelma J. Gray</h4>
-													<p class="small-text text-left color-main4">
-														26.01.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-													fugiat nulla pariatur. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_4.jpg">
-															<h4>Carl D. Armstrong</h4>
-															<p class="small-text text-left color-main4">
-																26.01.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Excepteur sint occaecat cupidatat non proident.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-								</ol>
-								<!-- .comment-list -->
-
-
-								<div id="respond" class="comment-respond ms ls">
-									<h4 id="reply-title" class="comment-reply-title">Leave the comment</h4>
-									<form class="contact-form c-mb-10 c-gutter-10" method="post" action="/">
-
-										<div class="row">
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="name">your Name <span class="required">*</span></label>
-													<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="phone">Phone<span class="required">*</span></label>
-
-													<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="email">email address<span class="required">*</span></label>
-													<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="email Address">
-												</div>
-											</div>
-										</div>
-
-
-										<div class="row">
-
-											<div class="col-sm-12">
-
-												<div class="form-group has-placeholder">
-													<label for="message">Your Comment</label>
-
-													<textarea aria-required="true" rows="4" cols="45" name="message" id="message" class="form-control" placeholder="Your Comment"></textarea>
-												</div>
-											</div>
-
-										</div>
-
-										<div class="row mt-30">
-
-											<div class="col-sm-12 text-left">
-
-												<div class="form-group">
-													<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Comment
-													</button>
-												</div>
-											</div>
-
-										</div>
-
-									</form>
-								</div>
-								<!-- #respond -->
-
 							</div>
 
-						</main>
+							<div class="row isotope-wrapper masonry-layout c-gutter-0" data-filters=".gallery-filters">
+
+
+								<div class=" col-xl-4 col-md-6 training">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/01.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/16.jpg"></a>
+													<a class="link-anchor" title="" href="gallery_View"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 puppies">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery-titled/01.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/10.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 dogs">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/03.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/03.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 breeds">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/04.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/04.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 corporate innovations">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/05.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/05.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 owners">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery-titled/02.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/06.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 training">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/06.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/13.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 puppies">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/08.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/08.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 dogs">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery-titled/03.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/09.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 breeds">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/15.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/15.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 owners">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/11.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/11.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<div class=" col-xl-4 col-md-6 training">
+									<div class="vertical-item item-gallery content-absolute text-center ds">
+										<div class="item-media">
+											<img src="images/gallery/12.jpg" alt="img">
+											<div class="media-links">
+												<div class="links-wrap">
+													<a class="link-zoom photoswipe-link" href="images/gallery/12.jpg"></a>
+													<a class="link-anchor" title="" href="gallery-single.html"></a>
+												</div>
+											</div>
+										</div>
+										<div class="item-content gradientdarken-background">
+											<h5>
+												<a href="gallery-single.html">Consetetur sadipscing elitr, sed diam nonumy</a>
+											</h5>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<!-- .isotope-wrapper-->
+
+							<div class="row mt-60">
+								<div class="col-sm-12 text-center">
+									<a href="#" class="btn btn-maincolor mb-0">View More</a>
+								</div>
+							</div>
+
+						</div>
 
 					</div>
 
@@ -1061,10 +1072,10 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
-
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 </body>
 
 </html>
+

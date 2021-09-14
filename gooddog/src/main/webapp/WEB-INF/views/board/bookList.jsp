@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -5,7 +9,7 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-
+ 
 <head>
 	<title>Venator</title>
 	<meta charset="utf-8">
@@ -17,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/animations.css">
-	<link rel="stylesheet" href="css/font-awesome.css">
-	<link rel="stylesheet" href="css/main.css" class="color-switcher-link">
-	<script src="js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -668,7 +672,7 @@
 					<div class="row">
 
 						<div class="col-md-12 text-center">
-							<h1>Team</h1>
+							<h1>Extended in 2 columns</h1>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item">
 									<a href="./">Home</a>
@@ -677,7 +681,7 @@
 									<a href="#">Pages</a>
 								</li>
 								<li class="breadcrumb-item active">
-									Team
+									Extended in 2 columns
 								</li>
 							</ol>
 						</div>
@@ -686,204 +690,190 @@
 				</div>
 			</section>
 
-			<section class="ls back-bg s-pb-30 s-pt-60 s-pb-md-60 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-30">
+
+			<section class="ls gallery-page s-py-60 s-py-md-90 s-py-xl-160 container-px-15">
 				<div class="container">
 					<div class="row">
 
-						<div class="col-lg-4 col-md-6">
-
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/01.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+						<div class="col-lg-12">
+							<div class="row justify-content-center mt--10">
+								<div class="col-md-10 col-xl-8">
+									<div class="filters gallery-filters small-text text-lg-right">
+										<a href="#" data-filter="*" class="active selected">All</a>
+										<a href="#" data-filter=".training">training</a>
+										<a href="#" data-filter=".puppies">puppies</a>
+										<a href="#" data-filter=".dogs">dogs</a>
+										<a href="#" data-filter=".breeds">breeds</a>
+										<a href="#" data-filter=".owners">owners</a>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Richard K. Puckett</a>
-									</h5>
+							</div>
 
-									<p class="  color-main4">
-										Cynologist
-									</p>
-									<p>
-										Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
-									</p>
-									<p class="social-icons">
+							<div class="row isotope-wrapper masonry-layout c-mb-30" data-filters=".gallery-filters">
 
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa fa-linkedin" title="linkedin"></a>
+								<div class="col-md-4 owners">
 
-									</p>
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/01.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Lorem ipsum dolor sit amet</a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">owners</a>
+											</div>
+											<p class="mt-4 px-lg-3">Lorem ipsum dolor sit amet, consectetur ad icing elit, sed do eiusmod tempor incididunt labore
+												et dolore magna aliqua ut enim ad minim.</p>
+										</div>
+									</div>
 
 								</div>
-							</div>
-						</div><!-- .col-* -->
-						<div class="col-lg-4 col-md-6">
 
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/02.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+								<div class="col-md-4 training">
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/09.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Sed do eiusmod tempor</a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">training</a>
+											</div>
+											<p class="mt-4 px-lg-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non.</p>
+										</div>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Lillian W. Roebuck</a>
-									</h5>
 
-									<p class="  color-main4">
-										Dog Walker
-									</p>
-									<p>
-										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
-									</p>
-									<p class="social-icons">
-
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa  fa-linkedin" title="linkedin"></a>
-
-									</p>
-
-								</div>
-							</div>
-						</div><!-- .col-* -->
-						<div class="col-lg-4 col-md-6">
-
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/03.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+								<div class="col-md-4 puppies">
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/11.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Incididunt ut labore </a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">puppies</a>
+											</div>
+											<p class="mt-4 px-lg-3">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+												id est laborum. Sed ut perspiciatis unde.</p>
+										</div>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Billy J. McArthur</a>
-									</h5>
 
-									<p class="  color-main4">
-										Cynologist
-									</p>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do.
-									</p>
-									<p class="social-icons">
-
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa  fa-linkedin" title="linkedin"></a>
-
-									</p>
-
-								</div>
-							</div>
-						</div><!-- .col-* -->
-						<div class="col-lg-4 col-md-6">
-
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/04.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+								<div class="col-md-4 dogs">
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/15.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Dolore magna aliqua</a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">dogs</a>
+											</div>
+											<p class="mt-4 px-lg-3">Sed ut perspiciatis unde omnis iste natus error
+												sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+										</div>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Sandra J. Wade</a>
-									</h5>
 
-									<p class="  color-main4">
-										Consulatant
-									</p>
-									<p>
-										Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.
-									</p>
-									<p class="social-icons">
-
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa  fa-linkedin" title="linkedin"></a>
-
-									</p>
-
-								</div>
-							</div>
-						</div><!-- .col-* -->
-						<div class="col-lg-4 col-md-6">
-
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/05.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+								<div class="col-md-4 breeds">
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/16.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Ut enim ad minim veniam</a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">breeds</a>
+											</div>
+											<p class="mt-4 px-lg-3">Nemo enim ipsam voluptatem quia voluptas
+												sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui.</p>
+										</div>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Wilbert N. Duke</a>
-									</h5>
 
-									<p class="  color-main4">
-										Dog Walker
-									</p>
-									<p>
-										Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
-									</p>
-									<p class="social-icons">
-
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa  fa-linkedin" title="linkedin"></a>
-
-									</p>
-
-								</div>
-							</div>
-						</div><!-- .col-* -->
-						<div class="col-lg-4 col-md-6">
-
-							<div class="team ls vertical-item content-padding text-center box-shadow">
-								<div class="item-media">
-									<img src="images/team/06.jpg" alt="img">
-									<div class="media-links">
-										<a class="abs-link" title="" href="team-single.html"></a>
+								<div class="col-md-4 owners">
+									<div class="vertical-item text-center content-padding box-shadow">
+										<div class="item-media">
+											<img src="images/gallery/08.jpg" alt="img">
+											<div class="media-links">
+												<a class="abs-link" title="" href="gallery-single.html"></a>
+											</div>
+										</div>
+										<div class="item-content">
+											<h4 class="mt-3 mb-0">
+												<a href="gallery-single.html">Quis nostrud exercitation</a>
+											</h4>
+											<div class="small-text mt-md-3">
+												<a class="color-main" href="#">owners</a>
+											</div>
+											<p class="mt-4 px-lg-3">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
+												velit, sed quia non numquam eius.</p>
+										</div>
 									</div>
 								</div>
-								<div class="item-content">
-									<h5>
-										<a href="team-single.html">Ashely A. Ferrer</a>
-									</h5>
 
-									<p class="  color-main4">
-										Cynologist
-									</p>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit, sed do.
-									</p>
-									<p class="social-icons">
+								
 
-										<a href="#" class="fa fa-facebook" title="facebook"></a>
-										<a href="#" class="fa fa-twitter" title="twitter"></a>
-										<a href="#" class="fa fa-google" title="google"></a>
-										<a href="#" class="fa  fa-linkedin" title="linkedin"></a>
+							</div>
+							<!-- .isotope-wrapper-->
 
-									</p>
-
+							<div class="row mt-30">
+								<div class="col-sm-12 text-center">
+									<nav class="navigation pagination " role="navigation">
+										<h2 class="screen-reader-text">Posts navigation</h2>
+										<div class="nav-links">
+											<a class="prev page-numbers" href="blog-right.html">
+												<i class="fa fa-chevron-left"></i>
+												<span class="screen-reader-text">Previous page</span>
+											</a>
+											<span class="page-numbers current">
+												<span class="meta-nav screen-reader-text">Page </span>
+												1
+											</span>
+											<a class="page-numbers" href="blog-right.html">
+												<span class="meta-nav screen-reader-text">Page </span>
+												...
+											</a>
+											<a class="page-numbers" href="blog-right.html">
+												<span class="meta-nav screen-reader-text">Page </span>
+												5
+											</a>
+											<a class="next page-numbers" href="blog-right.html">
+												<span class="screen-reader-text">Next page</span>
+												<i class="fa fa-chevron-right"></i>
+											</a>
+										</div>
+									</nav>
 								</div>
 							</div>
-						</div><!-- .col-* -->
+
+						</div>
 
 					</div>
 
@@ -1010,8 +1000,8 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="js/compressed.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 
 
 </body>

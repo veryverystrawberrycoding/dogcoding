@@ -3,11 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
+<!--<![endif]-->
+ 
 <head>
-<meta charset="UTF-8">
 	<title>Venator</title>
-
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -17,26 +25,8 @@
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
-	
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-	
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
-  
-  
-<style >
-
-
-p{font-family: 'Single Day', cursive;
-font-size:60px;
-}
-p.a{font-weight:900;
-}
-
-
-
-</style>
+ 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
@@ -88,14 +78,14 @@ p.a{font-weight:900;
 
 			<!-- template sections -->
 
-			<!--topline section visible only on small screens|-->
+
 			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
 				<div class="container-fluid">
 					<div class="row align-items-center">
 						<div class="col-lg-3">
 							<div class="">
 								<a href="./" class="logo">
-									<img src="../resources/images/logo.png" alt="img">
+									<img src="images/logo.png" alt="img">
 								</a>
 							</div>
 						</div>
@@ -144,7 +134,7 @@ p.a{font-weight:900;
 					</div>
 				</div>
 			</section>
-			<!--eof topline-->
+
 			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
 			<header class="page_header ls bg-maincolor4 main-style">
 				<div class="container-fluid">
@@ -152,7 +142,7 @@ p.a{font-weight:900;
 						<div class="col-xl-12">
 							<div class="nav-wrap header-main">
 								<a href="./" class="logo logo-ds">
-									<img src="../resources/images/logo_ds.png" alt="img">
+									<img src="images/logo_ds.png" alt="img">
 								</a>
 								<!-- main nav start -->
 								<nav class="top-nav">
@@ -676,166 +666,213 @@ p.a{font-weight:900;
 				<!-- header toggler -->
 				<span class="toggle_menu"><span></span></span>
 			</header>
-		
 
-		
-
-		
-		
-
-		<section class="container">
-		<div class="container"style="padding:50px;">
-			<div class="container">
-			
-			<h3 class="text-left mb-35">
-								Chat
-							</h3>
-			<!--  <button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">방 만들기!</button>-->
-				
-				<p class="a">동해물과 백두산이</p>
-				
-				
-				
-				<!-- fantasy -->
-				
-							
-				
-				<table class = "table table-striped" style="text-align:center; border:1px solid #dddddd" >
-				
-
-						<tr>
-							<!-- <td><font size=100 face= "Arial Black">abcd</font> </td> -->
-							<td ><p class="a">단톡 2번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs">입장</button></td>
-							
-						</tr>
-						
-					
-						<tr>
-							<td ><p class="a">단톡 1번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs">입장</button></td>
-							
-						</tr>
-							<tr>
-							<td ><p class="a">단톡 2번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-						
-						
-							<tr>
-							<td ><p class="a">단톡 3번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-						
-						
-						
-						
-							<tr>
-							<td ><p class="a">단톡 4번방</p></td>
-							
-							<td style = "text-align:right"><button type="button" class="btn btn-info btn-xs" ">입장</button></td>
-							
-						</tr>		
-					
-					
-					<!-- 위치 좌우로 옮겨라 일단 디자인만이니까 ㅇㅋ? -->
-				</table>
-				</div>
-						
-							
-						
-
-				</div>
-			</section>
-			
-  <!--   -------------------------------------------------------------------------------------------------- -->
-			<section id="contacts" class="ds s-py-60 s-py-md-90 s-py-xl-80 s-py-xl-160 s-overlay s-parallax consultation-section">
+			<section class="page_title ls  s-py-5">
 				<div class="container">
-					<div class="col-md-10 offset-md-1 text-center mt--5">
-						<p class="top-subtitle">Get in</p>
-						<h3 class="special-heading line-after">Touch</h3>
-					</div>
-					<div class="col-12 col-xl-8 offset-xl-2 px-0 mt-40">
-						<form class="contact-form c-mb-lg-20 c-mb-10 c-gutter-20" method="post" action="/">
-
-							<div class="row">
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="name">Your Name<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control text-center" placeholder="Your Name">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="phone">Your Phone<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control text-center" placeholder="Your Phone">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="email">Email address<span class="required">*</span></label>
-										<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control text-center" placeholder="Email Address">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="subject">Your subject<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="email" id="subject" class="form-control text-center" placeholder="Your subject">
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group has-placeholder">
-										<label for="message">Your Message</label>
-										<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control text-center" placeholder="Your Message"></textarea>
-									</div>
-								</div>
-
-							</div>
-							<div class="row mt-15">
-								<div class="divider-20 hidden-above-lg"></div>
-								<div class="col-sm-12 text-center">
-									<div class="form-group buttons-group">
-										<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Message</button>
-									</div>
-								</div>
-
-							</div>
-
-						</form>
-					</div>
-				</div>
-			</section>
-
-			<section id="partners" class="ls s-py-60 s-py-md-90 container-px-xl-120 partners-section">
-				<div class="container-fluid">
 					<div class="row">
-						<div class="col-12">
-							<div class="owl-carousel" data-loop="true" data-margin="30" data-nav="false" data-dots="false" data-center="false" data-items="1" data-autoplay="true" data-responsive-xs="2" data-responsive-sm="3" data-responsive-md="4" data-responsive-lg="7">
-								<div class=""><a href="#"><img src="../resources/images/partners/01.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/02.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/03.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/04.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/05.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/06.png" alt="img"></a></div>
-								<div class=""> <a href="#"><img src="../resources/images/partners/07.png" alt="img"></a></div>
-							</div>
+
+						<div class="col-md-12 text-center">
+							<h1>Contacts 2 Page</h1>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item">
+									<a href="./">Home</a>
+								</li>
+								<li class="breadcrumb-item">
+									<a href="#">Pages</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Contacts 2 Page
+								</li>
+							</ol>
 						</div>
+
 					</div>
 				</div>
 			</section>
+
+			<section class="ls ms page_map" data-draggable="true" data-scrollwheel="true">
+				<div class="marker">
+					<div class="marker-address">sydney, australia, Liverpool street, 66</div>
+					<div class="marker-title">First Marker</div>
+					<div class="marker-description">
+						<img src="images/logo.png" alt="img">
+
+						<ul class="list-unstyled">
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-map-marker"></i>
+									</span>
+
+									<span>
+										Sydney, Australia, Liverpool street, 66
+									</span>
+								</span>
+							</li>
+
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-phone"></i>
+									</span>
+
+									<span>
+										1 (800) 123-45-67
+									</span>
+								</span>
+							</li>
+							<li>
+								<span class="icon-inline">
+									<span class="icon-styled color-main">
+										<i class="fa fa-envelope"></i>
+									</span>
+
+									<span>
+										mail@example.com
+									</span>
+								</span>
+							</li>
+						</ul>
+					</div>
+
+					<img class="marker-icon" src="images/map_marker_icon.png" alt="img">
+				</div>
+				<!-- .marker -->
+			</section>
+
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-mb-20 c-gutter-60">
+				<div class="container">
+					<div class="row mt--5">
+
+						<div data-animation="scaleAppear" class=" col-lg-7 animate">
+							<h4 class="text-left mb-35">
+								Contact Form
+							</h4>
+							<form class="contact-form c-mb-20 c-gutter-20" method="post" action="/">
+
+								<div class="form-group has-placeholder">
+									<label for="name">Full Name <span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="email">Email address<span class="required">*</span></label>
+									<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="phone">Phone<span class="required">*</span></label>
+									<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+								</div>
+
+								<div class="form-group has-placeholder">
+									<label for="message">Message</label>
+									<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
+								</div>
+
+								<div class="form-group d-flex align-items-center flex-column flex-md-row mt-40">
+									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">your Message
+									</button>
+								</div>
+
+							</form>
+						</div>
+
+						<div class="col-lg-5 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
+
+							<h4 class="text-left mb-20">
+								Contact Info
+							</h4>
+							<ul class="list-unstyled">
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-map-marker fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											3112 Stonecoal Road Toledo, OH 4360
+										</span>
+									</span>
+								</li>
+
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-phone fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											0 (800) 321 654
+										</span>
+									</span>
+								</li>
+								<li>
+									<span class="icon-inline">
+										<span class="icon-styled mr-4">
+											<i class="fa color-main4 fa-envelope fs-14"></i>
+										</span>
+
+										<span class="color-darkgrey">
+											venator@support.com
+										</span>
+									</span>
+								</li>
+							</ul>
+
+							<h4 class="text-left mb-4 mt-40">
+								Open hours
+							</h4>
+
+							<ul class="list-unstyled">
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Weekdays</span>
+									<span class="color-darkgrey w-60">
+										9:00-17:00
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Saturday</span>
+									<span class="color-darkgrey w-60">
+										10:00-15:00
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Sunday</span>
+									<span class="color-darkgrey w-60">
+										Closed
+									</span>
+								</li>
+								<li class="d-flex justify-content-start justify-content-lg-between">
+									<span class="icon-styled color-main4 pr-3">
+										<i class="fa fa-clock-o fs-14"></i>
+									</span>
+									<span class="mr-2 mr-lg-auto">Holidays</span>
+									<span class="color-darkgrey w-60">
+										10:00-13:00
+									</span>
+								</li>
+							</ul>
+
+						</div>
+						<!--.col-* -->
+
+					</div>
+				</div>
+				<div class="mb--25 d-none d-xl-block"></div>
+				<div class="mb--20 hidden-above-xl"></div>
+				<div class="mb--30 hidden-above-md"></div>
+			</section>
+
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
@@ -960,6 +997,9 @@ p.a{font-weight:900;
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 
+
+	<!-- Google Map Script -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?callback=templateInitGoogleMap&key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4"></script>
 
 </body>
 
