@@ -26,7 +26,7 @@
 		<script src="js/vendor/respond.min.js"></script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
-
+ 
 </head> 
 
 <body>

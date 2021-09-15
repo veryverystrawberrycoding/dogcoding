@@ -26,6 +26,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/js/vendor/jquery-3.3.1.min.js">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
@@ -704,35 +705,37 @@
 									<div style="text-align: center;">
 										<form action="#">
 											<div>
-												<input type="text" placeholder="아이디" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
+												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 605px;"><input type="button" id="idOkay" value="중복확인" style="height:40px;"><br><br>
 											</div>
 											<div>
-												<input type="password" placeholder="비밀번호" style="width: 700px;"><br><br>
+												<input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호" style="width: 700px;"><br><br>
+											</div>  
+											<div>
+												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" style="width: 700px;"><br><br>
 											</div>
 											<div>
-												<input type="password" placeholder="비밀번호 확인" style="width: 700px;"><br><br>
+												<input type="text" id="user_name" name="user_name" placeholder="이름" style="width: 700px;"><br><br>
 											</div>
 											<div>
-												<input type="text" placeholder="이름" style="width: 700px;"><br><br>
-											</div>
-											<div>
-												<input type="text" placeholder="생년월일" style="width: 700px;"><br><br>
+												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 700px;"><br><br>
 											</div>
 											<div style="width: 650px;">
-												<b>성별 :</b>&nbsp&nbsp&nbsp<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="" name="user_gender"><br><br>
+												<b>성별 :</b>&nbsp&nbsp&nbsp<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="1" id="user_gender" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="2" id="user_gender" name="user_gender"><br><br>
 											</div>
 											<div>
-												<input type="text" placeholder="주소" style="width: 700px;"><br><br>
+												<input type="text" id="user_addr" name="user_addr" placeholder="주소" style="width: 700px;"><br><br>
+											</div>
+											<div>
+												<input type="text" id="user_tel" name="user_tel" placeholder="연락처" style="width: 700px;"><br><br>
 											</div>
 											<div>
 												<input type="text" placeholder="연락처" style="width: 700px;"><br><br>
 											</div>
 											<div>
-												<input type="text" placeholder="연락처" style="width: 700px;"><br><br>
+												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
 											</div>
-											<div>
-												<input type="text" placeholder="닉네임" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
-											</div>
+											
+											<button type="submit" id="join_submit" value="확인"></button> 
 										</form>
 									</div>
 								</div>
@@ -862,13 +865,15 @@
 			</section>
 
 
-		</div><!-- eof #box_wrapper -->
+		</div><!-- eof #box_wrapper --> 
 	</div><!-- eof #canvas -->
 
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-
+	<script src="${path}/resources/userJS/myPage.js"></script>
+	 
+	
 
 </body>
 

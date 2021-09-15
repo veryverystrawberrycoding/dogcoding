@@ -21,11 +21,11 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="${path}/resources/bootstrap.min.css">
-	<link rel="stylesheet" href="${path}/resources/animations.css">
-	<link rel="stylesheet" href="${path}/resources/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/main.css" class="color-switcher-link">
-	<link rel="stylesheet" href="${path}/resources/shop.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
@@ -734,7 +734,7 @@
 											<br>
 											<br>
 											<p style="text-align:center;">
-												<u><a href="#">회원 가입</a></u>
+												<u><a href="../board/joinForm">회원 가입</a></u>
 											</p>
 										</form>
 									</div>
