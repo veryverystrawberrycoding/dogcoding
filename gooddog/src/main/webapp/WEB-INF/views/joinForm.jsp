@@ -695,55 +695,72 @@
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-155">
 				<div class="container">
 					<div class="row">
-
-						<main class="col-lg-12">
+						<main class="col-lg-8">
 							<article>
 								<div >
-									<h4 style="text-align: center;">회원 가입</h4><br>
+									<h4 style="text-align: left;">회원 가입</h4><br>
 								</div>
-								<div>
-									<div style="text-align: center;">
-										<form action="#">
+								<div> 
+									<div>  
+										<form action="#"> 
 											<div>
-												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 605px;"><input type="button" id="idOkay" value="중복확인" style="height:40px;"><br><br>
+											<a>아이디</a>
+											</div> 
+											<div>
+												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 550px;"><button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>
+											</div>
+											<div> 
+											<a>비밀번호</a>
 											</div>
 											<div>
-												<input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호" style="width: 700px;"><br><br>
-											</div>  
-											<div>
-												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" style="width: 700px;"><br><br>
+												<input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호" style="width: 700px;"><a id="user_pwd_chk"></a><br><br>
 											</div>
+											<a>비밀번호 확인</a>  
+											<div>
+												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" style="width: 700px;"><a id="user_pwd_chk2"></a><br><br>
+											</div>
+											<a>이름</a>
 											<div>
 												<input type="text" id="user_name" name="user_name" placeholder="이름" style="width: 700px;"><br><br>
 											</div>
+											<a>생년월일</a>
 											<div>
-												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 700px;"><br><br>
+												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 200px;">년<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 100px;">월
+												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 100px;">일<br><br>
 											</div>
+											<a>성별</a>
 											<div style="width: 650px;">
-												<b>성별 :</b>&nbsp&nbsp&nbsp<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="1" id="user_gender" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="2" id="user_gender" name="user_gender"><br><br>
+											 	<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="1" class="user_gender" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="2" class="user_gender" name="user_gender"><br><br>
 											</div>
+											<a>주소</a>
 											<div>
-												<input type="text" id="user_addr" name="user_addr" placeholder="주소" style="width: 700px;"><br><br>
+												<input type="text" id="sample6_postcode" name="user_addr1" placeholder="주소" style="width:550px;">
+												<button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>   
+												<input type="text" id="sample6_address" name="user_addr2" placeholder="주소" style="width:300px; height:30px;"><br><br>
+												<input type="text" id="sample6_detailAddress" name="user_addr3" placeholder="주소" style="width:300px; height:30px;"> 
+												<input type="text" id="sample6_extraAddress" name="user_addr4" placeholder="주소" style="width:700px; height:30px;"><br><br>
 											</div>
-											<div>
-												<input type="text" id="user_tel" name="user_tel" placeholder="연락처" style="width: 700px;"><br><br>
+											<a>전화번호</a>
+											<div>     
+												<input type="tel" id="user_tel" name="user_tel" placeholder="연락처" style="width: 700px;"><br><br>
 											</div>
-											<div>
-												<input type="text" placeholder="연락처" style="width: 700px;"><br><br>
+											<a>닉네임</a>
+											<div> 
+												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 550px;">&nbsp&nbsp<button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>
 											</div>
-											<div>
-												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 605px;">&nbsp&nbsp<input type="button" value="중복확인" style="height:40px;"><br><br>
+											<div style="float:center">
+											<button style="float:center" class="btn btn-success" type="submit" id="join_submit" value="확인">확인</button>  
 											</div>
-											
-											<button type="submit" id="join_submit" value="확인"></button> 
-										</form>
+										</form> 
 									</div>
 								</div>
 								
 							</article>
 
 						</main>
-
+						<div class="col-lg-4">
+							<img src="#" style="height:200px; width:200px;">
+						</div>
 					</div>
 
 				</div>
@@ -782,7 +799,7 @@
 								</div>
 							</div>
 						</div>
-
+ 
 						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
 
 							<div class="widget widget_icons_list">
@@ -870,7 +887,8 @@
 
 
 	<script src="${path}/resources/js/compressed.js"></script>
-	<script src="${path}/resources/js/main.js"></script>
+	<script src="${path}/resources/js/main.js"></script> 
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script src="${path}/resources/userJS/myPage.js"></script>
 	 
 	

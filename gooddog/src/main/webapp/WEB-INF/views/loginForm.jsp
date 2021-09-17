@@ -723,10 +723,10 @@
 												</label>
 											</p> -->
 											<div class="col-md-3" style="float: center; margin:0 auto;">
-												<button type="submit" class="woocommerce-Button button mt-0" name="login" value="Login">로그인</button><br>
-												<button type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin">카카오 로그인</button>
+												<button type="submit" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
+												<button type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin" style="text-align:center;">카카오 로그인</button>
 											</div>
-											
+											  
 											<p style="text-align:center;">
 												<u><a href="#">아이디 찾기</a></u>&nbsp;&nbsp;/&nbsp;&nbsp;<u><a href="#">아이디 찾기</a></u>
 											</p>
@@ -870,10 +870,10 @@
 	</div><!-- eof #canvas -->
 
 
-	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/compressed.js"></script> 
 	<script src="${path}/resources/js/main.js"></script>
-
-
+	<script src="${path}/resources/userJS/myPage.js"></script> 
+	 
 </body>
 
 </html>

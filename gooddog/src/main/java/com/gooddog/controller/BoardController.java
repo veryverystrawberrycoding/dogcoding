@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/board")
 public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
@@ -20,13 +19,13 @@ public class BoardController {
 	@RequestMapping("/admin/admin_Page_Member_View") //http://localhost:8082/board/admin/admin_Page_Member_View
 	public void admin_Page_Member_View() {
 		logger.info("/admin/admin_Page_Member_View");
-	}
+	} 
 	
 	@RequestMapping("/admin/admin_loginForm") //http://localhost:8082/board/admin//admin/admin_loginForm
 	public void admin_loginForm() {
 		logger.info("/admin/admin/admin_loginForm");
 	}
-	
+	 
 	@RequestMapping("/admin/admin_Info_View") //http://localhost:8082/board/admin/admin_Info_View
 	public void admin_Info_View() {
 		logger.info("/admin/admin_Info_View");
@@ -88,6 +87,8 @@ public class BoardController {
 	public void joinForm() {
 		logger.info("joinForm");
 	}
+	
+
 	
 	@RequestMapping("/galleryList") //http://localhost:8082/board/galleryList
 	public void galleryList() {
