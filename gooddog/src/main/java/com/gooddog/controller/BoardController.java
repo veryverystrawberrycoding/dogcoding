@@ -9,34 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
-	//@@@@@@@@@@@@@@@@@관리자 컨트롤@@@@@@@@@@@@@@@@@@//
-	
-	@RequestMapping("/admin/admin_Page_visual") //http://localhost:8082/board/admin/admin_Page_visual
-	public void admin_Page_visual() {
-		logger.info("/admin/admin_Page_visual");
+
+	@RequestMapping("/chartbox") //http://localhost:8082/board/list
+	public void chatbox() {
+		logger.info("chartbox");
 	}
-	@RequestMapping("/admin/admin_Page_Member_View") //http://localhost:8082/board/admin/admin_Page_Member_View
-	public void admin_Page_Member_View() {
-		logger.info("/admin/admin_Page_Member_View");
-	} 
-	
-	@RequestMapping("/admin/admin_loginForm") //http://localhost:8082/board/admin//admin/admin_loginForm
-	public void admin_loginForm() {
-		logger.info("/admin/admin/admin_loginForm");
-	}
-	 
-	@RequestMapping("/admin/admin_Info_View") //http://localhost:8082/board/admin/admin_Info_View
-	public void admin_Info_View() {
-		logger.info("/admin/admin_Info_View");
-	}
-	
-	@RequestMapping("/admin/admin_Page_Calling_List") //http://localhost:8082/board/admin/admin_Page_Calling_List
-	public void admin_Page_Calling_List() {
-		logger.info("/admin/admin_Page_Calling_List");
-	}
-	//@@@@@@@@@@@@@@@@@관리자 컨트롤@@@@@@@@@@@@@@@@@@//
-	 
 	
 	//@@@@@@@@@@@@@@@@@나머지 컨트롤@@@@@@@@@@@@@@@@@@//
 	@RequestMapping("/register") //http://localhost:8082/board/register
