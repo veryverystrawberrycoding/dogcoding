@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main_0joo.css" class="color-switcher-link">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
-	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/main_0joo.css" class="color-switcher-link">
+	<script src="${path}/resources/resources/js/vendor/modernizr-custom.js"></script>
+
 </head>
 
 <body>
@@ -59,7 +59,7 @@
 
 								<!-- .post-thumbnail -->
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/place/cafe.jpg" alt="img">
+									<img src="../resources/images/place/cafe.jpg" alt="img">
 									<p class="item-meta d-flex flex-wrap">
 										<a href="blog-single-right.html"><i class="fa fa-tags color-main"></i>매장이름</a>
 									</p>
@@ -147,7 +147,9 @@
 														05.02.2018
 													</p>
 												</div>
-												
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+												</div>
 											
 											</footer>
 					
@@ -171,7 +173,9 @@
 														26.01.2018
 													</p>
 												</div>
-												
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+												</div>
 												<!-- .comment-author -->
 												<!-- .comment-metadata -->
 											</footer>
@@ -223,7 +227,7 @@
 							<!-- 지도 -->
 								<div id="respond" class="comment-respond ms ls">
 									
-									<img src="${path}/resources/images/place/map.png">
+									<img src="../resources/images/place/map.png">
 								</div>
 								<!-- #respond -->
 

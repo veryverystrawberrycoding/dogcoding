@@ -15,8 +15,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main_0joo.css" class="color-switcher-link">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/main_0joo.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 </head>
 
@@ -101,7 +100,7 @@
 								<!-- 지도 -->
 								<!-- <div> -->
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/place/map.png" alt="img" >
+									<img src="../resources/images/place/map.png" alt="img" >
 								</div>
 							</article>
 
