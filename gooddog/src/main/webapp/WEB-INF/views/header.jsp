@@ -1,27 +1,100 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
+	<title>header</title>
+	<meta charset="utf-8">
+	<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<meta charset="UTF-8">
-<title>header</title>
-</head>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${path}/resources/css/animations.css">
+	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
+	<link rel="stylesheet" href="${path}/resources/css/main-gooddog.css" class="color-switcher-link">
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+
+	<!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js"></script>
+		<script src="js/vendor/respond.min.js"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+	<![endif]-->
+
+</head> 
+
+
 <body>
+	<div class="preloader">
+		<div class="preloader_image pulse"></div>
+	</div>
+
+	<!-- search modal -->
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<div class="widget widget_search">
+			<form method="get" class="searchform search-form" action="/">
+				<div class="form-group">
+					<input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input">
+				</div>
+				<button type="submit"></button>
+			</form>
+		</div>
+	</div>
+
+	<!-- Unyson messages modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="messages_modal">
+		<div class="fw-messages-wrap ls p-normal">
+			<!-- Uncomment this UL with LI to show messages in modal popup to your user: -->
+			<!--
+		<ul class="list-unstyled">
+			<li>Message To User</li>
+		</ul>
+		-->
+
+		</div>
+	</div><!-- eof .modal -->
+
+	<!-- wrappers for visual page editor and boxed version of template -->
+	<div id="canvas">
+		<div id="box_wrapper">
+
+			<!-- template sections -->
+			<section class="page_toplogo ls s-pt-45 s-pb-40 d-none d-lg-block">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<div class="">
+								<a href="./mainPage" class="logo">
+									<img src="${path}/resources/images/logo2.png" alt="logo">
+								</a>
+							</div>
+						</div>
+						</div>
+				</div>
+			</section>
+
+<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->			
  <header class="page_header ls bg-maincolor4 main-style">
-            <!-- test -->
             <div class="container-fluid">
                <div class="row align-items-center">
                   <div class="col-xl-12">
                      <div class="nav-wrap header-main">
-                         <img src="resources/images/dog.png" alt="dog">
+                         <img src="${path}/resources/images/logo_white.png" alt="GoodDog">
                       
                         <!-- main nav start -->
                         <nav class="top-nav">
                            <ul class="nav sf-menu">
  	
-
-                              <li class="active">
+<!--                              <li class="active">
                                  <a href="index.html">Home</a>
                                  <ul>
                                     <li>
@@ -34,16 +107,17 @@
                                        <a href="index_singlepage.html">Single Page</a>
                                     </li>
                                  </ul>
-                              </li>
+                              </li>  -->
+
                               <li>
-                                 <a href="about.html">Map</a>
-                                 <ul>
+                                 <a href="mapList">Map</a>
+  <!--                                <ul>
 
                                     <li>
                                        <a href="about.html">About</a>
                                     </li>
 
-                                    <!-- features -->
+                                    features
                                     <li>
                                        <a href="shortcodes_iconbox.html">Shortcodes</a>
                                        <ul>
@@ -79,7 +153,7 @@
                                           </li>
                                        </ul>
                                     </li>
-                                    <!-- eof shortcodes -->
+                                    eof shortcodes
 
                                     <li>
                                        <a href="shortcodes_widgets_default.html">Widgets</a>
@@ -97,7 +171,7 @@
 
                                     </li>
 
-                                    <!-- shop -->
+                                    shop
                                     <li>
                                        <a href="shop-right.html">Shop</a>
                                        <ul>
@@ -156,9 +230,9 @@
 
                                        </ul>
                                     </li>
-                                    <!-- eof shop -->
+                                    eof shop
 
-                                    <!-- events -->
+                                    events
                                     <li>
                                        <a href="events-left.html">Events</a>
                                        <ul>
@@ -187,7 +261,7 @@
                                           </li>
                                        </ul>
                                     </li>
-                                    <!-- eof events -->
+                                    eof events
 
                                     <li>
                                        <a href="team.html">Team</a>
@@ -219,12 +293,13 @@
                                        <a href="404.html">404</a>
                                     </li>
 
-                                 </ul>
+                                 </ul> 
+                                 -->
                               </li>
                               <!-- eof pages -->
                               <li>
-                                 <a href="services.html">Gallery</a>
-                                 <ul>
+                                 <a href="galleryList">Gallery</a>
+ <!--                                 <ul>
                                     <li>
                                        <a href="services.html">Programs 1</a>
                                     </li>
@@ -234,12 +309,12 @@
                                     <li>
                                        <a href="service-single.html">Single Program</a>
                                     </li>
-                                 </ul>
+                                 </ul> -->
                               </li>
                               <!-- eof services -->
                               <li>
-                                 <a href="#">Info</a>
-                                 <div class="mega-menu">
+                                 <a href="bookList">Info</a>
+<!--                                  <div class="mega-menu">
                                     <ul class="mega-menu-row">
                                        <li class="mega-menu-col">
                                           <a href="#">Headers</a>
@@ -359,14 +434,14 @@
                                        </li>
 
                                     </ul>
-                                 </div> <!-- eof mega menu -->
+                                 </div> --> <!-- eof mega menu -->
                               </li>
                               <!-- eof features -->
                               <!-- gallery -->
                               <li>
-                                 <a href="gallery-image.html">Friend</a>
-                                 <ul>
-                                    <!-- Gallery image only -->
+                                 <a href="friend">Friend</a>
+<!--                                  <ul>
+                                    Gallery image only
                                     <li>
                                        <a href="gallery-image.html">Regular</a>
                                        <ul>
@@ -382,9 +457,9 @@
 
                                        </ul>
                                     </li>
-                                    <!-- eof Gallery image only -->
+                                    eof Gallery image only
 
-                                    <!-- Gallery with title -->
+                                    Gallery with title
                                     <li>
                                        <a href="gallery-title.html">Image With Title</a>
                                        <ul>
@@ -399,9 +474,9 @@
                                           </li>
                                        </ul>
                                     </li>
-                                    <!-- eof Gallery with title -->
+                                    eof Gallery with title
 
-                                    <!-- Gallery with excerpt -->
+                                    Gallery with excerpt
                                     <li>
                                        <a href="gallery-excerpt.html">Extended</a>
                                        <ul>
@@ -416,13 +491,13 @@
                                           </li>
                                        </ul>
                                     </li>
-                                    <!-- eof Gallery with excerpt -->
+                                    eof Gallery with excerpt
 
                                     <li>
                                        <a href="gallery-tiled.html">Tiled Gallery</a>
                                     </li>
 
-                                    <!-- Gallery item -->
+                                    Gallery item
                                     <li>
                                        <a href="gallery-single.html">Gallery Item</a>
                                        <ul>
@@ -434,14 +509,14 @@
                                           </li>
                                        </ul>
                                     </li>
-                                    <!-- eof Gallery item -->
-                                 </ul>
+                                    eof Gallery item
+                                 </ul> -->
                               </li>
                               <!-- eof Gallery -->
                               <!-- contacts -->
                               <li>
-                                 <a href="contact.html">Chat</a>
-                                 <ul>
+                                 <a href="chat">Chat</a>
+<!--                                  <ul>
                                     <li>
                                        <a href="contact.html">Contact 1</a>
                                     </li>
@@ -454,56 +529,21 @@
                                     <li>
                                        <a href="contact4.html">Contact 4</a>
                                     </li>
-                                 </ul>
+                                 </ul> -->
                               </li>
                               <!-- eof contacts -->
                               <!-- blog -->
                               <li>
-                                 <a href="blog-left.html">Find</a>
+                                 <a href="callingList">Find</a>
                                  <ul>
 
                                     <li>
-                                       <a href="blog-right.html">Right Sidebar</a>
+                                       <a href="callingList">실종신고 목록</a>
                                     </li>
                                     <li>
-                                       <a href="blog-left.html">Left Sidebar</a>
-                                    </li>
-                                    <li>
-                                       <a href="blog-full.html">No Sidebar</a>
-                                    </li>
-                                    <li>
-                                       <a href="blog-grid.html">News Grid</a>
+                                       <a href="callingInsert">실종신고서 작성</a>
                                     </li>
 
-                                    <li>
-                                       <a href="blog-single-right.html">Post</a>
-                                       <ul>
-                                          <li>
-                                             <a href="blog-single-right.html">Right Sidebar</a>
-                                          </li>
-                                          <li>
-                                             <a href="blog-single-left.html">Left Sidebar</a>
-                                          </li>
-                                          <li>
-                                             <a href="blog-single-full.html">No Sidebar</a>
-                                          </li>
-                                       </ul>
-                                    </li>
-
-                                    <li>
-                                       <a href="blog-single-video-right.html">Video Post</a>
-                                       <ul>
-                                          <li>
-                                             <a href="blog-single-video-right.html">Right Sidebar</a>
-                                          </li>
-                                          <li>
-                                             <a href="blog-single-video-left.html">Left Sidebar</a>
-                                          </li>
-                                          <li>
-                                             <a href="blog-single-video-full.html">No Sidebar</a>
-                                          </li>
-                                       </ul>
-                                    </li>
 
                                  </ul>
                               </li>
@@ -513,18 +553,30 @@
 
                         </nav>
                         <!-- eof main nav -->
+<!--       
+                  <span class="mr-5">
+							<a href="#" class="search_modal_button hidden-below-xl">
+								<i class="fa fa-search"></i>
+							</a>
+						</span> 
+-->
+                        
                       </div>
-
                   </div>
                </div>
             </div>
+            
+            
+            
             <!-- header toggler -->
             <span class="toggle_menu"><span></span></span>
          </header>
-  
-  
-  
-  
+         
+		</div><!-- eof #box_wrapper -->
+	</div><!-- eof #canvas -->
  <!-- header end --> 
+ 
+	<script src="${path}/resources/js/compressed.js"></script>
+	<script src="${path}/resources/js/main.js"></script>
 </body>
 </html>
