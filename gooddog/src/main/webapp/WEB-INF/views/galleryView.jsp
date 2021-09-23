@@ -53,7 +53,8 @@
 				</div>
 			</section>
 
-
+		
+			
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">
@@ -64,7 +65,7 @@
 									<img src="${path}/resources/images/gallery/main-dog.jpg" alt="img">
 									<p class="item-meta d-flex flex-wrap">
 										<a href="event-single-right.html"><i class="fa fa-calendar color-main"></i>05.02.2018</a>
-										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>admin</a>
+										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>${one.user_id}</a>
 										<a href="event-single-right.html"><i class="fa fa-comment color-main"></i>8 comments</a>
 									</p>
 								</div>

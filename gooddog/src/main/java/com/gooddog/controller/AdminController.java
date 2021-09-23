@@ -39,18 +39,18 @@ public class AdminController {
 	//  기능 툴	
 	web.init(response);
 
-// 		UserVO user = new UserVO();
-//		BlackVO black = new BlackVO();
-//		
-//		List<UserVO> list = null;
-//		List<BlackVO> list1 = null;
-//		
-//		list = AdminService.getUserList(user);
-//		list1 = AdminService.getBlackList(black);
-//		
-//		m.addAttribute("userList", list);
-//		m.addAttribute("blackList", list1);
-//		
+ 		UserVO user = new UserVO();
+		BlackVO black = new BlackVO();
+		
+		List<UserVO> list = null;
+		List<BlackVO> list1 = null;
+		
+		list = AdminService.getUserList(user);
+		list1 = AdminService.getBlackList(black);
+		
+		m.addAttribute("userList", list);
+		m.addAttribute("blackList", list1);
+		
 		return new ModelAndView("/admin/admin_table") ;
 	}
 	

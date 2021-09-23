@@ -83,7 +83,7 @@
 											
 													<!-- <a class="link-zoom photoswipe-link" href="#"><br/>123</a> -->
 													<a class="link-zoom" href="#"><br/>${l.gal_heart }</a>
-													<a class="link-anchor" title="" href="galleryView"><br/>${l.gal_cnt }</a>
+													<a class="link-anchor" title="" href="galleryView?gal_no=${l.gal_no }"><br/>${l.gal_cnt }</a>
 											
 											 		<%-- <a class="galleryIcons" href="#"><img alt="like" src="${path}/resources/images/icons/heart-regular.svg">123</a>
 											 		<a class="galleryIcons" href="galleryView"><img alt="like" src="${path}/resources/images/icons/mouse-solid.svg">1234</a> --%>
@@ -92,7 +92,7 @@
 										</div>
 										<div class="item-content gradientdarken-background">
 											<h5>
-												<!-- <a href="galleryView">자세히 보기</a> -->
+												<a href="galleryView?gal_no=${l.gal_no }">${l.gal_name }</a>
 											</h5>
 										</div>
 									</div>

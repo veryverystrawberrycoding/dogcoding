@@ -1,5 +1,9 @@
 package com.gooddog.domain;
 
+import lombok.*;
+
+@Getter
+@Setter
 // 펫 몸무게
 public class WeightVO {
 

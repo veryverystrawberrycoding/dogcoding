@@ -14,11 +14,14 @@ public class GalleryServiceImpl implements GalleryService {
 	@Autowired
 	private GalleryMapper galleryMapper;
 	
-	
+	// 갤러리 목록 조회
 	public List<GallaryVO> galleryList(){
 		
 		return galleryMapper.galleryList();
 		
 	}
+	
+
+
 
 }

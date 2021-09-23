@@ -40,15 +40,15 @@ public class BoardController {
 	public void friend() {
 		logger.info("friend");
 	}
-	@RequestMapping("/mapList") //http://localhost:8082/board/mapList
-	public void mapList() {
-		logger.info("mapList");
-	}
+//	@RequestMapping("/mapList") //http://localhost:8082/board/mapList
+//	public void mapList() {
+//		logger.info("mapList");
+//	}
 	
-	@RequestMapping("/mapView") //http://localhost:8082/board/mapView
-	public void mapView() {
-		logger.info("mapView");
-	}
+//	@RequestMapping("/mapView") //http://localhost:8082/board/mapView
+//	public void mapView() {
+//		logger.info("mapView");
+//	}
 	
 	@RequestMapping("/mainPage") //http://localhost:8082/board/mainPage
 	public void mainPage() {
@@ -67,15 +67,15 @@ public class BoardController {
 	
 
 	
-	@RequestMapping("/galleryList") //http://localhost:8082/board/galleryList
-	public void galleryList() {
-		logger.info("galleryList");
-	}
+//	@RequestMapping("/galleryList") //http://localhost:8082/board/galleryList
+//	public void galleryList() {
+//		logger.info("galleryList");
+//	}
 	
-	@RequestMapping("/galleryView") //http://localhost:8082/board/galleryView
-	public void galleryView() {
-		logger.info("galleryView");
-	}
+//	@RequestMapping("/galleryView") //http://localhost:8082/board/galleryView
+//	public void galleryView() {
+//		logger.info("galleryView");
+//	}
 	
 	@RequestMapping("/callingInsert") //http://localhost:8082/board/callingInsert
 	public void callingInsert() {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.gooddog.mapper.LogJoinMapper">
+	<select id="idOkay" resultType="String" parameterType="String">
+			<![CDATA[
+		SELECT user_id FROM user WHERE user_id=#{user_id}
+		]]>
+	</select>
+	
+	<select id="nickOkay" resultType="String" parameterType="String">
+		<![CDATA[
+		SELECT user_nick FROM user WHERE user_nick=#{user_nick}
+		]]>
+	</select> 
+	
+	<insert id="join" parameterType="UserVO">
+	<![CDATA[
+		Insert into user (user_id,user_name,user_nick,user_pwd,user_birth,user_gender,user_addr,user_tel,user_date)
+		values(#{user_id},#{user_name},#{user_nick},#{user_pwd},#{user_birth},#{user_gender},#{user_addr},#{user_tel},sysdate());
+		]]>
+	</insert>
+	 
+	<select id="login" resultType="UserVO" parameterType="String">
+	<![CDATA[
+		SELECT * FROM user WHERE user_id=#{user_id} AND user_pwd=#{user_pwd}
+		]]> 
+	</select>
+</mapper>           

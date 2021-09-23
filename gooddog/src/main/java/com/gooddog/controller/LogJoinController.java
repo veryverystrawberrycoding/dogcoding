@@ -40,10 +40,10 @@ public class LogJoinController {
 			red.addFlashAttribute("msg", false); 
 		if(info==null) { 
 			session.setAttribute("user", null); 
-			return "redirect:/board/mainPage";   
+			return "redirect:/mainPage";   
 		} else {    
 			session.setAttribute("user", info);
-			return "redirect:/board/mainPage";  
+			return "redirect:/mainPage";  
 		} 
 		  
 	}
@@ -52,7 +52,7 @@ public class LogJoinController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "redirect:/board/mainPage";  
+		return "redirect:/mainPage";  
 	}
 	    
 	//회원가입
@@ -60,7 +60,7 @@ public class LogJoinController {
 	public String join(UserVO vo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		logJoinService.join(vo);
-		return "redirect:/board/mainPage";
+		return "redirect:/mainPage";
 	}
 } 
   

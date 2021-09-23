@@ -5,10 +5,14 @@
         
 <mapper namespace="com.gooddog.mapper.GalleryMapper">
 
-
+	<!-- 갤러리 목록 조회 -->
 	<select id="galleryList" resultType="GallaryVO">
-			<![CDATA[
+		<![CDATA[
 		SELECT * FROM gallery 
 		]]>
 	</select>
+	
+	
+
+	
 </mapper>   
