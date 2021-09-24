@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
+	<script src="${path}/resources/js/userJS/gallery.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -43,11 +45,13 @@
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
 
 								<div class="item-content">
-								
-									<form action="/galleryOK?gal_no=${item.gal_no }" method="post" id="gallery_insert_form" ><!-- enctype="multipart/form-data" -->
-										<!-- <a>사진</a><br>
-										<input type="file" id="gal_img" name="gal_img">
-										<hr> -->
+							<c:if test="${item.gal_no != null}" >
+									<form action="/galleryOK?gal_no=${item.gal_no }" method="post" id="gallery_insert_form" >
+							</c:if>						
+									<form action="/galleryOK?gal_no=0" method="post" id="gallery_insert_form" > <!-- enctype="multipart/form-data" -->	
+										<a>사진</a><br>
+										<input type="file" id="gal_img" name="gal_img" value="${item.gal_name}">
+										<hr>
 										<a>내용</a>
 										<input type="text" name = "gal_name" value="${item.gal_name}"> <hr>
 										<a>태그는 '태그1','태그2' 형식으로 입력 >> + 버튼 만들어서 동적으로 생성되면 좋을듯</a>

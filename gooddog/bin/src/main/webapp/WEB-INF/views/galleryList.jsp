@@ -59,7 +59,7 @@
 					<div class="row">
 					
 					<div class="gallery-btn">
-					<a href="/galleryForm" ><img src="${path}/resources/images/gallery/write.jpg" width="43px" height="43px">
+					<a href="/galleryForm?gal_no=0" ><img src="${path}/resources/images/gallery/write.jpg" width="43px" height="43px">
 					<p>write</p></a>
 							<!-- <input type="button" value="글쓰기"> -->
 					</div>
@@ -107,18 +107,18 @@
 										
 													<!-- <a class="link-zoom photoswipe-link" href="#"><br/>123</a> -->
 													<a class="link-zoom" href="#"><br/>${item.gal_heart }</a>
-													<a class="link-anchor" title="" href="galleryView?gal_no=${item.gal_no}"><br/>${item.gal_cnt }</a>
+													<a class="link-anchor" title="" href="galleryView?gal_no=${item.gal_no}"><br/>click</a>
 											
 											 		<%-- <a class="galleryIcons" href="#"><img alt="like" src="${path}/resources/images/icons/heart-regular.svg">123</a>
 											 		<a class="galleryIcons" href="galleryView"><img alt="like" src="${path}/resources/images/icons/mouse-solid.svg">1234</a> --%>
 												</div>
 											</div>
 										</div>
-										<div class="item-content gradientdarken-background">
+										<!-- <div class="item-content gradientdarken-background">
 											<h5>
-												<!-- <a href="galleryView">자세히 보기</a> -->
+												<a href="galleryView">자세히 보기</a>
 											</h5>
-										</div>
+										</div> -->
 									</div>
 								</div>
 								

@@ -17,7 +17,10 @@
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/0joo.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
+	<script src="${path}/resources/js/userJS/dogface.js"></script>
    
 </head>
 
@@ -174,6 +177,9 @@
 
 
 			</section>
+			<div class='mainFaceButton'>
+         <img src="../resources/images/photodog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
+         </div>
 
 		<%@ include file="./footer.jsp"%> 
 

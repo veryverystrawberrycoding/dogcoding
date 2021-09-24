@@ -125,6 +125,8 @@ body {
 	overflow-x: hidden;
 	overflow-y: scroll;
 	position: relative;
+	counter-reset: place;
+
 }
 
 h1,
@@ -14375,11 +14377,11 @@ aside > * + * {
 
 .widget li.media h3,
 .widget li.media h4 {
-	font-family: "Abril Fatface", cursive;
+	/* font-family: "Abril Fatface", cursive; */
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 19px;
-	margin: 0 0 3px;
+	margin: 0 0 5px;
 	overflow: hidden;
 	text-transform: none;
 }
@@ -22035,10 +22037,21 @@ h4.entry-title {
 }
 
 .comment-body {
-	margin-bottom: 0;
+/* 	margin-bottom: 0; */
+	margin-bottom: 20px;
 	margin-left: 80px;
-	padding: 60px 0px 24px 20px;
+	padding: 20px 0px 20px 20px;
 	position: relative;
+	border-bottom : solid 1px #e4e4e4;
+}
+
+/* 추가 코드 */
+.noreview {
+/* 	margin-bottom: 0; */
+	margin-bottom: 20px;
+	padding: 20px 0px 20px 0px;
+	position: relative;
+	border-bottom : solid 1px #e4e4e4;
 }
 
 .comment-body ol,
@@ -22071,7 +22084,7 @@ h4.entry-title {
 	left: -78px;
 	max-width: 80px;
 	position: absolute;
-	top: 40px;
+	/* top: 40px; */
 }
 
 .comment-meta .comment-author {
@@ -23414,4 +23427,137 @@ section .special-heading.line-after::before {
 	/* background-color:red; */
 	height:20px;
 	margin:5px;
+}
+
+
+/* mapList 추가 css */
+.maplist-btn{
+	border-radius: 50%;
+	width:60px;
+	height:60px;
+	color: #ed8e82;
+	font-size: 11px;
+	border: 2px solid #ed8e82;
+	
+}
+
+#sido{
+	width:150px;
+	margin-bottom: 17px;
+	float:left;
+	margin-right:10px;
+}
+#gugun{
+	width:150px;
+	margin-bottom: 17px;
+	float:left;
+}
+.place-search{
+	width:500px;
+	margin-bottom: 17px;
+	/* float:right; */
+	/* position: relative; */
+
+}
+.place-search i{
+	/* background-color:red; */
+	position: absolute;
+    left: 10px;
+    bottom: 15px;
+    color: gray;
+}
+
+.maplist{
+	padding:15px;
+	margin-bottom: 30px;
+	text-align:center;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.box-shadow.pb-50.px-50.pt-50 {
+	margin-top: 0px;
+	
+}
+
+.icon-box.text-center {
+	display: flex;
+	flex-direction: column;
+}
+
+.icon-box.text-center > div {
+	/* background-color: red; */
+	padding : 0px;
+	margin : 1px 5px;
+	height : 65px;	
+}
+.icon-box.text-center a {
+	 text-decoration:none;
+}
+
+.bg-place-filter{
+	color : gray; 
+}
+.food:hover{
+	background-color: gold;
+	color : white;
+}
+.cafe:hover{
+	background-color: brown;
+	color : white;
+}
+
+.hotel:hover{
+	background-color: black;
+	color : white;
+}
+.park:hover{
+	background-color: green;
+	color : white;
+}
+.dogonly:hover{
+	background-color: skyblue;
+	color : white;
+}
+.hospital:hover{
+	background-color: red;
+	color : white;
+}
+
+
+
+#storebox{
+	/* background-color: green; */
+	display : flex;
+	margin-bottom : 20px;
+}
+
+#storebox img{
+	border-radius: 5%;
+}
+
+
+	/* 추가 */
+#store-name {
+	
+}
+#store-name a:before{
+	/* color: red; */
+	counter-increment: place;
+	content : counter(place) ". ";
+}
+
+.sort-period{
+	/*  background-color: green; */
+	 display : flex;
+	 flex-direction : row;
+	 flex-wrap:wrap;
+	 margin-top : 20px;
+	 margin-left : 20px; 
+	 
+}
+.sort-period div{
+	margin-right : 10px;
+}
+.weightGraph{
+	text-decoration:none;
 }

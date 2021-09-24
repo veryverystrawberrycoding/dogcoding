@@ -75,9 +75,19 @@
                     
                        <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
                             <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                회원 목록
+                                <i class="fas fa-address-card me-1" ></i>
+                   			회원 목록
                             </div>
+                            <form action="/admin_table/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      
+                            	</div>
+                            	<input type="submit" style="float: right;" value="검색">
+                            </form>
+                            
+                                
+                            
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
@@ -86,9 +96,10 @@
                                             <th>주소</th>
                                             <th>이름</th>
                                             <th>전화번호</th>
+                                            
                                         </tr>
                                     </thead>
-                                   <input type="text" name="rnlcksg" id="rnlcksg" value="귀찮귀찮" />
+                                  
                                     <tbody>
                                     	<c:forEach items="${userList}" var="user">
                                     		<tr>
@@ -109,31 +120,35 @@
                                 <i class="fas fa-address-card me-1"></i>
                                 블랙리스트	 목록
                             </div>
+                            <form action="/admin_table/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요"><button style="float: right;">검색</button>
+                            	</div>
+                            	
+                            </form>
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
+                                            <th>넘버</th>
                                             <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
+                                            <th>시작일</th>
+                                            <th>종료일</th>
+                                            <th>정지사유</th>
+                                        
                                         </tr>
+                                        
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
+             
                                     <tbody>
                                     	<c:forEach items="${blackList}" var="black">
                                     		<tr>
-                                    			<td>${black}</td>
-                                    			<td>${black}</td>
-                                    			<td>${black}</td>
-                                    			<td>${black}</td>
+                                    			<td>${black.black_no}</td>
+                                    			<td>${black.user_id}</td>
+                                    			<td>${black.black_start}</td>
+                                    			<td>${black.black_end}</td>
+                                    			<td>${black.black_content}</td>
+                                    			
                                     		</tr>
                                     	</c:forEach>
                                     </tbody>
@@ -148,7 +163,7 @@
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 <script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="resources/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
     
