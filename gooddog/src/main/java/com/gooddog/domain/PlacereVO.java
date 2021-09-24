@@ -8,8 +8,8 @@ public class PlacereVO {
 	
 	// 리뷰 번호 
 	int pre_no;
-	// 사용자 아이디
-	String user_id;
+	// 사용자 아이디 >>삭제
+	//String user_id;
 	// 장소 번호 
 	int place_no;
 	// 리뷰 내용 
@@ -24,5 +24,6 @@ public class PlacereVO {
 	String user_nick;
 	// 사용자 프로필 이미지 
 	String user_img;
+
 
 }

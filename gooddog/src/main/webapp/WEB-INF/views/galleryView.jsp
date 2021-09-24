@@ -20,6 +20,8 @@
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
+	<script src="${path}/resources/js/userJS/gallery.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -33,7 +35,7 @@
 <body>
 <%@ include file="./header.jsp"%> 
 
-			<section class="page_title ls  s-py-5">
+			<!-- <section class="page_title ls  s-py-5">
 				<div class="container">
 					<div class="row">
 
@@ -51,56 +53,53 @@
 
 					</div>
 				</div>
-			</section>
+			</section> -->
 
-		
-			
+
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">
+					
 
 						<main class="offset-lg-1 col-lg-10">
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
+								<%-- <c:if test="${세션으로 확인한 id == item.user_id }"> --%>
+						<div class="gallery_buttons">
+						<a href="/galleryForm?gal_no=${item.gal_no}"><input type="button" value="수정" ></a>
+						<a href="/galDelete?gal_no=${item.gal_no}"><input type="button" value="삭제"></a>
+	
+						</div>
+					<%-- </c:if> --%>
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/gallery/main-dog.jpg" alt="img">
-									<p class="item-meta d-flex flex-wrap">
-										<a href="event-single-right.html"><i class="fa fa-calendar color-main"></i>05.02.2018</a>
-										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>${one.user_id}</a>
-										<a href="event-single-right.html"><i class="fa fa-comment color-main"></i>8 comments</a>
-									</p>
+									<img src="${path}/resources/images/gallery/${item.gal_img }"  alt="img">
+									
+										
 								</div>
-
+								<div class="gallery_items">
+								<a href="event-single-right.html"><i class="fa fa-user color-main"></i>${item.user_nick}</a>
+								<a><i class="fa fa-calendar color-main"></i>${item.gal_date }</a>
+								<a><i class="fa fa-comment color-main"></i>${item.gal_heart }</a>
+								<img src="${path}/resources/images/gallery/heart.png" width="30px" height="30px" class="galheart" id="galheart">
+								</div>
+									
+								
 
 								<div class="item-content">
 									<!-- .post-thumbnail -->
 									<h4>
-										<a href="event-single-right.html">Training Workshops and Classes for Pet Lovers</a>
+										${item.gal_name}
 									</h4>
+									<br>
+									<br>
 
 									<div class="entry-content">
 										<p>
-											At vero eos accusam justo duo dolores et rebum clita kasd gubergren nosea takimata sanctus est dolor sit
-											amet
+											${item.gal_tag}
 										</p>
 
-										<p>
-											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-											sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor amet consetetur sadipscing elitr, sed diam
-											nonumy eirmod tempor invidunt.
-										</p>
+										
 
-										<ul class="list-styled">
-											<li>Consetetur sadipscing elitr, sed diam nonumy</li>
-											<li>Eirmod tempor invidunt ut labore</li>
-											<li>Dolore magna aliquyam erat</li>
-											<li>Sed diam voluptua. At vero eos accusam</li>
-										</ul>
-
-										<p>
-											At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-											sanctusamet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-											invidunt ut labore et dolore magna aliquyam erat.
-										</p>
+										
 
 
 									</div>
@@ -113,173 +112,27 @@
 
 							<div id="comments" class="comments-area ">
 
+
+								<div id="comments" class="comments-area ">
 								<h4 class="comments-title">
-									Comments
+									comments
 								</h4>
-
-								<ol class="comment-list">
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_1.jpg">
-													<h4>Gabriel K. Reed</h4>
-													<p class="small-text text-left color-main4">
-														05.02.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_2.jpg">
-															<h4>Angela R. Sanford</h4>
-															<p class="small-text text-left color-main4">
-																06.02.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Ut enim ad minim veniam, quis nostrud.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_3.jpg">
-													<h4>Thelma J. Gray</h4>
-													<p class="small-text text-left color-main4">
-														26.01.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-													fugiat nulla pariatur. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_4.jpg">
-															<h4>Carl D. Armstrong</h4>
-															<p class="small-text text-left color-main4">
-																26.01.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Excepteur sint occaecat cupidatat non proident.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-								</ol>
-								<!-- .comment-list -->
-
-
-								<div id="respond" class="comment-respond ms ls">
-									<h4 id="reply-title" class="comment-reply-title">Leave the comment</h4>
-									<form class="contact-form c-mb-10 c-gutter-10" method="post" action="/">
-
-										<div class="row">
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="name">your Name <span class="required">*</span></label>
-													<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="phone">Phone<span class="required">*</span></label>
-
-													<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="email">email address<span class="required">*</span></label>
-													<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="email Address">
-												</div>
-											</div>
-										</div>
-
+								<hr>
+								
+								<!-- 댓글쓰기란 -->
+								
+									
+									<form  method="post" action="/">
 
 										<div class="row">
 
 											<div class="col-sm-12">
+											<input type="text" placeholder="댓글을 입력하세요">
 
-												<div class="form-group has-placeholder">
+												<!-- <div class="form-group has-placeholder">
 													<label for="message">Your Comment</label>
-
 													<textarea aria-required="true" rows="4" cols="45" name="message" id="message" class="form-control" placeholder="Your Comment"></textarea>
-												</div>
+												</div> -->
 											</div>
 
 										</div>
@@ -297,8 +150,98 @@
 										</div>
 
 									</form>
+						
+								<br>
+
+								<c:forEach var="rl" items="${reviewList}">
+										<article class="comment-body">
+											<footer class="comment-meta">
+												<div class="comment-author vcard">
+													<img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
+													<h4>${rl.user_nick }</h4>
+													<p class="small-text text-left color-main4">
+														${rl.galre_date }
+													</p>
+													
+												</div>
+												
+											</footer>
+					
+											<div class="comment-content">
+												<p>${rl.galre_content }</p>
+											</div>
+											
+											<!-- .comment-content -->
+										</article>
+								</c:forEach>									
+							
 								</div>
-								<!-- #respond -->
+
+								<!-- <ol class="comment-list">
+									<li class="comment">
+										<article class="comment-body">
+											<footer class="comment-meta">
+												<div class="comment-author vcard">
+													<img alt="img" src="images/team/comment_1.jpg">
+													<h4>Gabriel K. Reed</h4>
+													<p class="small-text text-left color-main4">
+														05.02.2018
+													</p>
+												</div>
+												<div class="reply">
+													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+												</div>
+												.comment-author
+												.comment-metadata
+											</footer>
+											.comment-meta
+
+											<div class="comment-content">
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+											</div>
+											.comment-content
+										</article>
+										
+										대댓글 
+									
+										<ol class="children">
+											<li class="comment">
+												<article class="comment-body">
+													<footer class="comment-meta">
+														<div class="comment-author vcard">
+															<img alt="img" src="images/team/comment_2.jpg">
+															<h4>Angela R. Sanford</h4>
+															<p class="small-text text-left color-main4">
+																06.02.2018
+															</p>
+														</div>
+														<div class="reply">
+															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
+														</div>
+														.comment-author
+														.comment-metadata
+													</footer>
+													.comment-meta
+
+													<div class="comment-content">
+														<p>Ut enim ad minim veniam, quis nostrud.</p>
+													</div>
+													.comment-content
+
+
+												</article>
+												.comment-body
+											</li>
+											#comment-##
+										</ol>
+										.children
+									</li>
+
+								</ol>
+						 -->
+
+
+								
 
 							</div>
 

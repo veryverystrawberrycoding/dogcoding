@@ -17,7 +17,10 @@
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/0joo.css" class="color-switcher-link">
 	<script src="../resources/js/vendor/modernizr-custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
+	<script src="${path}/resources/js/userJS/dogface.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -89,8 +92,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-12 col-xl-8 offset-xl-2 text-center mt--5">
-                     <img src="resources/images/dog.png" alt="dog">
-
+                    <img src="resources/images/dog.png" alt="dog">
                      <div class="mt-100 hidden-below-xl"></div>
                      <div class="mt-55 hidden-above-xl"></div>
                   </div>
@@ -193,7 +195,11 @@
                <div class="mt-80 hidden-below-xl"></div>
             </div>
          </section>
+         
 
+<div class='mainFaceButton'>
+         <img src="../resources/images/photodog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
+         </div>
 <!-- footer start --> 
      <%@ include file ="/WEB-INF/views/footer.jsp" %>
 

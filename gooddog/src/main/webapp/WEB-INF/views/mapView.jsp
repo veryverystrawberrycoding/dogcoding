@@ -15,10 +15,10 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-<%-- 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main_0joo.css" class="color-switcher-link"> --%>
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/jquery-3.3.1.min.js"></script>
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	
 
 </head>
 
@@ -126,16 +126,18 @@
 										<article class="comment-body">
 											<footer class="comment-meta">
 												<div class="comment-author vcard">
-													<img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
-													<h4>${rl.user_nick }</h4>
+													<%-- <img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
+													<h4>${rl.user_nick }</h4> --%>
 													<p class="small-text text-left color-main4">
 														${rl.pre_date }
 													</p>
+													
 												</div>
 											</footer>
 					
 											<div class="comment-content">
 												<p>${rl.pre_content }</p>
+												<p>${rl.pre_value}</p>
 											</div>
 											<!-- .comment-content -->
 										</article>

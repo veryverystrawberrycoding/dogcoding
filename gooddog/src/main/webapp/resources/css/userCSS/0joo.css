@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+.maplist-btn{
+	border-radius: 50%;
+	width:60px;
+	height:60px;
+	color: #ed8e82;
+	font-size: 11px;
+	border: 2px solid #ed8e82;
+}
+
+.place-select1{
+	width:150px;
+	margin-bottom: 17px;
+	float:left;
+	margin-right:10px;
+}
+.place-select2{
+	width:150px;
+	margin-bottom: 17px;
+	float:left;
+}
+.place-search{
+	width:500px;
+	margin-bottom: 17px;
+	/* float:right; */
+}
+
+.maplist{
+	padding:15px;
+	margin-bottom: 30px;
+	text-align:center;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.gallery-search{
+	width:800px;
+}
+.gallery-search-input{
+	width:600px;
+	margin-left:70px;
+	float:left;
+}
+.gallery-search-button{
+	float:left;
+	margin-left:10px;
+
+}
+
+.gallery-btn{
+	margin:0 0 50px 850px;
+}
+
+.mainFaceButton{
+	position:fixed;
+	right:0px;
+	overflow:hidden;
+	bottom:80px;
+	margin-right:5px;
+	
+	
+}

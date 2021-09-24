@@ -35,9 +35,8 @@
 	<!-- 리뷰 조회 -->
 	<select id="reviewList" parameterType="PlaceVO" resultType="PlacereVO">
 		<![CDATA[
-		SELECT user_nick, user_img, pre_date, pre_content 
-		FROM placere p inner join user u
-		ON place_no=#{place_no} AND p.user_id=u.user_id;
+		SELECT pre_date, pre_content, pre_value
+		FROM placere Where place_no=#{place_no};
 		]]>
 	</select>
 	

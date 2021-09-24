@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GallaryVO {
+public class GalleryVO {
 	//갤러리 게시글 번호
 	private int gal_no;
 	//갤러리 게시글 이름
