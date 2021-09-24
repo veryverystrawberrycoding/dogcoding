@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.gooddog.domain.BlackVO;
+import com.gooddog.domain.BookVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.mapper.AdminMapper;
 
@@ -50,7 +51,12 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+//////////////////////////info book 정보 가져오기 /////////////////////	
+@Override
+public List<BookVO>adminpost(){
 
+return  AdminMapper.adminpost();
+}
 
 
 }   

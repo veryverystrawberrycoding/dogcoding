@@ -81,12 +81,10 @@ public class AdminController {
 	}
 	
 	
-	@RequestMapping(value="/admin/admin_post.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_post(Model m, HttpServletResponse response) {
+
 	
-		return new ModelAndView("/admin/admin_post") ;
-	}
 	
+
 
 	
 	@RequestMapping(value="/admin/admin_black.do",method = {RequestMethod.GET, RequestMethod.POST})
@@ -95,5 +93,14 @@ public class AdminController {
 		return new ModelAndView("/admin/admin_black") ;
 	}
 	
+	/////////////////////////관리자 상세정보 페이지/////////
+	
+	@RequestMapping(value="/admin/admin_post.do",method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminpost(Model m) {
+		m.addAttribute("list",AdminService.adminpost());
+	
+		return "/admin/admin_post" ;
+	}
+	////////////////////////
 	
 }

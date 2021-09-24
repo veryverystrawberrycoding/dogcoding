@@ -158,7 +158,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./callingList">Security Program</a>
+											<a href="./lossList">Security Program</a>
 										</h5>
 										<p>
 											실종신고

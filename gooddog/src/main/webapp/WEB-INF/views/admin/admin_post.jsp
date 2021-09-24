@@ -12,6 +12,8 @@
 <html class="no-js">
 <!--<![endif]-->
   
+  
+  
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +80,7 @@
                        <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1"></i>
-                                Map
+                                 <a>gallery</a>  
                             </div>
                             <div class="card-body" >
                                 <table id="datatablesSimple">
@@ -117,7 +119,8 @@
                          <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1"></i>
-                                Gallery
+                              <a href="admin_galleryList.do">info</a>  
+                                
                             </div>
                             <div class="card-body" >
                                 <table id="datatablesSimple">
@@ -138,9 +141,9 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
+                                    	<c:forEach items="${list}" var="book">
                                     		<tr>
-                                    			<td>${customer.memId}</td>
+                                    			<td>${book.dic_name }</td>
                                     			<td>${customer.memAddr}</td>
                                     			<td>${customer.memName}</td>
                                     			<td>${customer.memPhone}</td>
@@ -156,7 +159,7 @@
                          <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1"></i>
-                                Info
+                                 <a href="admin_bookList.do">실종신고 1</a>  
                             </div>
                             <div class="card-body" >
                                 <table id="datatablesSimple">
@@ -194,7 +197,7 @@
                          <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1"></i>
-                                실종 신고
+                                 <a href="admin_callingList.do">실종 신고2</a>  
                             </div>
                             <div class="card-body" >
                                 <table id="datatablesSimple">

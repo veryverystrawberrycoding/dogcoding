@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gooddog.domain.BlackVO;
+import com.gooddog.domain.BookVO;
 import com.gooddog.domain.UserVO;
 
 
@@ -18,4 +19,6 @@ public interface AdminMapper {
 		//블랙 유저 불러오기
 		List<BlackVO> getBlackInfo();
 	    
+//////////////////////////수정///////////////////		
+public List<BookVO>adminpost();
 }           

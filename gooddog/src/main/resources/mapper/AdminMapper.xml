@@ -3,7 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
-<mapper namespace="com.gooddog.mapper.GalleryMapper">
+<mapper namespace="com.gooddog.mapper.AdminMapper">
 
 
 	<!-- 회원목록 불러오기 -->
@@ -20,4 +20,10 @@
 			SELECT * FROM black WHERE user_id = 0 
 			]]>
 		</select>
+			<!--  info 정보 가져오기 -->
+	<select id="adminpost" resultType="BookVO">
+		<![CDATA[
+		SELECT * FROM book 
+		]]>
+	</select>
 </mapper>   
