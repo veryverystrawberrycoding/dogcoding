@@ -707,7 +707,7 @@
 											<a>아이디</a>
 											</div> 
 											<div>
-												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 550px;"><button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>
+												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 550px;"><button type="button" class="btn btn-success btn-sm" id="idClick">중복확인</button><br><br>
 											</div>
 											<div> 
 											<a>비밀번호</a>
@@ -720,13 +720,14 @@
 												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" style="width: 700px;"><a id="user_pwd_chk2"></a><br><br>
 											</div>
 											<a>이름</a>
-											<div>
+											<div> 
 												<input type="text" id="user_name" name="user_name" placeholder="이름" style="width: 700px;"><br><br>
 											</div>
-											<a>생년월일</a>
+											<a>생년월일</a> 
 											<div>
-												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 200px;">년<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 100px;">월
-												<input type="text" placeholder="생년월일" id="user_birth" name="user_birth" style="width: 100px;">일<br><br>
+												<input type="text" id="user_birth" name="user_birth" style="width: 200px;"><label>년</label>
+												<input type="text" id="user_birth" name="user_birth" style="width: 100px;"><label>월</label>
+												<input type="text" id="user_birth" name="user_birth" style="width: 100px;"><label>일</label><br><br>
 											</div>
 											<a>성별</a>
 											<div style="width: 650px;">
@@ -734,22 +735,21 @@
 											</div>
 											<a>주소</a>
 											<div>
-												<input type="text" id="sample6_postcode" name="user_addr1" placeholder="주소" style="width:550px;">
-												<button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>   
-												<input type="text" id="sample6_address" name="user_addr2" placeholder="주소" style="width:300px; height:30px;"><br><br>
-												<input type="text" id="sample6_detailAddress" name="user_addr3" placeholder="주소" style="width:300px; height:30px;"> 
-												<input type="text" id="sample6_extraAddress" name="user_addr4" placeholder="주소" style="width:700px; height:30px;"><br><br>
+												<input type="text" id="sample6_address" name="user_addr1" placeholder="주소" style="width:550px;">
+												<button type="button" class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>   
+										
+												<input type="text" id="sample6_extraAddress" name="user_addr1" placeholder="주소" style="width:550px;"><br><br>
 											</div>
 											<a>전화번호</a>
-											<div>     
+											<div>      
 												<input type="tel" id="user_tel" name="user_tel" placeholder="연락처" style="width: 700px;"><br><br>
 											</div>
 											<a>닉네임</a>
 											<div> 
-												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 550px;">&nbsp&nbsp<button class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>
+												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 550px;">&nbsp&nbsp<button type="button" class="btn btn-success btn-sm" id="nickOkay">중복확인</button><br><br>
 											</div>
 											<div style="float:center">
-											<button style="float:center" class="btn btn-success" type="submit" id="join_submit" value="확인">확인</button>  
+											<button style="float:center" class="btn btn-success" type="button" id="join_submit" value="확인">확인</button>  
 											</div>
 										</form> 
 									</div>
@@ -889,7 +889,7 @@
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script> 
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="${path}/resources/userJS/myPage.js"></script>
+	<script src="${path}/resources/js/userJS/myPage.js"></script>
 	 
 	
 

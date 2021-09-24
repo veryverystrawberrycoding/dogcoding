@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+        
+<mapper namespace="com.gooddog.mapper.FriendMapper">
+	<select id="fdRecommend1" resultType="hashmap" parameterType="UserVO">
+		<![CDATA[
+		select a.user_img, a.user_name, substr(a.user_addr,1,2), p.pet_spacies from user as a inner join pet as p on a.user_id = p.user_id where a.user_id = 
+		(select b.user_id from pet as b where b.pet_spacies = (select c.pet_spacies from pet as c where c.user_id=#{user_id}));
+		]]> 
+	</select>   
+
+</mapper>

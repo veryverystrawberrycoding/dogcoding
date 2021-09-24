@@ -1,12 +1,26 @@
 package com.gooddog.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.gooddog.domain.UserVO;
+import com.gooddog.service.LogJoinService;
+import com.gooddog.service.MypageService;
 
 @Controller
 public class BoardController {
+	
+	@Autowired 
+	private MypageService mypageService;
+	 
+	@Autowired LogJoinService logjoinService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
@@ -103,8 +117,17 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/mypageDog") //http://localhost:8082/board/mypageDog
-	public void mypageDog() {
-		logger.info("mypageDog");
+	public String mypageDog(UserVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		if(sessionvo==null) {
+			return "/mainPage";
+		}  
+		else {
+		
+			return "/mypageDog";
+		}  
+		
 	}
 	
 	@RequestMapping("/mypageFind") //http://localhost:8082/board/mypageFind
@@ -113,12 +136,40 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/mypageFriend") //http://localhost:8082/board/mypageFriend
-	public void mypageFriend() {
-		logger.info("mypageFriend");
+	public String mypageFriend(UserVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		if(sessionvo==null) {
+			return "/mainPage";
+		}  
+		else {
+		
+			return "/mypageFriend";
+		}  
+		
+		
 	}
 	
 	@RequestMapping("/mypageModify") //http://localhost:8082/board/mypageModify
-	public void mypageModify() {
-		logger.info("mypageModify");
+	public String mypageModify(UserVO vo, HttpServletRequest req, Model m) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		if(sessionvo==null) {
+			return "/mainPage";
+		}  
+		else {
+		vo.setUser_id(sessionvo.getUser_id());
+		UserVO myvo = logjoinService.userSelect(vo);
+		m.addAttribute("myvo", myvo); 
+		
+			return "/mypageModify"; 
+		}  
 	}
+	 
+	@RequestMapping("/kakao")
+	public void kakao() {
+		
+	}
+	
+	
 }

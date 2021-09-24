@@ -690,119 +690,81 @@
 				</div>
 			</section>
 
-			<section class="ls s-py-50 c-gutter-60 s-py-md-90 s-py-xl-160">
+			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
 				<div class="container">
-					<div class="row">
-
-						<div class="hidden-below-md divider-10"></div>
-
-						<aside class="col-lg-4 col-xl-4 mb-0 affix-aside">
-							<div class="widget widget_categories">
-
-								<h3 class="widget-title">Categories</h3>
-
+					<div class="row mt--5"> 
+						<div class="col-lg-3">
+							<nav class="woocommerce-MyAccount-navigation">
 								<ul>
-									<li class="cat-item">
-										<a href="blog-right.html">Corporate</a>
-										(12)
-										<ul class="children">
-											<li class="cat-item">
-												<a href="blog-right.html">Business
-												</a>
-												(1)
-											</li>
-										</ul>
+									<li>
+										<a href="../mypageModify">회원정보 관리</a>
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">Entertainment</a>
-										(21)
+									<li> 
+										<a href="../mypageDog">나의 펫 정보</a>
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">Innovations</a>
-										(18)
+									<li> 
+										<a href="../list">나의 활동내역</a>
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">News</a>
-										(43)
+									<li class="is-active">
+										<a href="#">펫 실종신고</a>
 									</li>
-									<li class="cat-item">
-										<a href="blog-right.html">Knowledge
-										</a>
-										(8)
+									<li>
+										<a href="../mypageFind">견종찾기</a>
 									</li>
-								</ul>
-							</div>
+									<li>
+										<a class="logoutClick" href="../mainPage">로그아웃</a>
+									</li> 
+								</ul> 
+							</nav>
+						</div>
 
+						<div class="col-lg-4 mt-40 mt-lg-0 animate">
+							<article class="post side-item content-padding ls box-shadow">
+								<div class="row">
+									<div class="col-xl-4 col-lg-5 col-md-5">
+										<div class="item-media cover-image">
+											<img src="images/gallery/15.jpg" alt="img" style="width:100px; height:100px;">
+											<div class="media-links">
+												<a class="abs-link" title="" href="event-single-full.html"></a>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-xl-8 col-lg-7 col-md-6">
+										<div class="item-content">
+
+											<h5>
+												<a href="event-single-full.html">Training</a>
+											</h5>
  
-						</aside>
+											
+											<p class="mb-10">
+												1234 
+											</p>
 
-						<main class="col-lg-4 col-xl-4">
-							<div class="vertical-item box-shadow content-padding text-center text-lg-left">
-								<div class="item-media">
+											<p class="links-maincolor more"><a href="event-single-full.html">read more</a></p>
 
-									<img src="images/gallery/04.jpg" alt="img">
-
-								</div> 
-								<div class="item-content">
-									<h4>
-										Lorem Ipsum Dolor
-									</h4>
-									<p class="excerpt">
-										Aspernatur dicta harum odio odit perferendis quasi quis repellendus. Alias, aut corporis earum explicabo iure labore non porro quae recusandae, tempora voluptas!
-									</p>
-
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
- 
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
-
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
-
+										</div>
+									</div>
 								</div>
+							</article>
+							
+						</div>    
+						<!--.col-* -->	 
+						<div data-animation="scaleAppear" class=" col-lg-5 animate">
+						
+							<div style="text-align:center; margin:0px;">글제목 : </div>
+							<div style="text-align:center; margin:0px;">글쓴이 : </div>
+							<div style="text-align:center;"> 
+							<img src="#" style="width:200px; height:200px; text-align:center;"/>
 							</div>
-						</main>
+						</div>
 
-						<main class="col-lg-4 col-xl-4">
-							<div class="vertical-item box-shadow content-padding text-center text-lg-left">
-								<div class="item-media">
-
-									<img src="images/gallery/04.jpg" alt="img">
-
-								</div>  
-								<div class="item-content">
-									<h4>
-										Lorem Ipsum Dolor
-									</h4>
-									<p class="excerpt">
-										Aspernatur dicta harum odio odit perferendis quasi quis repellendus. Alias, aut corporis earum explicabo iure labore non porro quae recusandae, tempora voluptas!
-									</p>
-
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
-
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
-
-									<p>
-										Consectetur adipisicing elit. A alias architecto deserunt laborum magnam neque obcaecati qui saepe totam velit. Aliquam at cum doloremque exercitationem harum illum obcaecati pariatur porro.
-									</p>
-
-								</div>
-							</div>
-						</main>
-
-					
-						<div class="hidden-below-md divider-10"></div>
 					</div>
-
 				</div>
+				<div class="mb--25 d-none d-xl-block"></div>
+				<div class="mb--20 hidden-above-xl"></div>
+				<div class="mb--30 hidden-above-md"></div>
 			</section>
 
 			<footer class="page_footer ds s-py-60 s-py-md-90 s-py-xl-160 c-mb-20 c-gutter-60">

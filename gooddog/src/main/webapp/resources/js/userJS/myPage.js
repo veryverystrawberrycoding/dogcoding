@@ -2,20 +2,18 @@ $(function(){
 	
 	
 	$("#join_submit").on('click', function(){
-		if(idOkay==false){
-			alert("아이디 중복체크 확인")
-		}else if(nickOkay==false){
-			alert("닉네임 중복체크 확인")	
+		if(idCheck==false){
+			alert("아이디 중복체크 확인하세요")
+		}else if(nickCheck==false){
+			alert("닉네임 중복체크 확인하세요")	
 		}else {
 		let addrplus = '';
 		addrplus += $("sample6_address").val()
 		addrplus += $("#sample6_extraAddress").val()
-		addrplus += $("#sample6_postcode").val() 
-		addrplus += $("#sample6_detailAddress").val()
-		
-		$.ajax({
+	
+		$.ajax({ 
 			type : 'post',
-			url : '../join',
+			url : '/joinForm/join',
 			data: {user_id : $("#user_id").val(),
 				   user_pwd : $("#user_pwd").val(),
 					user_name : $("#user_name").val(),
@@ -26,13 +24,13 @@ $(function(){
 					user_nick : $("#user_nick").val()
 					}, success : function(data){
 						alert('완료')
-						location.href = "/board/mainPage"
+						location.href = "/mainPage"
 					} 
-			
-			
+			 
+			 
 		})
 		}
-	})
+	})  
 	
 	
 	
@@ -45,12 +43,12 @@ $(function(){
 	$("#loginClick").on('click', function(){
 		$.ajax({
 			type: 'post',
-			url: '../loginComplete',
+			url: 'loginComplete',
 			data: {user_id : $("#username").val(),
 					user_pwd : $("#password").val()},
 			success: function(data){
 				alert("일치")
-				location.href = "/mainPage"
+				location.href = "/mainPage"  
 			}  
 			 
 		})
@@ -72,16 +70,16 @@ $(function(){
 	var user_idCheck = RegExp(/^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]/);
 	let idCheck = false; 
 	
-	$("#idOkay").on('click', function(){
+		$("#idClick").click(function(){
    		if($("#user_id").val()==''){
 			alert("아이디를 입력해주세요.")
 		}
 		else if(!user_idCheck.test($("#user_id").val())){
 			alert("이메일 형식으로 입력해주세요.")
-		} else {
-		$.ajax({
-			type: 'post',
-			url: '../idOkay',
+		} else { 
+		$.ajax({  
+			type: 'post', 
+			url: 'idOkay',    
 			data: {user_id : $("#user_id").val()},
 			success: function(data){
 				alert(data);
@@ -103,19 +101,50 @@ $(function(){
 		
 	})//idOkay
 	
+/*	$("#idClick").on('click', function(){
+   		if($("#user_id").val()==''){
+			alert("아이디를 입력해주세요.")
+		}
+		else if(!user_idCheck.test($("#user_id").val())){
+			alert("이메일 형식으로 입력해주세요.")
+		} else { 
+		$.ajax({ 
+			type: 'post', 
+			url: '/joinForm/idOkay',    
+			data: {user_id : $("#user_id").val()},
+			success: function(data){
+				alert(data);
+				if(data==$("#user_id").val()) {
+					alert("중복 된 아이디")
+				}else {
+					alert("사용 가능한 아이디") 
+					$("#user_id").prop('readonly', true);
+					idCheck = true;
+				} 
+			
+			
+			 }
+			
+		}) //ajax
+		}
+		 
+		
+		
+	})//idOkay*/
+	
 	var user_nickCheck = RegExp(/^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/);
 	
 	var nickCheck = false;
 	
-	$("nickOkay").on('click', function(){
-   		if($("#user_nick").val()==''){
+	$("#nickOkay").on('click', function(){
+   		if($("#user_nick").val()==''){ 
 			alert("닉네임을입력해주세요.")
 		}
-		else if(!user_nickCheck.test($("#user_id").val())){
-			alert("이메일 형식으로 입력해주세요.")
+		else if(!user_nickCheck.test($("#user_nick").val())){
+			alert("한글/영어로 입력하세요")
 		} else {
-		$.ajax({
-			type: 'post',
+		$.ajax({ 
+			type: 'post', 
 			url: '../nickOkay',
 			data: {user_nick : $("#user_nick").val()},
 			success: function(data){
@@ -124,7 +153,7 @@ $(function(){
 					alert("중복 된 닉네임")
 				}else {
 					alert("사용 가능한 닉네임") 
-					$("#user_id").prop('readonly', true);
+					$("#user_nick").prop('readonly', true);
 					nickCheck = true;
 				} 
 			
@@ -162,7 +191,7 @@ $(function(){
 	$("#addrClick").on('click', function(){
 	  
 		new daum.Postcode({
-	        oncomplete: function(data) {
+	        oncomplete: function(data) { 
                 var addr = ''; // 주소 변수 
                 var extraAddr = ''; // 참고항목 변수
 
@@ -196,16 +225,148 @@ $(function(){
                 }
  
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("sample6_detailAddress").focus();
 	        }
 	    }).open(); 
 		 
 	})
 	
 	
+	
+function dogList() {
+		$.ajax({
+			type:'post',
+			url: '../dogList',
+			success: function(data){
+				let length = data.doglist.length
+				$(".totalPetList").empty(); 
+				alert(data.doglist[0].pet_name) 
+				for(var i=0; i<length; i++) {
+					let list = ''
+					list += '<div class="col-lg-3"></div>'
+					list += '<div class="col-lg-4 mt-40 mt-lg-0">'
+					list += '<img class="pet_img" src="#" style="width:300px; height:300px; margin: 3px; bottom:20px"></img></div>'
+					list += '<div class=" col-lg-5">' 
+					list += '<div class="form-group has-placeholder div_pet_name">이름&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" value="'+data.doglist[i].pet_name+'"></div>'
+					list += '<div class="form-group has-placeholder div_pet_birth">나이&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_birth" type="text" value="'+data.doglist[i].pet_birth+'"></div>'
+					list += '<div class="form-group has-placeholder div_pet_ident">번호&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_ident" type="text" value="'+data.doglist[i].pet_ident+'"></div>' 
+					list += '<div class="form-group has-placeholder div_pet_gender">성별&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_gender" type="text" value="'+data.doglist[i].pet_gender+'"></div>'
+					list += '<div class="form-group has-placeholder div_pet_spacies">종족&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_spacies" type="text" value="'+data.doglist[i].pet_spacies+'"></div>'
+					list += '<input type="hidden" class="hidden_pet_no" style="weight:10px;" value="'+data.doglist[i].pet_no+'">'  
+					list += '<div class="form-group d-flex-row-reverse align-items-center flex-column flex-md-row mt-40">' 
+					list += '<div class="container"><div class="row"><div class="col-md-12">'
+					list += '<button type="submit" id="pet_modify_submit" name="contact_submit" class="btn btn-maincolor btn-xs pet_modify_btn">수정</button>'
+					list += '<button type="submit" id="pet_modify_submit" name="contact_submit" class="btn btn-maincolor btn-xs pet_delete_btn">삭제</button></div></div></div></div></div>'
+					$(".totalPetList").append(list); 
+				}
+				 
+				
+			}  
+			  	
+			
+		})  
+} 
+dogList();
+
+$(document).on('click', '.pet_modify_btn', function(){
+	$.ajax({
+		type:'post',
+		url:'../dogModify',
+		data: {pet_no : $(this).parent().parent().parent().parent().parent().find(".hidden_pet_no").val(),
+			   pet_name : $(this).parent().parent().parent().parent().parent().find(".pet_name").val(),
+			   pet_birth : $(this).parent().parent().parent().parent().parent().find(".pet_birth").val(),
+			   pet_ident : $(this).parent().parent().parent().parent().parent().find(".pet_ident").val(),
+			   pet_spacies : $(this).parent().parent().parent().parent().parent().find(".pet_spacies").val()},
+		success: function(data) { 
+			alert("수정이 완료됐습니다")
+		} 
+		
+	})
+	
+}) 
+  
+$(document).on('click', '.pet_delete_btn', function(){
+	$.ajax({
+		type:'post',
+		url:'../dogDelete',
+		data: {pet_no : $(this).parent().parent().parent().parent().parent().find(".hidden_pet_no").val()},
+		success: function(data){
+			dogList();
+			alert("삭제완료")
+		}
+	
+	})
+	
+})
+
+
+$(".logoutClick").click(function(){
+	$.ajax({
+		type:'post',
+		url:'../logout',
+		success: function(date){
+			alert("로그아웃 하셨습니다.")
+		}
+		
+		
+		
+	})
+	
+})
+
+let modifyCheck = false;
+
+$("#modify_user_pwd3").on('keyup', function(){
+	if(!user_pwCheck.test($("#modify_user_pwd2").val())){
+		$("#modify_test").text("비밀번호는 8~16자 영문/숫자/특수문자 조합입니다.")
+	} else if($("#modify_user_pwd2").val()!=$("#modify_user_pwd3").val()){
+		$("#modify_test").text("동일한 비밀번호를 입력해주세요")
+	} else {
+		$("#modify_test").text("비밀번호가 일치합니다.")
+	}
+})
+
+
+
+
+
+$("#user_modify").click(function(){
+	
+	
+	$.ajax({
+		type:'post',
+		url:'../passCheck',
+		data: {user_pwd : $("#modify_user_pwd").val()},
+		success: function(data){
+			if(data==null){
+				alert("비밀번호를 확인해주세요")
+			}else {
+			
+			$.ajax({
+				type:'post',
+				url: '../userModify',
+				data: {
+					user_pwd : $("modify_user_pwd3").val()
+					
+				}, success: function(data){
+					
+				}
+			})//ajax
+			
+		}
+		}
+		
+		
+		
+	})
+	
+	
+
+	
+	
+})
+
 	
 	
 	

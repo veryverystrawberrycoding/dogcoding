@@ -735,7 +735,7 @@ p.a{font-weight:900;
 				<div class="col-md-4" style = "text-align:center; font-size: 45px"></div>
  				<div class="col-md-4" style = "text-align:center; font-size: 40px">
  				
- 					<h5>recommend</h5>
+ 					<h5>친구 추천</h5>
  				
  								<article class="post side-item content-padding ls box-shadow">
 								<div class="row">
@@ -745,21 +745,22 @@ p.a{font-weight:900;
 											<div class="media-links">
 												<a class="abs-link" title="" href="event-single-left.html"></a>
 											</div>
-										</div>
+										</div> 
 									</div>
 
 									<div class="col-xl-8 col-lg-7 col-md-6">
-										<div class="item-content">
-
-											<p class="a">친구추천</p>
-											
-
-											
+										<div style="margin:1px">
+ 
+											<div id="fore_friend_info">
+												<label style="font-size:20px">이름 :</label><label id="fore_friend_name" style="font-size:20px">a</label><br>
+												<label style="font-size:20px">지역 :</label><label id="fore_friend_addr" style="font-size:20px">b</label><br> 
+												<label style="font-size:20px">펫 :</label><label id="fore_friend_pet" style="font-size:20px">c</label>  
+											</div>    
 									
 											
-											<div style="display: inline-block; margin:0 5px; float:right;">
-											<button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">추가</button> <button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">삭제</button>
-											</div>
+											<div style="display: inline-block; margin:0 5px; float:left;">
+											<button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">추가</button>
+											</div> 
 										</div>
 
 										
@@ -786,87 +787,9 @@ p.a{font-weight:900;
 			
 			</section>
  <!--  ---------------------------------------------------------------------------------------------------- --> 
-			<section id="contacts" class="ds s-py-60 s-py-md-90 s-py-xl-80 s-py-xl-160 s-overlay s-parallax consultation-section">
-				<div class="container">
-					<div class="col-md-10 offset-md-1 text-center mt--5">
-						<p class="top-subtitle">Get in</p>
-						<h3 class="special-heading line-after">Touch</h3>
-					</div>
-					<div class="col-12 col-xl-8 offset-xl-2 px-0 mt-40">
-						<form class="contact-form c-mb-lg-20 c-mb-10 c-gutter-20" method="post" action="/">
+		 
 
-							<div class="row">
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="name">Your Name<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control text-center" placeholder="Your Name">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="phone">Your Phone<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control text-center" placeholder="Your Phone">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="email">Email address<span class="required">*</span></label>
-										<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control text-center" placeholder="Email Address">
-									</div>
-								</div>
-
-								<div class="col-xl-6">
-									<div class="form-group has-placeholder">
-										<label for="subject">Your subject<span class="required">*</span></label>
-										<input type="text" aria-required="true" size="30" value="" name="email" id="subject" class="form-control text-center" placeholder="Your subject">
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group has-placeholder">
-										<label for="message">Your Message</label>
-										<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control text-center" placeholder="Your Message"></textarea>
-									</div>
-								</div>
-
-							</div>
-							<div class="row mt-15">
-								<div class="divider-20 hidden-above-lg"></div>
-								<div class="col-sm-12 text-center">
-									<div class="form-group buttons-group">
-										<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Message</button>
-									</div>
-								</div>
-
-							</div>
-
-						</form>
-					</div>
-				</div>
-			</section>
-
-			<section id="partners" class="ls s-py-60 s-py-md-90 container-px-xl-120 partners-section">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-12">
-							<div class="owl-carousel" data-loop="true" data-margin="30" data-nav="false" data-dots="false" data-center="false" data-items="1" data-autoplay="true" data-responsive-xs="2" data-responsive-sm="3" data-responsive-md="4" data-responsive-lg="7">
-								<div class=""><a href="#"><img src="../resources/images/partners/01.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/02.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/03.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/04.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/05.png" alt="img"></a></div>
-								<div class=""><a href="#"><img src="../resources/images/partners/06.png" alt="img"></a></div>
-								<div class=""> <a href="#"><img src="../resources/images/partners/07.png" alt="img"></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+	 
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 

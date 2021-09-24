@@ -13,7 +13,7 @@ import com.gooddog.domain.UserVO;
 @Mapper
 public interface LogJoinMapper {
 	 
-	 String idOkay(@Param("user_id") String user_id);
+ String idOkay(@Param("user_id") String user_id);
 	 
 	 String nickOkay(@Param("user_nick") String user_nick);
 	 
@@ -21,6 +21,7 @@ public interface LogJoinMapper {
 	 
 	 int join(UserVO vo);  
 	 
+	 UserVO userSelect(UserVO vo);
 
 		//유저 불러오기
 		List<UserVO> getUserInfo();

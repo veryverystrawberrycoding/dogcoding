@@ -689,129 +689,92 @@
 					</div>
 				</div>
 			</section>
-
-			<section class="ls ms page_map" data-draggable="true" data-scrollwheel="true">
-				<div class="marker">
-					<div class="marker-address">sydney, australia, Liverpool street, 66</div>
-					<div class="marker-title">First Marker</div>
-					<div class="marker-description">
-						<img src="images/logo.png" alt="img">
-
-						<ul class="list-unstyled">
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-map-marker"></i>
-									</span>
-
-									<span>
-										Sydney, Australia, Liverpool street, 66
-									</span>
-								</span>
-							</li>
-
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-phone"></i>
-									</span>
-
-									<span>
-										1 (800) 123-45-67
-									</span>
-								</span>
-							</li>
-							<li>
-								<span class="icon-inline">
-									<span class="icon-styled color-main">
-										<i class="fa fa-envelope"></i>
-									</span>
-
-									<span>
-										mail@example.com
-									</span>
-								</span>
-							</li>
-						</ul>
-					</div>
-
-					<img class="marker-icon" src="images/map_marker_icon.png" alt="img">
-				</div>
-				<!-- .marker -->
-			</section>
+ 
+			
 
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
 				<div class="container">
-					<div class="row mt--5"> 
+					<div class="row mt--5 totalPetView"> 
 						<div class="col-lg-3">
 							<nav class="woocommerce-MyAccount-navigation">
 								<ul>
 									<li>
-										<a href="shop-account-dashboard.html">Dashboard</a>
-									</li>
-									<li>
-										<a href="shop-account-orders.html">Orders</a>
+										<a href="../mypageModify">회원정보 관리</a>
 									</li>
 									<li> 
-										<a href="shop-account-downloads.html">Downloads</a>
+										<a href="../mypageDog">나의 펫 정보</a>
+									</li>
+									<li> 
+										<a href="../list">나의 활동내역</a>
 									</li>
 									<li class="is-active">
-										<a href="shop-account-addresses.html">Addresses</a>
+										<a href="#">펫 실종신고</a>
 									</li>
 									<li>
-										<a href="shop-account-details.html">Account details</a>
+										<a href="../mypageFind">견종찾기</a>
 									</li>
 									<li>
-										<a href="shop-account-login.html">Logout</a>
-									</li>
-								</ul>
+										<a class="logoutClick" href="../mainPage">로그아웃</a>
+									</li> 
+								</ul> 
 							</nav>
 						</div>
-
-						<div class="col-lg-4 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
-
-							<img src="#" style="width:350px; height:350px; margin: 3px; bottom:20px"></img>
+							<div class="col-lg-4 mt-40 mt-lg-0 animate" data-animation="scaleAppear">
+							
+							<img src="#" style="width:300px; height:300px; margin: 3px; bottom:20px"></img>
 						</div>  
 						<!--.col-* -->	
 						<div data-animation="scaleAppear" class=" col-lg-5 animate">
-							<h4 class="text-left mb-35">
-								ëì í« ì ë³´
-							</h4>
+							
 							<form class="contact-form c-mb-20 c-gutter-20" method="post" action="/">
 
 								<div class="form-group has-placeholder">
-									<label for="name"> ê°ìì§ ì´ë¦ <span class="required">*</span></label>
-									<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
+									<div class="form-group has-placeholder div_pet_name">이름&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" placeholder="강아지 이름을 입력하세요"></div>
+								</div>
+  
+								<div class="form-group has-placeholder">
+									<div class="form-group has-placeholder div_pet_name">나이&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" placeholder="강아지 나이를 입력하세요"></div>
 								</div>
 
 								<div class="form-group has-placeholder">
-									<label for="email">ê°ìì§ ì¸ìë²í¸ <span class="required">*</span></label>
-									<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email Address">
-								</div>
-
+									<div class="form-group has-placeholder div_pet_name">번호&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" placeholder="강아지 인식번호를 입력하세요"></div>
+								</div>  
 								<div class="form-group has-placeholder">
-									<label for="phone">Phone<span class="required">*</span></label>
-									<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
+									<div style="width: 650px;">
+										성별&nbsp&nbsp<b>암</b>&nbsp&nbsp&nbsp<input type="radio" value="1" class="user_gender" name="user_gender">&nbsp&nbsp&nbsp<b>수</b>&nbsp&nbsp&nbsp<input type="radio" value="2" class="user_gender" name="user_gender"><br>
+									</div>
 								</div>
-
-								<div class="form-group has-placeholder">
-									<label for="message">Message</label>
-									<textarea aria-required="true" rows="6" cols="45" name="message" id="message" class="form-control" placeholder="Your Message"></textarea>
-								</div>
- 
+									<div class="form-group has-placeholder">
+									<div class="form-group has-placeholder div_pet_name">종족&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" placeholder="강아지 종을 입력하세요"></div>
+									</div>
 								<div class="form-group d-flex-row-reverse align-items-center flex-column flex-md-row mt-40">
 								<div class="container">
 								<div class="row">   
-									<div class='col-md-12'></div> 
-									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor btn-xs" >ìì  
-									</button>        
-									<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor btn-xs" >ì­ì     
-									</button>
+									<div class='col-md-12'>
+									<div style="text-align:center; right:20px; margin:0px;">
+									<button  type="button" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor btn-xs" >확인
+									</button> 
+									</div> 
+									</div>
 									</div>    
 								</div>  
 								</div> 
+								</form>
 							</div>
-							</form>
+						 
+						
+						
+						<div class="container">
+						<div class="row mt--5 totalPetList">
+						
+						</div>
+						</div> 
+							<!--  -->
+							
+							 
+						
+							
+						
 						</div>
 
 					</div>
@@ -824,7 +787,7 @@
 
 			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
-				<div class="container">
+				<div class="container"> 
 					<div class="row">
 						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
 							<div class="widget widget_twitter">
@@ -944,7 +907,7 @@
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-
+	<script src="${path}/resources/js/userJS/myPage.js"></script>
 
 	<!-- Google Map Script -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?callback=templateInitGoogleMap&key=AIzaSyC0pr5xCHpaTGv12l73IExOHDJisBP2FK4"></script>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gooddog.mapper.MypageMapper">
+	<select id="dogList" resultType="PetVO" parameterType="String">
+			<![CDATA[
+		select * from pet where user_id=#{user_id} 
+		]]>
+	</select>
+	
+	<select id="dogModify" parameterType="PetVO">
+		<![CDATA[
+		UPDATE pet SET pet_name=#{pet_name}, pet_ident=#{pet_ident}, pet_birth=#{pet_birth}, pet_spacies=#{pet_spacies} WHERE pet_no=#{pet_no} 
+	]]>
+	</select>
+	
+	<select id="dogDelete" parameterType="PetVO">
+		<![CDATA[
+		delete from pet where pet_no=#{pet_no}
+	]]>
+	</select>
+	
+	<select id="passCheck" parameterType="UserVO">
+		<![CDATA[
+		select * from user where user_pwd=#{user_pwd}
+	]]>
+	</select> 
+	
+</mapper>     

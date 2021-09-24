@@ -723,20 +723,20 @@
 												</label>
 											</p> -->
 											<div class="col-md-3" style="float: center; margin:0 auto;">
-												<button type="submit" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
-												<button type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin" style="text-align:center;">카카오 로그인</button>
-											</div>
-											  
+												<button type="button" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
+												<button onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin" style="text-align:center;">카카오 로그인</button>
+											</div>	 
+											    
+											<p style="text-align:center;"> 
+												<u><a href="#">아이디 찾기</a></u>&nbsp;&nbsp;/&nbsp;&nbsp;<u><a href="#">비밀번호 찾기</a></u>
+											</p>   
+											<br>
+											<br> 
+											<br>
 											<p style="text-align:center;">
-												<u><a href="#">아이디 찾기</a></u>&nbsp;&nbsp;/&nbsp;&nbsp;<u><a href="#">아이디 찾기</a></u>
+												<u><a href="../joinForm">회원 가입</a></u>
 											</p>
-											<br>
-											<br>
-											<br>
-											<p style="text-align:center;">
-												<u><a href="../board/joinForm">회원 가입</a></u>
-											</p>
-										</form>
+										</form> 
 									</div>
 								</div>
 								<!-- .entry-content -->
@@ -815,7 +815,7 @@
 										<p>Working hours: 9.00 - 20.00 </p>
 									</li>
 								</ul>
-
+ 
 								<span class="social-icons">
 									<a href="#" class="fa fa-twitter  rounded-icon color-bg-icon footer-icon" title="twitter"></a>
 									<a href="#" class="fa fa-google  rounded-icon color-bg-icon footer-icon" title="google"></a>
@@ -872,7 +872,8 @@
 
 	<script src="${path}/resources/js/compressed.js"></script> 
 	<script src="${path}/resources/js/main.js"></script>
-	<script src="${path}/resources/userJS/myPage.js"></script> 
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script src="${path}/resources/js/userJS/myPage.js"></script> 
 	 
 </body>
 
