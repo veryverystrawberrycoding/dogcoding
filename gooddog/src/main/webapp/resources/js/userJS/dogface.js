@@ -30,7 +30,7 @@ $(function(){
 		
 		$.ajax({
 	        type : 'GET',                             
-	        url : 'http://192.168.0.6:5000/dogface',
+	        url : 'http://192.168.0.23:5000/dogface',
 	        data : {
 	               text:filename
 	        },

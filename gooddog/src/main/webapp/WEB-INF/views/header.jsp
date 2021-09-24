@@ -515,7 +515,7 @@
                               <!-- eof Gallery -->
                               <!-- contacts -->
                               <li>
-                                 <a href="chat">Chat</a>
+                                 <a href="chatpage.do">Chat</a>
 <!--                                  <ul>
                                     <li>
                                        <a href="contact.html">Contact 1</a>
@@ -534,14 +534,14 @@
                               <!-- eof contacts -->
                               <!-- blog -->
                               <li>
-                                 <a href="callingList">Find</a>
+                                 <a href="lossList">Find</a>
                                  <ul>
 
                                     <li>
-                                       <a href="callingList">실종신고 목록</a>
+                                       <a href="lossList">실종신고 목록</a>
                                     </li>
                                     <li>
-                                       <a href="callingInsert">실종신고서 작성</a>
+                                       <a href="lossInsert">실종신고서 작성</a>
                                     </li>
 
 

@@ -91,7 +91,7 @@ public class ChatController {
 	    // 위 소켓에 사용자 접속 
 	    Socket socket = null;
 	    try {
-			socket = new Socket("127.0.0.1", 7070);
+	    	socket = new Socket("127.0.0.1", 7070);
 			System.out.println("접속 확인");
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -99,7 +99,21 @@ public class ChatController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if (socket != null) {
+				try{
+					socket.close();
+					System.out.println("소켓닫음");
+
+				}catch (IOException ex) {
+					ex.printStackTrace();
+					// 무시한다
+				}
+			}
 		}
+
+
+
 	
 		
 		System.out.println("채팅방 이름 :"+chatRoomName);
