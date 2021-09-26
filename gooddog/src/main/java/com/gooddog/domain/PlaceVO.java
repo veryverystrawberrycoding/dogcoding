@@ -25,6 +25,8 @@ public class PlaceVO {
 	int place_cnt;
 	//장소 전화번호 
 	String place_tel;
+	
+	String place_tag;
 
 
 }

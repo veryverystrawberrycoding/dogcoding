@@ -26,4 +26,10 @@ public class GalleryVO {
 	
 	//회원 아이디
 	private String user_id;
+	
+	// user 테이블 조인 후 컬럼
+	// 사용자 별명
+	private String user_nick;
+	// 사용자 프로필 이미지 
+	private String user_img;
 }

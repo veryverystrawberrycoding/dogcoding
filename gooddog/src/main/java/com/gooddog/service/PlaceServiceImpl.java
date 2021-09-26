@@ -69,4 +69,23 @@ public class PlaceServiceImpl implements PlaceService {
 		return placeMapper.reviewCount(vo);
 	}
 
+	//리뷰 prevalue 조회
+
+	@Override
+	public List<Map<String, Object>> prevalue(PlaceVO vo) {
+		return placeMapper.prevalue(vo);
+	}
+	
+	// 장소 목록 조회 ajax
+	@Override
+	public List<Map<String,Object>> ajaxPlaceList(Criteria criteria) throws Exception{
+		return placeMapper.ajaxPlaceList(criteria);
+	}
+	
+	// 장소 목록 개수 조회 ajax
+	public int ajaxPlaceCount(Criteria criteria) {
+		return placeMapper.ajaxPlaceCount(criteria);
+	}
+	
+
 }

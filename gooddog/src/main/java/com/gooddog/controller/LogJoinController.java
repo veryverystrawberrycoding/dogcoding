@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,11 +54,14 @@ public class LogJoinController {
 				UserVO info = logJoinService.login(vo);
 				red.addFlashAttribute("msg", false); 
 			if(info==null) { 
-				session.setAttribute("user", null); 
-				return "redirect:/board/mainPage";   
-			} else {    
+				//session.setAttribute("user", null); 
+				return "redirect:/mainPage";   
+			} else if(info.getUser_author()=="1"){
+				return "redirect:/admin/admin_chart";
+			}
+				else {    
 				session.setAttribute("user", info);
-				return "redirect:/board/mainPage";  
+				return "redirect:/mainPage";
 			} 
 			  
 		} 
@@ -118,7 +122,6 @@ public class LogJoinController {
 					headers2.add("Content-type","application/x-www-form-urlencoded;charset=utf-8");
 					 
 					
-					
 					HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest = 
 							new HttpEntity<>(headers2);  
 					 
@@ -144,19 +147,20 @@ public class LogJoinController {
 		}
 		
 		  
-		//로그아웃
-		@RequestMapping("/logout")
-		public String logout(HttpSession session) {
-			session.invalidate();
-			return "redirect:/mainPage";  
-		} 
+//		//로그아웃
+//		@RequestMapping("/logout")
+//		//@GetMapping("/logout")
+//		public String logout(HttpSession session) {
+//			session.invalidate();
+//			return "redirect:/mainPage";
+//		}  
 		    
 		//회원가입
 		@PostMapping("/joinForm/join")
 		public String join(UserVO vo, HttpServletRequest req) {
 			HttpSession session = req.getSession();
 			logJoinService.join(vo);
-			return "redirect:/board/mainPage";
+			return "redirect:/mainPage";
 		}
 } 
   

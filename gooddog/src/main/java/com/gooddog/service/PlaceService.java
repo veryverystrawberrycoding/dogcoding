@@ -33,6 +33,16 @@ public interface PlaceService {
 	// 리뷰 개수 조회 
 	public int reviewCount(PlaceVO vo);
 	
+
+	public List<Map<String, Object>> prevalue(PlaceVO vo);
+	
+	// 장소 목록 조회 : ajax
+	public List<Map<String, Object>> ajaxPlaceList(Criteria criteria) throws Exception;
+	
+	// 장소 목록 개수 조회 : ajax
+	public int ajaxPlaceCount(Criteria criteria);
+	
+	
 	
 
 }

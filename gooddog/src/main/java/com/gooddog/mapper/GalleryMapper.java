@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gooddog.domain.GalleryVO;
+import com.gooddog.domain.GalreVO;
 import com.gooddog.domain.PlacereVO;
 
 @Mapper
@@ -25,8 +26,20 @@ public interface GalleryMapper {
 	
 	public void galDelete(int no);
 	
-	public  List<Map<String, Object>> reviewList(GalleryVO vo);
+	public List<Map<String, Object>> commentList(GalleryVO vo);
 
-	public int reviewCount(GalleryVO vo);
+	public int commentCount(GalleryVO vo);
+
+	public List<GalleryVO> galSearch(String data);
+
+	public void commentInsert(GalreVO vo);
+
+	public void commentDelete(GalreVO vo);
+
+	public void userlikeInsert(GalleryVO vo);
+
+	public void userlikeDelete(GalleryVO vo);
+
+	public int userlikeSelect(GalleryVO vo);
 
 }

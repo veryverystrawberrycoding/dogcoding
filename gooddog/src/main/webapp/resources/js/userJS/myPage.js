@@ -47,7 +47,7 @@ $(function(){
 			data: {user_id : $("#username").val(),
 					user_pwd : $("#password").val()},
 			success: function(data){
-				alert("일치")
+				//alert("일치")
 				location.href = "/mainPage"  
 			}  
 			 
@@ -301,7 +301,7 @@ $(document).on('click', '.pet_delete_btn', function(){
 })
 
 
-$(".logoutClick").click(function(){
+/*$(".logoutClick").click(function(){
 	$.ajax({
 		type:'post',
 		url:'../logout',
@@ -313,7 +313,7 @@ $(".logoutClick").click(function(){
 		
 	})
 	
-})
+})*/
 
 let modifyCheck = false;
 

@@ -8,20 +8,32 @@
 	<!-- 갤러리 글 전체보기 -->
 	<select id="galleryList" resultType="GalleryVO">
 		<![CDATA[
-		SELECT * FROM gallery ORDER BY gal_date asc
+		SELECT * FROM gallery ORDER BY gal_heart DESC
 		]]>
 	</select>
+	
 	<!-- 갤러리 글 상세보기-->
 	<select id="galNoList" resultType="hashmap" parameterType="int">
 		<![CDATA[
 		SELECT * FROM gallery g inner join user u on g.user_id=u.user_id WHERE gal_no=#{no}
 		]]>
 	</select>
+	
+	
+	<!-- 갤러리 해시태그, 글쓴이 검색 -->
+	
+	<select id="galSearch" resultType="GalleryVO" parameterType="String">
+		
+		SELECT * FROM gallery g inner join user u on g.user_id=u.user_id
+		WHERE user_nick=#{data} or gal_tag LIKE CONCAT('%',#{data},'%')
+
+
+	</select>
+	
 	<!-- 갤러리 글 insert -->
 	<insert id="galInsert" parameterType="GalleryVO">
 		INSERT INTO gallery(gal_no,user_id,gal_name,gal_img,gal_content,gal_tag,gal_date,gal_heart,gal_cnt)
-		VALUES(null,'a123',#{gal_name},#{gal_img},#{gal_name},#{gal_tag},now(),0,0)
-		
+		VALUES(null,#{user_id},#{gal_name},#{gal_img},#{gal_name},#{gal_tag},now(),0,0)
 	</insert>
 	
 	<!-- 갤러리 글 수정 -->
@@ -57,20 +69,51 @@
 		]]>
 	</delete>
 	
-	<!-- 리뷰 조회 -->
-	<select id="reviewList" parameterType="GalleryVO" resultType="hashmap">
+	<!-- 댓글 조회 -->
+	<select id="commentList" parameterType="GalleryVO" resultType="hashmap">
 		<![CDATA[
 		SELECT * FROM galre g inner join user u on g.user_id = u.user_id WHERE gal_no=#{gal_no}
 		]]>
 	</select>
 	
-	<!-- 리뷰 개수 조회 -->
-	<select id="reviewCount" parameterType="GalleryVO" resultType="int">
+	<!-- 댓글 개수 조회 -->
+	<select id="commentCount" parameterType="GalleryVO" resultType="int">
 		<![CDATA[
 		SELECT count(*) 
 		FROM galre
 		WHERE gal_no=#{gal_no}
 		]]>
+	</select>
+	
+	<!-- 댓글 입력 -->
+	<insert id="commentInsert" parameterType="GalreVO" >
+		INSERT INTO galre(galre_no,user_id,gal_no,galre_content,galre_date)
+		VALUES(null,#{user_id},#{gal_no},#{galre_content},now());
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete" parameterType="GalreVO" >
+		<![CDATA[
+		DELETE FROM galre WHERE galre_no=#{galre_no}
+		]]>
+	</delete>
+	
+	<!-- 사용자별 좋아요 insert -->
+	
+	<insert id="userlikeInsert" parameterType="GalleryVO">
+		INSERT INTO gallike(gal_no,user_id)
+		VALUES(#{gal_no},#{user_id});
+	</insert>
+	
+	<!-- 사용자별 좋아요 delete -->
+	
+	<delete id="userlikeDelete" parameterType="GalleryVO">
+		DELETE FROM gallike WHERE user_id=#{user_id} and gal_no=#{gal_no}
+	</delete>
+	
+	<!-- 사용자 좋아요 기록 있는지 확인 select -->
+	<select id="userlikeSelect" parameterType="GalleryVO" resultType="int">
+		select count(*) from gallike where user_id=#{user_id} and gal_no=#{gal_no}
 	</select>
 	
 	

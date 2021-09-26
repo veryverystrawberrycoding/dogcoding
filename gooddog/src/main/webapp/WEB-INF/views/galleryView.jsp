@@ -19,6 +19,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/0joo.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/userJS/gallery.js"></script>
@@ -35,135 +36,133 @@
 <body>
 <%@ include file="./header.jsp"%> 
 
-			<!-- <section class="page_title ls  s-py-5">
+
+			<section class="ls s-py-30 s-py-md-10 s-py-xl-100 c-gutter-30">
 				<div class="container">
 					<div class="row">
-
-						<div class="col-md-12 text-center">
-							<h1>강아지 자랑하기</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="./mainPage">Home</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="galleryList">GalleryList</a>
-								</li>
-							</ol>
-						</div>
-
-					</div>
-				</div>
-			</section> -->
-
-
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
-				<div class="container">
-					<div class="row">
-					
-
 						<main class="offset-lg-1 col-lg-10">
+						
+						
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
-								<%-- <c:if test="${세션으로 확인한 id == item.user_id }"> --%>
+					<%-- <c:if test="${user_id eq item.user_id }"> --%>
 						<div class="gallery_buttons">
-						<a href="/galleryForm?gal_no=${item.gal_no}"><input type="button" value="수정" ></a>
-						<a href="/galDelete?gal_no=${item.gal_no}"><input type="button" value="삭제"></a>
-	
+							<div class="gallery_buttons1">
+							<a href="/galleryForm?gal_no=${item.gal_no}">
+							<img src="${path}/resources/images/gallery/edit.png" width="40px" height="40px"></a>
+							</div>
+							<div class="gallery_buttons2">
+							<a href="/galDelete?gal_no=${item.gal_no}">
+							<img src="${path}/resources/images/gallery/delete.png" width="40px" height="40px"></a>
+							</div>
 						</div>
-					<%-- </c:if> --%>
+						<hr>
+				<%-- 	</c:if>  --%>
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/gallery/${item.gal_img }"  alt="img">
+									<img src="${path}/resources/images/gallery/${item.gal_img }"  alt="img" style="width:400px">
+									<hr>
 									
 										
 								</div>
 								<div class="gallery_items">
-								<a href="event-single-right.html"><i class="fa fa-user color-main"></i>${item.user_nick}</a>
-								<a><i class="fa fa-calendar color-main"></i>${item.gal_date }</a>
-								<a><i class="fa fa-comment color-main"></i>${item.gal_heart }</a>
-								<img src="${path}/resources/images/gallery/heart.png" width="30px" height="30px" class="galheart" id="galheart">
+								<div class="gallery_items1">
+								<a href="#"><img src="${path}/resources/images/profile/${item.user_img}" width="30px" height="30px" >
+								${item.user_nick}</a>
+								</div>
+								<div class="gallery_items2">
+								<c:if test="${userlike.userlike eq 0}">
+										<img src="${path}/resources/images/gallery/noheart.png" width="30px" height="30px"  id="galheart">
+								</c:if>
+								<c:if test="${userlike.userlike eq 1}">
+										<img src="${path}/resources/images/gallery/heart.png" width="30px" height="30px"  id="galheart">
+								</c:if>
+					
+								
+								<a id="galheart_text" class="galheart_text">${item.gal_heart }</a>
+								</div>
+								
 								</div>
 									
-								
+								<hr>
 
 								<div class="item-content">
 									<!-- .post-thumbnail -->
-									<h4>
+									<h5>
 										${item.gal_name}
-									</h4>
+									</h5>
 									<br>
 									<br>
 
-									<div class="entry-content">
-										<p>
-											${item.gal_tag}
-										</p>
-
-										
-
-										
-
-
+									<input type="hidden" id="tagItem" value="${tag}">
+									<div id="tagList">
+									
 									</div>
-									<!-- .entry-content -->
-
+																
 								</div>
-								<!-- .item-content -->
+
+								
 							</article>
-
-
+							
+						
+							<article>
 							<div id="comments" class="comments-area ">
 
 
 								<div id="comments" class="comments-area ">
 								<h4 class="comments-title">
-									comments
+									댓글 ${count }개
 								</h4>
 								<hr>
 								
 								<!-- 댓글쓰기란 -->
 								
 									
-									<form  method="post" action="/">
+									<!-- <form  method="post" > --> <!-- action="/" -->
 
 										<div class="row">
 
 											<div class="col-sm-12">
-											<input type="text" placeholder="댓글을 입력하세요">
-
-												<!-- <div class="form-group has-placeholder">
-													<label for="message">Your Comment</label>
-													<textarea aria-required="true" rows="4" cols="45" name="message" id="message" class="form-control" placeholder="Your Comment"></textarea>
-												</div> -->
+											<input type="hidden" value="${item.gal_no}" id="galno">
+											<input type="text" placeholder="댓글을 입력하세요" id="comment_insert"  name="comment_insert" >
 											</div>
-
 										</div>
 
 										<div class="row mt-30">
-
 											<div class="col-sm-12 text-left">
-
 												<div class="form-group">
-													<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Comment
+													<button type="button" id="comment_insert_btn" name="comment_insert_btn" class="btn btn-maincolor">Send Comment
 													</button>
+													<hr>
 												</div>
 											</div>
-
 										</div>
-
-									</form>
+									<!-- </form> -->
 						
 								<br>
 
-								<c:forEach var="rl" items="${reviewList}">
+								<c:forEach var="rl" items="${commentList}">
 										<article class="comment-body">
+
 											<footer class="comment-meta">
 												<div class="comment-author vcard">
+												
+												
+												<c:if test="${sessionScope.user.getUser_id() eq rl.user_id}">
+													<div class="comment_delete_btn" id="comment_delete_btn">
+														<img src="${path}/resources/images/gallery/delete.png" width="25px" height="25px" id="butbut">
+														<input type="hidden" value="${rl.galre_no}" id="galreno">
+													</div>
+												</c:if>
+													
 													<img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
 													<h4>${rl.user_nick }</h4>
+													
+													
 													<p class="small-text text-left color-main4">
 														${rl.galre_date }
 													</p>
 													
 												</div>
+												
 												
 											</footer>
 					
@@ -173,6 +172,8 @@
 											
 											<!-- .comment-content -->
 										</article>
+										
+										
 								</c:forEach>									
 							
 								</div>
@@ -244,6 +245,7 @@
 								
 
 							</div>
+							</article>
 
 						</main>
 
@@ -252,8 +254,6 @@
 				</div>
 			</section>
 
-		</div><!-- eof #box_wrapper -->
-	</div><!-- eof #canvas -->
 
 		<%@ include file="./footer.jsp"%> 
 		

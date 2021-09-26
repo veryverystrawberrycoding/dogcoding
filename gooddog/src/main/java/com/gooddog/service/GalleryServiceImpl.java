@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gooddog.domain.GalleryVO;
-import com.gooddog.domain.PlacereVO;
+import com.gooddog.domain.GalreVO;
 import com.gooddog.mapper.GalleryMapper;
 
 @Service 
@@ -63,14 +63,55 @@ public class GalleryServiceImpl implements GalleryService {
 
 
 	@Override
-	public List<Map<String, Object>> reviewList(GalleryVO vo) {
-		return galleryMapper.reviewList(vo);
+	public List<Map<String, Object>> commentList(GalleryVO vo) {
+		return galleryMapper.commentList(vo);
 	}
 
 
 	@Override
-	public int reviewCount(GalleryVO vo) {
-		return galleryMapper.reviewCount(vo);
+	public int commentCount(GalleryVO vo) {
+		return galleryMapper.commentCount(vo);
+	}
+
+
+	@Override
+	public List<GalleryVO> galSearch(String data) {
+		return galleryMapper.galSearch(data);
+		
+	}
+
+
+	@Override
+	public void commentInsert(GalreVO vo) {
+		galleryMapper.commentInsert(vo);
+		
+	}
+
+
+	@Override
+	public void commentDelete(GalreVO vo) {
+		galleryMapper.commentDelete(vo);
+	
+	}
+
+
+	@Override
+	public void userlikeInsert(GalleryVO vo) {
+		galleryMapper.userlikeInsert(vo);
+		
+	}
+
+
+	@Override
+	public void userlikeDelete(GalleryVO vo) {
+		galleryMapper.userlikeDelete(vo);
+		
+	}
+
+
+	@Override
+	public int userlikeSelect(GalleryVO vo) {
+		return galleryMapper.userlikeSelect(vo);
 	}
 
 }
