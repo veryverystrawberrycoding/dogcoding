@@ -216,8 +216,8 @@ $(function(){
 					place_info += '<li class="media" id="storebox" >';
 					place_info += '<div>';
 					place_info += '<a class="media-image" href="mapView?place_no="'+mapList[i].place_no+'">';
-					place_info += '<img src="../../resources/images/place/cafe.jpg">';
-					//place_info += '<img src="../../resources/images/place/'+mapList[i].place_img+'">';
+					//place_info += '<img src="../../resources/images/place/cafe.jpg">';
+					place_info += '<img src="../../resources/images/place/place_img/'+mapList[i].place_img+'">';
 					place_info += '</a>';
 					place_info += '</div>';
 					place_info += '<div class="media-body">';

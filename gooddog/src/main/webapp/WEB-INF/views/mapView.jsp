@@ -61,7 +61,7 @@
 
 								<!-- .post-thumbnail -->
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/place/${place_img}" alt="업체 사진">
+									<img src="${path}/resources/images/place/place_img/${place.place_img}" alt="업체 사진">
 									<p class="item-meta d-flex flex-wrap">
 										<a href="blog-single-right.html"><i class="fa fa-tags color-main"></i>${place.place_name }</a>
 									</p>

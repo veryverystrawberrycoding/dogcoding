@@ -215,8 +215,8 @@
 											<li class="media" id="storebox">
 												<div>
 												<a class="media-image" href="mapView?place_no=${l.place_no }">
-													<%-- <img src="${path }/resources/images/place/${l.place_img }"> --%>
-													<img src="${path }/resources/images/place/cafe.jpg">
+													<img src="${path }/resources/images/place/place_img/${l.place_img }">
+													<%-- <img src="${path }/resources/images/place/cafe.jpg"> --%>
 												</a>
 												</div>
 
