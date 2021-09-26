@@ -12,7 +12,7 @@
 <html class="no-js">
 <!--<![endif]-->
   
-<head>
+<head> 
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -35,9 +35,186 @@
 	<![endif]-->
 
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	userList();
+});
+
+function userList(){
+
+		var returnHtml = "";
+		var pageHtml = '';
+			
+			
+		var page = $('#page').val();
+		$.ajax({	
+			type:'POST',
+			data: 'page='+page,
+			url:"/userList",
+			dataType: "json",
+			success : function(data) {
+			
+				var nextPage = data.nextPage;
+				var prevPage = data.prevPage;
+				var pageIn = data.pageIn;
+				var startPage = data.page.startPage;
+				var endPage = data.page.endPage;
+				endPage = endPage +1;
+				for(var p=startPage; p<endPage; p++){
+					
+					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+					
+		
+				$('#pageId').html(pageHtml);
+				$('#page').val(pageIn);
+				$('#nextPage').val(nextPage);
+				$('#prevPage').val(prevPage);
+				
+				var cnt = data.list.length; 
+				
+				if(cnt == 0){
+					alert("사용자가 없습니다");
+				}else{
+					for(var i=0; i<cnt; i++){
+						var userid = data.list[i].user_id;		
+						var username = data.list[i].user_name;
+						var useraddr = data.list[i].user_addr;
+						var usertel = data.list[i].user_tel;
+						
+						
+						returnHtml += "<tr>"
+						
+						returnHtml += "<td>"+userid+"</td>"
+						returnHtml += "<td>"+username+"</td>"
+						returnHtml += "<td>"+useraddr+"</td>"
+						returnHtml += "<td>"+usertel+"</td>"
+						returnHtml += "<td><button type='button' class='user_delete'>삭제</button></td>"	
+						returnHtml += "</tr>"
+						
+					}
+				}
+				
+				$('#userList1').html(returnHtml);
+			}
+	});
+}
+
+function pageGo(pageNum){
+	if(pageNum == 0){
+	// 이전페이지
+		$('#page').val($('#prevPage').val());
+		userList();
+	}else if(pageNum == 999){
+	// 다음페이지
+		$('#page').val($('#nextPage').val());
+		userList();
+	}else{
+		$('#page').val(pageNum);		// 사용자가 누른 페이지
+		userList();
+	}
+}
+
+
+//-----------------------------------------------------------------
+
+$(document).ready(function(){
+	
+	blackList();
+});
+
+function blackList(){
+
+		var returnHtml = "";
+		var pageHtml = '';
+			
+			
+		var page = $('#page').val();
+		$.ajax({	
+			type:'POST',
+			data: 'page='+page,
+			url:"/blackList",
+			dataType: "json",
+			success : function(data) {
+			
+				var nextPage = data.nextPage;
+				var prevPage = data.prevPage;
+				var pageIn = data.pageIn;
+				var startPage = data.page.startPage;
+				var endPage = data.page.endPage;
+				endPage = endPage +1;
+				for(var p=startPage; p<endPage; p++){
+					
+					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+					
+		
+				$('#pageId').html(pageHtml);
+				
+				$('#page').val(pageIn);
+				$('#nextPage').val(nextPage);
+				$('#prevPage').val(prevPage);
+				
+				var cnt = data.list.length; 
+				
+				if(cnt == 0){
+					alert("사용자가 없습니다");
+				}else{
+					for(var i=0; i<cnt; i++){
+						var black_no = data.list[i].black_no;		
+						var user_id = data.list[i].user_id;
+						var black_start = data.list[i].black_start;
+						var black_end = data.list[i].black_end;
+						var black_content = data.list[i].black_content;
+						
+						returnHtml += "<tr>"
+						
+						returnHtml += "<td>"+black_no+"</td>"
+						returnHtml += "<td>"+user_id+"</td>"
+						returnHtml += "<td>"+black_start+"</td>"
+						returnHtml += "<td>"+black_end+"</td>"
+						returnHtml += "<td>"+black_content+"</td>"	
+						returnHtml += "<td><button type='button' class='black_delete'>삭제</button></td>"	
+						
+						returnHtml += "</tr>"
+						
+					}
+				}
+				
+				$('#blackList1').html(returnHtml);
+			}
+	});
+}
+
+function pageGo(pageNum){
+	if(pageNum == 0){
+	// 이전페이지
+		$('#page').val($('#prevPage').val());
+		userList();
+	}else if(pageNum == 999){
+	// 다음페이지
+		$('#page').val($('#nextPage').val());
+		userList();
+	}else{
+		$('#page').val(pageNum);		// 사용자가 누른 페이지
+		userList();
+	}
+}
+
+
+</script>
+
 
 <body>
 	
+	<form>
+	<input type="hidden" name="page" id="page" value="1" />
+	<input type="hidden" name="nextPage" id="nextPage" />
+	<input type="hidden" name="prevPage" id="prevPage" /> 
+	</form>
 	<c:set var="now" value="<%=new java.util.Date() %>"/>
 
 
@@ -93,25 +270,23 @@
                                     <thead>
                                         <tr>
                                             <th>아이디</th>
-                                            <th>주소</th>
                                             <th>이름</th>
+                                            <th>주소</th>
                                             <th>전화번호</th>
-                                            
+											<th>삭제</th>
                                         </tr>
                                     </thead>
                                   
-                                    <tbody>
-                                    	<c:forEach items="${userList}" var="user">
-                                    		<tr>
-                                    			<td>${user.user_id}</td>
-                                    			<td>${user.user_addr}</td>
-                                    			<td>${user.user_name}</td>
-                                    			<td>${user.user_tel}</td>
-                                    		</tr>
-                                    	</c:forEach>
+                                    <tbody id="userList1">
+                                    	
+                                    	
                                     </tbody>
                                 </table>
                             </div>
+                            <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
                         </div>
                         
                         
@@ -135,25 +310,22 @@
                                             <th>시작일</th>
                                             <th>종료일</th>
                                             <th>정지사유</th>
+                                            <th>삭제</th>
                                         
                                         </tr>
                                         
                                     </thead>
              
-                                    <tbody>
-                                    	<c:forEach items="${blackList}" var="black">
-                                    		<tr>
-                                    			<td>${black.black_no}</td>
-                                    			<td>${black.user_id}</td>
-                                    			<td>${black.black_start}</td>
-                                    			<td>${black.black_end}</td>
-                                    			<td>${black.black_content}</td>
-                                    			
-                                    		</tr>
-                                    	</c:forEach>
+                                    <tbody id="blackList1">
+                                    	
+                                    	
                                     </tbody>
                                 </table>
                             </div>
+                               <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="page" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
                         </div>
                     </div>
                 </main>

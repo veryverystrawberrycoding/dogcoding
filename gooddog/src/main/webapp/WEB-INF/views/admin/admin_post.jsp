@@ -30,17 +30,52 @@
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
-	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+
+<!-- ㅇㅇ -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<!-- ㅇㅇ -->
 		
-	<![endif]-->
+
 
 </head>
 
 <body>
+	<!-- 페이징 설정 -->
+	<style>
+form {
+  width: 500px;
+}
+table {
+  border-collapse:collapse;
+  margin-bottom: 10px;
+}
+th, td {
+  padding: 3px 10px;
+}
+.off-screen {
+  display: none;
+}
+#nav {
+  width: 500px;
+  text-align: center;
+}
+#nav a {
+  display: inline-block;
+  padding: 3px 5px;
+  margin-right: 10px;
+  font-family:Tahoma;
+  background: #ccc;
+  color: #000;
+  text-decoration: none;
+}
+#nav a.active {
+  background: #333;
+  color: #fff;
+}
+</style>
 	
+<!--  ㅇㅇ -->	
 	<c:set var="now" value="<%=new java.util.Date() %>"/>
 
 
@@ -77,169 +112,153 @@
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">게시글 관리</h2>
                     
-                       <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-2" style="float: left; width: 55%; text-align: center;">           
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1"></i>
-                                 <a>gallery</a>  
+                                 <a>제발되라</a>  
                             </div>
                             <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                            </div>
-                        </div>
-                        
-                         <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                              <a href="admin_galleryList.do">info</a>  
-                                
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${list}" var="book">
-                                    		<tr>
-                                    			<td>${book.dic_name }</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                                
-                            </div>
-                        </div>
-                         <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                 <a href="admin_bookList.do">실종신고 1</a>  
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                            </div>
-                        </div>
-                         <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                 <a href="admin_callingList.do">실종 신고2</a>  
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
-                </main>
-                    </div>
-		
+<!-- 수정한곳 -->  
+<!--  문제점 같은 형식의 테이블이 복사가 안됨 , 데이터 베이스에 있는 정보를 c:foreach처럼 어떻게 뿌릴지 모르겠음 -->                          
+                                <table id="products">
+<caption>
+    <form action="" id="setRows">
+      <p>
+        
+        <input type="hidden" name="rowPerPage" value="2">
+        
+      </p>
+    </form>
 
-	<script src="${path}/resources/js/compressed.js"></script>
-	<script src="${path}/resources/js/main.js"></script>
+  </caption>           
+<!--  ㅇㅇ -->                       
+                                    <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>주소</th>
+                                            <th>이름</th>
+                                            <th>전화번호</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                    	
+                                    		<tr>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    		</tr>
+                                    		<tr>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    		</tr>
+                                    		<tr>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    		</tr>       
+                                    		
+                                    		                                    		<tr>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    		</tr>     
+                                    		                                    		<tr>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    		</tr>                                  		                                    	
+                                    </tbody>
+                                </table>
+                                
+                                
+                            </div>
+                        </div>
+                        
+
+ <!--  ---------------------------------------------------------- -->  
+          <div class="card mb-2" style="float: left; width: 55%; text-align: center;">           
+                            <div class="card-header">
+                                <i class="fas fa-address-card me-1"></i>
+                                 <a>제발되라</a>  
+                            </div>
+                            <div class="card-body" >
+<!-- 수정한곳 -->  
+<!--  문제점 같은 형식의 테이블이 복사가 안됨 , 데이터 베이스에 있는 정보를 c:foreach처럼 어떻게 뿌릴지 모르겠음 -->                          
+                                <table id="products">
+<caption>
+    <form action="" id="setRows">
+      <p>
+        
+        <input type="hidden" name="rowPerPage" value="1">
+        
+      </p>
+    </form>
+
+  </caption>           
+<!--  ㅇㅇ -->                       
+                                    <thead>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <th>주소</th>
+                                            <th>이름</th>
+                                            <th>전화번호</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                    	
+                                    		<tr>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    			<td>1</td>
+                                    		</tr>
+                                    		<tr>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    			<td>2</td>
+                                    		</tr>
+                                    		<tr>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    			<td>3</td>
+                                    		</tr>       
+                                    		
+                                    		                                    		<tr>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    			<td>4</td>
+                                    		</tr>     
+                                    		                                    		<tr>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    			<td>5</td>
+                                    		</tr>                                  		                                    	
+                                    </tbody>
+                                </table>
+                                
+                                
+                            </div>
+                        </div>
+                        
+<!--  수정한곳 -->		
+
+<!-- ㅇㅇ -->
+<script src="${path}/resources/js/admin/admin_post2.js"></script>
+ <script src="${path}/resources/js/admin/admin_post.js"></script>
+<script src="${path}/resources/js/compressed.js"></script>
+<script src="${path}/resources/js/main.js"></script>
 <script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
 <script src="resources/js/admin/chart-order.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>

@@ -26,13 +26,13 @@
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
-
+	<script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
-
+	
 </head>
  <c:forEach var="list" items="${list }">
 	<c:set var="count" value="${count+1 }"/>
@@ -134,13 +134,13 @@
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-<script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
-        <script src="resources/js/scripts.js"></script>
+
+       
+        <script src="${path}/resources/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
-        <script src="resources/js/admin/chart-area.js"></script>
-        <script src="resources/js/admin/chart-bar.js"></script>
-        <script src="resources/js/admin/chart-pie.js"></script>
+        <script src="${path}/resources/js/admin/chart-area.js"></script>
+        <script src="${path}/resources/js/admin/chart-bar.js"></script>
+        <script src="${path}/resources/js/admin/chart-pie.js"></script>
 
 </body>
 

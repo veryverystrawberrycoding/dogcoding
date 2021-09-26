@@ -1,10 +1,12 @@
 package com.gooddog.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,15 +14,21 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.service.AdminService;
 
+import helper.PageHelper;
 import helper.WebHelper;
 
 @Controller
@@ -34,13 +42,8 @@ public class AdminController {
 	@Autowired
 	WebHelper web;
 	
-	//로그아웃
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/mainPage";
-	}  
-	
+	@Autowired
+	PageHelper page;
 	
 	//관리자페이지 회원,블랙리스트 뷰 
 	@RequestMapping(value = "/admin/admin_table.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -50,22 +53,141 @@ public class AdminController {
 	web.init(response);
 
 	
- 		UserVO user = new UserVO();
-		BlackVO black = new BlackVO();
-		
-		List<UserVO> list = null;
-		List<BlackVO> list1 = null;
-		
-		list = AdminService.getUserList(user);
-		list1 = AdminService.getBlackList(black);
-		
-		m.addAttribute("userList", list);
-		m.addAttribute("blackList", list1);
+ 	
 		
 		return new ModelAndView("/admin/admin_table") ;
 		
-
 	}
+	
+	
+	/**
+	 * 회원 목록
+	 * @param UserVO
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/userList", method=RequestMethod.POST)
+	public void userList(Locale locale, Model model, UserVO UserVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+ 		UserVO user = new UserVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int userCount = 0;							// 전체 사용자 수
+		try {
+			userCount = AdminService.getUserCount(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
+	
+		
+		page.pageProcess(nowPage, userCount, 5, 5);		
+		user.setLimitStart(page.getLimitStart());
+		user.setListCount(page.getListCount());
+		
+		List<UserVO> list = null;
+		list = AdminService.getUserList(user);		
+			
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
+	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	/**
+	 * 회원 목록
+	 * @param BlackVO
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping(value="/blackList", method=RequestMethod.POST)
+	public void blackList(Locale locale, Model model, BlackVO BlackVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+		BlackVO black = new BlackVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int blackCount = 0;							// 전체 사용자 수
+		try {
+			blackCount = AdminService.getblackCount(black);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		
+		page.pageProcess(nowPage, blackCount, 5, 5);		
+		black.setLimitStart(page.getLimitStart());
+		black.setListCount(page.getListCount());
+		
+		List<BlackVO> list = null;
+		list = AdminService.getBlackList(black);		
+			
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
+	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		}
+		
+	}
+	
 	@GetMapping("/admin_table/search")
 	public String search(@RequestParam(value="keyword") String keyword, Model model) {
         
@@ -74,16 +196,24 @@ public class AdminController {
 	// 차트 
 	@RequestMapping(value="/admin/admin_chart.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_chart(Model m, HttpServletResponse response) {
-		//월별방문자
-		List<Map<String,String>> list= AdminService.getTotal();
-		//일별방문자
-		List<Map<String,String>> list2= AdminService.getMonth();
-		//성별 
-		List<Map<String,String>> list3= AdminService.getDay();
-		
-		m.addAttribute("list",list);
-		m.addAttribute("list2",list2);
-		m.addAttribute("list3",list3);
+//		//월별
+//		List<Map<String,String>> list= AdminService.getMonthSum();
+//		//일별
+//		List<Map<String,String>> list2= AdminService.getDaySum();
+		//성별
+		int womenCount = AdminService.getWomenCount();
+  		int menCount = AdminService.getMenCount();
+  		
+  		HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("menCount",menCount);
+        map.put("womenCount",womenCount);
+        
+        
+      
+		System.out.println("menCount="+menCount  + "womenCount="+womenCount);
+//		m.addAttribute("list",list);
+//		m.addAttribute("list2",list2);
+	
 		
 		return new ModelAndView("/admin/admin_chart") ;
 	}

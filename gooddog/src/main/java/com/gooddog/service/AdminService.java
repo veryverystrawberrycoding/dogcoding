@@ -14,11 +14,23 @@ public interface AdminService {
 		public List<UserVO> getUserList(UserVO vo);
 		public List<BlackVO> getBlackList(BlackVO vo);
 
-		// 통계
-		public List<Map<String, String>> getTotal();
-		public List<Map<String, String>> getMonth();
-		public List<Map<String, String>> getDay();
-		
+	
+	 
 		///////info(book) 정보가져오기//////
 		public List<BookVO>adminpost();
+		
+		// 통계
+
+		public void userList(UserVO userVO);
+		public void blackList(BlackVO blackVO);
+
+		public int getUserCount(UserVO userVO) throws Exception;
+	
+		public int getblackCount(BlackVO blackVO) throws Exception;
+ 
+		public int getMenCount();
+		
+		public int getWomenCount();
+	
+	
 }

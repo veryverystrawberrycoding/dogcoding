@@ -33,6 +33,8 @@ public class UserVO {
 	//유저 권한
 	private String user_author;
 	
+	private int limitStart;
+	private int listCount;
 	  
 	
 	 

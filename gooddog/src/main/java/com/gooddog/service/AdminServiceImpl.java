@@ -23,9 +23,9 @@ public class AdminServiceImpl implements AdminService {
 		
 		List<UserVO> result = null;
 		
-		return AdminMapper.getUserInfo();
+		return AdminMapper.getUserInfo(vo);
 	}
-
+ 
 	 
 	public List<BlackVO> getBlackList(BlackVO vo) {
 		
@@ -34,29 +34,75 @@ public class AdminServiceImpl implements AdminService {
 		return AdminMapper.getBlackInfo();
 	}
 
-	@Override
-	public List<Map<String, String>> getTotal() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	//월별 총액
+//		public List<Map<String, String>> getMonthSum() {
+//			return AdminMapper.getMonthSum();
+//		}
+//		
+//		//일별 총액
+//		public List<Map<String, String>> getDaySum() {
+//			return AdminMapper.getDaySum();
+//		} 
+
 
 	@Override
-	public List<Map<String, String>> getMonth() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getMenCount() {
+		int result = 0;
+		result = AdminMapper.getMenCount();
+		return result;
 	}
+   
 
-	@Override
-	public List<Map<String, String>> getDay() {
-		// TODO Auto-generated method stub
-		return null;
+	@Override 
+	public int getWomenCount() {
+		int result = 0;
+		result = AdminMapper.getWomenCount();
+		return result;
 	}
-//////////////////////////info book 정보 가져오기 /////////////////////	
-@Override
-public List<BookVO>adminpost(){
+		
+				
+				
+		//////////////////////////info book 정보 가져오기 /////////////////////흠	
+		@Override
+		public List<BookVO>adminpost(){
+		
+		return  AdminMapper.adminpost();
+		}
+		
+		@Override
+		public int getUserCount(UserVO userVO) throws Exception {
+			
+			int result = 0;
+			result = AdminMapper.userCount();
+			
+			return result;
+		}
 
-return  AdminMapper.adminpost();
-}
+
+		@Override
+		public void userList(UserVO userVO) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		@Override
+		public int getblackCount(BlackVO blackVO) throws Exception {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
+	
+		@Override
+		public void blackList(BlackVO blackVO) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		
+
+
 
 
 }   

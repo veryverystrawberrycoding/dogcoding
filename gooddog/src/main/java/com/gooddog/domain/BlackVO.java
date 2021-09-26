@@ -1,10 +1,8 @@
 package com.gooddog.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class BlackVO {
 	//블랙리스트 번호
 	private int black_no;
@@ -17,4 +15,8 @@ public class BlackVO {
 	
 	//회원 아이디
 	private String user_id;
+	
+	private int limitStart;
+	private int listCount;
+	  
 }

@@ -28,8 +28,9 @@ public class ChatServer  extends Thread {
 	       public void run() {
 	      try {
 	              // 연결 확인용
-	         System.out.println("서버 : " + socket.getInetAddress() 
-	                              + " IP의 클라이언트와 연결되었습니다1111111111");
+	    	  System.out.println("서버 : " + socket.getInetAddress() 
+              + " IP의 클라이언트와 연결되었습니다");
+	    	  System.out.println("### 서버 연결 확인 ###");
 	         
 	         // InputStream - 클라이언트에서 보낸 메세지 읽기
 	         InputStream input = socket.getInputStream();
@@ -42,6 +43,8 @@ public class ChatServer  extends Thread {
 	         // 클라이언트에게 연결되었다는 메세지 보내기
 	      // 없어도됨   writer.println("서버에 연결되었습니다! ID를 입력해 주세요!");
 	         WebHelper web = new WebHelper();  
+	         System.out.println("###web.Session 값###");
+	         System.out.println(web.getSession("user"));
 	         String readValue = (String) web.getSession("username"); // 사용자 이름 세션 입력하기   
 	         String name = null; // 클라이언트 이름 설정용
 	         boolean identify = false;

@@ -1,5 +1,8 @@
 package helper;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PageHelper {
 	/***** GET파라미터로 처리할 값 *****/
     private int page = 1; 			// 현재 페이지 번호
