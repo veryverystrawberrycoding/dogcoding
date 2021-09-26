@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
+import com.gooddog.domain.GalleryVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.mapper.AdminMapper;
 
@@ -62,13 +63,7 @@ public class AdminServiceImpl implements AdminService {
 		
 				
 				
-		//////////////////////////info book 정보 가져오기 /////////////////////흠	
-		@Override
-		public List<BookVO>adminpost(){
-		
-		return  AdminMapper.adminpost();
-		}
-		
+
 		@Override
 		public int getUserCount(UserVO userVO) throws Exception {
 			
@@ -101,8 +96,51 @@ public class AdminServiceImpl implements AdminService {
 
 
 		
+//////////////////////////info book 정보 가져오기 /////////////////////	
+
+@Override 
+public int bookCount(BookVO bookVO) throws Exception {
+
+int result = 0;
+result = AdminMapper.bookCount();
+
+return result;
+}
+
+
+@Override
+public List<BookVO> adminpost(BookVO bookVO) {
+return AdminMapper.adminpost(bookVO) ;
+// TODO Auto-generated method stub
+
+}
+
+////////////////////////////////////////////////////
+
+
+//////////////////////갤러리 //////////////
+
+@Override 
+public int galleryCount(GalleryVO galleryVO) throws Exception {
+
+int result = 0;
+result = AdminMapper.galleryCount();
+
+return result;
+}
+
+
+@Override
+public List<GalleryVO> adminpostgallery(GalleryVO galleryVO) {
+return AdminMapper.adminpostgallery(galleryVO) ;
+// TODO Auto-generated method stub
+
+}
+
+////////////////////////////////////////////////////////
+
+}
 
 
 
 
-}   

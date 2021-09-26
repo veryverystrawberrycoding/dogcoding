@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
+import com.gooddog.domain.GalleryVO;
 import com.gooddog.domain.UserVO;
 
 
@@ -39,8 +40,14 @@ public interface AdminMapper {
 		
 		int getWomenCount();
 		
-//////////////////////////수정///////////////////		
-		public List<BookVO>adminpost();
-		
-	
-}           
+//////////////////////////백과사전 리스트보기///////////////////		
+public List<BookVO>adminpost(BookVO vo);
+
+int bookCount();
+
+/////////////////////////////////////////////////////
+public List<GalleryVO>adminpostgallery(GalleryVO vo);
+
+
+int galleryCount();
+}

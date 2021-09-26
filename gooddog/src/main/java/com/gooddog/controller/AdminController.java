@@ -7,6 +7,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,6 +26,8 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gooddog.domain.BlackVO;
+import com.gooddog.domain.BookVO;
+import com.gooddog.domain.GalleryVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.service.AdminService;
 
@@ -44,6 +47,14 @@ public class AdminController {
 	
 	@Autowired
 	PageHelper page;
+	
+	   //로그아웃
+	   @RequestMapping("/logout")
+	   public String logout(HttpSession session) {
+	      session.invalidate();
+	      return "redirect:/mainPage";
+	   }  
+	
 	
 	//관리자페이지 회원,블랙리스트 뷰 
 	@RequestMapping(value = "/admin/admin_table.do", method = {RequestMethod.GET, RequestMethod.POST})
@@ -233,12 +244,140 @@ public class AdminController {
 	
 	/////////////////////////관리자 상세정보 페이지/////////
 	
-	@RequestMapping(value="/admin/admin_post.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminpost(Model m) {
-		m.addAttribute("list",AdminService.adminpost());
+	@RequestMapping(value = "/admin/admin_post.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_post(Model m, HttpServletResponse response) {
+	 
+	//  기능 툴	
+	web.init(response);
+
 	
-		return "/admin/admin_post" ;
+ 	
+		
+		return new ModelAndView("/admin/admin_post") ;
+		
 	}
-	////////////////////////
 	
+
+	
+
+	@ResponseBody
+	@RequestMapping(value="/bookList", method=RequestMethod.POST)
+	public void bookList(Locale locale, Model model, BookVO BookVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+ 		BookVO book = new BookVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int bookCount = 0;							// 전체 사용자 수
+		try {
+			bookCount = AdminService.bookCount(book);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	 
+		
+		page.pageProcess(nowPage, bookCount, 5, 5);		
+		book.setLimitStart(page.getLimitStart());
+		book.setListCount(page.getListCount());
+		
+		System.out.println(bookCount+"북카운트가져옴" );
+		List<BookVO> list = null;  
+		list = AdminService.adminpost(book); 	
+
+		System.out.println(list+"list가져옴" );
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
+	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	
+	}
+	/////////////////////////관리자 갤러리  페이지/////////
+	
+	@ResponseBody
+	@RequestMapping(value="/galleryList", method=RequestMethod.POST)
+	public void galleryList(Locale locale, Model model, GalleryVO GalleryVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+		GalleryVO gallery = new GalleryVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int galleryCount = 0;							// 전체 사용자 수
+		try {
+			galleryCount = AdminService.galleryCount(gallery);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	 
+		
+		page.pageProcess(nowPage, galleryCount, 5, 5);		
+		gallery.setLimitStart(page.getLimitStart());
+		gallery.setListCount(page.getListCount());
+		
+		System.out.println(galleryCount+"북카운트가져옴" );
+		List<GalleryVO> list = null;  
+		list = AdminService.adminpostgallery(gallery); 	
+
+		System.out.println(list+"list가져옴" );
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
+	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	
+	}
 }

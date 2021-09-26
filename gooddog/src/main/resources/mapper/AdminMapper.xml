@@ -35,15 +35,7 @@
 			]]>
 		</select>
 	
-	
-			<!--  info 정보 가져오기 -->
-	<select id="adminpost" resultType="BookVO">
-		<![CDATA[
-		SELECT * FROM book 
-		]]>
-	</select>
-	
-	
+
 	 
 	<!-- 남자회원수 -->
 
@@ -60,4 +52,59 @@
 					select count(*) from user where user_gender=2; 
 				]]>
 			</select>
+<!-- 000000000000000000000000000000000000000admin_post000000000000000000000000000000000000 -->
+
+			<!--  info 정보 가져오기 -->
+
+	<select id="adminpost" parameterType="BookVO" resultType="BookVO">
+		<![CDATA[ 
+		                  SELECT * FROM book WHERE dic_no ORDER BY dic_no asc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 회원 목록 수 -->
+
+
+
+<select parameterType="BookVO" resultType="int" id="bookCount">
+
+<![CDATA[
+         SELECT count(*) FROM book 
+         ]]>
+</select>
+
+
+
+
+
+<!--  갤러리 정보 가져오기  -->
+	<select id="adminpostgallery" parameterType="GalleryVO" resultType="GalleryVO">
+		<![CDATA[ 
+		                  SELECT * FROM gallery WHERE gal_no ORDER BY gal_no asc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 회원 목록 수 -->
+
+
+
+<select parameterType="GalleryVO" resultType="int" id="galleryCount">
+
+<![CDATA[
+         SELECT count(*) FROM gallery 
+         ]]>
+</select>			
+			
+			
+<!-- ///////////////////////////////////////////////////////////////////////// -->			
+			
+			
 </mapper>   

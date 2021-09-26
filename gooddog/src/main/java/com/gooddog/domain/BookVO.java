@@ -35,42 +35,44 @@ public class BookVO {
 	//백과사전 좋아요
 	private int dic_heart;
 	
-	private int page;
+	
+	private int limitStart;
+	private int listCount;
 /////////////////////////////
 	
 	
-public BookVO() {
-		
-		this.page = 1;
-	}
+
+
+}
 
 ///////////////////////////////////
-MultipartFile file;
+//MultipartFile file;
 
-public MultipartFile getFile() {
-   return file;
-}
-public void setFile( MultipartFile file) {
-   this.file = file;
+//public MultipartFile getFile() {
+ //  return file;
+//}
+//public void setFile( MultipartFile file) {
+ //  this.file = file;
 
-if(!file.isEmpty()) {
-   this.dic_img = file.getOriginalFilename();
+///if(!file.isEmpty()) {
+ //  this.dic_img = file.getOriginalFilename();
 
-	   System.out.println("setFile >>>>>>>>>" + this.dic_img);
+//	   System.out.println("setFile >>>>>>>>>" + this.dic_img);
    
-File f = new File("C:\\springwork\\vanagloriarse\\src\\main\\webapp\\resources\\img"+this.dic_img);
+//File f = new File("C:\\springwork\\vanagloriarse\\src\\main\\webapp\\resources\\img"+this.dic_img);
 
 
    
-   try { 
-      file.transferTo(f);
-   }catch(IllegalStateException e) {
-      e.printStackTrace();
-   }catch(IOException e) {
+//   try { 
+ //     file.transferTo(f);
+ //  }catch(IllegalStateException e) {
+  //    e.printStackTrace();
+//   }catch(IOException e) {
       
-      e.printStackTrace();
-   }
-}
-}
-}
+//      e.printStackTrace();
+//   }
+//}
+//}
+//}
+
 

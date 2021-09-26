@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
+import com.gooddog.domain.GalleryVO;
 import com.gooddog.domain.UserVO;
 
 public interface AdminService {
@@ -16,8 +17,7 @@ public interface AdminService {
 
 	
 	 
-		///////info(book) 정보가져오기//////
-		public List<BookVO>adminpost();
+
 		
 		// 통계
 
@@ -32,5 +32,17 @@ public interface AdminService {
 		
 		public int getWomenCount();
 	
-	
+		///////info(book) 정보가져오기//////
+		
+		public List<BookVO>	 adminpost(BookVO bookVO);
+		
+		public int bookCount(BookVO bookVO) throws Exception;
+		
+////////////////////////////갤러리 정보 가져오기/////////////////////		
+		public List<GalleryVO>	adminpostgallery(GalleryVO galleryVO);
+		
+		public int galleryCount(GalleryVO galleryVO) throws Exception;	
+
+
+
 }

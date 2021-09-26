@@ -32,4 +32,8 @@ public class GalleryVO {
 	private String user_nick;
 	// 사용자 프로필 이미지 
 	private String user_img;
+	
+	//페이징 
+	private int limitStart;
+	private int listCount;
 }
