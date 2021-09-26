@@ -14181,6 +14181,7 @@ filters
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	justify-content: space-between;
 }
 
 .filters.gallery-filters {
@@ -23440,7 +23441,14 @@ section .special-heading.line-after::before {
 	border: 2px solid #ed8e82;
 	
 }
-
+#mapList-main{
+	/* display: flex; */
+	/* flex-direction: coloumn; */
+}
+.address-box {
+	display: flex;
+	flex-direction : column;
+}
 #sido{
 	width:150px;
 	margin-bottom: 17px;
@@ -23452,12 +23460,19 @@ section .special-heading.line-after::before {
 	margin-bottom: 17px;
 	float:left;
 }
+
+.search-box{
+	display: flex;
+	width: 100%;
+}
 .place-search{
 	width:500px;
 	margin-bottom: 17px;
 	/* float:right; */
 	/* position: relative; */
-
+}
+.map-search-button{
+	margin-left: 10px;
 }
 .place-search i{
 	/* background-color:red; */
@@ -23474,9 +23489,8 @@ section .special-heading.line-after::before {
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }
 
-.box-shadow.pb-50.px-50.pt-50 {
+#store-box {
 	margin-top: 0px;
-	
 }
 
 .icon-box.text-center {
@@ -23537,9 +23551,6 @@ section .special-heading.line-after::before {
 
 
 	/* 추가 */
-#store-name {
-	
-}
 #store-name a:before{
 	/* color: red; */
 	counter-increment: place;

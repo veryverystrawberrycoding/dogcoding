@@ -15,6 +15,12 @@ public interface PlaceService {
 	// 장소 목록 개수 조회 
 	public int placeCount();
 	
+	// 장소 목록 조회 : ajax
+	public List<Map<String, Object>> ajaxPlaceList(Criteria criteria) throws Exception;
+	
+	// 장소 목록 개수 조회 : ajax
+	public int ajaxPlaceCount(Criteria criteria);
+	
 	// 장소 상세 정보 조회 
 	public PlaceVO placeView(PlaceVO vo);
 	
