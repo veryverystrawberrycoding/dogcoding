@@ -49,17 +49,14 @@ public class LogJoinController {
 		@PostMapping("/loginComplete")
 		public String login(UserVO vo, HttpServletRequest req, RedirectAttributes red) {
 			HttpSession session = req.getSession();
-			System.out.println(session);
 			
 				UserVO info = logJoinService.login(vo);
 				red.addFlashAttribute("msg", false); 
 			if(info==null) { 
-				session.setAttribute("user", null);
-				System.out.println("session login info null");
+				session.setAttribute("user", null); 
 				return "redirect:/board/mainPage";   
 			} else {    
 				session.setAttribute("user", info);
-				System.out.println("session login");
 				return "redirect:/board/mainPage";  
 			} 
 			  

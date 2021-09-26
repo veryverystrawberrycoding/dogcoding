@@ -10,8 +10,8 @@ public class Criteria {
     private int page; // 현재 페이지 번호
     private int perPageNum; // 페이지당 보여줄 게시글의 개수
     
-    // 장소 필터링 키워드
-    private String place_group; 
+    // 검색 기능 
+    private int keyword; // 검색어
     
     public int getPageStart() {
         // 특정 페이지의 범위를 정하는 구간, 현재 페이지의 게시글 시작 번호
