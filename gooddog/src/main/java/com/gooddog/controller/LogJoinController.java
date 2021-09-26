@@ -10,6 +10,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,18 +50,18 @@ public class LogJoinController {
 		@PostMapping("/loginComplete")
 		public String login(UserVO vo, HttpServletRequest req, RedirectAttributes red) {
 			HttpSession session = req.getSession();
-			System.out.println(session);
 			
 				UserVO info = logJoinService.login(vo);
 				red.addFlashAttribute("msg", false); 
 			if(info==null) { 
-				session.setAttribute("user", null);
-				System.out.println("session login info null");
-				return "redirect:/board/mainPage";   
-			} else {    
+				session.setAttribute("user", null); 
+				return "redirect:/mainPage";   
+			} else if(info.getUser_author()=="1"){
+				return "redirect:/admin/admin_chart";
+			}
+				else {    
 				session.setAttribute("user", info);
-				System.out.println("session login");
-				return "redirect:/board/mainPage";  
+				return "redirect:/mainPage";
 			} 
 			  
 		} 
@@ -148,11 +149,11 @@ public class LogJoinController {
 		
 		  
 		//로그아웃
-		@RequestMapping("/logout")
+		@GetMapping("/logout")
 		public String logout(HttpSession session) {
 			session.invalidate();
-			return "redirect:/mainPage";  
-		} 
+			return "redirect:/mainPage";
+		}  
 		    
 		//회원가입
 		@PostMapping("/joinForm/join")

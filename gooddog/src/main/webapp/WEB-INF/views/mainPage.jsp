@@ -26,6 +26,7 @@
 
 <body>
 
+
 	<div class="preloader">
 		<div class="preloader_image pulse"></div>
 	</div>
@@ -126,7 +127,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./friend">Friend</a>
+											<a href="./callingList">Friend</a>
 										</h5>
 										<p>
 											우리 동네 강아지를 찾아요<br/>
@@ -142,7 +143,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./chatpage.do">Chat</a>
+											<a href="./chat">Chat</a>
 										</h5>
 										<p>
 											친구랑 이야기하기 
@@ -157,7 +158,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./lossList">Security Program</a>
+											<a href="./callingList">Security Program</a>
 										</h5>
 										<p>
 											실종신고
