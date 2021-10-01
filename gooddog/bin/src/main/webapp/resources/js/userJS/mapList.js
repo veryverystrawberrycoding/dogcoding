@@ -34,10 +34,10 @@ $(function(){
 	 // 시/도 선택시 구/군 설정	
 	 $("select[name^=sido]").change(function() {
 	  var area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
-	  alert(area)
+	  //alert(area)
 	  
 
-	  var $gugun = $(this).next(); // 선택영역 군구 객체
+	  var $gugun = $(this).next(); // 선택영역 구군 객체
 	  $("option",$gugun).remove(); // 구군 초기화
 	
 	  if(area == "area0")
@@ -191,14 +191,104 @@ $(function(){
 
 
 
-		  
-	
-	
-	
-	
 	// 위치 정보 필터링 	
 	$(".place-filter").click(function(){
-		//현재 url 가져오기 
+		
+		//========================
+		//시작
+		
+		var place_group = $(this).attr('data-filter');
+		
+		$.ajax({
+			url : "ajaxMapList",
+			data :{
+				place_group : place_group
+			},
+			type : "post",
+			success:function(data){
+				//alert(data.mapList[0].place_name);
+				$("#place-info").empty();
+				var mapList = data.mapList;
+				var place_info = [];
+				//var str = '<li class="media" id="storebox">';
+						
+				$.each(mapList, function(i){
+					place_info += '<li class="media" id="storebox" >';
+					place_info += '<div>';
+					place_info += '<a class="media-image" href="mapView?place_no="'+mapList[i].place_no+'">';
+					//place_info += '<img src="../../resources/images/place/cafe.jpg">';
+					place_info += '<img src="../../resources/images/place/place_img/'+mapList[i].place_img+'">';
+					place_info += '</a>';
+					place_info += '</div>';
+					place_info += '<div class="media-body">';
+					place_info += '<h4>';
+					place_info += '<a class="place_name" href="mapView?place_no='+mapList[i].place_no+'">&gt;'+mapList[i].place_name+'&nbsp;</a>';
+					place_info += '</h4>';
+					place_info += '<p class="item-meta">';
+					place_info += '<span class="place_addr">&gt;'+mapList[i].place_addr+'&nbsp;</span>';
+					place_info += '</p>';
+					place_info += '</div>';
+					place_info += '</li>';
+				}); //end of each
+				
+				$("#place-info").append(place_info);
+				
+				$(".pagination").empty();
+				var paging = data.paging;
+				var startPage = data.paging.startPage;
+				var endPage = data.paging.endPage;
+				//alert(startPage+','+endPage);
+				//alert(endPage);
+				
+				// 빈리스트 
+				var paging_prev = [];
+				var paging_next = [];
+				var paging_info = [];
+				
+				// 이전페이지 버튼 
+				//paging_prev += '<li class="page-item">'
+				paging_prev += '<a class="page-link" href="/ajaxMapList?page='+(startPage-1)+'"/>'
+				paging_prev += '<i class="fa fa-chevron-left"></i>'
+				paging_prev += '</a>'
+				//paging_prev += '</li>'	
+				// 페이지 영역에 추가	
+				$(".pagination").append(paging_prev);			
+				
+				
+				// 페이지 그룹 버튼 : 3page씩 표시 
+				for(var i=startPage; i<endPage+1; i++){
+					//paging_info += '<li class="page-item">'
+					paging_info += '<a class="page-link" href="/mapList?page='+i+'"/>'
+					paging_info += i
+					paging_info += '<span class="sr-only">(current)</span>'
+					paging_info += '</a>'
+					//paging_info += '</li>'
+				} // end of for
+				//페이지 영역에 추가 
+				$(".pagination").append(paging_info);
+				
+				// 다음페이지 버튼
+				paging_next += '<li class="page-item">'
+				paging_next += '<a class="page-link" href="/mapList?page='+(endPage+1)+'"/>'
+				paging_next += '<i class="fa fa-chevron-right"></i>'
+				paging_next += '</a>'
+				paging_next += '</li>'
+				//페이지 영역에 추가 
+				$(".pagination").append(paging_next);
+							
+				
+/*				for (var i=0; i<data.placeCount; i++){
+					alert(data.mapList[i].place_name);
+				}*/
+				
+			},
+			error: function(){
+				alert("error: ajaxMapList")
+			}
+		}) // end of ajax
+		//종료
+		//========================
+/*		//현재 url 가져오기 
 		var currentUrl = window.location.href; 
 		
 		// 현재 url에 문자열 추가 
@@ -212,6 +302,7 @@ $(function(){
 		
 		// 페이지 파라미터 제거하기 
 		if(currentUrl.includes("page")){
+			
 			//url 초기화 			
 			currentUrl = baseUrl;					
 		}
@@ -226,11 +317,11 @@ $(function(){
 		else{
 			url = baseUrl + "?keyword=" +keyword;
 		}			
-
-		// url 주소로 페이지 이동 
-		location.href = url;
 		
-	});
+		// url 주소로 페이지 이동 
+		location.href = url;*/
+		
+	}); // end of click
 	
 	//필터 + 페이징 
 	

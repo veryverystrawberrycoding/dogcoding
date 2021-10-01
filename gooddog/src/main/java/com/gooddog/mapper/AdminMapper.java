@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
+import com.gooddog.domain.LossVO;
+import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
 
 
@@ -44,10 +46,32 @@ public interface AdminMapper {
 public List<BookVO>adminpost(BookVO vo);
 
 int bookCount();
+////////백과사전 수정//////
+//public BookVO bookModify(BookVO vo);
 
-/////////////////////////////////////////////////////
-public List<GalleryVO>adminpostgallery(GalleryVO vo);
+////////백과사전 삭제//////
+public void bookDelete(BookVO vo);
 
 
-int galleryCount();
+
+
+
+
+
+
+
+
+
+
+///////////////////////갤러리 리스트 보기 //////////////////////
+public List<GalleryVO>adminpost2(GalleryVO vo);
+public int galleryCount();
+////////갤러리 삭제//////
+public void galleryDelete(GalleryVO vo);
+
+////////////////////실종신고 리스트보기////////////////////////
+public List<LossVO>adminpost3(LossVO vo);
+public int lossCount();
+////////실종신고 삭제//////
+public void lossDelete(LossVO vo);
 }

@@ -49,17 +49,26 @@
 									<form action="/galleryOK?gal_no=${item.gal_no }" method="post" id="gallery_insert_form" >
 							</c:if>						
 									<form action="/galleryOK?gal_no=0" method="post" id="gallery_insert_form" > <!-- enctype="multipart/form-data" -->	
-										<a>사진</a><br>
-										<input type="file" id="gal_img" name="gal_img" value="${item.gal_name}">
+										<h5>Image</h5><br>
+										<c:if test="${item.gal_no != null}" >
+										<img src="${path}/resources/images/gallery/${item.gal_img}" width="300px" style="margin-left:35%;" alt="img" ><br><br>
+										</c:if>	
+										<input type="file" id="gal_img" name="gal_img" value="${item.gal_img}">
 										<hr>
-										<a>내용</a>
-										<input type="text" name = "gal_name" value="${item.gal_name}"> <hr>
-										<a>태그는 '태그1','태그2' 형식으로 입력 >> + 버튼 만들어서 동적으로 생성되면 좋을듯</a>
-										<input type="text" name= "gal_tag" value="${item.gal_tag}">
+										<h5>Contents</h5><br>
+										<textarea aria-required="true" rows="4" cols="45"  name="gal_name" id="gal_name" class="form-control" placeholder="내용을 입력하세요">${item.gal_name}</textarea>
+										<br>
+										<h5>Hash Tag</h5><br>
+										<input type="text" name= "gal_tag" value="${item.gal_tag}" placeholder="'태그1','태그2' 형식으로 입력하세요">
 										<br><br>
+										
+										<div class="form-group">
+										<button type="submit" id="gallery_submit_button" name="gallery_submit_button" class="btn btn-maincolor" style="margin-left:35%;">Submit
+										</button>
+										</div>
 			
 
-										<input type="submit" id="gallery_submit_button">
+										
 									
 									</form>
 

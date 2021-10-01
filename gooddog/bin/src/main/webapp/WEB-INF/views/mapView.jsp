@@ -52,7 +52,7 @@
 				<div class="container">
 				<div class="maplist" >
 					<h4 id="place_name" class="place_name">${place.place_name }</h4>
-					<p>리뷰 수:${count} | 평점 | ${place.place_group }</p>
+					<p>리뷰 수:${total.total} | 만족도: ${percent} % | ${place.place_tag }</p>
 				</div>
 					<div class="row">
 
@@ -61,7 +61,7 @@
 
 								<!-- .post-thumbnail -->
 								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/place/${place_img}" alt="업체 사진">
+									<img src="${path}/resources/images/place/place_img/${place.place_img}" alt="업체 사진">
 									<p class="item-meta d-flex flex-wrap">
 										<a href="blog-single-right.html"><i class="fa fa-tags color-main"></i>${place.place_name }</a>
 									</p>
@@ -69,41 +69,26 @@
 
 
 								<div class="item-content">
-
 									<div class="entry-content">
 										<h4 class="text-normal">
 											리뷰 분석
-										</h4>
+										</h4><br>
 										<blockquote class="hero-bg special-quote">
 										
-									
-								<div class="col-md-6">						
-									<p class="progress-title">만족</p>
-									<div class="progress">
-										<div class="progress-bar bg-maincolor" role="progressbar" data-transitiongoal="55" aria-valuemin="0" aria-valuemax="100">
-											<span>55%</span>
-										</div>
-									</div>
-									<p class="progress-title">보통</p>
-									<div class="progress">
-										<div class="progress-bar bg-maincolor2" role="progressbar" data-transitiongoal="40" aria-valuemin="0" aria-valuemax="100">
-											<span>40%</span>
-										</div>
-									</div>
-									<p class="progress-title">불만족</p>
-									<div class="progress">
-										<div class="progress-bar bg-maincolor3" role="progressbar" data-transitiongoal="5" aria-valuemin="0" aria-valuemax="100">
-											<span>5%</span>
-										</div>
-									</div>
-		
-								</div>
-										</blockquote>
-									
-			
-									<!-- .entry-content -->
+											<div class="col-md-6">		
+												<c:forEach var="p" items="${prevalue}">
+												<p class="progress-title">${p.pre_value} - ${p.count}개</p>
+												<div class="progress">
+													<div class="progress-bar bg-maincolor" role="progressbar" data-transitiongoal="${p.count}" aria-valuemin="0" aria-valuemax="${total.total}">
+														<span>${p.count}</span>
+													</div>
+												</div>
+												</c:forEach>
+											</div>
 								
-
+										</blockquote>
+									</div>
+									<!-- .entry-content -->
 
 								</div>
 								<!-- .item-content -->
@@ -114,14 +99,14 @@
 
 							<div id="comments" class="comments-area ">
 								<h4 class="comments-title">
-									사용자 리뷰
+									사용자 리뷰  ${total.total}개
 								</h4>
-								<c:if test="${count == 0}">
+								<c:if test="${total.total == 0}">
 									<article class="noreview">
 										<p class="text-center"> 리뷰가 없습니다 </p>
 									</article>
 								</c:if>
-								<c:if test="${count != 0}">
+								<c:if test="${total.total != 0}">
 									<c:forEach var="rl" items="${reviewList}">
 										<article class="comment-body">
 											<footer class="comment-meta">
@@ -134,17 +119,23 @@
 													
 												</div>
 											</footer>
+											
+											<div class="pre_value_img" id="pre_value_img">
+											<img src="${path}/resources/images/place/${rl.pre_value}.png" style="width:30px">
+											<br><br>
+											</div>
 					
 											<div class="comment-content">
 												<p>${rl.pre_content }</p>
-												<p>${rl.pre_value}</p>
+		
 											</div>
+											
 											<!-- .comment-content -->
 										</article>
 									</c:forEach>									
 								</c:if>
 
-
+			
 										
 										
 							<!-- 페이징 -->
@@ -189,7 +180,7 @@
 								</div>
 								<!-- #respond -->
 
-							</div>
+						</div>
 
 						</main>
 

@@ -4,7 +4,7 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <a class="nav-link" href="index.do">
+                            <a class="nav-link" href="/mainPage">
                                 <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                                 홈페이지
                             </a>

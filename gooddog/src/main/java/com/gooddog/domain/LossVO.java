@@ -20,22 +20,19 @@ public void setdic_no(int loss_no) {
 	//
 	private String user_id;
 	private int pet_no;
-	private String pet_name;
+	private String loss_name;
 	//
-	private int pet_age;
+	private int loss_age;
 	//
-	private String pet_gender;
+	private String loss_gender;
 	
 	private String loss_img;
 	
 	private String loss_info;
 	
-	private int page;
+	private int limitStart;
+	private int listCount;
 	
 	
-public LossVO() {
-		
-		this.page = 1;
-	
-}
+
 }

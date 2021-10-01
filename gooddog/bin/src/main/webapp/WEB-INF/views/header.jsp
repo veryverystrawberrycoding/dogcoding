@@ -515,7 +515,7 @@
                               <!-- eof Gallery -->
                               <!-- contacts -->
                               <li>
-                                 <a href="chat">Chat</a>
+                                 <a href="chatpage.do">Chat</a>
 <!--                                  <ul>
                                     <li>
                                        <a href="contact.html">Contact 1</a>
@@ -534,14 +534,14 @@
                               <!-- eof contacts -->
                               <!-- blog -->
                               <li>
-                                 <a href="callingList">Find</a>
+                                 <a href="lossList">Find</a>
                                  <ul>
 
                                     <li>
-                                       <a href="callingList">실종신고 목록</a>
+                                       <a href="lossList">실종신고 목록</a>
                                     </li>
                                     <li>
-                                       <a href="callingInsert">실종신고서 작성</a>
+                                       <a href="lossInsert">실종신고서 작성</a>
                                     </li>
 
 
@@ -549,9 +549,23 @@
                               </li>
                               <!-- eof blog -->
                            </ul>
-
-
+				
                         </nav>
+                <div id="login-header">	
+					<c:if test="${empty sessionScope.user }">
+					<div id="login-header" style="display:flex;">
+						<div style=margin-right:30px;><a href="loginForm">로그인</a></div>
+						<div style=margin-right:30px;><a href="joinForm">회원가입</a></div>
+					</div>
+					</c:if>
+					<c:if test="${not empty sessionScope.user}">
+					<div id="login-header" style="display:flex;">
+						<div style=margin-right:30px;>${user.user_id}</div>
+						<div style=margin-right:30px;><a href="mypageModify">마이 페이지</a></div>
+						<div style=margin-right:30px;><a href="/logout" id="session_logout">로그아웃</a></div>
+					</div> 
+					</c:if>
+				</div>
                         <!-- eof main nav -->
 <!--       
                   <span class="mr-5">

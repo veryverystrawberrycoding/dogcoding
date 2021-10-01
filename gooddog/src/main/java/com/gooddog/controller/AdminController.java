@@ -260,13 +260,18 @@ public class AdminController {
 		
 	}
 	
+/////////////////////////관라자 book 수정/////////////
+//	@PostMapping("/bookModify")
+//	public void bookModify(BookVO vo) {
+//		System.out.println("컨트롤키 작동");
+//		AdminService.bookModify(vo);
+//	} 
+//	@RequestMapping(value = "/bookModify", method ={RequestMethod.GET, RequestMethod.POST})
+//	public void bookModify(BookVO vo, Model model) {
+//		System.out.println("컨트롤키 작동");
+//		model.addAttribute("bookModify",AdminService.bookModify(vo)); // => 모델로 넘겨야함
+//	}
 	
-	@RequestMapping(value="/bookModify", method=RequestMethod.GET)
-	public String bookModify(BookVO vo, Model model) {
-		System.out.println("admincontroller 작동");
-		model.addAttribute("bookModify",AdminService.bookModify(vo)); // => 모델로 넘겨야함
-		return "admin/bookModify";
-	}
 
 ///////////////////////////////관리자 book delete //////////////////	
 	@ResponseBody
@@ -275,8 +280,21 @@ public class AdminController {
 		System.out.println(vo.getDic_no());
 		AdminService.bookDelete(vo);
 	}
-
+//	@RequestMapping(value = "/admin/admin_post.do", method = RequestMethod.GET)
+//	public String delete(@ModelAttribute("BookVO")  @RequestParam("dic_no") int dic_no, RedirectAttributes redirect , Model model) {		
+//		try {
+			
+//			AdminService.bookDelete(dic_no);
+//			redirect.addFlashAttribute("msg", "삭제가 완료되었습니다.");
+			
+//		} catch (Exception e) {
+//			redirect.addFlashAttribute("msg", "오류가 발생되었습니다.");
+			
+//		}
 		
+//		return "redirect:/admin/admin_post";
+//	}
+	
 ///////////////////////admin_post 페이징////////////////////////////////
 	@ResponseBody
 	@RequestMapping(value="/bookList", method=RequestMethod.POST)

@@ -18,7 +18,7 @@
 	<insert id="join" parameterType="UserVO">
 	<![CDATA[
 		Insert into user (user_id,user_name,user_nick,user_pwd,user_birth,user_gender,user_addr,user_tel,user_date)
-		values(#{user_id},#{user_name},#{user_nick},#{user_pwd},#{user_birth},#{user_gender},#{user_addr},#{user_tel},sysdate());
+		values(#{user_id},#{user_name},#{user_nick},#{user_pwd},#{user_birth},#{user_gender},#{user_addr},#{user_tel},sysdate())
 		]]>
 	</insert>
 	 
@@ -27,4 +27,23 @@
 		SELECT * FROM user WHERE user_id=#{user_id} AND user_pwd=#{user_pwd}
 		]]> 
 	</select>
+	
+	<select id="userSelect" parameterType="UserVO" resultType="UserVO">
+		<![CDATA[
+		SELECT * FROM user WHERE user_id=#{user_id}
+		]]>
+	</select>
+	
+	<insert id="userLog" parameterType="UserVO">
+		<![CDATA[
+		insert into userlog (user_id, log_content, log_date) values (#{user_id}, "로그인", sysdate())
+		]]>
+	</insert>
+	
+	<insert id="userLogout" parameterType="UserVO">
+		<![CDATA[
+		insert into userlog (user_id, log_content, log_date) values (#{user_id}, "로그아웃", sysdate())
+		]]>
+	</insert> 
+	
 </mapper>           

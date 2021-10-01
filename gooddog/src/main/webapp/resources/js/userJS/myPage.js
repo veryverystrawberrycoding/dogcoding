@@ -948,8 +948,8 @@ $(".pet_submit_btn").click( function(){
 
 function lossList(){
 	$.ajax({
-		type:'post',
-		url: '../lossList',
+		type:'post', 
+		url: '../mylossList',
 		success:function(data){
 				$(".loss_alert").empty();
 			for(let i=0; i<data.length; i++){

@@ -12,6 +12,8 @@
 <html class="no-js">
 <!--<![endif]-->
   
+  
+  
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -36,8 +38,189 @@
 	<![endif]-->
 
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	bookList();
+});
+
+function bookList(){
+
+		var returnHtml = "";
+		var pageHtml = '';
+			
+			
+		var page = $('#page').val();
+		$.ajax({	
+			type:'POST',
+			data: 'page='+page,
+			url:"/bookList",
+			dataType: "json",
+			async    : false,
+			success : function(data) {
+		
+				var nextPage = data.nextPage;
+				var prevPage = data.prevPage;
+				var pageIn = data.pageIn;
+				var startPage = data.page.startPage;
+				var endPage = data.page.endPage;
+				endPage = endPage +1;
+				for(var p=startPage; p<endPage; p++){
+				
+					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+				
+		
+				$('#pageId').html(pageHtml);
+				$('#page').val(pageIn);
+				$('#nextPage').val(nextPage);
+				$('#prevPage').val(prevPage);
+				
+				var cnt = data.list.length; 
+					
+				if(cnt == 0){
+					alert("사용자가 없습니다");
+				}else{
+					for(var i=0; i<cnt; i++){
+						var dic_no = data.list[i].dic_no;		
+						var dic_name = data.list[i].dic_name;
+						var dic_img = data.list[i].dic_img;
+						
+						
+						returnHtml += "<tr>"
+						
+						returnHtml += "<td>"+dic_no+"</td>"
+						returnHtml += "<td>"+dic_name+"</td>"
+						returnHtml += "<td>"+dic_img+"</td>"
+						
+							
+						
+						returnHtml += "</tr>"
+						
+					}
+				}
+				
+				$('#bookList1').html(returnHtml);
+			}
+	});
+}
+
+function pageGo(pageNum){
+	if(pageNum == 0){
+	// 이전페이지
+		$('#page').val($('#prevPage').val());
+		bookList();
+	}else if(pageNum == 999){
+	// 다음페이지
+		$('#page').val($('#nextPage').val());
+		bookList();
+	}else{
+		$('#page').val(pageNum);		// 사용자가 누른 페이지
+		bookList();
+	}
+}
+
+
+//----------------------------------갤러리 불러오기 -------------------------------
+$(document).ready(function(){
+	
+	galleryList();
+});
+
+function galleryList(){
+
+		var returnHtml = "";
+		var pageHtml = '';
+			
+			
+		var page = $('#page').val();
+		$.ajax({	
+			type:'POST',
+			data: 'page='+page,
+			url:"/galleryList",
+			dataType: "json",
+			async    : false,
+			success : function(data) {
+		
+				var nextPage = data.nextPage;
+				var prevPage = data.prevPage;
+				var pageIn = data.pageIn;
+				var startPage = data.page.startPage;
+				var endPage = data.page.endPage;
+				endPage = endPage +1;
+				for(var p=startPage; p<endPage; p++){
+				
+					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+				
+		
+				$('#pageId').html(pageHtml);
+				$('#page').val(pageIn);
+				$('#nextPage').val(nextPage);
+				$('#prevPage').val(prevPage);
+				
+				var cnt = data.list.length; 
+					
+				if(cnt == 0){
+					alert("사용자가 없습니다");
+				}else{
+					for(var i=0; i<cnt; i++){
+						var gal_no = data.list[i].gal_no;		
+						var gal_name = data.list[i].gal_name;
+						var gal_img = data.list[i].gal_img;
+						
+						
+						returnHtml += "<tr>"
+						
+						returnHtml += "<td>"+gal_no+"</td>"
+						returnHtml += "<td>"+gal_name+"</td>"
+						returnHtml += "<td>"+gal_img+"</td>"
+						
+							
+						
+						returnHtml += "</tr>"
+						
+					}
+				}
+				
+				$('#galleryList1').html(returnHtml);
+			}
+	});
+}
+
+function pageGo(pageNum){
+	if(pageNum == 0){
+	// 이전페이지
+		$('#page').val($('#prevPage').val());
+		galleryList();
+	}else if(pageNum == 999){
+	// 다음페이지
+		$('#page').val($('#nextPage').val());
+		galleryList();
+	}else{
+		$('#page').val(pageNum);		// 사용자가 누른 페이지
+		galleryList();
+	}
+}
+
+</script>
 
 <body>
+
+
+
+	<form>
+	<input type="hidden" name="page" id="page" value="1" />
+	<input type="hidden" name="nextPage" id="nextPage" />
+	<input type="hidden" name="prevPage" id="prevPage" /> 
+	</form>
+
+
+
+
 	
 	<c:set var="now" value="<%=new java.util.Date() %>"/>
 
@@ -68,172 +251,192 @@
         
             <!-- Linknav -->
             <%@include file ="link_nav.jsp" %>
-            
+
             <div id="layoutSidenav_content">
             
-                <main>
+                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">게시글 관리</h2>
                     
-                       <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
                             <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                Map
+                                <i class="fas fa-address-card me-1" ></i>
+                   			info
                             </div>
-                            <div class="card-body" >
+                            <form action="/admin_post/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      
+                            	</div>
+                            	<input type="submit" style="float: right;" value="검색">
+                            </form>
+                            
+                                
+                            
+                            <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>상세보기</th>
+                                            <th>삭제</th>
+                                            
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
+                                  
+                                    <tbody id="bookList1">
+                                    	
+                                    	
                                     </tbody>
                                 </table>
-                                
-                                
                             </div>
+                            <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
                         </div>
                         
-                         <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                Gallery
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                                
-                            </div>
-                        </div>
-                         <div class="card mb-2" style="float: left; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                Info
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                            </div>
-                        </div>
-                         <div class="card mb-2" style="float: right; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                실종 신고
-                            </div>
-                            <div class="card-body" >
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
-                                    </tbody>
-                                </table>
-                                
-                                
-                            </div>
-                        </div>
+                   
+
+               
+                        
+                         
                         
                     </div>
+                  
+                  
+<!-- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ  -->                    
+     
+                    
+                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                            <div class="card-header">
+                                <i class="fas fa-address-card me-1" ></i>
+                   			갤러리
+                            </div>
+                            <form action="/admin_post/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      
+                            	</div>
+                            	<input type="submit" style="float: right;" value="검색">
+                            </form>
+                            
+                                
+                            
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>상세보기</th>
+                                            <th>삭제</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                  
+                                    <tbody id="galleryList1">
+                                    	
+                                    	
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
+                        </div>
+                        
+                   
+
+  <!-- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ -->             
+                                 <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                            <div class="card-header">
+                                <i class="fas fa-address-card me-1" ></i>
+                   			실종신고 찾기
+                            </div>
+                            <form action="/admin_post/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      
+                            	</div>
+                            	<input type="submit" style="float: right;" value="검색">
+                            </form>
+                            
+                                
+                            
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>상세보기</th>
+                                            <th>삭제</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                  
+                                    <tbody id="bookList1">
+                                    	
+                                    	
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
+                        </div>              
+                         
+   <!-- 0000000000000000000000000000000000000000000000000000000000000 -->                     
+                                
+                                                     <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                            <div class="card-header">
+                                <i class="fas fa-address-card me-1" ></i>
+                   			실종신고 완료
+                            </div>
+                            <form action="/admin_post/search" method="get">
+                            	<div class="search">
+                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
+      
+                            	</div>
+                            	<input type="submit" style="float: right;" value="검색">
+                            </form>
+                            
+                                
+                            
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>상세보기</th>
+                                            <th>삭제</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                  
+                                    <tbody id="bookList1">
+                                    	
+                                    	
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--  page -->
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
+                        </div>    
+                    
                 </main>
-                    </div>
+                   
 		
+
+
+
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>

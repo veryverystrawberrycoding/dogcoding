@@ -71,13 +71,15 @@
 			<section class="ls s-py-60 s-py-md-90  s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">								
-						<main class="col-lg-8 order-lg-2">
-						
-							<select name="sido" id="sido"></select>
-							<select name="gugun" id="gugun"></select>
+						<main class="col-lg-8 order-lg-2" id="mapList-main">
+							<div class="address-box">
+								<div class="select_container">
+									<select name="sido" id="sido" class=""></select>
+									<select name="gugun" id="gugun" class=""></select>
+								</div>
+							</div>
 
-
-<!-- 						<form class="place-select" method="get">
+<!-- 					<form class="place-select" method="get">
 									<select name="place-select1" class="place-select1">
 										<option value="0" selected="selected">시,도 선택</option>
 										<option value="1">서울</option>
@@ -99,58 +101,50 @@
 									</select>
 						</form> 
 						-->
-								
-						<div class="place-search">							
-							<input type="text" placeholder="search" class="search">
-							 <i class="fa fa-search" aria-hidden="true"></i>
-						</div>
-								
-							<article class="vertical-item box-shadow post type-post status-publish format-standard has-post-thumbnail">
+						<div class="search-box">
+							<div class="place-search">							
+								<input type="text" placeholder="search" class="search">
+							</div>
+							<div class="map-search-button">
+								<img id="map-search-btn" src="${path}/resources/images/gallery/search.png" width="50px">
+							</div>								
+						</div>		
 
-								<!-- 지도 -->
-								<!-- <div> -->
-								<div class="item-media post-thumbnail">
-								<div id="map" style="width:100%;height:830px;"></div>
-									<%-- <img src="${path}/resources/images/place/map.png" alt="img" > --%>
-								</div>
-							</article>
+						<article class="vertical-item box-shadow post type-post status-publish format-standard has-post-thumbnail">
+
+							<!-- 지도 -->
+							<!-- <div> -->
+							<div class="item-media post-thumbnail">
+							<div id="map" style="width:100%;height:750px;"></div>
+								<%-- <img src="${path}/resources/images/place/map.png" alt="img" > --%>
+							</div>
+						</article>
 
 
 						</main>
 
 
 <!-- 왼쪽 카테고리 -->
-						<aside class="col-lg-4 order-lg-1 mb-0">
+						<aside class="col-lg-4 order-lg-1 mb-0" style="width:400px;">
 							<div class="filters place-filters">								
 								<div class="icon-box text-center">
 									<div>
 									<a class="place-filter" href="#" data-filter="1">
 										<div class="icon-styled bg-place-filter round food">
-											<i class="fa fa-cutlery"></i>											
+											<i class="fa fa-cutlery fa-2x"></i>											
 										</div>
 									</a>
 									</div>
 									<div>
-									<p>음식</p>
+									<p>맛집</p>
 									</div>
 								</div>
 							
-<!-- 								
-									<div class="icon-box text-center">
-									<a class="place-filter" href="#" data-filter=".f-cafe">
-										<div class="icon-styled bg-place-filter round cafe">
-											<i class="fa fa-coffee"></i>
-										</div>
-										<p>카페</p>
-									</div>
-								 -->
-
-									
 									<div class="icon-box text-center">
 									<div>
 									<a class="place-filter" href="#" data-filter="2">
 										<div class="icon-styled bg-place-filter round hotel">
-											<i class="fa fa-hotel"></i>
+											<i class="fa fa-hotel fa-2x"></i>
 										</div>
 									</a>
 									</div>
@@ -163,7 +157,7 @@
 									<div>
 									<a class="place-filter" href="#" data-filter="3">
 										<div class="icon-styled bg-place-filter round park">
-											<i class="fa fa-tree"></i>
+											<i class="fa fa-tree fa-2x"></i>
 										</div>
 									</a>
 									</div>
@@ -175,7 +169,7 @@
 									<div>
 									<a class="place-filter" href="#" data-filter="4">
 										<div class="icon-styled bg-place-filter round dogonly">
-											<i class="fa fa-paw"></i>
+											<i class="fa fa-paw fa-2x"></i>
 										</div>
 									</a>
 									</div>
@@ -188,7 +182,7 @@
 									<div>
 									<a class="place-filter" href="#" data-filter="5">
 										<div class="icon-styled bg-place-filter round hospital">
-											<i class="fa fa-hospital-o"></i>
+											<i class="fa fa-hospital-o fa-2x" style="weight:100px;"></i>
 										</div>
 									</a>
 									</div>
@@ -209,20 +203,20 @@
 						
 							<!-- 위치 리스트 -->
 							<!-- <div class="box-shadow pb-40 px-40 pt-35"> -->
-							<div class="box-shadow pb-50 px-50 pt-50" style="height:830px">
+							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:750px">
 								<div class="widget widget_mailchimp">
 									<h3 class="widget-title">place list</h3>
 									
-									<ul class="list-unstyled">
-										<div class="row isotope-wrapper" data-filters=".place-filters">
+									<ul class="list-unstyled " id="place-info" >
+										<!-- <div class="row isotope-wrapper" data-filters=".place-filters" id="place-info"> -->
 									
 										<!-- li 한덩이씩 -->
 										<c:forEach var="l" items="${mapList}">
 											<li class="media" id="storebox">
 												<div>
 												<a class="media-image" href="mapView?place_no=${l.place_no }">
-													<%-- <img src="${path }/resources/images/place/${l.place_img }"> --%>
-													<img src="${path }/resources/images/place/cafe.jpg">
+													<img src="${path }/resources/images/place/place_img/${l.place_img }">
+													<%-- <img src="${path }/resources/images/place/cafe.jpg"> --%>
 												</a>
 												</div>
 
@@ -236,7 +230,7 @@
 												</div>
 											</li>
 										</c:forEach>
-										</div>	
+										<!-- </div>	 -->
 								</ul>
 								<hr>
 								

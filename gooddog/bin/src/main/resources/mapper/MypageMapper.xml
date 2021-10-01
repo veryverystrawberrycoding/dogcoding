@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gooddog.mapper.MypageMapper">
+	<select id="dogList" resultType="PetVO" parameterType="String">
+			<![CDATA[
+		select * from pet where user_id=#{user_id} 
+		]]>
+	</select>
+	
+	<select id="dogModify" parameterType="PetVO">
+		<![CDATA[
+		UPDATE pet SET pet_name=#{pet_name}, pet_ident=#{pet_ident}, pet_birth=#{pet_birth}, pet_spacies=#{pet_spacies} WHERE pet_no=#{pet_no} 
+	]]>
+	</select>
+	
+	<select id="dogDelete" parameterType="PetVO">
+		<![CDATA[
+		delete from pet where pet_no=#{pet_no}
+	]]>
+	</select>
+	
+	<select id="passCheck" parameterType="UserVO">
+		<![CDATA[
+		select * from user where user_pwd=#{user_pwd}
+	]]>
+	</select> 
+	
+	<update id="userModify" parameterType="UserVO">
+		<![CDATA[
+		update user set user_pwd=#{user_pwd}, user_nick=#{user_nick}, user_addr=#{user_addr}, user_tel=#{user_tel} where user_id=#{user_id}
+	]]>
+	</update>
+	
+	<update id="noPwdModify" parameterType="UserVO">
+		update user set user_nick=#{user_nick}, user_addr=#{user_addr}, user_tel=#{user_tel} where user_id=#{user_id}
+	</update>
+	
+	<select id="myGalList" parameterType="UserVO" resultType="hashmap">
+		select * from gallery where user_id=#{user_id}
+	</select>
+	 
+	<select id="myGalReply" parameterType="UserVO" resultType="hashmap">
+		select a.gal_no as gal_no, a.galre_content galre_content, a.galre_date galre_date, b.gal_name as gal_name from galre a inner join gallery b on a.gal_no = b.gal_no where a.user_id=#{user_id} 
+	</select>
+	
+	<insert id="petInput" parameterType="PetVO">
+		INSERT into pet (user_id, pet_name, pet_img, pet_gender, pet_spacies, pet_birth, pet_ident) 
+		values(#{user_id}, #{pet_name}, #{pet_img}, #{pet_gender}, #{pet_spacies}, #{pet_birth}, #{pet_ident})
+	</insert> 
+	
+	<update id="pwdModify" parameterType="UserVO">
+		update user set user_pwd=#{user_pwd} where user_id=#{user_id} 
+	</update>
+	
+	<update id="modifyFile" parameterType='UserVO'>
+		update user set user_img=#{user_img} where user_id=#{user_id}
+	</update>  
+	
+	<select id="lossList" parameterType="UserVO" resultType="hashmap">
+		select * from loss where user_id=#{user_id} 
+	</select> 
+</mapper>     

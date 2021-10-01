@@ -13,17 +13,17 @@ import lombok.Setter;
 @Data
 public class BookVO {
 
-	private int dic_no;
-	public int getdic_no() {
-		return dic_no;
-	}
-	public void setdic_no(int dic_no) {
-		this.dic_no = dic_no;
-	}	
+//	private int dic_no;
+//	public int getdic_no() {
+//		return dic_no;
+//	}
+//	public void setdic_no(int dic_no) {
+//		this.dic_no = dic_no;
+//	}	
 ////////////////////////////	
 	
 	//백과사전 번호
-	//private int dic_no;
+	private String dic_no;
 	//백과사전 이름
 	private String dic_name;
 	//백과사전 사진

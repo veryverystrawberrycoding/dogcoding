@@ -159,7 +159,7 @@ public class MypageController {
 		return "완료"; 
 	} 
 	
-	@PostMapping("/lossList")
+	@PostMapping("/mylossList")
 	public List<Map<String, Object>> lossList(UserVO vo, HttpServletRequest req){
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");

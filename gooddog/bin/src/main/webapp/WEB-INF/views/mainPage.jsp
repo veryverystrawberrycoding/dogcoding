@@ -64,9 +64,23 @@
 		<div id="box_wrapper">
 			<section id="offer" class="section-offers ls s-py-60 s-py-md-90 s-py-xl-160">
 				<div class="top-right-menu">
-					<div><a href="loginForm">로그인</a></div>
-					<div><a href="joinForm">회원가입</a></div>
-				</div>	
+<!-- 					<div><a href="loginForm">로그인</a></div>
+					<div><a href="joinForm">회원가입</a></div> -->
+					<c:if test="${empty sessionScope.user }">
+					<div id="login-header" style="display:flex;">
+						<div style=margin-right:30px;><a href="loginForm">로그인</a></div>
+						<div style=margin-right:30px;><a href="joinForm">회원가입</a></div>
+					</div>
+					</c:if>
+					<c:if test="${not empty sessionScope.user}">
+					<div id="login-header" style="display:flex;">
+						<div style=margin-right:30px;>${user.user_id}</div>
+						<div style=margin-right:30px;><a href="mypageModify">마이 페이지</a></div>
+						<div style=margin-right:30px;><a href="logout" id="session_logout">로그아웃</a></div>
+					</div> 
+					</c:if>
+				</div>
+			
 				<div class="container">				
 					<div class="row">
 						<div class="col-12 col-xl-8 offset-xl-2 text-center mt--5">
@@ -158,7 +172,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./callingList">Security Program</a>
+											<a href="./lossList">Security Program</a>
 										</h5>
 										<p>
 											실종신고
@@ -170,16 +184,15 @@
 					</div>
 					<div class="mt-80 hidden-below-xl"></div>
 				</div>
-				<div class="chatbot-icon">
-					<img class=icons src="../../resources/images/icons/dog-solid.svg" width="50px" alt="img">
-					<img class=icons src="../../resources/images/icons/comments-solid.svg" width="50px" alt="img">
-				</div>
+				
 
 
 			</section>
 			<div class='mainFaceButton'>
-         <img src="../resources/images/photodog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
+		 <img src="../resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px">
+         <img src="../resources/images/dogdog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
          </div>
+     
 
 		<%@ include file="./footer.jsp"%> 
 

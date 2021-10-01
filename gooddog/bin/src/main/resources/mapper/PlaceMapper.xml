@@ -7,15 +7,9 @@
 
 	<!-- 장소 목록 조회 -->
 	<select id="placeList" parameterType="hashmap" resultType="hashmap">
-
 		SELECT * FROM place
-		<if test="keyword != null">
-			WHERE place_group = #{keyword}
-		</if>
-		
 		ORDER BY place_no
 		LIMIT #{pageStart}, #{perPageNum}
-
 	</select>
 	
 	<!-- 장소 목록 개수 조회 -->
@@ -23,6 +17,22 @@
         SELECT count(*)
         FROM place
 	</select>
+	
+	<!-- 장소 목록 조회 ajax -->
+	<select id="ajaxPlaceList" parameterType="hashmap" resultType="hashmap">
+		SELECT * FROM place
+		WHERE place_group = #{place_group}
+		ORDER BY place_no
+		LIMIT #{pageStart}, #{perPageNum}
+	</select>
+	
+	<!-- 장소 목록 개수 조회 ajax -->
+	<select id="ajaxPlaceCount" resultType="int">
+        SELECT count(*)
+        FROM place 
+        WHERE place_group = #{place_group}
+	</select>
+	
 	
 	<!-- 장소 상세 정보 조회 -->
 	<select id="placeView" parameterType="PlaceVO" resultType="PlaceVO">
@@ -49,6 +59,17 @@
 		]]>
 	</select>
 	
+		<!-- 리뷰 분석 결과 -->
+	
+	<select id="prevalue" parameterType="PlaceVO" resultType="hashmap">
+		<![CDATA[
+		SELECT pre_value, count(*) AS count
+		FROM placere 
+		WHERE place_no=#{place_no}
+		GROUP BY pre_value
+		ORDER BY pre_value DESC
+		]]>
+	</select>
 	
 	
 

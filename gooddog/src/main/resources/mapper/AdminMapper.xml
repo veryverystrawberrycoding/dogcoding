@@ -58,7 +58,7 @@
 
 	<select id="adminpost" parameterType="BookVO" resultType="BookVO">
 		<![CDATA[ 
-		                  SELECT * FROM book WHERE dic_no ORDER BY dic_no asc LIMIT #{limitStart}, #{listCount}
+		    SELECT * FROM book WHERE dic_no ORDER BY dic_no asc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -66,7 +66,7 @@
 				
 	</select>
 	
-	<!-- 회원 목록 수 -->
+	<!-- 페이징  -->
 
 
 
@@ -76,15 +76,31 @@
          SELECT count(*) FROM book 
          ]]>
 </select>
+<!-- /////////////////////info 수정 기능  -->
+	<select id="bookModify" parameterType="BookVO" resultType="BookVO">
+		<![CDATA[
+		select * from book WHERE dic_no = #{dic_no}
+	]]>
+	</select>
+<!-- /////////////////// -->
+<!--  ////////////info 삭제 기능//////////// -->
 
+<select parameterType="BookVO"  id="bookDelete">
 
+<![CDATA[
+         delete from book where dic_no =#{dic_no} 
+         ]]>
+</select>
 
+<!--  0000000000000000000000000000000000000000000000 -->
 
+<!-- 000000000000000000000000000000000000000adminpost2000000000000000000000000000000000000 -->
 
-<!--  갤러리 정보 가져오기  -->
-	<select id="adminpostgallery" parameterType="GalleryVO" resultType="GalleryVO">
+		
+
+	<select id="adminpost2" parameterType="GalleryVO" resultType="GalleryVO">
 		<![CDATA[ 
-		                  SELECT * FROM gallery WHERE gal_no ORDER BY gal_no asc LIMIT #{limitStart}, #{listCount}
+SELECT * FROM gallery WHERE gal_no ORDER BY  gal_no asc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -92,7 +108,7 @@
 				
 	</select>
 	
-	<!-- 회원 목록 수 -->
+	<!-- 페이징  -->
 
 
 
@@ -101,10 +117,48 @@
 <![CDATA[
          SELECT count(*) FROM gallery 
          ]]>
+</select>
+
+<!--  ////////////gallery 삭제 기능//////////// -->
+
+<select parameterType="GalleryVO"  id="galleryDelete">
+
+<![CDATA[
+         delete from gallery where gal_no =#{gal_no} 
+         ]]>
+</select>		
+			
+<!-- 000000000000000000000000000000000000000adminpost3000000000000000000000000000000000000 -->
+
+		
+
+	<select id="adminpost3" parameterType="LossVO" resultType="LossVO">
+		<![CDATA[ 
+SELECT * FROM loss WHERE loss_no ORDER BY  loss_no asc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 페이징  -->
+
+
+
+<select parameterType="LossVO" resultType="int" id="lossCount">
+
+<![CDATA[
+         SELECT count(*) FROM loss 
+         ]]>
+</select>
+
+<!--  ////////////gallery 삭제 기능//////////// -->
+
+<select parameterType="LossVO"  id="lossDelete">
+
+<![CDATA[
+         delete from loss where loss_no =#{loss_no} 
+         ]]>
 </select>			
-			
-			
-<!-- ///////////////////////////////////////////////////////////////////////// -->			
-			
-			
 </mapper>   

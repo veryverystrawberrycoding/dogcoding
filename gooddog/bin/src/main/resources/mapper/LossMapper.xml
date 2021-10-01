@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.gooddog.mapper.LossMapper">
+
+	<select id="lossList" resultType="LossVO">
+		<![CDATA[
+		SELECT * FROM loss 
+		]]>
+	</select>
+	
+<!-- sssssssssssssssss  -->
+	<select id="lossView" resultType="LossVO">
+		<![CDATA[
+		SELECT *  FROM loss where loss_no=#{loss_no}
+		]]>
+	</select>
+</mapper>   
