@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,6 +29,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
+import com.gooddog.domain.LossVO;
+import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.service.AdminService;
 
@@ -242,7 +245,7 @@ public class AdminController {
 		return new ModelAndView("/admin/admin_black") ;
 	}
 	
-	/////////////////////////관리자 상세정보 페이지/////////
+	/////////////////////////관리자 info 페이지///////////
 	
 	@RequestMapping(value = "/admin/admin_post.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_post(Model m, HttpServletResponse response) {
@@ -257,9 +260,24 @@ public class AdminController {
 		
 	}
 	
-
 	
+	@RequestMapping(value="/bookModify", method=RequestMethod.GET)
+	public String bookModify(BookVO vo, Model model) {
+		System.out.println("admincontroller 작동");
+		model.addAttribute("bookModify",AdminService.bookModify(vo)); // => 모델로 넘겨야함
+		return "admin/bookModify";
+	}
 
+///////////////////////////////관리자 book delete //////////////////	
+	@ResponseBody
+	@PostMapping("/bookDelete")
+	public void bookDelete(BookVO vo) {
+		System.out.println(vo.getDic_no());
+		AdminService.bookDelete(vo);
+	}
+
+		
+///////////////////////admin_post 페이징////////////////////////////////
 	@ResponseBody
 	@RequestMapping(value="/bookList", method=RequestMethod.POST)
 	public void bookList(Locale locale, Model model, BookVO BookVO, HttpServletResponse response ){
@@ -319,7 +337,29 @@ public class AdminController {
 		}	
 	
 	}
-	/////////////////////////관리자 갤러리  페이지/////////
+//00000000000000000000000000000000000000000admin_post20000000000000000000000000000000
+	
+	@RequestMapping(value = "/admin/admin_post2.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_post2(Model m, HttpServletResponse response) {
+	 
+	//  기능 툴	
+	web.init(response);
+
+	
+ 	
+		
+		return new ModelAndView("/admin/admin_post2") ;
+		
+	}
+	
+//////////////////00000000000000000000000/admin_post2 삭제/0000000000000000000000000000/////////
+	@ResponseBody
+	@PostMapping("/galleryDelete")
+	public void galleryDelete(GalleryVO vo) {
+		System.out.println(vo.getGal_no());
+		AdminService.galleryDelete(vo);
+	}
+	/////////////////////////관리자 갤러리  페이징/////////
 	
 	@ResponseBody
 	@RequestMapping(value="/galleryList", method=RequestMethod.POST)
@@ -349,7 +389,89 @@ public class AdminController {
 		
 		System.out.println(galleryCount+"북카운트가져옴" );
 		List<GalleryVO> list = null;  
-		list = AdminService.adminpostgallery(gallery); 	
+		list = AdminService.adminpost2(gallery); 	
+
+		System.out.println(list+"list가져옴" );
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
+	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	
+	}
+	//0000000000000000000000000000000000000000admin_post300000000000000000000000000000000000
+	@RequestMapping(value = "/admin/admin_post3.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_post3(Model m, HttpServletResponse response) {
+	 
+	//  기능 툴	
+	web.init(response);
+
+	
+ 	
+		
+		return new ModelAndView("/admin/admin_post3") ;
+		
+	}
+	
+//////////////////00000000000000000000000/admin_post3 삭제/0000000000000000000000000000/////////
+	@ResponseBody
+	@PostMapping("/lossDelete")
+	public void lossDelete(LossVO vo) {
+		System.out.println(vo.getLoss_no());
+		AdminService.lossDelete(vo);
+	}
+	/////////////////////////관리자 실종신고  페이징/////////
+	
+	@ResponseBody
+	@RequestMapping(value="/lossList", method=RequestMethod.POST)
+	public void lossList(Locale locale, Model model, LossVO LossVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+		LossVO loss = new LossVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int lossCount = 0;							// 전체 사용자 수
+		try {
+			lossCount = AdminService.lossCount(loss);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	 
+		
+		page.pageProcess(nowPage, lossCount, 5, 5);		
+		loss.setLimitStart(page.getLimitStart());
+		loss.setListCount(page.getListCount());
+		
+		System.out.println(lossCount+"북카운트가져옴" );
+		List<LossVO> list = null;  
+		list = AdminService.adminpost3(loss); 	
 
 		System.out.println(list+"list가져옴" );
 		Map<String, Object> data = new HashMap<String, Object>();
