@@ -36,5 +36,15 @@ public class LogJoinServcieImpl implements LogJoinService {
 	public UserVO userSelect(UserVO vo) {
 		return logJoinMapper.userSelect(vo);
 	} 
+	
+	public void userLog(UserVO vo) {
+		logJoinMapper.userLog(vo);
+	}
+	
+	public void userLogout(UserVO vo) {
+		logJoinMapper.userLogout(vo);
+	}  
+	
+	
 }   
  

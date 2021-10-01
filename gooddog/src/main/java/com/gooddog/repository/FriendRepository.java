@@ -7,5 +7,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.gooddog.domain.FriendsVO;
 
 public interface FriendRepository extends MongoRepository<FriendsVO, String> {
-	public List<FriendsVO> findByFollowingId(String followingId);
+	public String findByFollowingId(String followingId);
 }

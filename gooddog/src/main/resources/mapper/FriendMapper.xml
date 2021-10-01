@@ -5,9 +5,19 @@
 <mapper namespace="com.gooddog.mapper.FriendMapper">
 	<select id="fdRecommend1" resultType="hashmap" parameterType="UserVO">
 		<![CDATA[
-		select a.user_img, a.user_name, substr(a.user_addr,1,2), p.pet_spacies from user as a inner join pet as p on a.user_id = p.user_id where a.user_id = 
-		(select b.user_id from pet as b where b.pet_spacies = (select c.pet_spacies from pet as c where c.user_id=#{user_id}));
-		]]> 
+		select a.user_id as user_id, a.user_img as user_img, a.user_name as user_name, a.user_nick as user_nick, substr(a.user_addr,1,2) as user_addr
+		, group_concat(p.pet_spacies) as pet_spacies from user as a 
+		inner join pet as p on a.user_id = p.user_id where a.user_id in 
+        (select b.user_id from pet as b where b.pet_spacies in (select c.pet_spacies from pet as c where c.user_id=#{user_id})) group by a.user_id;
+		]]>  
+	</select>
+	
+	<select id="fdRecommend2" resultType="hashmap" parameterType="UserVO">
+	  select a.user_id as user_id, a.user_img as user_img, a.user_name as user_name, a.user_nick as user_nick, substr(a.user_addr,1,2) as user_addr, 
+	  group_concat(p.pet_spacies) as pet_spacies from user as a 
+	  inner join pet as p on a.user_id = p.user_id where a.user_id in 
+      (select b.user_id from user as b where substr(b.user_addr,1,2) in 
+      (select substr(c.user_addr,1,2) as user_addr from user as c where c.user_id=#{user_id})) group by a.user_id;
 	</select>   
-
+ 
 </mapper>

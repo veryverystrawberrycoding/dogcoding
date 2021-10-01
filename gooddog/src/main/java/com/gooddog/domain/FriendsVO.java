@@ -1,25 +1,35 @@
 package com.gooddog.domain;
 
+import java.util.List;
+
 import javax.persistence.Id;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection="friends")
+import lombok.Data;
+
+@Data
+@Document(collection="following")
 public class FriendsVO {
 	 
 
 	@Id
-	private String id;
-	
+	private ObjectId _id;
+	 
 	private String followingId;
 	
-	private String followerId;
-	private boolean checkFriend;
+	private List<FrList> frList;
 	
-	public FriendsVO(String followingId, String followerId, boolean checkFriend) {
-		this.followingId = followingId;
-		this.followerId = followerId;
-		this.checkFriend = checkFriend;
-	} 
+	 
+
+	public FriendsVO(String followingId, List<FrList> frlist) {
+		this.followingId = followingId;	
+		this.frList = frlist;  
+	}
+	
+	public FriendsVO() {
+		
+	}
 	
 }

@@ -48,21 +48,23 @@ public class LogJoinController {
 		  
 		//로그인
 		@PostMapping("/loginComplete")
-		public String login(UserVO vo, HttpServletRequest req, RedirectAttributes red) {
+		public UserVO login(UserVO vo, HttpServletRequest req, RedirectAttributes red) {
 			HttpSession session = req.getSession();
 			
 				UserVO info = logJoinService.login(vo);
 				red.addFlashAttribute("msg", false); 
 			if(info==null) { 
 				//session.setAttribute("user", null); 
-				return "redirect:/mainPage";   
+				return info; 
 			} else if(info.getUser_author()=="1"){
-				return "redirect:/admin/admin_chart";
+				//logJoinService.userLog(vo);
+				return info;
 			}
 				else {    
 				session.setAttribute("user", info);
-				return "redirect:/mainPage";
-			} 
+				logJoinService.userLog(vo);
+				return info;  
+			}  
 			  
 		} 
 		
@@ -162,5 +164,8 @@ public class LogJoinController {
 			logJoinService.join(vo);
 			return "redirect:/mainPage";
 		}
+		
+		
+		
 } 
   

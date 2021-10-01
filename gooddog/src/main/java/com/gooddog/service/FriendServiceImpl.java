@@ -18,5 +18,9 @@ public class FriendServiceImpl implements FriendService {
 		
 		return friendMapper.fdRecommend1(vo);
 	}
+	
+	public List<HashMap<String,Object>> fdRecommend2(UserVO vo){
+		return friendMapper.fdRecommend2(vo);
+	}
 
-}
+} 

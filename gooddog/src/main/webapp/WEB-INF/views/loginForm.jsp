@@ -37,6 +37,10 @@
 </head>
 
 <body>
+
+
+
+
 <%@ include file="./header.jsp" %>
 
 			<section class="page_title ls  s-py-5">
@@ -72,7 +76,7 @@
 								<!-- .entry-header -->
 								<div class="entry-content">
 									<div class="woocommerce">
-
+ 
 										<!--
 			<div class="woocommerce-message">Are you sure you want to log out? <a
 				href="shop-account-login.html">Confirm and log out</a>
@@ -94,9 +98,18 @@
 													<span>Remember me</span>
 												</label>
 											</p> -->
-											<div class="col-md-3" style="float: center; margin:0 auto;">
+											<div style="color:red" id="id_pwd_error"></div>
+											<br>
+											 
+											<div class="container"> 
+												<div class="row">
+													<div class="col-md-4"></div>
+													<div class="col-md-4">
 												<button type="button" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
 												<button onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin" style="text-align:center;">카카오 로그인</button>
+													</div> 
+												<div class="col-md-4"></div>
+												</div>
 											</div>	 
 											    
 											<p style="text-align:center;"> 

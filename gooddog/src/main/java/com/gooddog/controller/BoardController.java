@@ -116,13 +116,13 @@ public class BoardController {
 		logger.info("bookView");
 	}
 	
-	@RequestMapping("/mypageDog") //http://localhost:8082/board/mypageDog
+		@RequestMapping("/mypageDog") //http://localhost:8082/board/mypageDog
 	public String mypageDog(UserVO vo, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		if(sessionvo==null) {
-			return "/mainPage";
-		}  
+			return "redirect:/loginForm";
+		}   
 		else {
 		
 			return "/mypageDog";
@@ -130,9 +130,18 @@ public class BoardController {
 		
 	}
 	
-	@RequestMapping("/mypageFind") //http://localhost:8082/board/mypageFind
-	public void mypageFind() {
-		logger.info("mypageFind");
+	@RequestMapping("/mypageList") //http://localhost:8082/board/mypageFind
+	public String mypageList(UserVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		if(sessionvo==null) {
+			return "redirect:/loginForm";
+		}    
+		else {  
+		 
+			return "/mypageList";
+		}   
+		 
 	}
 	
 	@RequestMapping("/mypageFriend") //http://localhost:8082/board/mypageFriend
@@ -140,11 +149,11 @@ public class BoardController {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		if(sessionvo==null) {
-			return "/mainPage";
+			return "redirect:/loginForm";
 		}  
 		else {
 		
-			return "/mypageFriend";
+			return "/mypageFriend"; 
 		}  
 		
 		
@@ -155,7 +164,7 @@ public class BoardController {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		if(sessionvo==null) {
-			return "/mainPage";
+			return "redirect:/loginForm";
 		}  
 		else {
 		vo.setUser_id(sessionvo.getUser_id());
@@ -163,7 +172,7 @@ public class BoardController {
 		m.addAttribute("myvo", myvo); 
 		
 			return "/mypageModify"; 
-		}  
+		}   
 	}
 	 
 	@RequestMapping("/kakao")

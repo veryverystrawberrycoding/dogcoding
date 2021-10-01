@@ -22,6 +22,10 @@ public interface LogJoinMapper {
 	 int join(UserVO vo);  
 	 
 	 UserVO userSelect(UserVO vo);
+	 
+	 void userLog(UserVO vo);
+	 
+	 void userLogout(UserVO vo); 
 
 		//유저 불러오기
 		List<UserVO> getUserInfo();

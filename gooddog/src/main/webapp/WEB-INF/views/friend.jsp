@@ -30,12 +30,6 @@
 <style >
 
 
-p{font-family: 'Single Day', cursive;
-font-size:40px;
-}
-p.a{font-weight:900;
-}
-
 
 
 </style>
@@ -59,36 +53,10 @@ p.a{font-weight:900;
 			
 				<div class="col-md-4" style = "text-align:center; font-size: 40px">
 				
-					<h5 >friend</h5>
+					<h5 >팔로잉</h5>
 								
 	 					<article class="post side-item content-padding ls box-shadow">
-								<div class="row">
-									<div class="col-xl-4 col-lg-5 col-md-5">
-										<div class="item-media cover-image" style="background-image: url(&quot;images/gallery/15.jpg&quot;);">
-											<img src="images/gallery/15.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="event-single-left.html"></a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xl-8 col-lg-7 col-md-6">
-										<div class="item-content">
-
-											<p class="a">친구목록</p>
-											
-
-											
-									
-											
-											<div style="display: inline-block; margin:0 5px; float:right;">
-											<button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">추가</button> <button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">삭제</button>
-											</div>
-										</div>
-
-										
-									</div>
-
+								<div class="row total_friend_view">
 									
 								</div>
 
@@ -109,46 +77,16 @@ p.a{font-weight:900;
  					<h5>친구 추천</h5>
  				
  								<article class="post side-item content-padding ls box-shadow">
-								<div class="row">
-									<div class="col-xl-4 col-lg-5 col-md-5">
-										<div class="item-media cover-image" style="background-image: url(&quot;images/gallery/15.jpg&quot;);">
-											<img src="images/gallery/15.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="event-single-left.html"></a>
-											</div>
-										</div> 
-									</div>
-
-									<div class="col-xl-8 col-lg-7 col-md-6">
-										<div style="margin:1px">
- 
-											<div id="fore_friend_info">
-												<label style="font-size:20px">이름 :</label><label id="fore_friend_name" style="font-size:20px">a</label><br>
-												<label style="font-size:20px">지역 :</label><label id="fore_friend_addr" style="font-size:20px">b</label><br> 
-												<label style="font-size:20px">펫 :</label><label id="fore_friend_pet" style="font-size:20px">c</label>  
-											</div>    
-									
-											
-											<div style="display: inline-block; margin:0 5px; float:left;">
-											<button type="button" class="btn btn-info btn-xs" style="margin-left: 12%;">추가</button>
-											</div> 
-										</div>
-
-										
-									</div>
-
-									
+								<div class="row total_friend_hi">
 								</div>
-
-
-							</article>
+								</article>
  				
  				
  				
  				
  				
  				
- 				
+ 				 
  				
  				</div>
 			
@@ -169,7 +107,8 @@ p.a{font-weight:900;
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-
+	<script src="${path}/resources/js/userJS/myPage.js"></script>
+ 
 
 </body>
 

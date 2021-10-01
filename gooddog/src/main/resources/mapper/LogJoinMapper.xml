@@ -33,4 +33,17 @@
 		SELECT * FROM user WHERE user_id=#{user_id}
 		]]>
 	</select>
+	
+	<insert id="userLog" parameterType="UserVO">
+		<![CDATA[
+		insert into userlog (user_id, log_content, log_date) values (#{user_id}, "로그인", sysdate())
+		]]>
+	</insert>
+	
+	<insert id="userLogout" parameterType="UserVO">
+		<![CDATA[
+		insert into userlog (user_id, log_content, log_date) values (#{user_id}, "로그아웃", sysdate())
+		]]>
+	</insert> 
+	
 </mapper>           

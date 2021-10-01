@@ -9,6 +9,7 @@ import com.gooddog.domain.UserVO;
 
 @Mapper
 public interface FriendMapper {
-	public List<HashMap<String,Object>> fdRecommend1(UserVO vo); 
+	public List<HashMap<String,Object>> fdRecommend1(UserVO vo);
+	public List<HashMap<String,Object>> fdRecommend2(UserVO vo);
 }
  

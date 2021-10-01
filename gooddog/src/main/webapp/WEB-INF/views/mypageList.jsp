@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}"/>    
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -34,10 +34,10 @@
 	<![endif]-->
 
 </head>
-
+ 
 <body>
 <%@ include file="./header.jsp"%> 
-
+ 
 	<!--[if lt IE 9]>
 		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
 	<![endif]-->
@@ -58,7 +58,7 @@
 				</div>
 				<button type="submit"></button>
 			</form>
-		</div> 
+		</div>
 	</div>
 
 	<!-- Unyson messages modal -->
@@ -81,97 +81,94 @@
 			<!-- template sections -->
 
 
-			
 
 			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
 			
 
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
-				<div class="container">
-					<div class="row mt--5"> 
-						<div class="col-lg-3">
-							<nav class="woocommerce-MyAccount-navigation">
-								<ul>
-									<li>
-										<a href="../mypageModify">회원정보 관리</a>
-									</li>
-									<li> 
-										<a href="../mypageDog">나의 펫 정보</a>
-									</li>
-									<li> 
-										<a href="../list">나의 활동내역</a>
-									</li>
-									<li class="is-active">
-										<a href="#">펫 실종신고</a>
-									</li>
-									<li>
-										<a href="../mypageFind">친구 관리</a>
-									</li>
-									<li>
-										<a class="logoutClick" href="../mainPage">회원탈퇴</a>
-									</li> 
-								</ul> 
-							</nav>
-						</div>
-
-						<div class="col-lg-4 mt-40 mt-lg-0 animate">
-							<article class="post side-item content-padding ls box-shadow">
-								<div class="row">
-									<div class="col-xl-4 col-lg-5 col-md-5">
-										<div class="item-media cover-image">
-											<img src="images/gallery/15.jpg" alt="img" style="width:100px; height:100px;">
-											<div class="media-links">
-												<a class="abs-link" title="" href="event-single-full.html"></a>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xl-8 col-lg-7 col-md-6">
-										<div class="item-content">
-
-											<h5>
-												<a href="event-single-full.html">Training</a>
-											</h5>
- 
-											
-											<p class="mb-10">
-												1234 
-											</p>
-
-											<p class="links-maincolor more"><a href="event-single-full.html">read more</a></p>
-
-										</div>
-									</div>
+			<section class="ls gallery-page s-py-60 s-py-md-90 s-py-xl-160 container-px-15">
+				
+								<div class="container"> 
+									<div class="row">
+								
+								<div class="col-md-3">>
+								
 								</div>
-							</article>
-							
-						</div>    
-						<!--.col-* -->	 
-						<div data-animation="scaleAppear" class=" col-lg-5 animate">
-						
-							<div style="text-align:center; margin:0px;">글제목 : </div>
-							<div style="text-align:center; margin:0px;">글쓴이 : </div>
-							<div style="text-align:center;"> 
-							<img src="#" style="width:200px; height:200px; text-align:center;"/>
+								
+								<div class="col-md-5">
+								<div class="my_gal_list">
+								</div>
+								<ul class="pagination gal_page">
+								</ul>	 
+								</div>
+								<div class="col-md-4">
+									<div class="my_galre_list">
+										
+									</div>
+									<ul class="pagination galre_page">
+									 
+									</ul>
+									<div class="loss_alert">
+									
+									</div>
+								</div> 
 							</div>
+ 
+							</div>
+								<div class="row mt-30">
+								<div class="col-sm-12 text-center">
+									<nav class="navigation pagination " role="navigation">
+										<h2 class="screen-reader-text">Posts navigation</h2>
+										<div class="nav-links">
+											<a class="prev page-numbers" href="blog-right.html">
+												<i class="fa fa-chevron-left"></i>
+												<span class="screen-reader-text">Previous page</span>
+											</a>
+											<span class="page-numbers current">
+												<span class="meta-nav screen-reader-text">Page </span>
+												1
+											</span>
+											<a class="page-numbers" href="blog-right.html">
+												<span class="meta-nav screen-reader-text">Page </span>
+												...
+											</a>
+											<a class="page-numbers" href="blog-right.html">
+												<span class="meta-nav screen-reader-text">Page </span>
+												5
+											</a>
+											<a class="next page-numbers" href="blog-right.html">
+												<span class="screen-reader-text">Next page</span>
+												<i class="fa fa-chevron-right"></i>
+											</a>
+										</div>
+									</nav>
+								</div>
 						</div>
+					
+							
+							</section>
 
-					</div>
-				</div>
-				<div class="mb--25 d-none d-xl-block"></div>
-				<div class="mb--20 hidden-above-xl"></div>
-				<div class="mb--30 hidden-above-md"></div>
-			</section>
+							
+
+							</div>
+							
+							
+							
+							
+							<!-- .isotope-wrapper-->
+
+						
+		
 
 			<%@ include file="./footer.jsp"%> 
 
-		</div><!-- eof #box_wrapper --> 
+			
+		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
-
+ 
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
-
+	<script src="${path}/resources/js/userJS/myPage.js"></script> 
 
 </body>
 

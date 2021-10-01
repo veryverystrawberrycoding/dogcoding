@@ -12,5 +12,10 @@ public String idOkay(String user_id);
 	public int join(UserVO vo);
 	
 	public UserVO userSelect(UserVO vo);
-}
-       
+	
+	public void userLog(UserVO vo);
+	
+	public void userLogout(UserVO vo);
+	
+} 
+        
