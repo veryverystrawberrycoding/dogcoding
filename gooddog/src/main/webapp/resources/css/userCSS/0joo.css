@@ -77,22 +77,22 @@
 }
 
 .gallery_buttons{
-	 display:flex;
-	 margin-left:85%;
-	 padding-top :10px;
-	
+	display:flex;
+	padding-top :10px;
+
 }
-.gallery_buttons .gallery_buttons1 p{
-	text-align:center;
+.gallery_user_buttons{
+	display:flex;
+	margin-left:80%;
+}
+.gallery_buttons2{
+	padding-left:10px;
+
+}
+.gallery_buttons3{
+	margin-left:3%;
 }
 
-.gallery_buttons .gallery_buttons2{
-	margin-left:20px;
-}
-
-.gallery_buttons .gallery_buttons2 p{
-	text-align:center;
-}
 
  .gallery_items{
   display:flex;

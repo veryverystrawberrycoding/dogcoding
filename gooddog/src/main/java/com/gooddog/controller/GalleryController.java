@@ -32,16 +32,37 @@ public class GalleryController {
 	
 	@RequestMapping(value="/galleryList")
 	public void galleryList(GalleryVO vo,Model m,HttpServletRequest req) {
-		m.addAttribute("list",galleryService.galleryList());
-	
-//		HttpSession session = req.getSession();
-//		UserVO sessionvo = (UserVO)session.getAttribute("user");
-//	    System.out.println(sessionvo.getUser_id());
+		vo.setSearchTag("Like");
+		vo.setPnum(6);
+		m.addAttribute("list",galleryService.galleryList(vo));
+		m.addAttribute("num", 1); // 첫번째 페이지
 		
-	    //user id 값 넘기기
-		//m.addAttribute("user_id",sessionvo.getUser_id());
+		
+		//총 페이지 수 구하기
+		int count = galleryService.galcount(); //총 게시글 수
 
+		int pagenum; //총 페이지 수
+		if(count%6 == 0) {
+			pagenum = count/6;
+		}
+		else {
+			pagenum = (count/6)+1; //페이지 수
+		}	
+		System.out.println(pagenum);
 		
+		m.addAttribute("page",pagenum);
+		m.addAttribute("tag", "Like");
+		
+		
+		
+	
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+//	    //System.out.println(sessionvo.getUser_id());
+//		
+//	    //user id 값 넘기기
+//		m.addAttribute("user_id",sessionvo.getUser_id());
+
 	}
 	
 	@RequestMapping(value="/galleryView")
@@ -61,6 +82,11 @@ public class GalleryController {
 		
 		//System.out.println(result.get("gal_tag"));
 		
+		//조회수 증가
+		galleryService.galcntup(no);
+		
+		//해시태그 처리
+		
 		ArrayList<String> ta = new ArrayList<String>();
 		String str = (String) result.get("gal_tag");
 		String[] strArr = str.split("[,]");
@@ -74,11 +100,16 @@ public class GalleryController {
 		m.addAttribute("tag",ta);
 		
 		// 댓글 조회 
-		List<Map<String, Object>> commentList=galleryService.commentList(vo);
+		//List<Map<String, Object>> commentList=galleryService.commentList(vo.getGal_no());
+		vo.setPnum(0); 
+		List<Map<String, Object>> commentList=galleryService.commentPaging(vo);
+		
 		m.addAttribute("commentList",commentList);
 		
+		//commentPaging
+		
 		// 댓글 개수 조회 
-		int count = galleryService.commentCount(vo);
+		int count = galleryService.commentCount(vo.getGal_no());
 				
 		m.addAttribute("count", count);
 		
@@ -88,10 +119,22 @@ public class GalleryController {
 		map.put("userlike", userlike);
 	
 		m.addAttribute("userlike", map); //${userlike.userlike}
-
-	
+		
+		//////////////페이징 관련////////////////
+		int pagenum;
+		if(count%5 == 0) {
+			pagenum = count/5;
+		}
+		else {
+			pagenum = (count/5)+1; //페이지 수
+		}	
+		System.out.println(pagenum);
+		
+		m.addAttribute("page",pagenum);
 
 	}
+	
+	
 	
 	@RequestMapping(value="/galleryForm")
 	public void galleryForm(Model m, GalleryVO vo,HttpServletRequest req) {
@@ -104,6 +147,17 @@ public class GalleryController {
 	
 		
 	}
+	
+	@RequestMapping(value="/galimg",method = RequestMethod.POST)
+	@ResponseBody
+	public String mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
+		//System.out.println("파일명"+file.getOriginalFilename());
+		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\gallery";
+		String filePath = basePath + "/" + file.getOriginalFilename();
+		File dest = new File(filePath); file.transferTo(dest);
+		
+		return "완료";
+	}
 
 	
 	@RequestMapping(value="/galleryOK")
@@ -112,6 +166,11 @@ public class GalleryController {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 	    vo.setUser_id(sessionvo.getUser_id());
+	    
+	    if((vo.getGal_img()).equals("")){
+	    	vo.setGal_img(null);
+	    	
+	    }
 		
 		
 		int no = vo.getGal_no();
@@ -133,7 +192,7 @@ public class GalleryController {
 	
 	@ResponseBody
 	@RequestMapping(value="/galHeartUp")
-	public String galHeartUp(Model m, GalleryVO vo,@RequestParam int galno,HttpServletRequest req) {
+	public Object galHeartUp(Model m, GalleryVO vo,@RequestParam int galno,HttpServletRequest req) {
 		
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
@@ -142,12 +201,23 @@ public class GalleryController {
 		vo.setGal_no(galno);
 		galleryService.galHeartUp(vo);
 		galleryService.userlikeInsert(vo);
-		return "좋아요♡";
+		
+		Map<String, Object> result = galleryService.galNoList(galno); //게시글 좋아요 개수
+
+		System.out.println("유저아이디 "+ vo.getUser_id());
+		int userlike = galleryService.userlikeSelect(vo); // 해당 user의 좋아요여부
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userlike", userlike);
+		map.put("gal_heart", result.get("gal_heart"));
+		
+		
+		return map;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/galHeartDown")
-	public String galHeartDown(Model m, GalleryVO vo,@RequestParam int galno,@RequestParam String userid,HttpServletRequest req) {
+	public Object galHeartDown(Model m, GalleryVO vo,@RequestParam int galno,@RequestParam String userid,HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 	    vo.setUser_id(sessionvo.getUser_id());
@@ -155,68 +225,233 @@ public class GalleryController {
 		vo.setGal_no(galno);
 		vo.setUser_id(userid);
 		galleryService.galHeartDown(vo);
-		
 		galleryService.userlikeDelete(vo);
-		return "좋아요 취소";
+		
+		Map<String, Object> result = galleryService.galNoList(galno); //게시글 좋아요 개수
+
+		System.out.println("유저아이디 "+ vo.getUser_id());
+		int userlike = galleryService.userlikeSelect(vo); // 해당 user의 좋아요여부
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("userlike", userlike);
+		map.put("gal_heart", result.get("gal_heart"));
+		
+		
+		return map;
+
 	}
 	
+	@ResponseBody
 	@RequestMapping(value="/galDelete")
-	public String galDelete(Model m, GalleryVO vo,HttpServletRequest req) {
+	public String galDelete(Model m, GalleryVO vo,HttpServletRequest req,@RequestParam int galno) {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 	    vo.setUser_id(sessionvo.getUser_id());
 
-		galleryService.galDelete(vo.getGal_no());
+		galleryService.galDelete(galno);
 		System.out.println("삭제완료");
-		
-		return "redirect:/galleryList";
+	
+		return "게시글을 삭제했습니다";
 	}
 	
-	@RequestMapping(value="/galimg",method = RequestMethod.POST)
 	@ResponseBody
-	public String mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
-		//System.out.println("파일명"+file.getOriginalFilename());
-		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\gallery";
-		String filePath = basePath + "/" + file.getOriginalFilename();
-		File dest = new File(filePath); file.transferTo(dest);
+	@RequestMapping(value="/badContent")
+	public String badContent(Model m, GalleryVO vo,HttpServletRequest req,@RequestParam int galno) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+	    vo.setUser_id(sessionvo.getUser_id());
+	    
+	    vo.setGal_no(galno);
+
+		galleryService.badContent(vo);
 		
-		return "완료";
+		System.out.println("신고가 접수되었습니다");
+		return "신고가 접수되었습니다";
 	}
 	
-	
+	//해시태그에서 넘어올 때 (갤러리 검색 enter치면 이리옴)
 	@RequestMapping(value="/galSearch")
 	public String galSearch(Model m, GalleryVO vo,@RequestParam String data,HttpServletRequest req) {
 		
-		//System.out.println(data);
+		System.out.println(data);
+		vo.setSearchTag(data);
+		vo.setPnum(6);
 		
-		m.addAttribute("list",galleryService.galSearch(data));
+		m.addAttribute("list",galleryService.galSearch(vo));
 		
+		//HttpSession session = req.getSession();
+		//UserVO sessionvo = (UserVO)session.getAttribute("user");
 		m.addAttribute("user_id",vo.getUser_id());
 		
+		
+		
+		m.addAttribute("num", 1); // 첫번째 페이지
+		
+		
+		//총 페이지 수 구하기
+		int count = galleryService.galSearchcount(vo); //총 게시글 수
+
+		int pagenum; //총 페이지 수
+		if(count%6 == 0) {
+			pagenum = count/6;
+		}
+		else {
+			pagenum = (count/6)+1; //페이지 수
+		}	
+		System.out.println(pagenum);
+		
+		m.addAttribute("page",pagenum);
+		
+		m.addAttribute("tag", data);
 		
 		return "/galleryList";
 	}
+
+
 	
-	
+	//해시태그 클릭, 검색창 검색
 	@ResponseBody
 	@RequestMapping(value="/ajaxgalSearch")
-	public void ajaxgalSearch(Model m, GalleryVO vo,@RequestParam String tag,HttpServletRequest req) {
+	public Object ajaxgalSearch(Model m, GalleryVO vo,@RequestParam String tag,HttpServletRequest req) {
 		
-		//System.out.println(tag);
+		Map<String, Object> map = new HashMap<>();
+		List<GalleryVO> galList;
+		System.out.println(tag);
+		int pagenum; //총 페이지 수
+		int count;// 총 게시글 수
+		vo.setSearchTag(tag);
+		vo.setPnum(6);
 		
-		m.addAttribute("list",galleryService.galSearch(tag));
+
+		if((tag.equals("Like")) ||  (tag.equals("Hot")) ||  (tag.equals("New"))) {
+			System.out.println(tag);
+			
+			//galList = galleryService.galSelect(tag);
+			galList = galleryService.galleryList(vo);
+			
+			//총 페이지 수 구하기
+			count = galleryService.galcount(); //총 게시글 수
+			
+		}
 		
-		m.addAttribute("user_id",vo.getUser_id());
+		else {
+			//System.out.println(tag);
+			galList = galleryService.galSearch(vo);
+			//System.out.println(galList);
+			
+			//총 페이지 수 구하기
+			count = galleryService.galSearchcount(vo); //총 게시글 수
+			System.out.println(count);
+
+		}
+
+		if(count%6 == 0) {
+			pagenum = count/6;
+		}
+		else {
+			pagenum = (count/6)+1; //페이지 수
+		}	
 		
-		//String result = "완료";
+		map.put("galList", galList);
+		map.put("num", 1);
+		map.put("page", pagenum);
+		map.put("tag", tag);
 		
-		//return result;
+		
+		return map;
+	}
+	
+	
+	//게시글 페이징
+	
+	@ResponseBody
+	@RequestMapping(value="/ajaxgalselect")
+	public Object ajaxgalselect(Model m, GalleryVO vo,@RequestParam String tag,@RequestParam int num,HttpServletRequest req) {
+
+		Map<String, Object> map = new HashMap<>();
+		List<GalleryVO> galList;
+		vo.setPnum((num+1)*6);
+		vo.setSearchTag(tag);
+		
+		int pagenum; //총 페이지 수
+		int count; //총 게시글 수
+		
+		if((tag.equals("Like")) ||  (tag.equals("Hot")) ||  (tag.equals("New"))) {
+			//System.out.println(tag);
+			
+			galList = galleryService.galleryList(vo);
+			
+			//총 페이지 수 구하기
+			count = galleryService.galcount(); //총 게시글 수
+
+		}
+		else {
+			//System.out.println(tag);
+			galList = galleryService.galSearch(vo);
+			//System.out.println(galList);
+			
+			//총 페이지 수 구하기
+			count = galleryService.galSearchcount(vo); //총 게시글 수
+			//System.out.println(count);
+	
+		}
+		
+		if(count%6 == 0) {
+			pagenum = count/6;
+		}
+		else {
+			pagenum = (count/6)+1; //페이지 수
+		}	
+		map.put("galList", galList);
+		map.put("num", num+1);
+		map.put("page", pagenum);
+		map.put("tag", tag);
+		
+		return map;
+	}
+	
+	//댓글페이징
+	@ResponseBody
+	@RequestMapping(value="/ajaxcommentselect")
+	public Object ajaxcommentselect(GalreVO vo, GalleryVO gvo, @RequestParam int galno, @RequestParam int pnum, HttpServletRequest req ) {
+		
+		//ajax로 보낼거
+		System.out.println(galno);
+		System.out.println((pnum-1)*5);
+		gvo.setGal_no(galno);
+		gvo.setPnum((pnum-1)*5);
+				
+		//댓글 조회
+		List<Map<String, Object>> commentList=galleryService.commentPaging(gvo);
+			
+						
+		// 댓글 개수 조회 
+		int count = galleryService.commentCount(galno);
+		
+		// 페이지 개수
+		int pagenum;
+		if(count%5 == 0) {
+			pagenum = count/5;
+		}
+		else {
+			pagenum = (count/5)+1; //페이지 수
+		}	
+				
+				
+		Map<String, Object> map = new HashMap<>();
+		map.put("commentList", commentList);
+		map.put("count", count);
+		map.put("page",pagenum);
+				
+				
+		//return map;
+		return map;
 	}
 	
 	//댓글 입력
 	@ResponseBody
 	@RequestMapping(value="/commentInsert")
-	public String commentInsert(GalreVO vo,@RequestParam String comment,@RequestParam int galno,HttpServletRequest req) {
+	public Object commentInsert(GalreVO vo,GalleryVO gvo,@RequestParam String comment,@RequestParam int galno,HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 	    vo.setUser_id(sessionvo.getUser_id());
@@ -225,15 +460,45 @@ public class GalleryController {
 		vo.setGalre_content(comment);
 		vo.setGal_no(galno);
 		galleryService.commentInsert(vo);
-		System.out.println(comment);
+		System.out.println("댓글입력완료");
 		
-		return "입력완료";
+		
+		//ajax로 보낼거
+		
+		gvo.setGal_no(galno);
+		gvo.setPnum(0);
+		
+		//댓글 조회
+		List<Map<String, Object>> commentList=galleryService.commentPaging(gvo);
+	
+				
+		// 댓글 개수 조회 
+		int count = galleryService.commentCount(galno);
+		
+		// 페이지 개수
+		int pagenum;
+		if(count%5 == 0) {
+			pagenum = count/5;
+		}
+		else {
+			pagenum = (count/5)+1; //페이지 수
+		}	
+						
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("commentList", commentList);
+		map.put("count", count);
+		map.put("page",pagenum);
+		
+		
+		return map;
+
 	}
 	
 	//댓글 삭제
 	@ResponseBody
 	@RequestMapping(value="/commentDelete")
-	public String commentDelete(GalreVO vo,@RequestParam int galreno,HttpServletRequest req) {
+	public Object commentDelete(GalreVO vo,GalleryVO gvo,@RequestParam int galno,@RequestParam int galreno,HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 	    vo.setUser_id(sessionvo.getUser_id());
@@ -243,30 +508,36 @@ public class GalleryController {
 		galleryService.commentDelete(vo);
 		System.out.println("삭제완료");
 		
-		return "삭제완료";
-	}
-	
-	
-	//댓글 보기
-	@ResponseBody
-	@RequestMapping(value="/commentShow")
-	public List<Map<String, Object>> commentShow(GalleryVO vo,Model m,@RequestParam int galno,HttpServletRequest req) {
+		//ajax로 보낼거
 		
+		gvo.setGal_no(galno);
+		gvo.setPnum(0);
 		
-//		HttpSession session = req.getSession();
-//		UserVO sessionvo = (UserVO)session.getAttribute("user");
-//		sessionvo.getUser_id()
-		vo.setGal_no(galno);
-		
-		List<Map<String, Object>> commentList=galleryService.commentList(vo);
-		m.addAttribute("commentList",commentList);
-				
-		// 댓글 개수 조회 
-		int count = galleryService.commentCount(vo);
+		//댓글 조회
+		List<Map<String, Object>> commentList=galleryService.commentPaging(gvo);
+			
 						
-		m.addAttribute("count", count);
+		// 댓글 개수 조회 
+		int count = galleryService.commentCount(galno);
 		
-		return commentList;
+		// 페이지 개수
+		int pagenum;
+		if(count%5 == 0) {
+			pagenum = count/5;
+		}
+		else {
+			pagenum = (count/5)+1; //페이지 수
+		}	
+				
+				
+		Map<String, Object> map = new HashMap<>();
+		map.put("commentList", commentList);
+		map.put("count", count);
+		map.put("page",pagenum);
+				
+				
+		return map;
+		
 	}
 
 }

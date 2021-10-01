@@ -12,7 +12,7 @@ import com.gooddog.domain.PlacereVO;
 @Mapper
 public interface GalleryMapper {
 	
-	public List<GalleryVO> galleryList();
+	public List<GalleryVO> galleryList(GalleryVO vo);
 
 	public Map<String, Object> galNoList(int no);
 	
@@ -26,11 +26,13 @@ public interface GalleryMapper {
 	
 	public void galDelete(int no);
 	
-	public List<Map<String, Object>> commentList(GalleryVO vo);
+	public List<Map<String, Object>> commentList(int gal_no);
+	
+	public List<Map<String, Object>> commentPaging(GalleryVO vo);
 
-	public int commentCount(GalleryVO vo);
+	public int commentCount(int gal_no);
 
-	public List<GalleryVO> galSearch(String data);
+	public List<GalleryVO> galSearch(GalleryVO vo);
 
 	public void commentInsert(GalreVO vo);
 
@@ -41,5 +43,16 @@ public interface GalleryMapper {
 	public void userlikeDelete(GalleryVO vo);
 
 	public int userlikeSelect(GalleryVO vo);
+
+	public void badContent(GalleryVO vo);
+
+	public void galcntup(int no);
+
+	public List<GalleryVO> galSelect(String tag);
+
+	public int galcount(); //총게시글 수
+
+	public int galSearchcount(GalleryVO vo);
+
 
 }

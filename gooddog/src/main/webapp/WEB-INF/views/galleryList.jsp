@@ -24,6 +24,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/userJS/gallery.js"></script>
 	
+	
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -42,21 +43,32 @@
 				<div class="container-fluid">
 					<div class="row">
 					
-					<div class="gallery-btn">
-					<a href="/galleryForm?gal_no=0" ><img src="${path}/resources/images/gallery/write.jpg" width="43px" height="43px" >
-					<p>write</p></a>
+					
+					<!-- 글쓰기 버튼 -->
+					<c:if test="${sessionScope.user.getUser_id() eq null}">
+						<div class="gallery-btn" id="gallery-btn-nosess">
+						<img src="${path}/resources/images/gallery/write.jpg" width="43px" height="43px" >
+						<p>write</p>
+						</div>
+					</c:if>
+					<c:if test="${sessionScope.user.getUser_id() ne null}">
+						<div class="gallery-btn" id="gallery-btn">
+						<a href="/galleryForm?gal_no=0" ><img src="${path}/resources/images/gallery/write.jpg" width="43px" height="43px" >
+						<p>write</p></a>
+						</div>
+					</c:if>
 			
-					</div>
+					
 
 						<div class="col-lg-12">
 							<div class="row justify-content-center mt--10">
 							
 							<br>
 							
-							<form method="post" id="gallery_search_form" action="/galSearch">
+							<form id="gallery_search_form" method="post" action="/galSearch">
 								<div class="gallery-search">
 									<div class="gallery-search-input">
-										<input type="text" placeholder="검색어를 입력하세요" name="data">
+										<input type="text" placeholder="검색어를 입력하세요" name="data" id="data">
 									</div>
 									
 									<div class="gallery-search-button">
@@ -66,29 +78,28 @@
 								</div>
 								<br><br><hr>
 								<div class="hashtagsearch" id="hashtagsearch">
-								<!-- <div class="filters gallery-filters small-text text-lg-right" id="hashtagsearch"> -->
-										<a class="hashTag" href="/galleryList" id="hashTag" style="cursor:pointer">All</a>
-										<!-- <a class="hashTag" href="#" data-filter="*" class="active selected">All</a>
-										<a class="hashTag" href="#" data-filter=".training">#멍스타그램</a>
-										<a class="hashTag" href="#" data-filter=".puppies">#댕댕이</a>
-										<a class="hashTag" href="#" data-filter=".dogs">#멍멍이</a>
-									 -->
-									
+										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">Like</a>
+										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">Hot</a>
+										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">New</a><br><br>
 								</div>
 								</form>
 							</div>
 							
-
-							<div class="row isotope-wrapper masonry-layout c-gutter-0" data-filters=".gallery-filters">
-
+							<div id="gallist">
+							
+							<div class="row isotope-wrapper masonry-layout c-gutter-0" >
+							
+							
 								<c:forEach items="${list}" var="item">
 								
 								<!-- 여기부터 반복 -->
 								
-								<div class=" col-xl-4 col-md-6 training">
+								
+								<div class=" col-xl-4 col-md-6 ">
+
 									<div class="vertical-item item-gallery content-absolute text-center ds">
 										<div class="item-media">
-											<img src="${path}/resources/images/gallery/${item.gal_img }" href="galleryView?gal_no=${item.gal_no}">
+											<img src="${path}/resources/images/gallery/${item.gal_img }"> <!--  href="galleryView?gal_no=${item.gal_no}" -->
 											<div class="media-links">
 												<div class="links-wrap">
 										
@@ -103,29 +114,44 @@
 										</div>
 										
 									</div>
+									
+									
 								</div>
 								
 								<!-- 여기까지 반복 -->
+								
 								</c:forEach>
+								
 								<!-- <div class="item-content gradientdarken-background">
 											<h5>
 												<a href="galleryView">자세히 보기</a>
 											</h5>
 										</div> -->
-							</div>
+						
 							<!-- .isotope-wrapper-->
 
-							<!-- <div class="row mt-60">
+						
+
+						</div> <!-- 게시물관련 -->
+						
+						
+						
+						<c:if test="${num < page}">
+							<div class="row mt-60">
 								<div class="col-sm-12 text-center">
-									<a href="#" class="btn btn-maincolor mb-0">View More</a>
+									<a class="btn btn-maincolor mb-0" id="viewmore" style="color:white">View More</a>
+									<input type="hidden" value="${num}" id="num">
+									<input type="hidden" value="${tag}" id="tag">
 								</div>
 							</div>
- -->
-						</div>
+						</c:if>
+							
+						</div><!-- gallist 끝 -->
 
-					</div>
+					  </div>
+					  </div> <!-- row랑 짝 -->
 				</div>
-
+			
 				
 			</section>
 

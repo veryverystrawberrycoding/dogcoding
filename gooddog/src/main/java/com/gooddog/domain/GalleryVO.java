@@ -36,4 +36,9 @@ public class GalleryVO {
 	//페이징 
 	private int limitStart;
 	private int listCount;
+	
+	
+	private int pnum; //페이지관련
+	private String searchTag; //검색할 때 태그관련
+	
 }

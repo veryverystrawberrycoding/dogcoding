@@ -6,10 +6,19 @@
 <mapper namespace="com.gooddog.mapper.GalleryMapper">
 
 	<!-- 갤러리 글 전체보기 -->
-	<select id="galleryList" resultType="GalleryVO">
-		<![CDATA[
-		SELECT * FROM gallery ORDER BY gal_heart DESC
-		]]>
+	<select id="galleryList" resultType="GalleryVO" parameterType="GalleryVO">
+		SELECT * FROM gallery
+		<if test = "searchTag !=null and searchTag.equals('Like')" >
+			ORDER BY gal_heart DESC
+		</if>
+		<if test = "searchTag !=null and searchTag.equals('Hot')" >
+			ORDER BY gal_cnt DESC
+		</if>
+		<if test = "searchTag !=null and searchTag.equals('New')" >
+			ORDER BY gal_date DESC
+		</if>
+
+		limit 0, #{pnum}
 	</select>
 	
 	<!-- 갤러리 글 상세보기-->
@@ -19,16 +28,31 @@
 		]]>
 	</select>
 	
+	<!-- 갤러리 게시글 수 -->
+		<select id="galcount" resultType="int" >
+		<![CDATA[
+		SELECT count(*) FROM gallery
+		]]>
+	</select>
 	
 	<!-- 갤러리 해시태그, 글쓴이 검색 -->
 	
-	<select id="galSearch" resultType="GalleryVO" parameterType="String">
+	<select id="galSearch" resultType="GalleryVO" parameterType="GalleryVO">
 		
 		SELECT * FROM gallery g inner join user u on g.user_id=u.user_id
-		WHERE user_nick=#{data} or gal_tag LIKE CONCAT('%',#{data},'%')
-
+		WHERE user_nick=#{searchTag} or gal_tag LIKE CONCAT('%',#{searchTag},'%')
+		limit 0, #{pnum}
 
 	</select>
+	
+	
+	<select id="galSearchcount" resultType="int" parameterType="GalleryVO">
+		
+		SELECT count(*) FROM gallery g inner join user u on g.user_id=u.user_id
+		WHERE user_nick=#{searchTag} or gal_tag LIKE CONCAT('%',#{searchTag},'%')
+
+	</select>
+	
 	
 	<!-- 갤러리 글 insert -->
 	<insert id="galInsert" parameterType="GalleryVO">
@@ -39,17 +63,19 @@
 	<!-- 갤러리 글 수정 -->
 	<update id="galUpdate" parameterType="GalleryVO">
 		UPDATE gallery SET gal_name=#{gal_name},gal_tag=#{gal_tag}
-		<choose>
-		<when test="gal_name != null">
-			,gal_img = #{gal_img}
-		</when>
-		<otherwise>
-			,gal_img = 'insta_dog_04.jpg'
-		</otherwise>
-		</choose>
+		<if test="gal_img != null">
+		, gal_img = #{gal_img}
+		</if>
+		
 		WHERE gal_no=#{gal_no}
-
 	</update>
+	<!-- 조회수 1 up -->
+	<update id="galcntup" parameterType="int">
+		<![CDATA[
+		UPDATE gallery SET gal_cnt=gal_cnt+1 WHERE gal_no=#{no}
+		]]>
+	</update>
+	
 	<!-- 좋아요 1개 up -->
 	<update id="galHeartUp" parameterType="GalleryVO">
 		<![CDATA[
@@ -68,16 +94,30 @@
 		DELETE FROM gallery WHERE gal_no=#{gal_no}
 		]]>
 	</delete>
+	<!-- 갤러리 글 신고 -->
+	<insert id="badContent" parameterType="GalleryVO">
+		INSERT INTO badcontent(bad_no,gal_no,u_id,date)
+		VALUES(null,#{gal_no},#{user_id},now())
+	</insert>
 	
 	<!-- 댓글 조회 -->
-	<select id="commentList" parameterType="GalleryVO" resultType="hashmap">
+	<select id="commentList" parameterType="int" resultType="hashmap">
 		<![CDATA[
 		SELECT * FROM galre g inner join user u on g.user_id = u.user_id WHERE gal_no=#{gal_no}
+		order by galre_date desc
+		]]>
+	</select>
+	
+	<!-- 댓글 5개씩 조회 (페이징에 이용) -->
+	<select id="commentPaging" parameterType="GalleryVO" resultType="hashmap">
+		<![CDATA[
+		SELECT * FROM galre g inner join user u on g.user_id = u.user_id WHERE gal_no=#{gal_no}
+		order by galre_date desc limit #{pnum}, 5
 		]]>
 	</select>
 	
 	<!-- 댓글 개수 조회 -->
-	<select id="commentCount" parameterType="GalleryVO" resultType="int">
+	<select id="commentCount" parameterType="int" resultType="int">
 		<![CDATA[
 		SELECT count(*) 
 		FROM galre

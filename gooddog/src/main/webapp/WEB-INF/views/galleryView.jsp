@@ -44,19 +44,44 @@
 						
 						
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
-					<%-- <c:if test="${user_id eq item.user_id }"> --%>
 						<div class="gallery_buttons">
+							<c:if test="${sessionScope.user.getUser_id() eq null}">
+							<div class="gallery_buttons3" id="gallery_buttons3_nosess">
+							<img src="${path}/resources/images/gallery/alert.png" width="40px" height="40px">
+							</div>
+								
+					        </c:if>
+					        <c:if test="${sessionScope.user.getUser_id() ne null}">
+					        <div class="gallery_buttons3" id="gallery_buttons3">
+							<%-- <a href="/badContent?gal_no=${item.gal_no}"> --%>
+							<img src="${path}/resources/images/gallery/alert.png" width="40px" height="40px"><!-- </a> -->
+							</div>
+								
+					        </c:if>
+						
+							
+				
+							<c:if test="${sessionScope.user.getUser_id() eq item.user_id }">
+						<div class="gallery_user_buttons">
 							<div class="gallery_buttons1">
 							<a href="/galleryForm?gal_no=${item.gal_no}">
 							<img src="${path}/resources/images/gallery/edit.png" width="40px" height="40px"></a>
 							</div>
-							<div class="gallery_buttons2">
+							<div class="gallery_buttons2" id="gallery_buttons2">
 							<a href="/galDelete?gal_no=${item.gal_no}">
 							<img src="${path}/resources/images/gallery/delete.png" width="40px" height="40px"></a>
 							</div>
 						</div>
-						<hr>
-				<%-- 	</c:if>  --%>
+						
+					</c:if>
+							
+							
+					</div>
+				
+					<hr>
+					
+						
+					
 								<div class="item-media post-thumbnail">
 									<img src="${path}/resources/images/gallery/${item.gal_img }"  alt="img" style="width:400px">
 									<hr>
@@ -68,18 +93,29 @@
 								<a href="#"><img src="${path}/resources/images/profile/${item.user_img}" width="30px" height="30px" >
 								${item.user_nick}</a>
 								</div>
-								<div class="gallery_items2">
-								<c:if test="${userlike.userlike eq 0}">
+								<!-- 로그인 안 한 경우 하얀하트에 조회수만 -->
+								
+								<c:if test="${sessionScope.user.getUser_id() eq null}">
+									<div class="gallery_items2">
+									<img src="${path}/resources/images/gallery/noheart.png" width="30px" height="30px"  id="galheart_nosess">
+									<a id="galheart_text" class="galheart_text">${item.gal_heart }</a>
+									</div>
+								</c:if>
+								
+								<!-- 로그인 한 경우 하트 동작 -->
+								<c:if test="${sessionScope.user.getUser_id() ne null}">
+								<div class="gallery_items2" id="gallery_items2">
+									<c:if test="${userlike.userlike eq 0}">
 										<img src="${path}/resources/images/gallery/noheart.png" width="30px" height="30px"  id="galheart">
-								</c:if>
-								<c:if test="${userlike.userlike eq 1}">
+									</c:if>
+									<c:if test="${userlike.userlike eq 1}">
 										<img src="${path}/resources/images/gallery/heart.png" width="30px" height="30px"  id="galheart">
-								</c:if>
+									</c:if>
 					
-								
-								<a id="galheart_text" class="galheart_text">${item.gal_heart }</a>
+				
+									<a id="galheart_text" class="galheart_text">${item.gal_heart }</a>
 								</div>
-								
+								</c:if>
 								</div>
 									
 								<hr>
@@ -104,20 +140,23 @@
 							
 						
 							<article>
-							<div id="comments" class="comments-area ">
+							<div><!-- 대댓글 포함 -->
 
-
-								<div id="comments" class="comments-area ">
-								<h4 class="comments-title">
-									댓글 ${count }개
-								</h4>
+	
+								<div id="comments" class="comments-area "> <!-- 대댓글 전 -->
+								<div id="commentcount" class="comments-title" >
+								<h4>댓글 ${count }개</h4>
+								</div>
+								
 								<hr>
 								
 								<!-- 댓글쓰기란 -->
 								
-									
-									<!-- <form  method="post" > --> <!-- action="/" -->
-
+									<input type="hidden" value="${item.gal_no}" id="galno">
+									<input type="hidden" value="${sessionScope.user.getUser_id()}" id="userid">
+								
+									<!-- 로그인 하면 댓글쓰기창 보임 -->
+									<c:if test="${sessionScope.user.getUser_id() ne null}">
 										<div class="row">
 
 											<div class="col-sm-12">
@@ -136,9 +175,10 @@
 											</div>
 										</div>
 									<!-- </form> -->
-						
+									</c:if>
 								<br>
-
+								
+								<div id="commentList">
 								<c:forEach var="rl" items="${commentList}">
 										<article class="comment-body">
 
@@ -174,7 +214,48 @@
 										</article>
 										
 										
-								</c:forEach>									
+								</c:forEach>	
+								</div>			
+								
+								
+						<!-- 페이징 관련 -->
+						<div id="page">
+						
+						<nav aria-label="Pagination">
+								<ul class="pagination">
+									
+									<li class="page-item">
+										<a class="page-link" id="p_pre">
+											<i class="fa fa-chevron-left" ></i>
+										</a>
+									</li>
+									
+									
+									<c:forEach var="i" begin="1" end="${page}" >
+									<li class="page-item">
+										<a class="page-link" id="pnum">
+											${i}
+
+										</a>
+									</li>
+									</c:forEach>
+							
+								
+									<li class="page-item">
+										<a class="page-link" id="p_next">
+											<i class="fa fa-chevron-right" ></i>
+										</a>
+									</li>
+								
+								</ul>
+							</nav>
+
+							</div>
+							<!-- 페이징 관련 끝 -->
+								
+						
+								
+										
 							
 								</div>
 

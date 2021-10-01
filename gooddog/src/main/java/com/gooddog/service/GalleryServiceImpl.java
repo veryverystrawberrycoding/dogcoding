@@ -17,9 +17,9 @@ public class GalleryServiceImpl implements GalleryService {
 	private GalleryMapper galleryMapper;
 	
 	
-	public List<GalleryVO> galleryList(){
+	public List<GalleryVO> galleryList(GalleryVO vo){
 		
-		return galleryMapper.galleryList();
+		return galleryMapper.galleryList(vo);
 		
 	}
 
@@ -63,20 +63,31 @@ public class GalleryServiceImpl implements GalleryService {
 
 
 	@Override
-	public List<Map<String, Object>> commentList(GalleryVO vo) {
-		return galleryMapper.commentList(vo);
+	public List<Map<String, Object>> commentList(int gal_no) {
+		return galleryMapper.commentList(gal_no);
+	}
+	
+	@Override
+	public List<Map<String, Object>> commentPaging(GalleryVO vo) {
+		return galleryMapper.commentPaging(vo);
 	}
 
 
 	@Override
-	public int commentCount(GalleryVO vo) {
-		return galleryMapper.commentCount(vo);
+	public int commentCount(int gal_no) {
+		return galleryMapper.commentCount(gal_no);
 	}
 
 
 	@Override
-	public List<GalleryVO> galSearch(String data) {
-		return galleryMapper.galSearch(data);
+	public List<GalleryVO> galSearch(GalleryVO vo) {
+		return galleryMapper.galSearch(vo);
+		
+	}
+	
+	@Override
+	public List<GalleryVO> galSelect(String tag) {
+		return galleryMapper.galSelect(tag);
 		
 	}
 
@@ -113,5 +124,34 @@ public class GalleryServiceImpl implements GalleryService {
 	public int userlikeSelect(GalleryVO vo) {
 		return galleryMapper.userlikeSelect(vo);
 	}
+
+
+	@Override
+	public void badContent(GalleryVO vo) {
+		galleryMapper.badContent(vo);
+		
+	}
+
+
+	@Override
+	public void galcntup(int no) {
+		galleryMapper.galcntup(no);
+		
+	}
+
+	//총 게시글 수
+	@Override
+	public int galcount() {
+		return galleryMapper.galcount();
+	}
+
+
+	@Override
+	public int galSearchcount(GalleryVO vo) {
+		return galleryMapper.galSearchcount(vo);
+	}
+
+
+
 
 }
