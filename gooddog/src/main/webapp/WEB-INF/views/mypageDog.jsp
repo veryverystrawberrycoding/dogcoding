@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
@@ -99,12 +99,8 @@ function previewImage1(f){
 	<div id="canvas">
 		<div id="box_wrapper">
 
-			<!-- template sections -->
 
-			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
-			
-
-			  
+<%@ include file="./header.jsp" %>			
 
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
 				<div class="container">
@@ -124,12 +120,14 @@ function previewImage1(f){
 									<li class="is-active">
 										<a href="#">펫 실종신고</a>
 									</li>
+
 									<li>
 										<a href="../mypageFind">친구 관리</a>
 									</li>
 									<li>
 										<a class="logoutClick" href="../mainPage">회원탈퇴</a>
 									</li> 
+
 								</ul> 
 							</nav>
 						</div>
@@ -200,10 +198,9 @@ function previewImage1(f){
 			</section>
 
 
-	
 
+<%@ include file="./footer.jsp" %>		
 
-	<%@ include file="./footer.jsp"%>
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
  

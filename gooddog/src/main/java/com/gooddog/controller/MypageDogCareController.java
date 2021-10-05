@@ -1,19 +1,17 @@
 package com.gooddog.controller;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gooddog.domain.PetVO;
@@ -27,25 +25,74 @@ public class MypageDogCareController {
 	@Autowired
 	private MypageDogCareService dogCare; 
 	
-//	@RequestMapping(value="/mypageDogCare", method=RequestMethod.POST)
-//	public String weightList(Model m, PetVO vo) {
-	//public String weightList(HttpSession session, Model m) {
-		//String user_id = (String) session.getAttribute("user_id");
-//		String user_id = "a123";
-//		int pet_no = 2;
-//		List<WeightVO> weightList = dogCare.weightList(vo);
-		
-//		m.addAttribute("weightList" , weightList);
-//		System.out.println("dddd");
-
-//		return "mypageDogCare";
-//	}
+	@RequestMapping(value="/mypageDogCare")
+	public String mypage(PetVO vo) throws Exception {
+		dogCare.weightList(vo);
+		return "mypageDogCare";
+	}
 	
-//	@RequestMapping(value="/mypageDogCare", method=RequestMethod.POST)
-//	public String weightList(@RequestBody PetVO vo) throws Exception {
-//		dogCare.weightList(vo);
-//		return "mypageDogCare";
-//	}
+	@RequestMapping(value="/monthWeight", method=RequestMethod.POST)
+	@ResponseBody
+	//public String weightList(Model m, PetVO vo) {
+	public Object weightList(HttpSession session, PetVO vo) {
+		
+		//세션 정보 받기 
+		//UserVO user = (UserVO) session.getAttribute("user");
+
+		//세션 정보 중 user_id 값 저장하기 
+		//vo.setUser_id(user.getUser_id());
+		
+		vo.setUser_id("a123");
+		vo.setPet_no(2);
+		System.out.println(vo.getUser_id()+","+ vo.getPet_no()+","+vo.getMonth());
+		
+		//강아지 체중 정보 리스트 조회 
+		List<WeightVO> weightList = dogCare.weightList(vo);
+		System.out.println(weightList.size());
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("weightList",weightList);
+
+		return map;
+
+	}
+	
+
+	// 반려견 체중 입력 
+	@RequestMapping(value="/insertWeight", method=RequestMethod.POST) //
+	@ResponseBody
+	public String insertWeight(WeightVO vo) {
+		String msg="통신 완료";
+		System.out.println(vo.getPet_no());
+		dogCare.insertWeight(vo);
+		
+		return msg;
+	}
+	
+	
+	// 반려견 체중 수정 
+	@RequestMapping(value="/modifyWeight", method=RequestMethod.POST) //
+	@ResponseBody
+	public String modifyWeight(WeightVO vo) {
+		String msg="통신 완료";
+		System.out.println(vo.getPet_no());
+		dogCare.modifyWeight(vo);
+		
+		return msg;
+	}
+	
+	// 반려견 체중 삭제 
+	@RequestMapping(value="/deleteWeight", method=RequestMethod.POST) //
+	@ResponseBody
+	public String deleteWeight(WeightVO vo) {
+		String msg="통신 완료";
+		System.out.println(vo.getPet_no());
+		dogCare.deleteWeight(vo);
+		
+		return msg;
+	}
+	
 	
 //	@RequestMapping("/mypageFace") // http://localhost:8082/mypageFace ,method=RequestMethod.GET
 //	public void mypageFace() {

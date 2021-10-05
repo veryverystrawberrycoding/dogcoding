@@ -8,13 +8,35 @@
 	<!-- 반려견 몸무게 목록 조회 -->
 	<select id="weightList" parameterType="PetVO" resultType="WeightVO">
 
-		SELECT weight_date, weight_content 
-		FROM pet p inner join weight w
-		WHERE p.user_id = #{user_id}
-		AND p.pet_no = #{pet_no}
-		ORDER BY weight_date DESC
-		LIMIT 7
-
+	SELECT * 
+	FROM (SELECT weight_no,DATE_FORMAT(weight_date,'%Y-%m-%d') weight_date, weight_content
+			FROM pet p inner join weight w
+			WHERE p.user_id = #{user_id} AND p.pet_no = #{pet_no}
+			AND DATE_FORMAT(weight_date,'%YYYY')=#{year}
+			<if test='month != 0'>AND DATE_FORMAT(weight_date,'%m')=#{month}</if>
+			ORDER BY weight_date DESC 
+			LIMIT 7) d 
+	ORDER BY d.weight_date 
 	</select>
 	
+	<insert id="insertWeight" parameterType="WeightVO">
+	INSERT INTO weight
+	(weight_content, weight_date, pet_no)
+	VALUES(#{weight_content},#{weight_date},#{pet_no})
+	</insert>
+	
+	<update id="modifyWeight" parameterType="WeightVO">
+	UPDATE weight 
+	SET weight_date = #{weight_date},
+		weight_content = #{weight_content}
+	WHERE weight_no = #{weight_no} 
+	</update>
+	
+	<delete id="deleteWeight" parameterType="WeightVO">
+	DELETE FROM weight
+	WHERE weight_no = #{weight_no} 
+	</delete>
+	
+	
+
 </mapper>

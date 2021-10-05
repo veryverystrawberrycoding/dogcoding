@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.query.criteria.internal.expression.function.LengthFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import com.gooddog.domain.PlaceVO;
 import com.gooddog.domain.PlacereVO;
 import com.gooddog.service.PlaceService;
 
+
+
 @Controller
 public class PlaceController {
 	
@@ -29,58 +32,59 @@ public class PlaceController {
 	
 	// 장소 목록 조회 
 	@RequestMapping(value="/mapList")
-	public String placeList(Criteria criteria,Model m) throws Exception{
+	public String placeList() throws Exception{
 		
-		// 장소 목록 개수 조회
-		int placeCount = placeService.placeCount();
-		
-		// 페이징 객체 
-		Paging paging = new Paging();
-		paging.setCri(criteria);
-		paging.setTotalCount(placeCount);
-		
-		// 장소 목록 조회 - 페이지 변수 입력
-		List<Map<String, Object>> mapList = placeService.placeList(criteria); 
-		
-		m.addAttribute("mapList", mapList);
-		m.addAttribute("paging",paging);
-		
+//		// 장소 목록 개수 조회
+//		int placeCount = placeService.placeCount();
+//		
+//		// 페이징 객체 
+//		Paging paging = new Paging();
+//		paging.setCri(criteria);
+//		paging.setTotalCount(placeCount);
+//		
+//		// 장소 목록 조회 - 페이지 변수 입력
+//		List<Map<String, Object>> mapList = placeService.placeList(criteria); 
+//		
+//		m.addAttribute("mapList", mapList);
+//		m.addAttribute("paging",paging);
+		System.out.println("mapList 페이지 호출");
 		return "mapList";
 	}
 	
 	// 장소 목록 조회 - ajax로 필터링 키워드 값 받아옴 
 	@ResponseBody
-	@RequestMapping(value="/ajaxMapList")
+	@RequestMapping(value="/ajaxMapList", method=RequestMethod.POST)
 	public Object ajaxMapList(Criteria criteria,Model m) throws Exception{
-		String message = "통신완료지롱";
-		System.out.println(criteria.getPlace_group());
+		//String message = "통신완료지롱";
+		System.out.println("place_group: "+criteria.getPlace_group());
+		System.out.println("page: "+criteria.getPage());
 		
-//		if(criteria.getPlace_group().equals("5")) {
-//			criteria.getPlace_group(" WHERE place_group = 5");
-//		}
-		
+		String keyword = criteria.getKeyword();
+		System.out.println("keyword: "+keyword);
+		//System.out.println("keyword length: "+ keyword.length());
 		// 장소 목록 개수 조회
 		int placeCount = placeService.ajaxPlaceCount(criteria);
+		//System.out.println("placeCount: "+placeCount);
 		
 		// 페이징 객체 
 		Paging paging = new Paging();
 		paging.setCri(criteria);
 		paging.setTotalCount(placeCount);
+		//System.out.println("startPage: "+paging.getStartPage());
 		
-
 		// 장소 목록 조회 - 페이지 변수 입력
 		List<Map<String, Object>> mapList = placeService.ajaxPlaceList(criteria);
-		System.out.println(placeCount);
 		
-
-		System.out.println(mapList);
-
-		System.out.println(paging);
+		//System.out.println(mapList);
+		System.out.println("paging: "+paging);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("mapList",mapList);
+		map.put("place_group", criteria.getPlace_group());
 		map.put("placeCount",placeCount);
 		map.put("paging",paging);
+		map.put("keyword", criteria.getKeyword());
+
 		
 		return map;
 	}

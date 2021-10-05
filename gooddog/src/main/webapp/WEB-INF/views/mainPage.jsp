@@ -68,16 +68,17 @@
 					<div><a href="joinForm">회원가입</a></div> -->
 					<c:if test="${empty sessionScope.user }">
 					<div id="login-header" style="display:flex;">
-						<div style=margin-right:30px;><a href="loginForm">로그인</a></div>
-						<div style=margin-right:30px;><a href="joinForm">회원가입</a></div>
+						<div style=margin-left:30px;><a href="loginForm">로그인</a></div>
+						<div style=margin-left:30px;><a href="joinForm">회원가입</a></div>
 					</div>
 					</c:if>
 					<c:if test="${not empty sessionScope.user}">
 					<div id="login-header" style="display:flex;">
-					  <%--   <img src="/resources/images/profile/${user.user_img}" width="35px" height="35px" style="border-radius:50%; margin-right:10px;"> --%>
-						<div style=margin-right:30px;>${user.user_nick}</div>
-						<div style=margin-right:30px;><a href="mypageModify">마이 페이지</a></div>
-						<div style=margin-right:30px;><a href="logout" id="session_logout">로그아웃</a></div>
+
+						<div style=margin-left:30px;>${user.user_id}</div>
+						<div style=margin-left:30px;><a href="mypageDogCare">마이페이지</a></div>
+						<div style=margin-left:30px;><a href="logout" id="session_logout">로그아웃</a></div>
+
 					</div> 
 					</c:if>
 				</div>
@@ -93,10 +94,11 @@
 								<div class="media icon-special text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./mapList">Map</a>
+											<a class="main-menu" href="./mapList">Map</a>
 										</h5>
-										<p>
-											강아지 동반 장소 찾기<br/>											 
+										<p class="explain">
+											강아지 동반<br/>
+											장소 찾기									 
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -108,10 +110,11 @@
 								<div class="media icon-special mr-xl-4 text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./galleryList">Gallery</a>
+											<a class="main-menu" href="./galleryList">Gallery</a>
 										</h5>
-										<p>
-											우리 강아지 자랑하기
+										<p class="explain">
+											강아지 <br/>
+											자랑하기
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -123,10 +126,11 @@
 								<div class="media icon-special text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./bookList">Info</a>
+											<a class="main-menu" href="./bookList">Info</a>
 										</h5>
-										<p>
-											강아지 백과사전
+										<p class="explain">
+											강아지 <br/>
+											백과사전
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -142,11 +146,11 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./callingList">Friend</a>
+											<a class="main-menu" href="./callingList">Friend</a>
 										</h5>
-										<p>
-											우리 동네 강아지를 찾아요<br/>
-											
+										<p class="explain">
+											동네 친구 <br/>
+											찾기
 										</p>
 									</div>
 								</div>
@@ -158,10 +162,11 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./chat">Chat</a>
+											<a class="main-menu" href="./chat">Chat</a>
 										</h5>
-										<p>
-											친구랑 이야기하기 
+										<p class="explain">
+											친구랑<br/>
+											이야기
 										</p>
 									</div>
 								</div>
@@ -173,9 +178,11 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./lossList">Security Program</a>
+
+											<a class="main-menu" href="./callingList">Security Program</a>
+
 										</h5>
-										<p>
+										<p class="explain">
 											실종신고
 										</p>
 									</div>

@@ -381,7 +381,7 @@ function dogList() {
 					list += '<div class="form-group has-placeholder div_pet_birth">나이&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_birth" type="text" value="'+data.doglist[i].pet_birth+'"></div>'
 					list += '<div class="form-group has-placeholder div_pet_ident">번호&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_ident" type="text" value="'+data.doglist[i].pet_ident+'"></div>' 
 					list += '<div class="form-group has-placeholder div_pet_gender">성별&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_gender" type="text" value="'+data.doglist[i].pet_gender+'"></div>'
-					list += '<div class="form-group has-placeholder div_pet_spacies">종족&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_spacies" type="text" value="'+data.doglist[i].pet_spacies+'"></div>'
+					list += '<div class="form-group has-placeholder div_pet_spacies">견종&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_spacies" type="text" value="'+data.doglist[i].pet_spacies+'"></div>'
 					list += '<input type="hidden" class="hidden_pet_no" style="weight:10px;" value="'+data.doglist[i].pet_no+'">'  
 					list += '<div class="form-group d-flex-row-reverse align-items-center flex-column flex-md-row mt-40">' 
 					list += '<div class="container"><div class="row"><div class="col-md-12">'

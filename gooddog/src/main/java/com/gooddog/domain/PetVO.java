@@ -24,6 +24,10 @@ public class PetVO {
 	// 회원 아이디 
 	private String user_id;
 	
+	//
+	private int month;
+	private int year;
+	
 
 	
 		
