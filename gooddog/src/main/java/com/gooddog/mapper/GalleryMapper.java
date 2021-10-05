@@ -1,5 +1,6 @@
 package com.gooddog.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +54,8 @@ public interface GalleryMapper {
 	public int galcount(); //총게시글 수
 
 	public int galSearchcount(GalleryVO vo);
+
+	public List<GalleryVO> galtag();
 
 
 }

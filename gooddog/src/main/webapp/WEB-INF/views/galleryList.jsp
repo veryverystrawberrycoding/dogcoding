@@ -85,7 +85,7 @@
 								</form>
 							</div>
 							
-							<div id="gallist">
+							<div id="gallist" style="margin:0 10% 0 10%">
 							
 							<div class="row isotope-wrapper masonry-layout c-gutter-0" >
 							

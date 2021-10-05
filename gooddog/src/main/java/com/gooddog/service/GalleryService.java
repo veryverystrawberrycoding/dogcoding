@@ -1,5 +1,6 @@
 package com.gooddog.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,8 @@ public interface GalleryService {
 	public int galcount(); //총 게시글 수
 
 	public int galSearchcount(GalleryVO vo);
+
+	public List<GalleryVO> galtag();
 
 
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -64,6 +65,67 @@ public class GalleryController {
 //		m.addAttribute("user_id",sessionvo.getUser_id());
 
 	}
+	
+
+	@RequestMapping(value="/test")
+	public void test(Model m, GalleryVO vo,HttpServletRequest req) {
+		m.addAttribute("name", "안녕");
+		
+		List<GalleryVO> galtag = galleryService.galtag();
+		
+		m.addAttribute("tag", galtag);
+		
+		//System.out.println(galtag.get(0).getGal_tag());
+		
+		//System.out.println(galtag.size()); //18
+		
+		String[] str = new String[galtag.size()];
+		
+		ArrayList<String> result = new ArrayList<String>();
+		
+		Map<String, Integer> tagSum = new HashMap<>();
+		
+		int value; //임시값
+		
+		for(int i = 0; i < galtag.size(); i++) {
+			//System.out.println(galtag.get(i).getGal_tag());
+			str[i] = galtag.get(i).getGal_tag();
+		}
+		
+		for(int i = 0;i<str.length;i++) {
+			//System.out.println(str[i]);
+			
+			for(int j=0 ; j<(str[i].split("[,]")).length;j++) {
+				//System.out.println(((str[i].split("[,]"))[j]).replace("'","").trim());
+				result.add(((str[i].split("[,]"))[j]).replace("'","").trim());
+			}
+		}
+		
+		for(int i=0; i<result.size(); i++) {
+			if(!tagSum.containsKey(result.get(i))) {
+				tagSum.put(result.get(i), 1);
+			}
+			else {
+				//value = (int) tagSum.get(result.get(i)) +1;
+				value = tagSum.get(result.get(i)) +1;
+				tagSum.put(result.get(i), value);
+
+			}
+		}
+		System.out.println(tagSum);
+		
+		
+		
+		
+//		Map<String, Integer> tagTree = new TreeMap<>(tagSum);
+//		
+//		
+//		for (String i : tagTree.keySet()) {
+//		    System.out.println(i);
+//		}
+	}
+
+	
 	
 	@RequestMapping(value="/galleryView")
 	public void galleryView(Model m, GalleryVO vo,HttpServletRequest req) {
@@ -150,7 +212,7 @@ public class GalleryController {
 	
 	@RequestMapping(value="/galimg",method = RequestMethod.POST)
 	@ResponseBody
-	public String mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
+	public String galimg(@RequestParam("file") MultipartFile file) throws Exception {
 		//System.out.println("파일명"+file.getOriginalFilename());
 		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\gallery";
 		String filePath = basePath + "/" + file.getOriginalFilename();
@@ -538,6 +600,27 @@ public class GalleryController {
 				
 		return map;
 		
+	}
+	
+	////////////////////////////견종판별 및 챗봇
+	
+	@RequestMapping("/breedCheck")
+	public void mypageFace() {
+		
+	}
+	
+	@RequestMapping("/chatbot")
+	public void chatbot() {
+		
+	}
+	
+	
+	@RequestMapping(value="/breedCheck",method = RequestMethod.POST)
+	@ResponseBody
+	public void mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
+		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\dogface";
+		String filePath = basePath + "/" + file.getOriginalFilename();
+		File dest = new File(filePath); file.transferTo(dest);
 	}
 
 }

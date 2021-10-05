@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main_0joo.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
@@ -25,22 +24,6 @@
 
 <body>
 
-	<!-- search modal -->
-	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="search_modal" id="search_modal">
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</button>
-		<div class="widget widget_search">
-			<form method="get" class="searchform search-form" action="/">
-				<div class="form-group">
-					<input type="text" value="" name="search" class="form-control" placeholder="Search keyword" id="modal-search-input">
-				</div>
-				<button type="submit" enctype="multipart/form-data"></button>
-			</form>
-		</div>
-	</div>
-	<!-- search modal 끝-->
-
 	<!-- 시작 -->
 	<div id="canvas">
 		<div id="box_wrapper">
@@ -49,24 +32,14 @@
 
 			<section class="ls s-py-60 s-py-md-90  s-py-xl-160 c-gutter-60">
 				<div class="container">
-					<div class="row">
-								
-						<main class="col-lg-8 order-lg-2">
-						 
-  							<!-- <form enctype="multipart/form-data"> -->
-								<input type="file" maxlength="60" size="40" name="file" id="file">
-								<input type="button" value="견종확인" id="facecheck">
-						<!-- 	</form> -->
-						<!-- <img src="../resources/images/dogface/hi.jpg" width="500px" height="500px"> -->
-						
-						
-						<table id='replyList' border='2'>
-						
-		
-		
-						</table>
-						</main>
-					</div>
+
+				   <iframe
+				    allow="microphone;"
+				    width="350"
+				    height="430"
+				    src="https://console.dialogflow.com/api-client/demo/embedded/4ab8c97b-8e3d-4faf-8b14-b47c3493ccd7">
+					</iframe>
+      
 				</div>
 			</section>
 

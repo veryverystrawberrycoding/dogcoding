@@ -156,5 +156,10 @@
 		select count(*) from gallike where user_id=#{user_id} and gal_no=#{gal_no}
 	</select>
 	
+	<!-- 갤러리 모든 태그 들고오기 -->
+	<select id="galtag"  resultType="GalleryVO">
+		select gal_tag from gallery
+	</select>
+	
 	
 </mapper>   

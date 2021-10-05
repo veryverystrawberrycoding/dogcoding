@@ -55,7 +55,7 @@
 										</c:if>	
 										<input type="file" id="gal_img" name="gal_img" value="${item.gal_img}">
 										<hr>
-										<h5>Contents</h5><br>
+										<h5>Content</h5><br>
 										<textarea aria-required="true" rows="4" cols="45"  name="gal_name" id="gal_name" class="form-control" placeholder="내용을 입력하세요">${item.gal_name}</textarea>
 										<br>
 										<h5>Hash Tag</h5><br>

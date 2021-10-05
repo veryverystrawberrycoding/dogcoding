@@ -1,5 +1,6 @@
 package com.gooddog.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -149,6 +150,12 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public int galSearchcount(GalleryVO vo) {
 		return galleryMapper.galSearchcount(vo);
+	}
+
+
+	@Override
+	public List<GalleryVO> galtag() {
+		return galleryMapper.galtag();
 	}
 
 

@@ -560,7 +560,8 @@
 					</c:if>
 					<c:if test="${not empty sessionScope.user}">
 					<div id="login-header" style="display:flex;">
-						<div style=margin-right:30px;>${user.user_id}</div>
+						<%-- <img src="/resources/images/profile/${user.user_img}" width="30px" height="30px"> --%>
+						<div style=margin-right:30px;>${user.user_nick}</div>
 						<div style=margin-right:30px;><a href="mypageModify">마이 페이지</a></div>
 						<div style=margin-right:30px;><a href="/logout" id="session_logout">로그아웃</a></div>
 					</div> 

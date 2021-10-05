@@ -47,19 +47,25 @@ public class MypageDogCareController {
 //		return "mypageDogCare";
 //	}
 	
-	@RequestMapping("/mypageFace") // http://localhost:8082/mypageFace ,method=RequestMethod.GET
-	public void mypageFace() {
-		
-	}
-	
-	@RequestMapping(value="/mypageFace",method = RequestMethod.POST)
-	@ResponseBody
-	public void mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
-		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\dogface";
-		String filePath = basePath + "/" + file.getOriginalFilename();
-		File dest = new File(filePath); file.transferTo(dest);
-	}
-	
+//	@RequestMapping("/mypageFace") // http://localhost:8082/mypageFace ,method=RequestMethod.GET
+//	public void mypageFace() {
+//		
+//	}
+//	
+//	@RequestMapping("/chatbot")
+//	public void chatbot() {
+//		
+//	}
+//	
+//	
+//	@RequestMapping(value="/mypageFace",method = RequestMethod.POST)
+//	@ResponseBody
+//	public void mypageFaceimg(@RequestParam("file") MultipartFile file) throws Exception {
+//		String basePath = "C:\\git\\dogcoding\\gooddog\\src\\main\\webapp\\resources\\images\\dogface";
+//		String filePath = basePath + "/" + file.getOriginalFilename();
+//		File dest = new File(filePath); file.transferTo(dest);
+//	}
+//	
 	
 
 }
