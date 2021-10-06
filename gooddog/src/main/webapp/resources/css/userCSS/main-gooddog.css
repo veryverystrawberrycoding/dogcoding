@@ -23547,8 +23547,23 @@ div.icon-styled img{
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }
 
+
+aside.col-lg-4.order-lg-1.mb-0.filterNstore{
+	width:500px;
+	padding : 0!important;
+	
+}
+
+
 #store-box {
 	margin-top: 0px;
+	
+}
+
+
+.store-box-title{
+	display : flex;
+	justify-content: space-between;
 }
 
 .icon-box.text-center {
@@ -23605,7 +23620,13 @@ div.icon-styled img{
 	/* background-color: green; */
 	display : flex;
 	margin-bottom : 20px;
+	/* height : 100px; */
 }
+
+#storebox.media-body {
+	display : flex;
+}
+
 
 #storebox img{
 	border-radius: 5%;
@@ -23613,6 +23634,7 @@ div.icon-styled img{
 .place_name {
 	font-size : 22px;
 	font-weight : bold;
+	line-height: 30px;
 }
 .place_addr {
 	font-size : 16px;

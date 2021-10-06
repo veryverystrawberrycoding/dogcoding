@@ -13,6 +13,10 @@ public class Criteria {
     // 장소 필터링 키워드
     private String place_group;
     
+    // 주소 키워드 
+    private String addr_1;
+    private String addr_2; 
+    
     // 검색어 
     private String keyword;
     

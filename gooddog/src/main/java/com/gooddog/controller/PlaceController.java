@@ -61,7 +61,12 @@ public class PlaceController {
 		
 		String keyword = criteria.getKeyword();
 		System.out.println("keyword: "+keyword);
-		//System.out.println("keyword length: "+ keyword.length());
+		//System.out.println("keyword isEmpty: "+keyword.isEmpty());
+		//if (keyword.isEmpty()) {criteria.setKeyword(null);}
+		//System.out.println("keyword: "+keyword);
+		System.out.println("addr_1: "+criteria.getAddr_1());
+		System.out.println("addr_2: "+criteria.getAddr_2());
+		//System.out.println("addr_2 isEmpty: "+criteria.getAddr_2().isEmpty());
 		// 장소 목록 개수 조회
 		int placeCount = placeService.ajaxPlaceCount(criteria);
 		//System.out.println("placeCount: "+placeCount);
@@ -75,7 +80,7 @@ public class PlaceController {
 		// 장소 목록 조회 - 페이지 변수 입력
 		List<Map<String, Object>> mapList = placeService.ajaxPlaceList(criteria);
 		
-		//System.out.println(mapList);
+		System.out.println(mapList);
 		System.out.println("paging: "+paging);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();

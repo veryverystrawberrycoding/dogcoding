@@ -21,6 +21,8 @@
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/userJS/dogface.js"></script>
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger intent="WELCOME" chat-title="GoodDog" agent-id="4ab8c97b-8e3d-4faf-8b14-b47c3493ccd7" language-code="ko"></df-messenger>
    
 </head>
 
@@ -75,7 +77,7 @@
 					<c:if test="${not empty sessionScope.user}">
 					<div id="login-header" style="display:flex;">
 
-						<div style=margin-left:30px;>${user.user_id}</div>
+						<div style=margin-left:30px;>${user.user_nick}</div>
 						<div style=margin-left:30px;><a href="mypageDogCare">마이페이지</a></div>
 						<div style=margin-left:30px;><a href="logout" id="session_logout">로그아웃</a></div>
 
@@ -197,7 +199,7 @@
 
 			</section>
 			<div class='mainFaceButton'>
-		 <img src="/resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px">
+		<!--  <img src="/resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px"> -->
          <img src="/resources/images/dogdog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
          </div>
      

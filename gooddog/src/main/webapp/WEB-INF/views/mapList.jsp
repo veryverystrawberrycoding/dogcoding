@@ -53,7 +53,7 @@
 			<section class="ls s-py-60 s-py-md-90  s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">								
-						<main class="col-lg-8 order-lg-2" id="mapList-main">
+						<main class="col-lg-7 order-lg-2" id="mapList-main">
 							<div class="address-box">
 								<div class="select_container">
 									<select name="sido" id="sido" class=""></select>
@@ -85,7 +85,7 @@
 
 
 <!-- 왼쪽 카테고리 -->
-						<aside class="col-lg-4 order-lg-1 mb-0" style="width:400px;">
+						<aside class="col-lg-5 order-lg-1 mb-0 filterNstore">
 							<div class="filters place-filters">								
 								<div class="icon-box text-center">
 									<div>
@@ -157,7 +157,11 @@
 							<!-- <div class="box-shadow pb-40 px-40 pt-35"> -->
 							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:790px">
 								<div class="widget widget_mailchimp">
-									<h3 class="widget-title">place list</h3>
+									<div class="store-box-title">
+										<h3 class="widget-title">place list</h3>
+										<div>검색결과 </div>
+									</div>
+									<hr>
 									
 									<ul class="list-unstyled " id="place-info" >
 										<!-- <div class="row isotope-wrapper" data-filters=".place-filters" id="place-info"> -->

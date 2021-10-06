@@ -1,7 +1,19 @@
 $(function(){
 	
-   	let area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
-   	let area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
+	let place_group=0; // 그룹 없음, 전체리스트
+	let startPage=1; // 시작 페이지 
+	let keyword='';
+	//let keyword = $('.place-search > input').val();
+	getAjaxMapList(place_group, startPage,keyword);
+	
+	//mapMaker();
+	
+	
+	
+	
+   	//let area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
+   	let area0 = ["시/도 선택","서울","인천","대전","광주","대구","울산","부산","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
+	let area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
    	let area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
    	let area3 = ["대덕구","동구","서구","유성구","중구"];
    	let area4 = ["광산구","남구","동구","북구","서구"];
@@ -19,22 +31,28 @@ $(function(){
  	let area16 = ["서귀포시","제주시","남제주군","북제주군"];
  
  	$("select[name=sido]").each(function() {
-		let sido = $(this);
+	
 		for (let i=0; i<area0.length; i++){
-			sido.append("<option value='"+area0[i]+"'>"+area0[i]+"</option>");
+			$(this).append("<option value='"+area0[i]+"'>"+area0[i]+"</option>");
 		}
 		
 		$("select[name=gugun]").append("<option value=''>구/군 선택</option>");
 	
-	})//end of function 
+	})//end of each 
 	
+
+	
+	let addr_1;
+	
+	// 시도 셀렉트 박스 변경되면 
 	$("select[name=sido]").change(function() {
+		// 검색창 초기화 
+		$('.place-search > input').val('');
 		let areaIndenx = $("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
 		let area = "area" + areaIndenx;
-		//alert(eval(areaStr));
-		
-	  	//alert(area);
-
+		addr_1 = $(this).val()
+		//alert(addr_1);
+	
 		$("select[name=gugun] option").remove();
 		
 		if(area == "area0"){
@@ -42,65 +60,41 @@ $(function(){
 		}
 		else{
 			$("select[name=gugun]").append("<option value=''>구/군 선택</option>");
-			$.each(eval(area), function() {
+			$.each(eval(area), function() {  //나중에 eval 함수 대체할 것 !! 
 			 $("select[name=gugun]").append("<option value='"+this+"'>"+this+"</option>");
 			   }); //end of each
 			 
 		}//end of else
-	
-	})//end of function 
-
-
-
-
-
-/*	 // 시/도 선택 박스 초기화
-	
-	 $("select[name=sido]").each(function() {
-	  $selsido = $(this);
-	  $.each(eval(area0), function() {
-	   $selsido.append("<option value='"+this+"'>"+this+"</option>");
-	  });
-	  $selsido.next().append("<option value=''>구/군 선택</option>");
-	 });
-	
-	 
-	
-	 // 시/도 선택시 구/군 설정	
-	 $("select[name^=sido]").change(function() {
-	  let area = "area"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
-	  //alert(area)
-	  
-
-	  let $gugun = $(this).next(); // 선택영역 구군 객체
-	  $("option",$gugun).remove(); // 구군 초기화
-	
-	  if(area == "area0")
-	   $gugun.append("<option value=''>구/군 선택</option>");
-	  else {
-	   $.each(eval(area), function() {
-	    $gugun.append("<option value='"+this+"'>"+this+"</option>");
-	   });
-	  }
-	 });*/
-
 		
-	let place_group=0; // 그룹 없음, 전체리스트
-	let startPage=1; // 사직 페이지 
-	//let keyword = $('.place-search > input').val();
-	getAjaxMapList(place_group, startPage);
+		// mapList 재호출 
+		getAjaxMapList(place_group, startPage, keyword, addr_1);
 	
-	//mapMaker();
-
+	}); //end of change  
+	
+	// 구군 셀렉트 박스 변경되면 
+	$("select[name=gugun]").change(function() {
+		// 검색창 초기화 
+		$('.place-search > input').val('');
+		
+		let addr_2 = $(this).val()
+		//alert(addr_1 +','+ addr_2);
+		
+		// mapList 재호출 
+		getAjaxMapList(place_group, startPage, keyword, addr_1, addr_2);
+	});
 	
 }); //end of function; ======================================================================================
+
 
 
 
 // 위치 정보 필터링 	
 $(".place-filter").click(function(){
 	
-	
+	// 주소창 초기화 
+	$("select[name=sido]").val('시/도 선택');
+	$("select[name=gugun]").val('');
+	// 검색창 초기화 
 	$('.place-search > input').val('');
 	 // 클릭한 필터링 번호 변수에 저장 
 	let place_group = $(this).attr('data-filter');
@@ -113,6 +107,8 @@ $(".place-filter").click(function(){
 $('#map-search-btn').click(function(){
 	let place_group=0; // 그룹 없음, 전체리스트
 	let startPage=1; // 사직 페이지 
+	//let addr_1 = $("select[name=sido]").val();
+	//let addr_2 = $("select[name=gugun]").val();
 	let keyword = $('.place-search > input').val();
 	alert(keyword)
 	
@@ -159,7 +155,7 @@ $(document).on('click', '#nextBtn', function(){
 });
 
 //ajax로 Map리스트 받아오기 
-function getAjaxMapList(place_group, page, keyword){
+function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 		//alert("getAjaxMapList ==> place_group:"+place_group+ ", page: "+page)
 	
 		$.ajax({
@@ -167,7 +163,9 @@ function getAjaxMapList(place_group, page, keyword){
 			data :{
 				place_group : place_group,
 				page : page,
-				keyword : keyword
+				keyword : keyword, 
+				addr_1 : addr_1,
+				addr_2 : addr_2
 			},
 			type : "post",
 			success:function(data){
@@ -175,7 +173,8 @@ function getAjaxMapList(place_group, page, keyword){
 				$("#place-info").empty();
 				let mapList = data.mapList;
 				let place_group=data.place_group;
-				let paging = data.paging;
+				let placeCount=data.placeCount;
+				let paging = data.paging; 
 				let startPage = data.paging.startPage;
 				let endPage = data.paging.endPage;
 				let keyword = data.keyword;
@@ -197,8 +196,8 @@ function getAjaxMapList(place_group, page, keyword){
 					place_info += '</h4>';
 					place_info += '<p class="item-meta">';
 					place_info += '<span class="place_addr">'+mapList[i].place_addr+'&nbsp;</span>';
+					place_info += '<p>리뷰 수:${total.total} | 만족도: ${percent} % | ${place.place_tag }</p>'
 					place_info += '</p>';
-					place_info += '</div>';
 					place_info += '</li>';
 				}); //end of each
 				
