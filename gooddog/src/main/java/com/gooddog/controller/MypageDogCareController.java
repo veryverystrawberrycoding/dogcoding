@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.gooddog.domain.PetVO;
+import com.gooddog.domain.UserVO;
 import com.gooddog.domain.WeightVO;
 import com.gooddog.service.MypageDogCareService;
 
@@ -37,13 +38,13 @@ public class MypageDogCareController {
 	public Object weightList(HttpSession session, PetVO vo) {
 		
 		//세션 정보 받기 
-		//UserVO user = (UserVO) session.getAttribute("user");
+		UserVO user = (UserVO) session.getAttribute("user");
 
 		//세션 정보 중 user_id 값 저장하기 
-		//vo.setUser_id(user.getUser_id());
+		vo.setUser_id(user.getUser_id());
 		
-		vo.setUser_id("a123");
-		vo.setPet_no(2);
+		//vo.setUser_id("a123");
+		//vo.setPet_no(2);
 		System.out.println(vo.getUser_id()+","+ vo.getPet_no()+","+vo.getMonth());
 		
 		//강아지 체중 정보 리스트 조회 

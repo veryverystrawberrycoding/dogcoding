@@ -23631,14 +23631,53 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 #storebox img{
 	border-radius: 5%;
 }
+
+#store-box{
+/* 	display : flex; */
+}
+.store-box-title div{
+	display : flex;
+}
+
 .place_name {
 	font-size : 22px;
 	font-weight : bold;
 	line-height: 30px;
+	
 }
 .place_addr {
 	font-size : 16px;
-	font-weight : lighter ;
+	/* font-weight : lighter ; */
+}
+
+#review_info {
+	color : gray;
+}
+
+.pagination {
+	justify-content: space-between;
+}
+
+
+#pageBtn{
+	border-radius: 30px;
+	width: 60px;
+	height : 60px; 
+	color : gray;
+ 	font-size: 25px;
+ 	line-height: 30px; 
+ 	text-align: center;
+ 	border : none;
+}
+
+#prevBtn, #nextBtn {
+	color : gray;
+	width: 60px;
+	height : 60px; 
+ 	font-size: 25px;
+ 	line-height: 30px; 
+ 	text-align: center;
+ 	border : none;
 }
 
 
@@ -23750,7 +23789,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 }
 .weightInput select{
 	background-color: #fff0f1;
-	
+	padding : 0 10px 0 10px;
 	/* border-radius : 25px; */
 }
 
@@ -23770,12 +23809,12 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	text-align : right;
 	/* border-radius : 25px; */
 	background-color: #fff0f1;
-	padding : 11px 24px 11px 12px;
+	padding : 11px 12px 11px 12px;
 	text-align : right;
 }
-.weightInput img{
+/* .weightInput img{
 	filter:opacity(.5) drop-shadow(0 0 0 #fff0f1);
-}
+} */
 #store-name a:before{
 	/* color: red; */
 	counter-increment: place;
@@ -23792,11 +23831,11 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	 font-size: 20px;
 	 
 }
-#selectMonth{
-	 background-color: #fbebd0; 
+#selectYear, #selectMonth{
+	/*  background-color: #fbebd0;  */
 	 border-radius : 25px;
 	 font-size: 20px;
-	 text-align : right;
+	/*  text-align : right; */
 }
 
 .sort-period div{

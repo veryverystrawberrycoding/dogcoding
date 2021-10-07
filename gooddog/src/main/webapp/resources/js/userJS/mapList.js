@@ -178,10 +178,15 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				let startPage = data.paging.startPage;
 				let endPage = data.paging.endPage;
 				let keyword = data.keyword;
+				let countList = data.countList // 리뷰개수 
+				let percentList = data.percentList // 리뷰 만족도 
 				let place_info = [];
+				
+				$('.placeCount').text(placeCount);
 				
 				place_info += '<input class="place_group" type="hidden" value="'+place_group+'">';	
 				place_info += '<input class="keyword" type="hidden" value="'+keyword+'">';	
+				if (mapList.length == 0) {place_info +='<div class="text-center">검색결과가 없습니다.</div>' }
 				$.each(mapList, function(i){
 					place_info += '<li class="media" id="storebox" >';
 					place_info += '<div>';
@@ -196,7 +201,7 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 					place_info += '</h4>';
 					place_info += '<p class="item-meta">';
 					place_info += '<span class="place_addr">'+mapList[i].place_addr+'&nbsp;</span>';
-					place_info += '<p>리뷰 수:${total.total} | 만족도: ${percent} % | ${place.place_tag }</p>'
+					place_info += '<p id="review_info">리뷰 수 : '+countList[i]+' | 만족도: '+percentList[i]+'%  | '+mapList[i].place_tag+'</p>';
 					place_info += '</p>';
 					place_info += '</li>';
 				}); //end of each
@@ -216,11 +221,11 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				let paging_info = [];
 				
 				// 이전페이지 버튼 
-				paging_prev += '<li class="page-item">'
+				paging_prev += '<li class="page-item" id="gdpage-item">'
 				//paging_prev += '<a id="prevBtn" class="page-link" href="/ajaxMapList?page='+(startPage-1)+'"/>'
-				paging_prev += '<a id="prevBtn" class="page-link" href="#"/>'
+				paging_prev += '<div id="prevBtn" class="page-link">'
 				paging_prev += '<i class="fa fa-chevron-left"></i>'
-				paging_prev += '</a>'
+				paging_prev += '</div>'
 				paging_prev += '</li>'	
 				// 페이지 영역에 추가	
 				$(".pagination").append(paging_prev);			
@@ -228,24 +233,22 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				
 				// 페이지 그룹 버튼 : 3page씩 표시 
 				for(let i=startPage; i<endPage+1; i++){
-					paging_info += '<li class="page-item">'
+					paging_info += '<li class="page-item" id="gdpage-item">'
 					//paging_info += '<a id="pageBtn" class="page-link" href="/ajaxMapList?page='+i+'"/>'
-					paging_info += '<a id="pageBtn" class="page-link" href="#"/>'
+					paging_info += '<div id="pageBtn" class="page-link">'+i+'</div>'
+					//paging_info += '<span class="sr-only">(current)</span>'
 					paging_info += '<input class="pageNo" type="hidden" value="'+i+'">'
-					paging_info += i
-					paging_info += '<span class="sr-only">(current)</span>'
-					paging_info += '</a>'
 					paging_info += '</li>'
 				} // end of for
 				//페이지 영역에 추가 
 				$(".pagination").append(paging_info);
 				
 				// 다음페이지 버튼
-				paging_next += '<li class="page-item">'
+				paging_next += '<li class="page-item" id="gdpage-item">'
 				//paging_next += '<a id="nextBtn" class="page-link" href="/ajaxMapList?page='+(endPage+1)+'"/>'
-				paging_next += '<a id="nextBtn" class="page-link" href="#"/>'
+				paging_next += '<div id="nextBtn" class="page-link">'
 				paging_next += '<i class="fa fa-chevron-right"></i>'
-				paging_next += '</a>'
+				paging_next += '</div>'
 				paging_next += '</li>'
 				//페이지 영역에 추가 
 				$(".pagination").append(paging_next);
@@ -280,11 +283,7 @@ function mapMaker(mapList){
 	
 	// 주소-좌표 변환 객체를 생성합니다
 	var geocoder = new kakao.maps.services.Geocoder();
-	
-	// 마커 이미지의 이미지 주소입니다
-	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-	
-	
+		
 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
 	var bounds = new kakao.maps.LatLngBounds();    
 	
@@ -298,9 +297,12 @@ function mapMaker(mapList){
 		     if (status === kakao.maps.services.Status.OK) {
 				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				// 마커 이미지의 이미지 주소입니다
+				var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png'; 
 				
 				// 마커 이미지의 이미지 크기 입니다
-			    var imageSize = new kakao.maps.Size(24, 35); 
+			    var imageSize = new kakao.maps.Size(35, 50); 
 			    
 			    // 마커 이미지를 생성합니다    
 			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
@@ -308,12 +310,12 @@ function mapMaker(mapList){
 				// 마커를 생성합니다
 			    var marker = new kakao.maps.Marker({
 			        map: map, // 마커를 표시할 지도
-			        position: coords // 마커를 표시할 위치
+			        position: coords//, // 마커를 표시할 위치
 			        //title : positions[j].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			        //image : markerImage // 마커 이미지 
 			    });
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		       map.setCenter(coords);
+		        map.setCenter(coords);
 
 				// LatLngBounds 객체에 좌표를 추가합니다				
 				//alert(coords);				    
@@ -322,7 +324,7 @@ function mapMaker(mapList){
 
 			    // 마커에 표시할 인포윈도우를 생성합니다 
 			    var infowindow = new kakao.maps.InfoWindow({
-			        content: mapList[j].place_name // 인포윈도우에 표시할 내용
+			        content: '<div style="padding-left: 10px">-'+mapList[j].place_name+'</div>' // 인포윈도우에 표시할 내용
 			    });
 			
 			    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다

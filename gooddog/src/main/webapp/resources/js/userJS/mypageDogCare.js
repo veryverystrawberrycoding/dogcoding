@@ -12,24 +12,40 @@ $(function(){
 		dogAdd();
 	});
 	
-	
-	
-	
 
 	// 차트그리기 
-	createChart(0);
+	//createChart(0);
+	
+	// 이번달 추출하여 변수에 담기 
+	let today = new Date();
+	let year = today.getFullYear();
+	let month = today.getMonth()+1;  // 월
+		
+
+	//alert(year+','+ month);
+	$('#selectYear').val(year).prop("selected", true);
+	$('#selectMonth option:eq('+month+')').prop("selected", true);
+	
+	//selectList로 년도를 선택해서 값 추출
+    $('#selectYear').change(function() {
+        let changeYear = $('#selectYear option:selected').val();
+        //alert('year:'+year);
+		// 차트 지우기
+		//$("#myChart").empty();
+		// 차트 그리기 		
+		//createChart(month);
+	});	//end of change 
 	
 			
 	//selectList로 월을 선택해서 값 추출
     $('#selectMonth').change(function() {
         let changeMonth = $('#selectMonth option:selected').val();
-        month = changeMonth;
         //alert('month:'+month);
 		// 차트 지우기
-		$("#myChart").empty();
+		//$("#myChart").empty();
 		// 차트 그리기 		
-		createChart(month);
-	});	//end of function 
+		//createChart(month);
+	});	//end of change 
 
 
 	 $('#weight_content').change(function(){
@@ -199,25 +215,33 @@ $(document).on('click', '#pet_delete_btn', function(){
 		}
 	})	
 })
+
+// 반려견 체중 조회
+$(document).on('click', '#weightListBtn', function(){
+	
+	let year = $('#selectYear').val();
+	let month = $('#selectMonth').val();
+	let 
+	//alert(year+','+ month);
+	//weightListSelect(year, month);
+});
+
 //반려견 체중 조회
-/*function weightListSelect(month){
-			//var user_id = "a123"; //임시로 값지정 
-		//var pet_no = 2; //임시로 값지정 
-		
-		//alert("createChart: "+ month);
-		//var param = {"month":month};
+function weightListSelect(year, month){
 		
 		// 리스트 생성
 		let weightList = [];
 		let chartLabels = [];
 		let chartData = [];
 		
-	
 		
 		$.ajax({
 			type:'POST',
 			url:"/monthWeight",
-			data: {month:month},			
+			data: {
+				year: year,
+				month: month
+				},			
 			//dataType: "json",
 			//contentType: "application/json; charset=utf-8;",
 			success : function(data) {
@@ -234,7 +258,7 @@ $(document).on('click', '#pet_delete_btn', function(){
 			}
 		}); //end of ajax;  
 		alert(weightList);
-}*/
+}
 
 
 // 반려견 체중 입력
@@ -279,15 +303,7 @@ $(document).on('click', '#weightListBtn', function(){
 		let weight_date = [];
 		let weight_content = [];
 		
-		// 이번달 추출하여 변수에 담기 
-		let today = new Date();
-		let year = today.getFullYear();
-		let month = today.getMonth()+1;  // 월
-		
-	//setTimeout(function(){}, 2000);
-	//alert(month)
-/*	$('#selectMonth option:eq('+month+')').prop("selected", true);
-	*/
+
 		
 	
 		
@@ -389,7 +405,6 @@ function createTable(month){
 
 // 반려견 체중 그래프 그리기
 function createChart(month){
-
 
 	let ctx = document.getElementById('myChart').getContext('2d');
 	let utilityChart = new Chart(ctx, {

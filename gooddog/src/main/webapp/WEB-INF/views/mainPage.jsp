@@ -181,11 +181,12 @@
 									<div class="media-body">
 										<h5 class="links-darkgrey">
 
-											<a class="main-menu" href="./callingList">Security Program</a>
+											<a class="main-menu" href="./mypageDogCare">Dog Care</a>
 
 										</h5>
 										<p class="explain">
-											실종신고
+											산책 기록 <br/> 
+											체중 기록
 										</p>
 									</div>
 								</div>

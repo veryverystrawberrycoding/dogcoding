@@ -75,7 +75,7 @@
 							<!-- 지도 -->
 							<!-- <div> -->
 							<div class="item-media post-thumbnail">
-							<div id="map" style="width:100%;height:790px;"></div>
+							<div id="map" style="width:100%;height:830px;"></div>
 								<%-- <img src="${path}/resources/images/place/map.png" alt="img" > --%>
 							</div>
 						</article>
@@ -155,11 +155,11 @@
 						
 							<!-- 위치 리스트 -->
 							<!-- <div class="box-shadow pb-40 px-40 pt-35"> -->
-							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:790px">
+							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:830px">
 								<div class="widget widget_mailchimp">
 									<div class="store-box-title">
 										<h3 class="widget-title">place list</h3>
-										<div>검색결과 </div>
+										<div>검색결과&nbsp;:&nbsp;<p class="placeCount"></p>건</div>
 									</div>
 									<hr>
 									
@@ -191,7 +191,7 @@
 								
 							<!-- 페이지  -->
 							<nav aria-label="Pagination">
-								<ul class="pagination">
+								<ul class="pagination" id="gdpage">
 									<%-- <c:if test="${paging.prev}"> --%>
 <%-- 									<li class="page-item">
 										<a class="page-link" href='<c:url value="/mapList?page=${paging.startPage-1}"/>'>
