@@ -410,6 +410,7 @@ $(document).on('click', '.pet_modify_btn', function(){
 			   pet_spacies : $(this).parent().parent().parent().parent().parent().find(".pet_spacies").val(),
 			   pet_img : document.getElementById("dog_modify_img").files[0].name},
 		success: function(data) { 
+			dogList(); 
 			alert("수정이 완료됐습니다")
 		} 
 		
