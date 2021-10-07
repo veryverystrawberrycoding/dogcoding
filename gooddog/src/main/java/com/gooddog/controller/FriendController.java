@@ -13,10 +13,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gooddog.domain.ChatLog;
 import com.gooddog.domain.FrList;
 import com.gooddog.domain.FrListt;
 import com.gooddog.domain.FriendsVO;
@@ -97,24 +99,24 @@ public class FriendController {
 		     
 		    //String jsonString = mapper.writeValueAsString(fd2); 
 		     
-		    FriendsVO fd = new FriendsVO(sessionvo.getUser_id(), list);  
-		    System.out.println(fd);
-			friendRepository.insert(fd);  
+		FriendsVO fd = new FriendsVO(sessionvo.getUser_id(), list);  
+	    System.out.println(fd);
+		friendRepository.insert(fd);   
 		}  else {
 		Update update = new Update();
 		//frlist에 각각의 정보 저장 
-	    //리스트 객체 생성 
+	    //리스트 객체 생성  
 	    System.out.println(fd2); 
 	    update.push("frList").each(list);
 	    Query query = new Query().addCriteria(Criteria.where( "followingId" ).is(sessionvo.getUser_id()));
 	    mongoTemplate.updateFirst(query, update, "following");
-	    
+	     
 	    if(frienddRepository.findByFollowerId(vo.getUser_id())==null) {
 	    	FriendssVO fdd = new FriendssVO(vo.getUser_id(), list2);
 	    	frienddRepository.insert(fdd);
 	    	
 	    } else {
-	    	Update update2 = new Update();
+	    	Update update2 = new Update(); 	
 	    	update2.push("frListt").each(list2);
 	    	Query query2 = new Query().addCriteria(Criteria.where( "followerId" ).is(vo.getUser_id()));
 	    	mongoTemplate.updateFirst(query2, update2, "follower");
@@ -132,9 +134,28 @@ public class FriendController {
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		return friendRepository.findByFollowingId(sessionvo.getUser_id());
 		
-	}
+	} 
 	
-
+	@PostMapping("followerList")
+	public String followerList( HttpServletRequest req) throws JsonProcessingException{
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		return frienddRepository.findByFollowerId(sessionvo.getUser_id());
+	} 
+	
+	
+	@PostMapping("chatContent")
+	public List<ChatLog> chatContent(@RequestParam("receiver") String receiver, HttpServletRequest req) throws JsonProcessingException{
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
+		Query query = new Query();
+		Criteria criteria = new Criteria();
+		Criteria criteria_arr[]  = new Criteria[1];
+		criteria_arr[0] = new Criteria().andOperator(Criteria.where("sender").is(receiver), Criteria.where("receiver").is(sessionvo.getUser_id()));
+		criteria_arr[1] = new Criteria().andOperator(Criteria.where("sender").is(sessionvo.getUser_id()), Criteria.where("receiver").is(receiver));
+		query.addCriteria(criteria.orOperator(criteria_arr));
+		return mongoTemplate.find(query, ChatLog.class, receiver);
+	} 
 	
 	
 }

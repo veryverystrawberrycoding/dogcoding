@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/js/vendor/jquery-3.3.1.min.js">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
@@ -121,9 +121,7 @@ function previewImage(f){
 			
 <%@ include file="./header.jsp" %>
 
-	<!-- wrappers for visual page editor and boxed version of template -->
-	<div id="canvas">
-		<div id="box_wrapper">
+
 
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-155">
 				<div class="container">
@@ -208,9 +206,8 @@ function previewImage(f){
 				</div>
 			</section>
 
-
-
-			<%@ include file="./footer.jsp" %>		
+		   
+<%@ include file="./footer.jsp" %>
 
 		</div><!-- eof #box_wrapper --> 
 	</div><!-- eof #canvas -->

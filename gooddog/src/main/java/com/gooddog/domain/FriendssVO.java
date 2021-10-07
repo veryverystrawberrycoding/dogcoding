@@ -14,18 +14,16 @@ import lombok.Data;
 public class FriendssVO {
 	
 	@Id
-	private ObjectId _id;
+	private String id;
 	 
 	private String followerId;
 	
 	private List<FrListt> frListt;
 	
-	 
-
 	public FriendssVO(String followerId, List<FrListt> frlistt) {
 		this.followerId = followerId;	
 		this.frListt = frlistt;  
-	}
+	} 
 	
 	public FriendssVO() {
 		

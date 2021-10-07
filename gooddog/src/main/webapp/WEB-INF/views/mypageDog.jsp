@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
 	<!--[if lt IE 9]>
@@ -67,6 +67,37 @@ function previewImage1(f){
 	} 
 }
 
+function previewDog(f,i){
+ 
+	var file = f.files;
+ 
+	// 확장자 체크
+	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+		// 선택한 파일 초기화
+		f.outerHTML = f.outerHTML;
+
+		document.getElementById('previewDog'+i+'').innerHTML = '';
+ 
+	} 
+	else { 
+
+		// FileReader 객체 사용
+		var reader = new FileReader();
+ 
+		// 파일 읽기가 완료되었을때 실행
+		reader.onload = function(rst){ 
+			document.getElementById('previewDog'+i+'').innerHTML = '<img src="' + rst.target.result + '">';
+		}
+
+		// 파일을 읽는다
+		reader.readAsDataURL(file[0]);
+
+	} 
+}
+
+
 
 </script>
 
@@ -99,8 +130,12 @@ function previewImage1(f){
 	<div id="canvas">
 		<div id="box_wrapper">
 
+			<!-- template sections -->
 
-<%@ include file="./header.jsp" %>			
+			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
+			
+
+			  
 
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-120 c-mb-20 c-gutter-60">
 				<div class="container">
@@ -120,14 +155,12 @@ function previewImage1(f){
 									<li class="is-active">
 										<a href="#">펫 실종신고</a>
 									</li>
-
 									<li>
 										<a href="../mypageFind">친구 관리</a>
 									</li>
 									<li>
 										<a class="logoutClick" href="../mainPage">회원탈퇴</a>
 									</li> 
-
 								</ul> 
 							</nav>
 						</div>
@@ -198,9 +231,10 @@ function previewImage1(f){
 			</section>
 
 
+	
 
-<%@ include file="./footer.jsp" %>		
 
+	<%@ include file="./footer.jsp"%>
 		</div><!-- eof #box_wrapper -->
 	</div><!-- eof #canvas -->
  

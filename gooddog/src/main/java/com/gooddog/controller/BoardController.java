@@ -51,7 +51,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/friend") //http://localhost:8082/board/friend
-	public void friend() {
+	public void friend(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		logger.info("friend");
 	}
 //	@RequestMapping("/mapList") //http://localhost:8082/board/mapList
@@ -173,11 +175,16 @@ public class BoardController {
 		
 			return "/mypageModify"; 
 		}   
-	}
+	} 
 	 
 	@RequestMapping("/kakao")
 	public void kakao() {
 		
+	}
+	
+	@RequestMapping("/friendView")
+	public void friendView() {
+		logger.info("friendView");
 	}
 	
 	

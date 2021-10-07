@@ -15,13 +15,13 @@ public class FriendsVO {
 	 
 
 	@Id
-	private ObjectId _id;
+	private String id;
 	 
 	private String followingId;
 	
 	private List<FrList> frList;
-	
 	 
+	  
 
 	public FriendsVO(String followingId, List<FrList> frlist) {
 		this.followingId = followingId;	

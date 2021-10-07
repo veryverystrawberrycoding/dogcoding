@@ -59,12 +59,12 @@ public class LogJoinController {
 			} else if(info.getUser_author()=="1"){
 				//logJoinService.userLog(vo);
 				return info;
-			}
+			} 
 				else {    
 				session.setAttribute("user", info);
-				logJoinService.userLog(vo);
+				//logJoinService.userLog(vo);
 				return info;  
-			}  
+			}   
 			  
 		} 
 		
