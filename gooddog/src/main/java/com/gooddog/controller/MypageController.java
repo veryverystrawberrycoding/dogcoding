@@ -183,15 +183,7 @@ public class MypageController {
 		File dest = new File(filePath); file.transferTo(dest);
 	}
 	
-	@PostMapping("/lossList")
-	@ResponseBody
-	public List<Map<String, Object>> lossList(UserVO vo, HttpServletRequest req){
-		HttpSession session = req.getSession();
-		UserVO sessionvo = (UserVO)session.getAttribute("user");
-		vo.setUser_id(sessionvo.getUser_id());
-		return mypageService.lossList(vo);
-	}
-	
+	 
 	@RequestMapping(value="/profile", method = RequestMethod.GET)
 	public void profile(HttpServletRequest hsq, Model m) {
 		String uid = hsq.getParameter("name");
