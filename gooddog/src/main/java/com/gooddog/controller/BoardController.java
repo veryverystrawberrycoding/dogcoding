@@ -24,7 +24,7 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-
+ 
 	
 	//@@@@@@@@@@@@@@@@@나머지 컨트롤@@@@@@@@@@@@@@@@@@//
 	@RequestMapping("/register") //http://localhost:8082/board/register
