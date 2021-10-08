@@ -88,21 +88,25 @@ function userList(){
 						
 						returnHtml += "<tr>"
 						
-						returnHtml += "<td>"+userid+"</td>"
+						returnHtml += "<td class= 'userid'>"+userid+"</td>"
 						returnHtml += "<td>"+username+"</td>"
 						returnHtml += "<td>"+useraddr+"</td>"
 						returnHtml += "<td>"+usertel+"</td>"
-						returnHtml += "<td><button type='button' class='user_delete'>삭제</button></td>"	
+						returnHtml += "<td><button type='button' class='user_stop'style= 'border-radius: 0px; padding: 12px 20px;'>정지</button></td>"	
 						returnHtml += "</tr>"
 						
+					
 					}
 				}
+				
 				
 				$('#userList1').html(returnHtml);
 			}
 	});
 }
 
+
+
 function pageGo(pageNum){
 	if(pageNum == 0){
 	// 이전페이지
@@ -119,95 +123,29 @@ function pageGo(pageNum){
 }
 
 
-//-----------------------------------------------------------------
 
-$(document).ready(function(){
-	
-	blackList();
-});
-
-function blackList(){
-
-		var returnHtml = "";
-		var pageHtml = '';
-			
-			
-		var page = $('#page').val();
-		$.ajax({	
-			type:'POST',
-			data: 'page='+page,
-			url:"/blackList",
-			dataType: "json",
-			success : function(data) {
-			
-				var nextPage = data.nextPage;
-				var prevPage = data.prevPage;
-				var pageIn = data.pageIn;
-				var startPage = data.page.startPage;
-				var endPage = data.page.endPage;
-				endPage = endPage +1;
-				for(var p=startPage; p<endPage; p++){
-					
-					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
-				}
-					
-		
-				$('#pageId').html(pageHtml);
-				
-				$('#page').val(pageIn);
-				$('#nextPage').val(nextPage);
-				$('#prevPage').val(prevPage);
-				
-				var cnt = data.list.length; 
-				
-				if(cnt == 0){
-					alert("사용자가 없습니다");
-				}else{
-					for(var i=0; i<cnt; i++){
-						var black_no = data.list[i].black_no;		
-						var user_id = data.list[i].user_id;
-						var black_start = data.list[i].black_start;
-						var black_end = data.list[i].black_end;
-						var black_content = data.list[i].black_content;
-						
-						returnHtml += "<tr>"
-						
-						returnHtml += "<td>"+black_no+"</td>"
-						returnHtml += "<td>"+user_id+"</td>"
-						returnHtml += "<td>"+black_start+"</td>"
-						returnHtml += "<td>"+black_end+"</td>"
-						returnHtml += "<td>"+black_content+"</td>"	
-						returnHtml += "<td><button type='button' class='black_delete'>삭제</button></td>"	
-						
-						returnHtml += "</tr>"
-						
-					}
-				}
-				
-				$('#blackList1').html(returnHtml);
-			}
-	});
-}
-
-function pageGo(pageNum){
-	if(pageNum == 0){
-	// 이전페이지
-		$('#page').val($('#prevPage').val());
-		userList();
-	}else if(pageNum == 999){
-	// 다음페이지
-		$('#page').val($('#nextPage').val());
-		userList();
-	}else{
-		$('#page').val(pageNum);		// 사용자가 누른 페이지
-		userList();
-	}
-}
+$(document).on('click', '.user_stop', function(){
+  let userid = $(this).parent().parent().find(".userid").text();
+  alert(userid)
+   window.open('addblack.do?userid='+userid+'','_blank','width=600 ,height=400') 
+    
+})
 
 
 </script>
 
-
+   <style>
+   
+   .pagenations{
+      display:flex;
+      justify-content: center;
+   }
+   .pagenations a{
+      margin-right: 10px;
+       margin: 0 1px 0 25px;
+   }
+   
+   </style>
 <body>
 	
 	<form>
@@ -250,21 +188,14 @@ function pageGo(pageNum){
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">회원 관리</h2>
                     
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-4" >
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
                    			회원 목록
                             </div>
-                            <form action="/admin_table/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
-                            
-                                
-                            
+                           
+                           
+
                             <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
@@ -273,7 +204,7 @@ function pageGo(pageNum){
                                             <th>이름</th>
                                             <th>주소</th>
                                             <th>전화번호</th>
-											<th>삭제</th>
+											<th>정지</th>
                                         </tr>
                                     </thead>
                                   
@@ -284,48 +215,15 @@ function pageGo(pageNum){
                                 </table>
                             </div>
                             <!--  page -->
+                               <div class="pagenations">
                               <a href="javascript:pageGo(0)">이전</a>
-                             <div class="userpage" id="pageId"> </div>
+                             <a class="page" id="pageId" > </a>
                               <a href="javascript:pageGo(999)">다음</a>
+                              </div>
                         </div>
                         
                         
-                          <div class="card mb-4" style="float: right; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                블랙리스트	 목록
-                            </div>
-                            <form action="/admin_table/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요"><button style="float: right;">검색</button>
-                            	</div>
-                            	
-                            </form>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>넘버</th>
-                                            <th>아이디</th>
-                                            <th>시작일</th>
-                                            <th>종료일</th>
-                                            <th>정지사유</th>
-                                            <th>삭제</th>
-                                        
-                                        </tr>
-                                        
-                                    </thead>
-             
-                                    <tbody id="blackList1">
-                                    	
-                                    	
-                                    </tbody>
-                                </table>
-                            </div>
-                               <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
-                             <div class="page" id="pageId"> </div>
-                              <a href="javascript:pageGo(999)">다음</a>
+                         
                         </div>
                     </div>
                 </main>

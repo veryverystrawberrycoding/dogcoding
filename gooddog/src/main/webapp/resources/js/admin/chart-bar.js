@@ -1,76 +1,78 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
 
-var maxvalue2 = Math.max(
-	  $('#monthsum6').val(),
-  	  $('#monthsum5').val(),
-  	  $('#monthsum4').val(),
-  	  $('#monthsum3').val(),
-  	  $('#monthsum2').val(),
-  	  $('#monthsum1').val()    	);
-	var minvalue2 = Math.min(
-      $('#monthsum6').val(),
-	  $('#monthsum5').val(),
-	  $('#monthsum4').val(),
-	  $('#monthsum3').val(),
-	  $('#monthsum2').val(),
-	  $('#monthsum1').val()   	);
-	alert(maxvalue2+ " , " + minvalue2);
-// 최근 6개월 값
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myLineChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: [
-    	$('#month6').val()+"월",
-    	$('#month5').val()+"월",
-    	$('#month4').val()+"월",
-    	$('#month3').val()+"월",
-    	$('#month2').val()+"월",
-    	$('#month1').val()+"월"],
-    datasets: [{
-      label: "Revenue",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data: [    	  
-    	  $('#monthsum6').val(),
-    	  $('#monthsum5').val(),
-    	  $('#monthsum4').val(),
-    	  $('#monthsum3').val(),
-    	  $('#monthsum2').val(),
-    	  $('#monthsum1').val()],
-    }],
-  },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'month'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 6
+var weekCount = $('#weekCount').val();
+ weekCount = weekCount.replace(/{/g,'');
+ weekCount = weekCount.replace(/}/g,'');
+ weekCount = weekCount.replace(/\[/g,'');
+ weekCount = weekCount.replace(/\]/g,'');
+
+const obj2 = JSON.stringify(weekCount);
+const obj_Json2 = JSON.parse(obj2);
+
+const spObj2 = obj_Json2.split(",");
+
+var fullCount2 = spObj2.length;
+var fullLabel2;
+var fullData2;
+
+var data2 = spObj2[9];
+
+
+var array_label2 = [];
+
+
+var array_data2 = [];
+
+for(var i=0; i<fullCount2; i++){
+	
+	var label2 = spObj2[i];
+	var data2 = spObj2[i+1];
+	
+	var labelS2 = label2.split("=");
+	var dataS2 = data2.split("=");
+
+	array_data2[i] = labelS2[1];
+	array_label2[i] = dataS2[1];	
+	alert(array_data2[i]);
+	i++;
+	
+};
+new Chart(document.getElementById("myBarChart"), {
+    type: 'bar',
+    data: {
+      labels: array_label2,
+      datasets: [
+        {
+          label: ["월별 방문자"],
+          backgroundColor: ["#3e95cd",'#ffc107', "#8e5ea2","#3cba9f","#e8c3b9","#c45850",'#007bff', '#dc3545'],
+          data: array_data2
+  		 
         }
-      }],
-      yAxes: [{
-        ticks: {
-          min: minvalue2,
-          max: maxvalue2,
-          maxTicksLimit: 6
-        },
-        gridLines: {
-          display: true
-        }
-      }],
+      ]
     },
-    legend: {
-      display: false
+      options: {
+        legend: {
+             labels: {
+                  fontColor: 'black' // label color
+
+                 }
+              },
+        scales: {
+            // y축
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontColor:'black' // y축 폰트 color
+
+
+                }
+             }],
+             // x축
+             xAxes: [{
+                ticks: {
+                    beginAtZero:false,
+                    fontColor:'black' // x축 폰트 color
+                }
+             }]
+        }
     }
-  }
-});
-
-
+   });

@@ -19,14 +19,14 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title>관리자 페이지</title>
-	<link href="/resources/css/userCSS/admin-styles.css" rel="stylesheet" />
+	<link href="${path}/resources/css/userCSS/admin-styles.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" ></script>
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
-	<script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
+	<script src="${path}/resources/js/vendor/jquery-3.3.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
@@ -34,28 +34,11 @@
 	<![endif]-->
 	
 </head>
- <c:forEach var="list" items="${list }">
-	<c:set var="count" value="${count+1 }"/>
-	<input type="hidden" id="monthsum${count}" value="${list.sum}">
-	<c:set var="month" value="${list.month }"/>
-	<input type="hidden" id="month${count}" value="${fn:substring(month,3,5) }">
-</c:forEach>
 
-<c:forEach var="list2" items="${list2 }">
-	<c:set var="count2" value="${count2+1 }"/>
-	<input type="hidden" id="daysum${count2}" value="${list2.sum}">
-	<c:set var="day" value="${list2.day}"/>
-	<input type="hidden" id="day${count2}" value="${fn:substring(day,6,8) }">
-</c:forEach>
 
-<c:forEach var="list3" items="${list3 }">
-	<c:set var="count3" value="${count3+1 }"/>
-	<input type="hidden" id="catecnt${count3}" value="${list3.cnt}">
-	<input type="hidden" id="cate${count3}" value="${list3.num}">
-</c:forEach>
 <body>
 	
-	<c:set var="now" value="<%=new java.util.Date() %>"/>
+	
 
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -90,13 +73,53 @@
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">Charts</h2>
                     
+                    	<div class="row">
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body">Primary Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" >전체 회원 수</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-warning text-white mb-4">
+                                    <div class="card-body">Warning Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" >어제 신규 가입자</a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">Success Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" >이번달 신규 가입자</a>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">Danger Card</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <a class="small text-white stretched-link" >올해 신규 가입자</a>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
-                                	월별 방문자
+                                	일별 방문자$
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
                             <div class="card-footer small text-muted">
+                            <input type="hidden" id="dayCount" value="${dayCount}"   />
+                           
 								Updated 
 							<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" /></div>
                         </div>
@@ -105,10 +128,11 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                               	         요일별 방문자
+                               	         월별 방문자${weekCount}
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
                                     <div class="card-footer small text-muted">
+                                     <input type="hidden" id="weekCount" value="${weekCount}"   />
 									Updated 
 									<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />
 									</div>
@@ -118,10 +142,12 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-pie me-1"></i>
-                                        성별
+                                        성별  
                                     </div>
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                  <input type="hidden" id="menCount" value="${menCount}"   />
+                                  <input type="hidden" id="womenCount" value="${womenCount}"   />
                                 </div>
                             </div>
                         </div>
@@ -129,14 +155,14 @@
                     </main>
                  </div>
              </div>
-                    
+                      
 		
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 
        
-        <script src="${path}/resources/js/scripts.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
         <script src="${path}/resources/js/admin/chart-area.js"></script>
         <script src="${path}/resources/js/admin/chart-bar.js"></script>

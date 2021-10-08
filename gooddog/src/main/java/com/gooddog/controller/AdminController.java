@@ -1,11 +1,16 @@
 package com.gooddog.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,10 +32,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
-import com.gooddog.domain.BookVO;
+import com.gooddog.domain.BookVO; 
 import com.gooddog.domain.GalleryVO;
-import com.gooddog.domain.LossVO;
-import com.gooddog.domain.PetVO;
+import com.gooddog.domain.LossVO; 
 import com.gooddog.domain.UserVO;
 import com.gooddog.service.AdminService;
 
@@ -60,7 +63,7 @@ public class AdminController {
 	   }  
 	
 	
-	//관리자페이지 회원,블랙리스트 뷰 
+	//관리자페이지 회원 뷰 
 	@RequestMapping(value = "/admin/admin_table.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_table(Model m, HttpServletResponse response) {
 	 
@@ -74,7 +77,67 @@ public class AdminController {
 		
 	}
 	
+	//관리자페이지 블랙리스트 뷰 
+	@RequestMapping(value = "/admin/admin_blacklist.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_blacklist(Model m, HttpServletResponse response) {
+	 
+	//  기능 툴	
+	web.init(response);
+
 	
+ 	
+		
+		return new ModelAndView("/admin/admin_blacklist") ;
+		
+	}
+	
+	//관리자페이지 블랙티스트 추가 페이지 
+		@RequestMapping(value = "/admin/addblack.do", method = {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView addblack(Model m, HttpServletResponse response) {
+		  
+		//  기능 툴	
+		web.init(response);
+
+
+			return new ModelAndView("/admin/addblack") ;
+			
+		}
+		
+		// 블랙리스트 추가
+		@ResponseBody
+		@RequestMapping(value = "/admin/blackadd.do" , method= { RequestMethod.POST})
+		public String BlackListAdd(BlackVO vo,Model m,String term) {
+	
+			String[] arr = term.split(" ");
+			int termday = Integer.parseInt(arr[0]);
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			DateFormat ddddd = new SimpleDateFormat("yyyy-MM-dd");
+			
+//			System.out.println("날짜적용전");
+//			System.out.println(ddddd.format(cal.getTime()));
+//			System.out.println("id값="+vo.getUser_id());
+//			System.out.println("사유="+vo.getBlack_content());
+			
+			vo.setBlack_start(ddddd.format(cal.getTime()));
+			cal.add(Calendar.DATE, +termday);
+			vo.setBlack_end(ddddd.format(cal.getTime()));
+			
+			// vo 데이터 확인 user_id,black_start,black_end,black_content
+			System.out.println("ID="+vo.getUser_id()+"///////START="+vo.getBlack_start()+"/////////END="+vo.getBlack_end()+"///////CONTENT="+vo.getBlack_content());
+			
+			AdminService.addBlackList(vo);
+			
+//			System.out.println("날짜적용");
+//			System.out.println(ddddd.format(cal.getTime()));
+			
+			// 아이디, 시작기간, 끝기간, 사유
+			// 시작기간 now()
+		    
+						
+			return "ok";
+		}
 	/**
 	 * 회원 목록
 	 * @param UserVO
@@ -172,8 +235,13 @@ public class AdminController {
 		black.setListCount(page.getListCount());
 		
 		List<BlackVO> list = null;
-		list = AdminService.getBlackList(black);		
-			
+		list = AdminService.getBlackList(black);	
+		System.out.println(nowPage);
+		System.out.println(page.getListCount());
+		System.out.println(blackCount);
+		System.out.println(page.getLimitStart());
+	    System.out.println(list);
+	
 		Map<String, Object> data = new HashMap<String, Object>();
 		
 		int nextPage = page.getNextPage();	// 다음페이지
@@ -211,27 +279,37 @@ public class AdminController {
 	// 차트 
 	@RequestMapping(value="/admin/admin_chart.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_chart(Model m, HttpServletResponse response) {
-//		//월별
-//		List<Map<String,String>> list= AdminService.getMonthSum();
-//		//일별
-//		List<Map<String,String>> list2= AdminService.getDaySum();
+		//일별 
+		List<Map<String,String>> dayCount= AdminService.getDayCount();
+		//주별
+		List<Map<String,String>> weekCount= AdminService.getweekCount();
 		//성별
 		int womenCount = AdminService.getWomenCount();
   		int menCount = AdminService.getMenCount();
   		
-  		HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("menCount",menCount);
-        map.put("womenCount",womenCount);
-        
-        
+  		
+  		 m.addAttribute("dayCount",dayCount);
+         m.addAttribute("weekCount",weekCount);
+  		 m.addAttribute("menCount",menCount);
+         m.addAttribute("womenCount",womenCount); 
+         
+         //\\String dayCount1 = new ObjectMapper().writeValueAsString(dayCount);
+         
+         System.out.println(dayCount);
+         System.out.println(dayCount.get(0));
+         System.out.println(dayCount.get(1));
+         System.out.println("#############getValue##############");
+         System.out.println(dayCount.get(0).values());
+         System.out.println(dayCount.get(0).values().toArray()[0]);
+ 
+         
+//        System.out.println(dayCount);
+//         String weekCount1 = new ObjectMapper().writeValueAsString(weekCount);
+//         System.out.println(weekCount1);
       
-		System.out.println("menCount="+menCount  + "womenCount="+womenCount);
-//		m.addAttribute("list",list);
-//		m.addAttribute("list2",list2);
-	
-		
 		return new ModelAndView("/admin/admin_chart") ;
 	}
+	
 	
 	
 

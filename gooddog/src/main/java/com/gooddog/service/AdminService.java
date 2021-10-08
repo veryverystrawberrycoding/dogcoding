@@ -34,6 +34,8 @@ public interface AdminService {
 		public int getMenCount();
 		
 		public int getWomenCount();
+		public List<Map<String,String>> getDayCount();
+		public List<Map<String, String>> getweekCount();
 	
 		///////info(book) 정보가져오기//////
 		
@@ -65,6 +67,14 @@ public List<BadcontentVO> badcontent(BadcontentVO badcontentVO);
 public void badcontentDelete(BadcontentVO vo);
 //////////////////////////badcount페이징///////////////////////
 public int badcontentCount(BadcontentVO badcontentVO) throws Exception;
+
+
+//유저에서  블랙리스트 등록하기 
+public void addBlackList(BlackVO vo);
+
+
+
+
 
 }
 

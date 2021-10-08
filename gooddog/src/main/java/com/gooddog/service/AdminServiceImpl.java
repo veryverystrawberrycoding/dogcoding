@@ -19,7 +19,7 @@ import com.gooddog.mapper.AdminMapper;
 @Service
 public class AdminServiceImpl implements AdminService {
 	
-
+ 
 	@Autowired
 	AdminMapper AdminMapper;
 	
@@ -28,8 +28,8 @@ public class AdminServiceImpl implements AdminService {
 		List<UserVO> result = null;
 		
 		return AdminMapper.getUserInfo(vo);
-	}
- 
+	} 
+  
 	 
 	public List<BlackVO> getBlackList(BlackVO vo) {
 		
@@ -38,15 +38,6 @@ public class AdminServiceImpl implements AdminService {
 		return AdminMapper.getBlackInfo();
 	}
 
-//	//월별 총액
-//		public List<Map<String, String>> getMonthSum() {
-//			return AdminMapper.getMonthSum();
-//		}
-//		
-//		//일별 총액
-//		public List<Map<String, String>> getDaySum() {
-//			return AdminMapper.getDaySum();
-//		} 
 
 
 	@Override
@@ -64,6 +55,19 @@ public class AdminServiceImpl implements AdminService {
 		return result;
 	}
 		
+	@Override
+	public List<Map<String, String>> getDayCount() {
+		
+		return AdminMapper.getDayCount();	
+	}
+
+
+	@Override
+	public List<Map<String, String>> getweekCount() {
+		
+		return AdminMapper.getweekCount();	
+	}
+			
 				
 				
 
@@ -86,8 +90,10 @@ public class AdminServiceImpl implements AdminService {
 
 		@Override
 		public int getblackCount(BlackVO blackVO) throws Exception {
-			// TODO Auto-generated method stub
-			return 0;
+			int result = 0;
+			result = AdminMapper.blackCount();
+			
+			return result;
 		}
 		
 	
@@ -179,6 +185,20 @@ public int badcontentCount(BadcontentVO badcontent) {
 
 	return result;
 	}
+
+
+
+
+
+
+
+// 블랙리스트 등록
+
+@Override
+public void addBlackList(BlackVO vo) {
+
+	AdminMapper.addBlackList(vo);
+}
 
 
 

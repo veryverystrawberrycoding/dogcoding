@@ -17,6 +17,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
                                 회원관리
                             </a>
+                              <a class="nav-link" href="admin_blacklist.do">
+                                <div class="sb-nav-link-icon"><i class="fas fa-address-card"></i></div>
+                                블랙리스트관리
+                            </a>
                              
                              <a class="nav-link" href="admin_post.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
@@ -26,14 +30,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 갤러리관리
                             </a>
-                       <!--     <a class="nav-link" href="admin_post3.do">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                실종신고관리
-                            </a>
-                               <a class="nav-link" href="admin_post4.do">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                실종신고관리2
-                            </a>            -->               
+  
                             
                               <a class="nav-link" href="admin_black.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>

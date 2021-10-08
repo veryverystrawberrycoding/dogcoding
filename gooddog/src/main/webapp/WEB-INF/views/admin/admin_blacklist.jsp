@@ -12,15 +12,13 @@
 <html class="no-js">
 <!--<![endif]-->
   
-  
-  
-<head>
+<head> 
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>관리자 - 게시판 정보</title>
+	<title>관리자 - 회원 정보</title>
 	<link href="/resources/css/userCSS/admin-styles.css" rel="stylesheet" />
 	 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" ></script>
@@ -34,20 +32,34 @@
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
-		
 	<![endif]-->
+	
+	<style>
+	
+	.pagenations{
+		display:flex;
+		justify-content: center;
+	}
+	.pagenations a{
+		margin-right: 10px;
+	    margin: 0 1px 0 25px;
+	}
+	
+	</style>
 
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-
 <script type="text/javascript">
+
+//-----------------------------------------------------------------
+
 $(document).ready(function(){
 	
-	galleryList();
+	blackList();
 });
 
-function galleryList(){
+function blackList(){
 
 		var returnHtml = "";
 		var pageHtml = '';
@@ -57,132 +69,88 @@ function galleryList(){
 		$.ajax({	
 			type:'POST',
 			data: 'page='+page,
-			url:"/galleryList",
+			url:"/blackList",
 			dataType: "json",
-			async    : false,
 			success : function(data) {
-		
+			
 				var nextPage = data.nextPage;
 				var prevPage = data.prevPage;
 				var pageIn = data.pageIn;
 				var startPage = data.page.startPage;
 				var endPage = data.page.endPage;
 				endPage = endPage +1;
-				for(var p=startPage; p<endPage; p++){
 				
+				
+				for(var p=startPage; p<endPage; p++){
+					
 					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 				
+					
 		
 				$('#pageId').html(pageHtml);
+				
 				$('#page').val(pageIn);
 				$('#nextPage').val(nextPage);
 				$('#prevPage').val(prevPage);
 				
 				var cnt = data.list.length; 
-					
+				
 				if(cnt == 0){
 					alert("사용자가 없습니다");
 				}else{
 					for(var i=0; i<cnt; i++){
-						var gal_no = data.list[i].gal_no;		
-						var gal_name = data.list[i].gal_name;
-						
-						
+						var black_no = data.list[i].black_no;		
+						var user_id = data.list[i].user_id;
+						var black_start = data.list[i].black_start;
+						var black_end = data.list[i].black_end;
+						var black_content = data.list[i].black_content;
 						
 						returnHtml += "<tr>"
 						
-						returnHtml += "<td class ='gal_no'>"+gal_no+"</td>"
-						returnHtml += "<td class = 'gal_name'>"+gal_name+"</td>"
-		
-						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">등록</button></td>'						
-						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">수정</button></td>'
-						returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn" >삭제</button></td>'
-						
-							
+						returnHtml += "<td>"+black_no+"</td>"
+						returnHtml += "<td>"+user_id+"</td>"
+						returnHtml += "<td>"+black_start+"</td>"
+						returnHtml += "<td>"+black_end+"</td>"
+						returnHtml += "<td>"+black_content+"</td>"	
+						returnHtml += "<td><button type='button' class='black_restore' style= 'border-radius: 0px; padding: 12px 20px;' >해지</button></td>"	
 						
 						returnHtml += "</tr>"
 						
 					}
 				}
 				
-				$('#galleryList1').html(returnHtml);
+				$('#blackList1').html(returnHtml);
 			}
-			
 	});
-	
-
-	
 }
 
 function pageGo(pageNum){
 	if(pageNum == 0){
 	// 이전페이지
 		$('#page').val($('#prevPage').val());
-		galleryList();
+		blackList();
 	}else if(pageNum == 999){
 	// 다음페이지
 		$('#page').val($('#nextPage').val());
-		galleryList();
+		blackList();
 	}else{
 		$('#page').val(pageNum);		// 사용자가 누른 페이지
-		galleryList();
+		blackList();
 	}
 }
-
-//-----------------------info  수정 기능----------------------
-galleryList();
-
-//$(document).on('click', '.gallery_modify_btn', function(){
-//	$.ajax({
-//		type:'post',
-//		url:'../bookModify',
-//		data: {dic_no : $(this).parent().parent().parent().parent().parent().find("dic_no").val(),
-//			   dic_name : $(this).parent().parent().parent().parent().parent().find("dic_name").val(),
-//			   dic_img : $(this).parent().parent().parent().parent().parent().find("dic_img").val(),
-//			   dic_content : $(this).parent().parent().parent().parent().parent().find("dic_cnt").val(),
-//			   dic_heart : $(this).parent().parent().parent().parent().parent().find("dic_heart").val()},
-//		success: function(data) { 
-//			alert("수정이 완료됐습니다")
-//		} 
-		
-//	}) 
-	
-//}) 
-// -----------------------info 삭제 기능 on-------------------------- 
-
-$(document).on('click', '.gallery_delete_btn', function(){
-	alert("zmfflr")
-	$.ajax({
-		type:'post',
-		url:'/galleryDelete',
-  	data: {gal_no : $(this).parent().parent().find(".gal_no").text()},
-	success: function(data){
-			alert("삭제완료");
-			galleryList(); 
-		} 
-	})
-})
-
-//----------------------------------갤러리 불러오기 -------------------------------
 
 
 </script>
 
+
 <body>
-
-
-
+	
 	<form>
 	<input type="hidden" name="page" id="page" value="1" />
 	<input type="hidden" name="nextPage" id="nextPage" />
 	<input type="hidden" name="prevPage" id="prevPage" /> 
 	</form>
-
-
-
-
-	
 	<c:set var="now" value="<%=new java.util.Date() %>"/>
 
 
@@ -208,84 +176,65 @@ $(document).on('click', '.gallery_delete_btn', function(){
             </ul>
         </nav>
        
-        <div id="layoutSidenav">
-        
-            <!-- Linknav -->
+       	 <div id="layoutSidenav">
+        	<!-- Linknav -->
             <%@include file ="link_nav.jsp" %>
-
-            <div id="layoutSidenav_content">
             
-                 <main>
+            <div id="layoutSidenav_content">
+            	
+                <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">갤러리 관리</h2>
-                    
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                       
+                        
+                        
+                          <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-address-card me-1" ></i>
-                   			info
+                                <i class="fas fa-address-card me-1"></i>
+                                블랙리스트	 목록
                             </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
-                            
-                                
-                            
-                            <div class="">
+                          
+                            <div class="card-body">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>상세보기</th>
-                                            <th>수정</th>
-                                            <th>삭제</th>
-                                            
+                                            <th>넘버</th>
+                                            <th>아이디</th>
+                                            <th>시작일</th>
+                                            <th>종료일</th>
+                                            <th>정지사유</th>
+                                            <th>해지</th>
+                                        
                                         </tr>
+                                        
                                     </thead>
-                                  
-                                    <tbody id="galleryList1">
+             
+                                    <tbody id="blackList1">
                                     	
                                     	
                                     </tbody>
                                 </table>
                             </div>
-                            <!--  page -->
+                               <!--  page -->
+                               <div class="pagenations">
                               <a href="javascript:pageGo(0)">이전</a>
-                             <div class="userpage" id="pageId"> </div>
+                             <a class="page" id="pageId" > </a>
                               <a href="javascript:pageGo(999)">다음</a>
+                              </div>
                         </div>
-                        
-                   
-
-               
-                        
-                         
-                        
-                    </div>
-                  
-                  
-
-                       
-                    
+                    </div>s
                 </main>
-                   
+                    </div>
 		
-
-
-
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 <script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
-<script src="resources/js/admin/chart-order.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="resources/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
+    
          <script src="resources/js/admin/datatables-simple-demo.js"></script>
-		 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 </body>
 
 </html>

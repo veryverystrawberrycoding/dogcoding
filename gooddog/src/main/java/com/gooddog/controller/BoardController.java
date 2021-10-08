@@ -42,7 +42,9 @@ public class BoardController {
 		logger.info("index");
 	}
 	
-	
+
+
+
 	
 	@RequestMapping("/friend") //http://localhost:8082/board/friend
 	public void friend(HttpServletRequest req) {
@@ -123,7 +125,7 @@ public class BoardController {
 		
 			return "/mypageDog";
 		}  
-		
+		 
 	}
 	
 	@RequestMapping("/mypageList") //http://localhost:8082/board/mypageFind

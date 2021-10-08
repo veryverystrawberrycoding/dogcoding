@@ -9,6 +9,7 @@ import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
+import com.gooddog.domain.GalreVO;
 import com.gooddog.domain.LossVO;
 import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
@@ -25,11 +26,8 @@ public interface AdminMapper {
 		List<BlackVO> getBlackInfo();
 	     
 		
-	//	public List<Map<String,String>> getMonthSum();
 
-//		public List<Map<String,String>> getDaySum();
 
-		public List<Map<String,String>> getCateSum();
 		
 		int userCount();
 		
@@ -43,7 +41,11 @@ public interface AdminMapper {
 		
 		int getWomenCount();
 		
-//////////////////////////백과사전 리스트보기///////////////////		
+		public List<Map<String,String>> getDayCount();
+		
+		public List<Map<String,String>> getweekCount();
+
+		//////////////////////////백과사전 리스트보기///////////////////		
 public List<BookVO>adminpost(BookVO vo);
 
 int bookCount();
@@ -53,7 +55,8 @@ int bookCount();
 ////////백과사전 삭제//////
 public void bookDelete(BookVO vo);
 
-
+// 블랙리스트 추가
+public void addBlackList(BlackVO vo);
 
 
 
