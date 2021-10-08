@@ -55,7 +55,10 @@ public interface BookMapper {
 
 	public int bookSearchcount(BookVO vo);
 /////////////////////////////////////////////////////
-
+	public List<BookVO> boSearch(String data);
+	public List<BookVO> bookFilter(String data);
+	public List<BookVO> boList();
+	
 
 }
 

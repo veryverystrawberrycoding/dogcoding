@@ -34,33 +34,30 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-
-		
-
-	@RequestMapping(value="/bookList")
-	public void bookList(BookVO vo,Model m,HttpServletRequest req) {
-		vo.setSearchTag("Like");
-		vo.setPnum(6);
-		m.addAttribute("list",bookService.bookList(vo));
-		m.addAttribute("num", 1); // 첫번째 페이지
-		//총 페이지
-		int count = bookService.bookcount(); //총 게시글 수
-
-		int pagenum; //총 페이지 수
-		if(count%6 == 0) {
-			pagenum = count/6;
-		}
-		else {
-			pagenum = (count/6)+1; //페이지 수
-		}	
-		System.out.println(pagenum);
-		
-		m.addAttribute("page",pagenum);
-		m.addAttribute("tag", "Like");	
-	
-		HttpSession session = req.getSession();
-		UserVO sessionvo = (UserVO)session.getAttribute("user");
-	}
+//	@RequestMapping(value="/bookList")
+//	public void bookList(BookVO vo,Model m,HttpServletRequest req) {
+//		vo.setSearchTag("Like");
+//		vo.setPnum(6);
+//		m.addAttribute("list",bookService.bookList(vo));
+//		m.addAttribute("num", 1); // 첫번째 페이지
+//		//총 페이지
+//		int count = bookService.bookcount(); //총 게시글 수
+//
+//		int pagenum; //총 페이지 수
+//		if(count%6 == 0) {
+//			pagenum = count/6;
+//		}
+//		else {
+//			pagenum = (count/6)+1; //페이지 수
+//		}	
+//		System.out.println(pagenum);
+//		
+//		m.addAttribute("page",pagenum);
+//		m.addAttribute("tag", "Like");	
+//	
+//		HttpSession session = req.getSession();
+//		UserVO sessionvo = (UserVO)session.getAttribute("user");
+//	}
 
 ///////////////////////////////////////////	
  //상세보기
@@ -271,43 +268,43 @@ public class BookController {
 //		return "신고가 접수되었습니다";
 //	}
 	
-	//해시태그에서 넘어올 때 (갤러리 검색 enter치면 이리옴)
-	@RequestMapping(value="/bookSearch")
-	public String bookSearch(Model m, BookVO vo,@RequestParam String data,HttpServletRequest req) {
-		
-		System.out.println(data);
-		vo.setSearchTag(data);
-		vo.setPnum(6);
-		
-		m.addAttribute("list",bookService.bookSearch(vo));
-		
-		//HttpSession session = req.getSession();
-		//UserVO sessionvo = (UserVO)session.getAttribute("user");
-		m.addAttribute("user_id",vo.getUser_id());
-		
-		
-		
-		m.addAttribute("num", 1); // 첫번째 페이지
-		
-		
-		//총 페이지 수 구하기
-		int count = bookService.bookSearchcount(vo); //총 게시글 수
-
-		int pagenum; //총 페이지 수
-		if(count%6 == 0) {
-			pagenum = count/6;
-		}
-		else {
-			pagenum = (count/6)+1; //페이지 수
-		}	
-		System.out.println(pagenum);
-		
-		m.addAttribute("page",pagenum);
-		
-		m.addAttribute("tag", data);
-		
-		return "/bookList";
-	}
+//	//해시태그에서 넘어올 때 (갤러리 검색 enter치면 이리옴)
+//	@RequestMapping(value="/bookSearch")
+//	public String bookSearch(Model m, BookVO vo,@RequestParam String data,HttpServletRequest req) {
+//		
+//		System.out.println(data);
+//		vo.setSearchTag(data);
+//		vo.setPnum(6);
+//		
+//		m.addAttribute("list",bookService.bookSearch(vo));
+//		
+//		//HttpSession session = req.getSession();
+//		//UserVO sessionvo = (UserVO)session.getAttribute("user");
+//		m.addAttribute("user_id",vo.getUser_id());
+//		
+//		
+//		
+//		m.addAttribute("num", 1); // 첫번째 페이지
+//		
+//		
+//		//총 페이지 수 구하기
+//		int count = bookService.bookSearchcount(vo); //총 게시글 수
+//
+//		int pagenum; //총 페이지 수
+//		if(count%6 == 0) {
+//			pagenum = count/6;
+//		}
+//		else {
+//			pagenum = (count/6)+1; //페이지 수
+//		}	
+//		System.out.println(pagenum);
+//		
+//		m.addAttribute("page",pagenum);
+//		
+//		m.addAttribute("tag", data);
+//		
+//		return "/bookList";
+//	}
 
 
 	
@@ -497,6 +494,56 @@ public class BookController {
 		return map;
 		
 	}
+	
+//////////////////영주 추가////////////////////////
+	@RequestMapping(value="/bookList")
+	public String boList(Model m) {
+		m.addAttribute("list",bookService.boList());
+		return "/bookList";
+	}
+	
+	//검색창 검색
+	@ResponseBody
+	@RequestMapping(value="/ajaxBookSearch")
+	public Object ajaxBookSearch(@RequestParam String data) {
+	
+	System.out.println(data);
+	Map<String, Object> map = new HashMap<>();
+	
+	List<BookVO> bookList = bookService.boSearch(data);
+	
+	map.put("bookList", bookList);
+	
+	return map;
+	}
+
+	//필터
+	@ResponseBody
+	@RequestMapping(value="/ajaxBookFilter")
+	public Object ajaxBookFilter(@RequestParam String filter) {
+	
+	System.out.println(filter);
+	Map<String, Object> map = new HashMap<>();
+	List<BookVO> bookList;
+	
+	if(filter.equals("food")) {
+	bookList = bookService.bookFilter("음식");
+	}
+	
+	else if(filter.equals("health")) {
+	bookList = bookService.bookFilter("건강");
+	}
+	
+	else if(filter.equals("life")) {
+	bookList = bookService.bookFilter("생활");
+	}
+	else{
+	bookList = bookService.boList();
+	}		
+	map.put("bookList", bookList);
+	
+	return map;
+	}	
 
 }
 

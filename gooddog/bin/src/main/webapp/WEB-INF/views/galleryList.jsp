@@ -119,7 +119,7 @@
 								</div>
 								
 								<!-- 여기까지 반복 -->
-								
+							
 								</c:forEach>
 								
 								<!-- <div class="item-content gradientdarken-background">

@@ -150,5 +150,21 @@
 		select count(*) from booklike where user_id=#{user_id} and dic_no=#{dic_no}
 	</select>
 	
+	<select id="boList" resultType="BookVO">
+		<![CDATA[
+		SELECT * FROM book 
+		]]>
+	</select>
+	
+	<!-- 백과사전 검색 -->
+	<select id="boSearch" resultType="BookVO" parameterType="String">
+		SELECT *  FROM book where dic_content LIKE CONCAT('%',#{data},'%')
+	</select>
+	
+	<!-- 백과사전 필터 -->
+	<select id="bookFilter" resultType="BookVO" parameterType="String">
+		SELECT *  FROM book where dic_tag=#{data}
+		
+	</select>
 	
 </mapper>   

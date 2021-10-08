@@ -21,6 +21,8 @@
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/userJS/dogface.js"></script>
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger intent="WELCOME" chat-title="GoodDog" agent-id="4ab8c97b-8e3d-4faf-8b14-b47c3493ccd7" language-code="ko"></df-messenger>
    
 </head>
 
@@ -68,15 +70,17 @@
 					<div><a href="joinForm">회원가입</a></div> -->
 					<c:if test="${empty sessionScope.user }">
 					<div id="login-header" style="display:flex;">
-						<div style=margin-right:30px;><a href="loginForm">로그인</a></div>
-						<div style=margin-right:30px;><a href="joinForm">회원가입</a></div>
+						<div style=margin-left:30px;><a href="loginForm">로그인</a></div>
+						<div style=margin-left:30px;><a href="joinForm">회원가입</a></div>
 					</div>
 					</c:if>
 					<c:if test="${not empty sessionScope.user}">
 					<div id="login-header" style="display:flex;">
-						<div style=margin-right:30px;>${user.user_id}</div>
-						<div style=margin-right:30px;><a href="mypageModify">마이 페이지</a></div>
-						<div style=margin-right:30px;><a href="logout" id="session_logout">로그아웃</a></div>
+
+						<div style=margin-left:30px;>${user.user_nick}</div>
+						<div style=margin-left:30px;><a href="mypageDogCare">마이페이지</a></div>
+						<div style=margin-left:30px;><a href="logout" id="session_logout">로그아웃</a></div>
+
 					</div> 
 					</c:if>
 				</div>
@@ -92,10 +96,11 @@
 								<div class="media icon-special text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./mapList">Map</a>
+											<a class="main-menu" href="./mapList">Map</a>
 										</h5>
-										<p>
-											강아지 동반 장소 찾기<br/>											 
+										<p class="explain">
+											강아지 동반<br/>
+											장소 찾기									 
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -107,10 +112,11 @@
 								<div class="media icon-special mr-xl-4 text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./galleryList">Gallery</a>
+											<a class="main-menu" href="./galleryList">Gallery</a>
 										</h5>
-										<p>
-											우리 강아지 자랑하기
+										<p class="explain">
+											강아지 <br/>
+											자랑하기
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -122,10 +128,11 @@
 								<div class="media icon-special text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./bookList">Info</a>
+											<a class="main-menu" href="./bookList">Info</a>
 										</h5>
-										<p>
-											강아지 백과사전
+										<p class="explain">
+											강아지 <br/>
+											백과사전
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -141,11 +148,11 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./callingList">Friend</a>
+											<a class="main-menu" href="./callingList">Friend</a>
 										</h5>
-										<p>
-											우리 동네 강아지를 찾아요<br/>
-											
+										<p class="explain">
+											동네 친구 <br/>
+											찾기
 										</p>
 									</div>
 								</div>
@@ -157,10 +164,11 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./chat">Chat</a>
+											<a class="main-menu" href="./chat">Chat</a>
 										</h5>
-										<p>
-											친구랑 이야기하기 
+										<p class="explain">
+											친구랑<br/>
+											이야기
 										</p>
 									</div>
 								</div>
@@ -172,10 +180,13 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a href="./lossList">Security Program</a>
+
+											<a class="main-menu" href="./mypageDogCare">Dog Care</a>
+
 										</h5>
-										<p>
-											실종신고
+										<p class="explain">
+											산책 기록 <br/> 
+											체중 기록
 										</p>
 									</div>
 								</div>
@@ -189,8 +200,8 @@
 
 			</section>
 			<div class='mainFaceButton'>
-		 <img src="../resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px">
-         <img src="../resources/images/dogdog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
+		<!--  <img src="/resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px"> -->
+         <img src="/resources/images/dogdog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
          </div>
      
 

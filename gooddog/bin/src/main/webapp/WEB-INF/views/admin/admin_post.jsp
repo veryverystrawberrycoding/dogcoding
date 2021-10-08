@@ -40,8 +40,19 @@
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<style>
+   .pagenations{
+      display:flex;
+      justify-content: center;
+   }
+   .pagenations a{
+      margin-right: 10px;
+       margin: 0 1px 0 25px;
+   }
 
+</style>
 <script type="text/javascript">
+//------테이블 만들기 및 페이징 -------
 $(document).ready(function(){
 	
 	bookList();
@@ -87,14 +98,17 @@ function bookList(){
 					for(var i=0; i<cnt; i++){
 						var dic_no = data.list[i].dic_no;		
 						var dic_name = data.list[i].dic_name;
-						var dic_img = data.list[i].dic_img;
 						
+						  
 						
 						returnHtml += "<tr>"
 						
-						returnHtml += "<td>"+dic_no+"</td>"
-						returnHtml += "<td>"+dic_name+"</td>"
-						returnHtml += "<td>"+dic_img+"</td>"
+						returnHtml += "<td class ='dic_no'>"+dic_no+"</td>"
+						returnHtml += "<td class = 'dic_name'>"+dic_name+"</td>"
+						
+						
+					    returnHtml += '<td><button type="button" id="book_modify_submit"  class="book_modify_btn"style= "border-radius: 0px; padding: 12px 20px;" >상세보기</button></td>'
+						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
 						
 							
 						
@@ -105,9 +119,13 @@ function bookList(){
 				
 				$('#bookList1').html(returnHtml);
 			}
+			
 	});
-}
+	
 
+	
+}
+//--------------------------페이징 ------------------------
 function pageGo(pageNum){
 	if(pageNum == 0){
 	// 이전페이지
@@ -123,88 +141,44 @@ function pageGo(pageNum){
 	}
 }
 
+//-----------------------info  등록 기능----------------------
+bookList();
+
+
+//-------------------------------------테스트------------------------
+$(document).on('click','.book_modify_btn', function(){
+alert("등록")
+///////////////////////////////////////////////////////////////
+$.ajax({
+	type : 'post',
+		url : '/bookView',
+		async : false,
+	    data:{dic_no :$(this).parent().parent().find(".dic_no").text()},
+	    
+		success:function(data){
+			alert("페이지이동");
+			location.href = "/bookView?dic_no='+dic_no+'"
+		} 
+	})
+})
+// -----------------------info 삭제 기능 on-------------------------- 
+
+$(document).on('click', '.book_delete_btn', function(){
+	alert("zmfflr")
+	$.ajax({
+		type:'post',
+		url:'/bookDelete',
+		async : false,
+  	data: {dic_no : $(this).parent().parent().find(".dic_no").text()},
+	success: function(data){
+			alert("삭제완료");
+			bookList(); 
+		} 
+	})
+})
 
 //----------------------------------갤러리 불러오기 -------------------------------
-$(document).ready(function(){
-	
-	galleryList();
-});
 
-function galleryList(){
-
-		var returnHtml = "";
-		var pageHtml = '';
-			
-			
-		var page = $('#page').val();
-		$.ajax({	
-			type:'POST',
-			data: 'page='+page,
-			url:"/galleryList",
-			dataType: "json",
-			async    : false,
-			success : function(data) {
-		
-				var nextPage = data.nextPage;
-				var prevPage = data.prevPage;
-				var pageIn = data.pageIn;
-				var startPage = data.page.startPage;
-				var endPage = data.page.endPage;
-				endPage = endPage +1;
-				for(var p=startPage; p<endPage; p++){
-				
-					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
-				}
-				
-		
-				$('#pageId').html(pageHtml);
-				$('#page').val(pageIn);
-				$('#nextPage').val(nextPage);
-				$('#prevPage').val(prevPage);
-				
-				var cnt = data.list.length; 
-					
-				if(cnt == 0){
-					alert("사용자가 없습니다");
-				}else{
-					for(var i=0; i<cnt; i++){
-						var gal_no = data.list[i].gal_no;		
-						var gal_name = data.list[i].gal_name;
-						var gal_img = data.list[i].gal_img;
-						
-						
-						returnHtml += "<tr>"
-						
-						returnHtml += "<td>"+gal_no+"</td>"
-						returnHtml += "<td>"+gal_name+"</td>"
-						returnHtml += "<td>"+gal_img+"</td>"
-						
-							
-						
-						returnHtml += "</tr>"
-						
-					}
-				}
-				
-				$('#galleryList1').html(returnHtml);
-			}
-	});
-}
-
-function pageGo(pageNum){
-	if(pageNum == 0){
-	// 이전페이지
-		$('#page').val($('#prevPage').val());
-		galleryList();
-	}else if(pageNum == 999){
-	// 다음페이지
-		$('#page').val($('#nextPage').val());
-		galleryList();
-	}else{
-		$('#page').val(pageNum);		// 사용자가 누른 페이지
-		galleryList();
-	}
-}
 
 </script>
 
@@ -256,29 +230,24 @@ function pageGo(pageNum){
             
                  <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">게시글 관리</h2>
+                        <h2 class="mt-4">백과사전 관리</h2>
                     
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
                    			info
                             </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
+                            <div class= "pagenations"><a href ="../bookForm">등록버튼이다잇</a>  </div>
                             
                                 
                             
-                            <div class="card-body">
+                            <div class="">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
                                             <th>글번호</th>
                                             <th>제목</th>
+                                            
                                             <th>상세보기</th>
                                             <th>삭제</th>
                                             
@@ -288,16 +257,21 @@ function pageGo(pageNum){
                                     <tbody id="bookList1">
                                     	
                                     	
+												
                                     </tbody>
                                 </table>
                             </div>
                             <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
+                         <!--       <a href="javascript:pageGo(0)">이전</a>
                              <div class="userpage" id="pageId"> </div>
                               <a href="javascript:pageGo(999)">다음</a>
-                        </div>
+                        </div> -->
                         
-                   
+       <div class="pagenations">
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <a class="page" id="pageId" > </a>
+                              <a href="javascript:pageGo(999)">다음</a>
+                              </div>                
 
                
                         
@@ -306,130 +280,8 @@ function pageGo(pageNum){
                     </div>
                   
                   
-<!-- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ  -->                    
-     
-                    
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1" ></i>
-                   			갤러리
-                            </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
-                            
-                                
-                            
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>상세보기</th>
-                                            <th>삭제</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                  
-                                    <tbody id="galleryList1">
-                                    	
-                                    	
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
-                             <div class="userpage" id="pageId"> </div>
-                              <a href="javascript:pageGo(999)">다음</a>
-                        </div>
-                        
-                   
 
-  <!-- ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ -->             
-                                 <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1" ></i>
-                   			실종신고 찾기
-                            </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
-                            
-                                
-                            
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>상세보기</th>
-                                            <th>삭제</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                  
-                                    <tbody id="bookList1">
-                                    	
-                                    	
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
-                             <div class="userpage" id="pageId"> </div>
-                              <a href="javascript:pageGo(999)">다음</a>
-                        </div>              
-                         
-   <!-- 0000000000000000000000000000000000000000000000000000000000000 -->                     
-                                
-                                                     <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
-                            <div class="card-header">
-                                <i class="fas fa-address-card me-1" ></i>
-                   			실종신고 완료
-                            </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
-                            
-                                
-                            
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>상세보기</th>
-                                            <th>삭제</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                  
-                                    <tbody id="bookList1">
-                                    	
-                                    	
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
-                             <div class="userpage" id="pageId"> </div>
-                              <a href="javascript:pageGo(999)">다음</a>
-                        </div>    
+                       
                     
                 </main>
                    

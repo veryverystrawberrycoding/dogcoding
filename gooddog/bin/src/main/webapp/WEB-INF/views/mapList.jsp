@@ -46,32 +46,14 @@
 	<div id="canvas">
 		<div id="box_wrapper">
 		
-		 <%@ include file ="/WEB-INF/views/header.jsp" %>
+		
 		<!-- 헤더넣을곳 -->
-<!-- 			<section class="page_title ls  s-py-5">
-				<div class="container">
-					<div class="row">
-
-						<div class="col-md-12 text-center">
-							<h1>동반 가능 장소 리스트</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="./">맛집, 숙소, 공원</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="#">애견전용시설, 병원</a>
-								</li>
-							</ol>
-						</div>
-
-					</div>
-				</div>
-			</section> -->
+ <%@ include file ="/WEB-INF/views/header.jsp" %>
 
 			<section class="ls s-py-60 s-py-md-90  s-py-xl-160 c-gutter-60">
 				<div class="container">
 					<div class="row">								
-						<main class="col-lg-8 order-lg-2" id="mapList-main">
+						<main class="col-lg-7 order-lg-2" id="mapList-main">
 							<div class="address-box">
 								<div class="select_container">
 									<select name="sido" id="sido" class=""></select>
@@ -79,28 +61,6 @@
 								</div>
 							</div>
 
-<!-- 					<form class="place-select" method="get">
-									<select name="place-select1" class="place-select1">
-										<option value="0" selected="selected">시,도 선택</option>
-										<option value="1">서울</option>
-										<option value="2">부산</option>
-										<option value="3">대구</option>
-										<option value="4">인천</option>
-										<option value="5">광주</option>
-									</select>
-						</form>
-						
-						<form class="place-select" method="get">
-									<select name="place-select2" class="place-select2">
-										<option value="menu_order" selected="selected">구,군 선택</option>
-										<option value="popularity">강남구</option>
-										<option value="rating">강동구</option>
-										<option value="date">강서구</option>
-										<option value="price">관악구</option>
-										<option value="price-desc">광진구</option>
-									</select>
-						</form> 
-						-->
 						<div class="search-box">
 							<div class="place-search">							
 								<input type="text" placeholder="search" class="search">
@@ -115,7 +75,7 @@
 							<!-- 지도 -->
 							<!-- <div> -->
 							<div class="item-media post-thumbnail">
-							<div id="map" style="width:100%;height:750px;"></div>
+							<div id="map" style="width:100%;height:830px;"></div>
 								<%-- <img src="${path}/resources/images/place/map.png" alt="img" > --%>
 							</div>
 						</article>
@@ -125,7 +85,7 @@
 
 
 <!-- 왼쪽 카테고리 -->
-						<aside class="col-lg-4 order-lg-1 mb-0" style="width:400px;">
+						<aside class="col-lg-5 order-lg-1 mb-0 filterNstore">
 							<div class="filters place-filters">								
 								<div class="icon-box text-center">
 									<div>
@@ -191,75 +151,70 @@
 									</div>
 								</div>
 
-<!-- 							<div class="widget widget_categories">
- 								<input type="button" value="맛집" class='maplist-btn'>
-								<input type="button" value="숙소" class='maplist-btn'>
-								<input type="button" value="공원" class='maplist-btn'>
-								<input type="button" value="전용시설" class='maplist-btn'>
-								<input type="button" value="동물병원" class='maplist-btn'> 
-								
-							</div> -->
 						</div>
 						
 							<!-- 위치 리스트 -->
 							<!-- <div class="box-shadow pb-40 px-40 pt-35"> -->
-							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:750px">
+							<div class="box-shadow pb-20 px-20 pt-30" id="store-box" style="height:830px">
 								<div class="widget widget_mailchimp">
-									<h3 class="widget-title">place list</h3>
+									<div class="store-box-title">
+										<h3 class="widget-title">place list</h3>
+										<div>검색결과&nbsp;:&nbsp;<p class="placeCount"></p>건</div>
+									</div>
+									<hr>
 									
 									<ul class="list-unstyled " id="place-info" >
 										<!-- <div class="row isotope-wrapper" data-filters=".place-filters" id="place-info"> -->
 									
 										<!-- li 한덩이씩 -->
-										<c:forEach var="l" items="${mapList}">
+<%-- 										<c:forEach var="l" items="${mapList}">
 											<li class="media" id="storebox">
 												<div>
 												<a class="media-image" href="mapView?place_no=${l.place_no }">
 													<img src="${path }/resources/images/place/place_img/${l.place_img }">
-													<%-- <img src="${path }/resources/images/place/cafe.jpg"> --%>
+													<img src="${path }/resources/images/place/cafe.jpg">
 												</a>
 												</div>
 
 												<div class="media-body">
-													<h4 >
+													<h3>
 														<a class="place_name" href="mapView?place_no=${l.place_no }">&gt;${l.place_name}&nbsp;</a>
-													</h4>
+													</h3>
 													<p class="item-meta">
 														<span class="place_addr">&gt;${l.place_addr }&nbsp;</span>
 													</p>
-												</div>
 											</li>
-										</c:forEach>
+										</c:forEach> --%>
 										<!-- </div>	 -->
 								</ul>
 								<hr>
 								
 							<!-- 페이지  -->
 							<nav aria-label="Pagination">
-								<ul class="pagination">
+								<ul class="pagination" id="gdpage">
 									<%-- <c:if test="${paging.prev}"> --%>
-									<li class="page-item">
+<%-- 									<li class="page-item">
 										<a class="page-link" href='<c:url value="/mapList?page=${paging.startPage-1}"/>'>
 											<i class="fa fa-chevron-left"></i>
 										</a>
-									</li>
+									</li> --%>
 									<%-- </c:if> --%>
 									
-									<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
+<%-- 									<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
 									<li class="page-item">
 										<a class="page-link" href='<c:url value="/mapList?page=${num}"/>'>
 											${num}
 											<span class="sr-only">(current)</span>
 										</a>
 									</li>
-									</c:forEach>
+									</c:forEach> --%>
 							
 									<%-- <c:if test="${paging.next && paging.endPage>0}"> --%>
-									<li class="page-item">
+<%-- 									<li class="page-item">
 										<a class="page-link" href='<c:url value="/mapList?page=${paging.endPage+1}"/>'>
 											<i class="fa fa-chevron-right"></i>
 										</a>
-									</li>
+									</li> --%>
 									<%-- </c:if> --%>
 								</ul>
 							</nav>

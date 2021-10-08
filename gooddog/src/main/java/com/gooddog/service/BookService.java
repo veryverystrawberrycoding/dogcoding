@@ -54,6 +54,9 @@ public interface BookService {
 	public int bookSearchcount(BookVO vo);
 //////////////////////////////////////////////////////////
 
+	public List<BookVO> boList();
+	public List<BookVO> boSearch(String data); //검색창 검색
+	public List<BookVO> bookFilter(String data); //필터링
 
 		
 	}

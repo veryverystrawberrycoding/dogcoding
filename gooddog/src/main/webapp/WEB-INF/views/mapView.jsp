@@ -79,7 +79,7 @@
 												<c:forEach var="p" items="${prevalue}">
 												<p class="progress-title">${p.pre_value} - ${p.count}개</p>
 												<div class="progress">
-													<div class="progress-bar bg-maincolor" role="progressbar" data-transitiongoal="${p.count}" aria-valuemin="0" aria-valuemax="${total.total}">
+													<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" data-transitiongoal="${p.count}" aria-valuemin="0" aria-valuemax="${total.total}">
 														<span>${p.count}</span>
 													</div>
 												</div>

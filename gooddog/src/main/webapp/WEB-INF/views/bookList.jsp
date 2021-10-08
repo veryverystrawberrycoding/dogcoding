@@ -4,7 +4,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 
-<html >
+<html class="no-js">
 
  
 <head>
@@ -21,16 +21,18 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
-	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/0joo.css" class="color-switcher-link">
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
-	<script src="${path}/resources/js/userJS/book.js"></script>
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<script src="${path}/resources/js/userJS/bookList.js"></script>
 
+<!-- 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 
-
-
-
-<!--  <style >
+<style >
 
 
 p{font-family: 'Single Day', cursive;
@@ -41,7 +43,7 @@ p.a{font-weight:900;
 
 
 
-</style>-->
+</style> -->
 
 
 
@@ -51,109 +53,79 @@ p.a{font-weight:900;
 
 <body>
 <%@ include file="./header.jsp"%> 
-	
 
-	
-			
 
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-50 container-px-0">
-				<div class="container-fluid">
+			<section class="ls gallery-page s-py-60 s-py-md-90 s-py-xl-100 container-px-15">
+				<div class="container">
 					<div class="row">
-					
-					
-					<!-- 글쓰기 버튼 -->
-
-
 
 						<div class="col-lg-12">
-							<div class="row justify-content-center mt--10">
-							
-							<br>
-							
-							<form id="book_search_form" method="post" action="/bookSearch">
-								<div class="book-search">
-									<div class="book-search-input">
-										<input type="text" placeholder="검색어를 입력하세요" name="data" id="data">
-									</div>
-									
-									<div class="book-search-button">
-										<img id="book-search-btn" src="${path}/resources/images/book/search.png" width="50px">
-									</div>
-
-								</div>
-								<br><br><hr>
-								<div class="hashtagsearch" id="hashtagsearch">
-										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">음식</a>
-										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">건강</a>
-										<a class="hashTag" id="hashTag" style="cursor:pointer; border-color:#ed8e82;">생활</a><br><br>
-								</div>
-								</form>
-							</div>
-							
-							<div id="booklist">
 						
-
+						<div class="booksearch row justify-content-center">
+						<input type="text" placeholder="검색어를 입력하세요" name="data" id="data" style="width:500px;margin-right:10px">
+						<img id="search-btn" src="${path}/resources/images/gallery/search.png" width="50px">
+						</div>
+						
+						<div class="row justify-content-center mt--10">
+									<div class="col-md-10 col-xl-8">
+										<div class="filters gallery-filters small-text text-lg-right" style="">
+											<a id="filter">all</a>
+											<a id="filter">food</a>
+											<a id="filter">health</a>
+											<a id="filter">life</a>
+											
+										</div>
+									</div>
+								</div>
+					
+							
+					<div id="here">
+							<div class="row isotope-wrapper masonry-layout c-mb-30">
 <!--       -------------------------------------------------------------------------------  -->
-						<div class="row isotope-wrapper masonry-layout c-mb-30" data-filters=".gallery-filters">
-
+				
 				  		<c:forEach items="${list}" var="book">		
 								<div class="col-md-4 life">
 								
 									<div class="vertical-item text-center content-padding box-shadow">
-										<div class="item-media">
+										<div class="item-media" style="padding-top:7%">
 											<img style="width:300px; height:300px;" src="${path}/resources/images/book/${book.dic_img }" alt="img">
-												
-												
-										<div class="media-links">												
-												<div class="links-wrap">
-										
-													<!-- <a class="link-zoom photoswipe-link" href="#"><br/>123</a> -->
-													<a class="link-zoom" ><br/>${book.dic_heart }</a>
-													<a class="link-anchor" title="" href="bookView?dic_no=${book.dic_no}"><br/>click</a>
 											
-											 		<%-- <a class="galleryIcons" href="#"><img alt="like" src="${path}/resources/images/icons/heart-regular.svg">123</a>
-											 		<a class="galleryIcons" href="galleryView"><img alt="like" src="${path}/resources/images/icons/mouse-solid.svg">1234</a> --%>
-												</div>
-
-										</div>
-										<div class="item-content">
-											<h4 class="mt-3 mb-0">
-												<p> ${book.dic_name }</p>
-											</h4>
-
+											<div class="media-links">
+												<a class="abs-link" title="" href="bookView?no=${book.dic_no}"></a>
 											</div>
-											
-											
-											
 										</div>
+										<div class="item-content">								
+												<p> ${book.dic_name }</p>
+										
+										</div>
+								
 									</div>
-
 								</div>
-								
-			 		</c:forEach> 
-								
+			 		</c:forEach> 		
 
-								
-</div>
-</div>
-								
+							</div>
+
+						</div>		
 								
 								
 
 								
-	
+
+							</div>
+							
+
+						</div>
+
+					</div>
+
 			
-</div>
-</div>
 
 
 
-</div>
+
 				
-</section>
+			</section>
 <%@ include file="./footer.jsp"%> 
-
-
 
 
 	<script src="${path}/resources/js/compressed.js"></script>

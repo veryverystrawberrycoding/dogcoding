@@ -11,7 +11,7 @@
 <!--<![endif]-->
  
 <head>
-	<title>Venator</title>
+	<title>GoodDog Login</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
@@ -43,28 +43,7 @@
 
 <%@ include file="./header.jsp" %>
 
-			<section class="page_title ls  s-py-5">
-				<div class="container">
-					<div class="row">
 
-						<div class="col-md-12 text-center">
-							<h1>Login</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="./">Home</a>
-								</li>
-<!-- 								<li class="breadcrumb-item">
-									<a href="#">Shop</a>
-								</li> -->
-								<li class="breadcrumb-item active">
-									Login
-								</li>
-							</ol>
-						</div>
-
-					</div>
-				</div>
-			</section>
 
 
 			<section class="ls s-py-60 s-py-md-90 s-py-xl-160">
@@ -76,12 +55,12 @@
 								<!-- .entry-header -->
 								<div class="entry-content">
 									<div class="woocommerce">
- 
-										<!--
-			<div class="woocommerce-message">Are you sure you want to log out? <a
-				href="shop-account-login.html">Confirm and log out</a>
-			</div>
-			-->
+
+
+										<div class="login-title">
+										<h2>Log in</h2>
+										</div>
+
 
 										<form class="woocomerce-form woocommerce-form-login login" method="post" width:50%>
 											<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide text-center">
@@ -92,6 +71,7 @@
 
 												<input class="w-100 form-control woocommerce-Input woocommerce-Input--text input-text" placeholder="비밀번호*" type="password" name="password" id="password">
 											</p>
+
 											<!-- <p class=" d-flex justify-content-start align-items-center">
 												<label class="d-flex align-items-center woocommerce-form__label woocommerce-form__label-for-checkbox inline">
 													<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever">
@@ -102,25 +82,23 @@
 											<br>
 											 
 											<div class="container"> 
-												<div class="row">
-													<div class="col-md-4"></div>
-													<div class="col-md-4">
+
+											<div class="login-btn">
 												<button type="button" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
-												<button onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" type="button" class="woocommerce-Button button mt-0" name="kakaologin" value="kakaologin" style="text-align:center;">카카오 로그인</button>
-													</div> 
-												<div class="col-md-4"></div>
-												</div>
+												<a onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" name="kakaologin" value="kakaologin" >
+													<img src="${path}/resources/images/icons/kakao_login_medium_narrow.png" alt="카카오로그인">
+												</a>
+											</div>
+											<div class="find-idpw">
+													<div><a href="#">아이디 찾기</a></div>
+													<div><a href="#">비밀번호 찾기</a></div>
+											</div>
+											<div class="joinMove">
+													<a href="../joinForm">회원 가입</a>
+
 											</div>	 
 											    
-											<p style="text-align:center;"> 
-												<u><a href="#">아이디 찾기</a></u>&nbsp;&nbsp;/&nbsp;&nbsp;<u><a href="#">비밀번호 찾기</a></u>
-											</p>   
-											<br>
-											<br> 
-											<br>
-											<p style="text-align:center;">
-												<u><a href="../joinForm">회원 가입</a></u>
-											</p>
+
 										</form> 
 									</div>
 								</div>

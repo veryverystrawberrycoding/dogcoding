@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 
 <!--[if gt IE 8]><!-->
-<html class="no-js">
+<html >
 <!--<![endif]-->
 
 <head>
@@ -19,28 +19,16 @@
 
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
+
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/0joo.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
+		<script src="${path}/resources/js/userJS/book.js"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
-
-<style >
-
-
-p{font-family: 'Single Day', cursive;
-font-size:20px;
-}
-p.a{font-weight:900;
-}
-
-
-
-</style>
 
 
 
@@ -52,265 +40,215 @@ p.a{font-weight:900;
 	<%@ include file="./header.jsp"%> 
 			<!-- template sections -->
 
-
-
-			<section class="page_title ls  s-py-5">
+			<section class="ls s-py-30 s-py-md-10 s-py-xl-100 c-gutter-30">
 				<div class="container">
 					<div class="row">
-
-						<div class="col-md-12 text-center">
-							<h1>백과사전
-						</h1>
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item">
-									<a href="./mainPage">Home</a>
-								</li>
-								<li class="breadcrumb-item">
-									<a href="./bookList">Info</a>
-								</li>
-								<li class="breadcrumb-item active">
-									<a href="./bookView">Single Info</a>
-								</li>
-							</ol>
-						</div>
-
-					</div>
-				</div>
-			</section>
-
-
-
-
-			<section class="ls s-py-60 s-py-md-90 s-py-xl-160 c-gutter-60">
-				<div class="container">
-					<div class="row">
-
 						<main class="offset-lg-1 col-lg-10">
+						
+						
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
-								<div class="item-media post-thumbnail">
-									<img src="${path}/resources/images/book/${data.dic_img }" alt="img">
-									<p class="item-meta d-flex flex-wrap">
-										<a href="event-single-right.html"><i class="fa fa-calendar color-main"></i>${book.dic_name }</a>
-										<a href="event-single-right.html"><i class="fa fa-user color-main"></i>admin</a>
-										<a href="event-single-right.html"><i class="fa fa-comment color-main"></i>8 comments</a>
-									</p>
-								</div>
+						
+						<c:if test="${sessionScope.user.getUser_id() eq item.user_id }">
+						<div class="gallery_user_buttons">
+							<div class="gallery_buttons1">
+							<a href="/bookForm?dic_no=${item.dic_no}">
+							<img src="${path}/resources/images/gallery/edit.png" width="40px" height="40px"></a>
+							</div>
+							<div class="book_buttons2" id="book_buttons2">
+							<a href="/bookDelete?dic_no=${item.dic_no}">
+							<img src="${path}/resources/images/gallery/delete.png" width="40px" height="40px"></a>
+							</div>
+						</div>
+						
+					</c:if>
+				
+					<hr>
 
+								<div class="item-media post-thumbnail">
+									<img src="${path}/resources/images/book/${item.dic_img }"  alt="img" style="width:400px">
+									<hr>
+									
+										
+								</div>
+								<div class="book_items">
+								<div class="book_items1">
+								<a href="#"><img src="${path}/resources/images/profile/${item.user_img}" width="30px" height="30px" >
+								${item.user_nick}</a>
+								</div>
+								<!-- 로그인 안 한 경우 하얀하트에 조회수만 -->
+								
+								<c:if test="${sessionScope.user.getUser_id() eq null}">
+									<div class="book_items2">
+									<img src="${path}/resources/images/book/noheart.png" width="30px" height="30px"  id="bookheart_nosess">
+									<a id="bookheart_text" class="bookheart_text">${item.book_heart }</a>
+									</div>
+								</c:if>
+								
+								<!-- 로그인 한 경우 하트 동작 -->
+								<c:if test="${sessionScope.user.getUser_id() ne null}">
+								<div class="book_items2" id="book_items2">
+									<c:if test="${userlike.userlike eq 0}">
+										<img src="${path}/resources/images/book/noheart.png" width="30px" height="30px"  id="bookheart">
+									</c:if>
+									<c:if test="${userlike.userlike eq 1}">
+										<img src="${path}/resources/images/book/heart.png" width="30px" height="30px"  id="bookheart">
+									</c:if>
+					
+				
+									<a id="bookheart_text" class="bookheart_text">${item.dic_heart }</a>
+								</div>
+								</c:if>
+								</div>
+									
+								<hr>
 
 								<div class="item-content">
 									<!-- .post-thumbnail -->
-									<h4>
-										<p>${data.dic_name}</p>
-									</h4>
+									<h5>
+										${item.dic_name}
+									</h5>
+									<h5>${item.dic_content} </h5>
+									<br>
+									<br>
 
-									<div class="entry-content">
-										<p>
-											${data.dic_content}
-										</p>
-
-								 		
-								
-
+									<input type="hidden" id="tagItem" value="${tag}">
+									<div id="tagList">
+									
 									</div>
-									<!-- .entry-content -->
-
+																
 								</div>
-								<!-- .item-content -->
+
+								
 							</article>
-							</main>
-			
-			 	
-<!-- ----------------------------- 일단 이 밑은 건들 ㄴㄴ해--------------------------------------- -->
-							<div id="comments" class="comments-area ">
+							
+						
+							<article>
+							<div><!-- 대댓글 포함 -->
 
-								<h4 class="comments-title">
-									Comments
-								</h4>
-
-								<ol class="comment-list">
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_1.jpg">
-													<h4>Gabriel K. Reed</h4>
-													<p class="small-text text-left color-main4">
-														05.02.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_2.jpg">
-															<h4>Angela R. Sanford</h4>
-															<p class="small-text text-left color-main4">
-																06.02.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Ut enim ad minim veniam, quis nostrud.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-									<li class="comment">
-										<article class="comment-body">
-											<footer class="comment-meta">
-												<div class="comment-author vcard">
-													<img alt="img" src="images/team/comment_3.jpg">
-													<h4>Thelma J. Gray</h4>
-													<p class="small-text text-left color-main4">
-														26.01.2018
-													</p>
-												</div>
-												<div class="reply">
-													<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-												</div>
-												<!-- .comment-author -->
-												<!-- .comment-metadata -->
-											</footer>
-											<!-- .comment-meta -->
-
-											<div class="comment-content">
-												<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-													fugiat nulla pariatur. </p>
-											</div>
-											<!-- .comment-content -->
-
-
-										</article>
-										<!-- .comment-body -->
-										<ol class="children">
-											<li class="comment">
-												<article class="comment-body">
-													<footer class="comment-meta">
-														<div class="comment-author vcard">
-															<img alt="img" src="images/team/comment_4.jpg">
-															<h4>Carl D. Armstrong</h4>
-															<p class="small-text text-left color-main4">
-																26.01.2018
-															</p>
-														</div>
-														<div class="reply">
-															<a rel="nofollow" class="comment-reply-link" href="#respond" aria-label="Reply to John Doe"><i class="fa fa-reply" aria-hidden="true"></i> reply</a>
-														</div>
-														<!-- .comment-author -->
-														<!-- .comment-metadata -->
-													</footer>
-													<!-- .comment-meta -->
-
-													<div class="comment-content">
-														<p>Excepteur sint occaecat cupidatat non proident.</p>
-													</div>
-													<!-- .comment-content -->
-
-
-												</article>
-												<!-- .comment-body -->
-											</li>
-											<!-- #comment-## -->
-										</ol>
-										<!-- .children -->
-									</li>
-									<!-- #comment-## -->
-								</ol>
-								<!-- .comment-list -->
-
-
-								<div id="respond" class="comment-respond ms ls">
-									<h4 id="reply-title" class="comment-reply-title">Leave the comment</h4>
-									<form class="contact-form c-mb-10 c-gutter-10" method="post" action="/">
-
-										<div class="row">
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="name">your Name <span class="required">*</span></label>
-													<input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="your Name">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="phone">Phone<span class="required">*</span></label>
-
-													<input type="text" aria-required="true" size="30" value="" name="phone" id="phone" class="form-control" placeholder="Phone Number">
-												</div>
-											</div>
-
-											<div class="col-xl-4">
-												<div class="form-group has-placeholder">
-													<label for="email">email address<span class="required">*</span></label>
-													<input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="email Address">
-												</div>
-											</div>
-										</div>
-
-
+	
+								<div id="comments" class="comments-area "> <!-- 대댓글 전 -->
+								<div id="commentcount" class="comments-title" >
+								<h4>댓글 ${count }개</h4>
+								</div>
+								
+								<hr>
+								
+								<!-- 댓글쓰기란 -->
+								
+									<input type="hidden" value="${item.dic_no}" id="bookno">
+									<input type="hidden" value="${sessionScope.user.getUser_id()}" id="userid">
+								
+									<!-- 로그인 하면 댓글쓰기창 보임 -->
+									<c:if test="${sessionScope.user.getUser_id() ne null}">
 										<div class="row">
 
 											<div class="col-sm-12">
-
-												<div class="form-group has-placeholder">
-													<label for="message">Your Comment</label>
-
-													<textarea aria-required="true" rows="4" cols="45" name="message" id="message" class="form-control" placeholder="Your Comment"></textarea>
-												</div>
+											<input type="hidden" value="${item.dic_no}" id="bookno">
+											<input type="text" placeholder="댓글을 입력하세요" id="comment_insert"  name="comment_insert" >
 											</div>
-
 										</div>
 
 										<div class="row mt-30">
-
 											<div class="col-sm-12 text-left">
-
 												<div class="form-group">
-													<button type="submit" id="contact_form_submit" name="contact_submit" class="btn btn-maincolor">Send Comment
+													<button type="button" id="comment_insert_btn" name="comment_insert_btn" class="btn btn-maincolor">Send Comment
 													</button>
+													<hr>
 												</div>
 											</div>
-
 										</div>
+									<!-- </form> -->
+									</c:if>
+								<br>
+								
+								<div id="commentList">
+								<c:forEach var="rl" items="${commentList}">
+										<article class="comment-body">
 
-									</form>
-								</div>
-								<!-- #respond -->
+											<footer class="comment-meta">
+												<div class="comment-author vcard">
+												
+												
+												<c:if test="${sessionScope.user.getUser_id() eq rl.user_id}">
+													<div class="comment_delete_btn" id="comment_delete_btn">
+														<img src="${path}/resources/images/gallery/delete.png" width="25px" height="25px" id="butbut">
+														<input type="hidden" value="${rl.bookre_no}" id="bookreno">
+													</div>
+												</c:if>
+													
+													<img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
+													<h4>${rl.user_nick }</h4>
+													
+													
+													<p class="small-text text-left color-main4">
+														${rl.bookre_date }
+													</p>
+													
+												</div>
+												
+												
+											</footer>
+					
+											<div class="comment-content">
+												<p>${rl.bookre_content }</p>
+											</div>
+											
+											<!-- .comment-content -->
+										</article>
+										
+										
+								</c:forEach>	
+								</div>			
+								
+								
+						<!-- 페이징 관련 -->
+						<div id="page">
+						
+						<nav aria-label="Pagination">
+								<ul class="pagination">
+									
+									<li class="page-item">
+										<a class="page-link" id="p_pre">
+											<i class="fa fa-chevron-left" ></i>
+										</a>
+									</li>
+									
+									
+									<c:forEach var="i" begin="1" end="${page}" >
+									<li class="page-item">
+										<a class="page-link" id="pnum">
+											${i}
+
+										</a>
+									</li>
+									</c:forEach>
+							
+								
+									<li class="page-item">
+										<a class="page-link" id="p_next">
+											<i class="fa fa-chevron-right" ></i>
+										</a>
+									</li>
+								
+								</ul>
+							</nav>
 
 							</div>
+							<!-- 페이징 관련 끝 -->
+								</div>
+						
+								
+										
+							
+							
+
+
+
+
+								
+
+							</div>
+							</article>
 
 						</main>
 
@@ -319,130 +257,19 @@ p.a{font-weight:900;
 				</div>
 			</section>
 
-			<footer class="page_footer ds s-pb-35 s-pt-60 s-pb-md-70 s-pt-md-90 s-pb-xl-130 s-pt-xl-160 c-mb-20 c-gutter-30 container-px-0">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
-							<div class="widget widget_twitter">
-								<h3 class="widget-title">Twitter</h3>
-								<div class="twitter-item">
-									<div class="media">
-										<div class="icon-styled color-main fs-18">
-											<i class="fa fa-twitter" aria-hidden="true"></i>
-										</div>
-										<div class="media-body color_1">
-											<p>
-												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
-											</p>
-											<a href="â">http://on.bcg.com/2enKlr7</a>
-										</div>
-									</div>
-									<div class="media">
-										<div class="icon-styled color-main fs-18">
-											<i class="fa fa-twitter" aria-hidden="true"></i>
-										</div>
-										<div class="media-body color_1">
-											<p>
-												Tamquam eligendi ex qui ex sea aliquam blandit has cum tacimates.
-											</p>
-											<a href="â">http://on.bcg.com/2enKlr7</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
-
-							<div class="widget widget_icons_list">
-								<h3 class="widget-title">Our Contacts</h3>
-
-								<ul class="mb-10">
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-map-marker"></i>
-										</div>
-										<p>3112 Stonecoal Road Toledo, OH 43602</p>
-									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-envelope"></i>
-										</div>
-										<a href="#">canis@support.com</a>
-									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-phone"></i>
-										</div>
-										<p>0 (800) 321 654</p>
-									</li>
-									<li class="icon-inline">
-										<div class="icon-styled icon-top color-main4 fs-14">
-											<i class="fa fa-clock-o"></i>
-										</div>
-										<p>Working hours: 9.00 - 20.00 </p>
-									</li>
-								</ul>
-
-								<span class="social-icons">
-									<a href="#" class="fa fa-twitter  rounded-icon color-bg-icon footer-icon" title="twitter"></a>
-									<a href="#" class="fa fa-google  rounded-icon color-bg-icon footer-icon" title="google"></a>
-									<a href="#" class="fa fa-facebook  rounded-icon color-bg-icon footer-icon" title="facebook"></a>
-									<a href="#" class="fa fa-linkedin  rounded-icon color-bg-icon footer-icon" title="linkedin"></a>
-								</span>
-							</div>
-						</div>
-
-						<div class="col-lg-4 text-center text-lg-left animate" data-animation="fadeInUp">
-							<div class="widget mb-0">
-
-								<h3 class="widget-title">Newsletter</h3>
-
-								<p class="color-font mb-3">
-									Subscribe to our Newsletter to be updated,
-									we promise not to spam.
-								</p>
-
-								<form class="signup" action="/">
-
-									<input id="mailchimp_email" name="email" type="email" class="form-control mailchimp_email text-center text-lg-left" placeholder="Enter Email Address">
-
-									<button type="submit" class="btn btn-maincolor mt-30">
-										Subscribe
-									</button>
-									<div class="response"></div>
-								</form>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
-
-			<section class="page_copyright ds s-py-5">
-				<div class="container border-top-color">
-					<div class="row align-items-center ">
-						<div class="divider-20 d-none d-lg-block"></div>
-						<div class="divider-10 d-none d-md-block d-lg-none"></div>
-						<div class="col-md-12 text-center">
-							<p>&copy; Copyright <span class="copyright_year">2018</span> All Rights Reserved</p>
-						</div>
-						<div class="divider-20 d-none d-lg-block"></div>
-						<div class="divider-10 d-none d-md-block d-lg-none"></div>
-					</div>
-				</div>
-			</section>
-
-
-		</div><!-- eof #box_wrapper -->
-	</div><!-- eof #canvas -->
-
-
+		<%@ include file="./footer.jsp"%> 
+		
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 
 
-</body>
 
+</body>
 </html>
+
+
+	
+	
+	
+	

@@ -24,7 +24,7 @@
 	<!-- 블랙리스트 불러오기 -->
 		<select id="getBlackInfo" resultType="BlackVO" parameterType="BlackVO">
 	 			<![CDATA[
-			SELECT * FROM black WHERE user_id = 0 ORDER BY user_id 
+			SELECT * FROM black WHERE user_id = 0 ORDER BY user_id 	
 			]]>
 		</select>
 	
@@ -34,31 +34,66 @@
 			SELECT count(*) FROM black
 			]]>
 		</select>
-	
 
+	<!--  블랙리스트 등록 -->
+	<insert id="addBlackList" parameterType="BlackVO">
+		<![CDATA[
+		Insert Into black (user_id,black_start,black_end,black_content) values(#{user_id},#{black_start},#{black_end},#{black_content});
+
+	]]>
+	</insert>
 	 
-	<!-- 남자회원수 -->
-
-	<select id="getMenCount" resultType="int" parameterType="UserVO">
-			<![CDATA[
-				select count(*) from user where user_gender=1; 
-			]]>
-		</select>
 	
-	<!-- 여자회원수 -->
-
-		<select id="getWomenCount" resultType="int" parameterType="UserVO">
-				<![CDATA[
-					select count(*) from user where user_gender=2; 
-				]]>
-			</select>
+	<!--  통계  -->
+	 		
+	 		<!--  일별 방문자 -->
+	 		<resultMap type="HashMap" id="dayMap">
+				<id column="day" property="day"/>
+			</resultMap>	
+	 		<select id="getDayCount" resultMap="dayMap" parameterType="UserLogVO">
+	 			<![CDATA[
+	 			SELECT DATE(`log_date`) AS `userlog`,
+				       COUNT(`log_no`) AS `logno`
+				  FROM userlog
+				 GROUP BY `userlog`;
+				 	]]>
+			</select> 
+	 
+			 
+			 <!--  요일별 방문자 -->
+			 <resultMap type="HashMap" id="weekMap">
+				<id column="week" property="week"/>
+			</resultMap>	
+	 		<select id="getweekCount" resultMap="weekMap" parameterType="UserLogVO">
+	 			<![CDATA[
+				SELECT  MONTH(`log_date`) AS `userlog`,
+				       COUNT(`log_no`) AS `logno`
+				  FROM userlog
+				 GROUP BY `userlog`;
+				 	]]>
+			</select> 
+			<!-- 남자회원수 -->
+		
+			<select id="getMenCount" resultType="int" parameterType="UserVO">
+					<![CDATA[
+						select count(*) from user where user_gender=1; 
+					]]>
+				</select>
+			
+			<!-- 여자회원수 -->
+		
+				<select id="getWomenCount" resultType="int" parameterType="UserVO">
+						<![CDATA[
+							select count(*) from user where user_gender=2; 
+						]]>
+					</select>
 <!-- 000000000000000000000000000000000000000admin_post000000000000000000000000000000000000 -->
 
 			<!--  info 정보 가져오기 -->
 
 	<select id="adminpost" parameterType="BookVO" resultType="BookVO">
 		<![CDATA[ 
-		                  SELECT * FROM book WHERE dic_no ORDER BY dic_no asc LIMIT #{limitStart}, #{listCount}
+		    SELECT * FROM book WHERE dic_no ORDER BY dic_no desc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -66,7 +101,7 @@
 				
 	</select>
 	
-	<!-- 회원 목록 수 -->
+	<!-- 페이징  -->
 
 
 
@@ -76,15 +111,29 @@
          SELECT count(*) FROM book 
          ]]>
 </select>
+<!-- /////////////////////info 가져오기 기능  -->
+	<select id="bookModify" parameterType="BookVO" resultType="BookVO">
+		<![CDATA[
+		select * from book WHERE dic_no = #{dic_no}
+	]]>
+	</select>
+<!-- /////////////////// -->
+<!--  ////////////info 삭제 기능//////////// -->
 
+<select parameterType="BookVO"  id="bookDelete">
 
+<![CDATA[
+         delete from book where dic_no =#{dic_no} 
+         ]]>
+</select>
 
+<!--  0000000000000000000000000000000000000000000000 -->
 
+<!-- 000000000000000000000000000000000000000adminpost2000000000000000000000000000000000000 -->
 
-<!--  갤러리 정보 가져오기  -->
-	<select id="adminpostgallery" parameterType="GalleryVO" resultType="GalleryVO">
+	<select id="adminpost2" parameterType="GalleryVO" resultType="GalleryVO">
 		<![CDATA[ 
-		                  SELECT * FROM gallery WHERE gal_no ORDER BY gal_no asc LIMIT #{limitStart}, #{listCount}
+SELECT * FROM gallery WHERE gal_no ORDER BY  gal_no desc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -92,7 +141,7 @@
 				
 	</select>
 	
-	<!-- 회원 목록 수 -->
+	<!-- 페이징  -->
 
 
 
@@ -101,10 +150,82 @@
 <![CDATA[
          SELECT count(*) FROM gallery 
          ]]>
+</select>
+
+<!--  ////////////gallery 삭제 기능//////////// -->
+
+<select parameterType="GalleryVO"  id="galleryDelete">
+
+<![CDATA[
+         delete from gallery where gal_no =#{gal_no} 
+         ]]>
+</select>		
+			
+			
+			
+<!-- 000000000000000000000000000000000000000배드컨탠츠000000000000000000000000000000000000 -->
+<!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+	<select id="badcontent" parameterType="BadcontentVO" resultType="BadcontentVO">
+		<![CDATA[ 
+SELECT * FROM badcontent WHERE gal_no ORDER BY  gal_no desc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 페이징  -->
+
+
+
+<select parameterType="BadcontentVO" resultType="int" id="badcontentCount">
+
+<![CDATA[
+         SELECT count(*) FROM badcontent 
+         ]]>
+</select>
+
+<!--  ////////////배드컨텐츠 삭제 기능//////////// -->
+
+<select parameterType="BadcontentVO"  id="badcontentDelete">
+
+<![CDATA[ 
+         delete from gallery where gal_no =#{gal_no} 
+         ]]>
+</select>				
+<!-- -000000000000000000000000000000000000000000000000000000000000000 -->			
+<!-- 000000000000000000000000000000000000000adminpost3000000000000000000000000000000000000 -->
+
+		 
+
+	<select id="adminpost3" parameterType="LossVO" resultType="LossVO">
+		<![CDATA[ 
+SELECT * FROM loss WHERE loss_no ORDER BY  loss_no asc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 페이징  -->
+
+
+
+<select parameterType="LossVO" resultType="int" id="lossCount">
+
+<![CDATA[
+         SELECT count(*) FROM loss 
+         ]]>
+</select>
+
+<!--  ////////////gallery 삭제 기능//////////// -->
+
+<select parameterType="LossVO"  id="lossDelete">
+
+<![CDATA[
+         delete from loss where loss_no =#{loss_no} 
+         ]]>
 </select>			
-			
-			
-<!-- ///////////////////////////////////////////////////////////////////////// -->			
-			
-			
 </mapper>   

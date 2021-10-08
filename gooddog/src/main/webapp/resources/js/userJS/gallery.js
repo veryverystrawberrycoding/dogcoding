@@ -37,7 +37,7 @@ $(function(){
 	
 	$('#hashtagsearch').ready(function(){
 
-		var hashtagsearch = $('#hashtagsearch');
+/*		var hashtagsearch = $('#hashtagsearch');
 		
 		
 		var in1 = $('<a class="hashTag" id="hashTag"  style="cursor:pointer">#강아지</a>');
@@ -46,23 +46,23 @@ $(function(){
 		var in4 = $('<a class="hashTag" id="hashTag"  style="cursor:pointer">#반려견</a>');
 		var in5 = $('<a class="hashTag" id="hashTag"  style="cursor:pointer">#멍멍이</a>');
 					
-					hashtagsearch.append(in1)
-					hashtagsearch.append(in2)
-					hashtagsearch.append(in3)
-					hashtagsearch.append(in4)
-					hashtagsearch.append(in5)
+		hashtagsearch.append(in1)
+		hashtagsearch.append(in2)
+		hashtagsearch.append(in3)
+		hashtagsearch.append(in4)
+		hashtagsearch.append(in5)*/
 	
-		/*$.ajax({
+		$.ajax({
 		        type : 'GET',                             
 		        url : ' http://127.0.0.1:5000/tag',
 		        success : function(result){
 			
 					var hashtagsearch = $('#hashtagsearch'); 
-//					var in1 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num1+'</a>');
-//					var in2 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num2+'</a>');
-//					var in3 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num3+'</a>');
-//					var in4 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num4+'</a>');
-//					var in5 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num5+'</a>');
+					var in1 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num1+'</a>');
+					var in2 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num2+'</a>');
+					var in3 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num3+'</a>');
+					var in4 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num4+'</a>');
+					var in5 = $('<a class="hashTag" id="hashTag" style="cursor:pointer">#'+result.num5+'</a>');
 					
 					
 					hashtagsearch.append(in1)
@@ -74,7 +74,7 @@ $(function(){
 					}
 		
 				
-		})*/
+		})
 	})
 	
 	//게시글 상세 해시태그

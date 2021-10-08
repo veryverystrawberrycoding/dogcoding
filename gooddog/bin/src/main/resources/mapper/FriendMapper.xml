@@ -18,6 +18,9 @@
 	  inner join pet as p on a.user_id = p.user_id where a.user_id in 
       (select b.user_id from user as b where substr(b.user_addr,1,2) in 
       (select substr(c.user_addr,1,2) as user_addr from user as c where c.user_id=#{user_id})) group by a.user_id;
-	</select>   
+	</select>
+	
+	
+	
  
 </mapper>

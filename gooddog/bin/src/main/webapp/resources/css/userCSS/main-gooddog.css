@@ -985,10 +985,10 @@ select {
 
 .select_container {
 	max-width: 570px;
-	position: relative;
+	/* position: relative; */
 }
 
-.select_container::before {
+/* .select_container::before {
 	background: #fff;
 	content: "";
 	display: inline-block;
@@ -997,9 +997,9 @@ select {
 	right: 2px;
 	top: 2px;
 	width: 49px;
-}
+} */
 
-.select_container::after {
+/* .select_container::after {
 	color: #ed8e82;
 	content: "\f053";
 	font-family: FontAwesome;
@@ -1009,7 +1009,7 @@ select {
 	top: 26%;
 	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg);
-}
+} */
 
 input[disabled] {
 	cursor: not-allowed;
@@ -18875,7 +18875,8 @@ a img.aligncenter {
 	.sf-menu a {
 		color: #7e7e7e;
 		font-family: "Montserrat", sans-serif;
-		font-size: 14px;
+/* 		font-size: 14px; */
+		font-size: 20px;
 		font-weight: bold;
 		letter-spacing: 0.8px;
 		line-height: 30px;
@@ -23377,8 +23378,53 @@ section .special-heading.line-after::before {
 		border-right: none;
 	}
 }
-/* 추가 코드 */
-/* mainPage css */
+/* 추가 코드 ============================================================ */
+
+/* header css ---------------------------------------------------------*/
+#login-header {
+	padding : 0px;
+	font-size : 18px;
+	font-weight : bold ;
+}
+
+.nav-wrap.header-main{
+	margin : 0px 50px 0px 50px;
+}
+
+/* loging css ---------------------------------------------------------- */
+.login-title{
+	display : flex; 
+	justify-content:center;
+	margin-bottom: 30px;
+}
+.login-btn{
+	display : flex; 
+	flex-direction : column;
+	align-content:center;
+	flex-wrap: wrap;
+}
+.find-idpw {
+	display : flex; 
+	justify-content:center;
+	
+}
+.find-idpw div { 
+	margin : 10px;
+	
+}
+.find-idpw div a{
+	text-decoration:none;
+}
+.joinMove{
+	display : flex; 
+	justify-content:center;
+}
+.joinMove a{
+	text-decoration:none;
+}
+
+
+/* mainPage css --------------------------------------------------------*/
 .top-right-menu{
 	/* background-color:red; */
 	display: flex;
@@ -23388,6 +23434,21 @@ section .special-heading.line-after::before {
 }
 .top-right-menu a{
 	margin-right: 30px;
+}
+
+.media-body{
+	width: 200px;
+}
+
+/* 메뉴 글씨 크기  */
+a.main-menu {
+	font-size: 32px;
+}
+.media-body p.explain {
+	font-size: 20px;
+}
+div.icon-styled img{
+	margin-top: 20px;
 }
 
 /* 견종찾기, 챗봇 아이콘 css */
@@ -23409,9 +23470,6 @@ section .special-heading.line-after::before {
 .icons{
 	margin : 10px;
 }
-
-
-
 
 
 /* galleryList해시태그 css */
@@ -23489,8 +23547,23 @@ section .special-heading.line-after::before {
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 }
 
+
+aside.col-lg-4.order-lg-1.mb-0.filterNstore{
+	width:500px;
+	padding : 0!important;
+	
+}
+
+
 #store-box {
 	margin-top: 0px;
+	
+}
+
+
+.store-box-title{
+	display : flex;
+	justify-content: space-between;
 }
 
 .icon-box.text-center {
@@ -23506,6 +23579,10 @@ section .special-heading.line-after::before {
 }
 .icon-box.text-center a {
 	 text-decoration:none;
+}
+.icon-box.text-center p {
+	font-size : 20px;
+	font-weight : bold;
 }
 
 .bg-place-filter{
@@ -23543,14 +23620,201 @@ section .special-heading.line-after::before {
 	/* background-color: green; */
 	display : flex;
 	margin-bottom : 20px;
+	/* height : 100px; */
 }
+
+#storebox.media-body {
+	display : flex;
+}
+
 
 #storebox img{
 	border-radius: 5%;
 }
 
+#store-box{
+/* 	display : flex; */
+}
+.store-box-title div{
+	display : flex;
+}
 
-	/* 추가 */
+.place_name {
+	font-size : 22px;
+	font-weight : bold;
+	line-height: 30px;
+	
+}
+.place_addr {
+	font-size : 16px;
+	/* font-weight : lighter ; */
+}
+
+#review_info {
+	color : gray;
+}
+
+.pagination {
+	justify-content: space-between;
+}
+
+
+#pageBtn{
+	border-radius: 30px;
+	width: 60px;
+	height : 60px; 
+	color : gray;
+ 	font-size: 25px;
+ 	line-height: 30px; 
+ 	text-align: center;
+ 	border : none;
+}
+
+#prevBtn, #nextBtn {
+	color : gray;
+	width: 60px;
+	height : 60px; 
+ 	font-size: 25px;
+ 	line-height: 30px; 
+ 	text-align: center;
+ 	border : none;
+}
+
+
+/* 마이페이지 반려견 정보 추가 ----------------------------------------------*/
+.dogBox-title{
+	display: flex;
+	justify-content: space-between;
+	padding:48px 48px 12px 54px;
+	
+}
+#myDogBox{
+	height: 400px;
+	font-size: 20px;
+}
+
+/* #myDogBox{
+	display: flex;
+} */
+
+.mydog-wrap{
+	align-items: center;
+	/* border-right: 1px solid #dadfe0; */
+	/* bottom: 0; */
+	display: flex;
+	flex-direction: column;
+	left: 30px;	
+	padding: 0px 24px 24px 24px;
+	position: absolute;
+	text-align: center;
+	width: 300px;
+}
+.mydog-wrap div{
+	margin-bottom: 10px;
+	
+}
+.myDogInfo-header{
+	padding-left:350px;
+	
+}
+.myDogInfoBox{
+	display : flex;
+	flex-direction : column;
+	margin-top: 20px;
+}
+.dog-img img{
+	border-radius:5%;
+}
+.myDogInfo-title{
+	display : flex;
+	flex-direction : column;
+}
+.myDogInfo-title.author-name{
+	margin-bottom:10px;
+}
+
+.myDogInfo-breed{
+	position : absolute;
+	margin-top:300px;	
+}
+
+.myDogInfo-breed a{
+	color:#17a2b8;
+}
+.myDogInfo{
+	display : flex;
+	margin : 0px 20px 5px 20px;
+	height: 40px;
+	line-height:40px;
+	
+}
+
+.myDogInfo input[type="text"]{
+	width: 70%;
+	border-radius:25px;
+	margin-left: 10px;
+	margin-bottom:5px;
+	font-size : 20px;
+	text-align : left;
+	height : 40px;
+	background-color:#fff0f1;
+}
+
+.myDogGender {
+	margin-left: 38px;
+}
+.myDogEdit{
+	display : flex;
+	justify-content: flex-end;
+	margin-top: 50px;
+	margin-right: 50px;
+}
+.myDogEdit div{
+	margin-right:20px;
+}
+.myDogAdd {
+	height : 50px;
+	line-height:50px;
+	text-align : center;
+}
+.weightInput{
+	display: flex;
+	height : 50px;
+	line-height:50px;
+	margin : 20px 0 20px 50px;
+	font-size : 20px;
+}
+.weightInput div{
+	margin-left : 10px;
+}
+.weightInput select{
+	background-color: #fff0f1;
+	padding : 0 10px 0 10px;
+	/* border-radius : 25px; */
+}
+
+.weightInput input[type="date"] {
+	background-color: #fff0f1;
+	height : 50px;
+	border-color: #fff0f1;
+	border-radius : 25px;
+	padding : 0 10px 0 10px;
+	color : gray;
+	text-align : right;
+	
+}
+.weightInput input[type="text"]{
+	width: 80px;
+	font-size : 20px;
+	text-align : right;
+	border-radius : 25px;
+	background-color: #fff0f1;
+	padding : 11px 12px 11px 12px;
+	text-align : right;
+}
+/* .weightInput img{
+	filter:opacity(.5) drop-shadow(0 0 0 #fff0f1);
+} */
 #store-name a:before{
 	/* color: red; */
 	counter-increment: place;
@@ -23562,13 +23826,82 @@ section .special-heading.line-after::before {
 	 display : flex;
 	 flex-direction : row;
 	 flex-wrap:wrap;
-	 margin-top : 20px;
-	 margin-left : 20px; 
+	 margin-top : 10px;
+	 margin-left : 50px; 
+	 font-size: 20px;
 	 
 }
+
+.sort-period select{
+	border-radius : 25px;
+	font-size: 20px;
+}
+
+
 .sort-period div{
-	margin-right : 10px;
+	margin-right : 5px;
+}
+
+#weightListBtn {
+	margin-right: 20px;
 }
 .weightGraph{
 	text-decoration:none;
 }
+#weightTableBox{
+	display : flex;
+	justify-content: center;
+}
+#weightTable{
+	width : 80%; 
+	border-bottom : solid 1px #54C1C4;
+	font-size : 20px;
+}
+
+#weightTable input[type="date"] {
+	background-color: #fff0f1;
+	height : 30px;
+	border-color: #fff0f1;
+	border-radius : 25px;
+	padding : 0 10px 0 10px;
+	color : gray;
+	text-align : right;
+	-webkit-appearance: none !important;
+
+	
+}
+#weightTable input[type="text"] {
+	width: 80px;
+	height : 30px;
+	font-size : 20px;
+	text-align : right;
+	border-radius : 25px;
+	background-color: #fff0f1;
+	padding : 11px 5px 11px 12px;
+	text-align : right;
+}
+
+#graph {
+	display: flex;
+	justify-content: center;
+
+}
+#graph-box{
+	width: 600px;
+}
+
+
+
+#myPage-widget-title {
+	font-size:32px;
+}
+aside a{
+	font-size:20px;
+	color: gray;
+	text-decoration:none !important
+}
+aside a:hover { 
+	color : #ed8e82;
+	text-decoration:none !important 
+	}
+

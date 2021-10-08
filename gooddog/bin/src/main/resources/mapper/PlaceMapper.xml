@@ -21,7 +21,18 @@
 	<!-- 장소 목록 조회 ajax -->
 	<select id="ajaxPlaceList" parameterType="hashmap" resultType="hashmap">
 		SELECT * FROM place
-		WHERE place_group = #{place_group}
+		<if test = 'place_group != 0'>WHERE place_group = #{place_group}</if>
+		<if test = "keyword != null">WHERE place_name LIKE '%${keyword}%'</if>
+        <if test = "addr_1 != null">AND place_addr LIKE '${addr_1}%'</if>
+		<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>
+		
+<!--  	    <if test = "(keyword != null or !keyword.equals('')) and addr_1 = null">WHERE place_name LIKE '%${keyword}%'</if>
+        <if test = "(keyword = null or keyword.equals('')) and addr_1 != null">WHERE place_addr LIKE '${addr_1}%'
+        	<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>
+        </if>
+        <if test = "(keyword != null or !keyword.equals('')) and addr_1 != null">AND place_addr LIKE '${addr_1}%'
+        	<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>
+        </if>	 --> 
 		ORDER BY place_no
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
@@ -30,7 +41,19 @@
 	<select id="ajaxPlaceCount" resultType="int">
         SELECT count(*)
         FROM place 
-        WHERE place_group = #{place_group}
+        <if test = 'place_group != 0'>WHERE place_group = #{place_group}</if>
+        <if test = "keyword != null">WHERE place_name LIKE '%${keyword}%'</if>
+        <if test = "addr_1 != null">AND place_addr LIKE '${addr_1}%'</if>
+		<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>        
+<!--  	    <if test = "(keyword != null or !keyword.equals('')) and addr_1 = null">WHERE place_name LIKE '%${keyword}%'</if>
+        <if test = "(keyword = null or keyword.equals('')) and addr_1 != null">WHERE place_addr LIKE '${addr_1}%'
+        	<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>
+        </if>
+        <if test = "(keyword != null or !keyword.equals('')) and addr_1 != null">AND place_addr LIKE '${addr_1}%'
+        	<if test = "addr_2 != null">AND place_addr LIKE '%${addr_2}%'</if>
+        </if>	 -->
+        
+	
 	</select>
 	
 	

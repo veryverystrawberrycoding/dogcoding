@@ -22,8 +22,24 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/userJS/dogface.js"></script>
 	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger intent="WELCOME" chat-title="GoodDog" agent-id="4ab8c97b-8e3d-4faf-8b14-b47c3493ccd7" language-code="ko"></df-messenger>
-   
+	<df-messenger intent="WELCOME" chat-title="동반 장소 빠른 검색" agent-id="4ab8c97b-8e3d-4faf-8b14-b47c3493ccd7" language-code="ko" ></df-messenger>
+	<style>
+  	df-messenger {
+   --df-messenger-bot-message: #D6B39B;
+   --df-messenger-chat-background-color: #fafafa;
+   --df-messenger-font-color: white;
+   --df-messenger-user-message: #479b3d;
+   --df-messenger-button-titlebar-color: #D6B39B; //#54c1c4; //#ed8e82;
+   --df-messenger-chip-border-color:#D6B39B;
+  }
+/*   df-message-list{
+    visibility: hidden;
+  }
+  .message-list-wrapper minimized{
+  visibility: hidden;
+  } */
+  
+	</style>
 </head>
 
 <body>
@@ -199,7 +215,7 @@
 
 
 			</section>
-			<div class='mainFaceButton'>
+ 			<div class='mainFaceButton'>
 		<!--  <img src="/resources/images/robotic.png" class="mainbotButton" id="mainbotButton" width="60px" height="60px"> -->
          <img src="/resources/images/dogdog.png" class="mainFaceButton" id="mainFaceButton" width="60px" height="60px">
          </div>

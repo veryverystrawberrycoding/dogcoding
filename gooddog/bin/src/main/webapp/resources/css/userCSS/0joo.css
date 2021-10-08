@@ -52,11 +52,11 @@
 }
 
 .mainFaceButton{
-	position:fixed;
-	right:0px;
-	overflow:hidden;
-	bottom:70px;
-	margin-right:5px;
+   position:fixed;
+   right:0px;
+   overflow:hidden;
+   bottom:90px;
+   margin-right:18px;
 }
 .mainbotButton{
 	position:fixed;
@@ -141,4 +141,8 @@
 }
 .hashtagsearch a:hover{
 	color:#17a2b8;
+}
+
+.dogfacePlace{
+	text-align:center;
 }

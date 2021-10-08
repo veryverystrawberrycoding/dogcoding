@@ -156,6 +156,21 @@ public class BookServiceImpl implements BookService {
 		return bookMapper.bookSearchcount(vo);
 	}	
 
+	@Override
+	public List<BookVO> boSearch(String data) {
+		return bookMapper.boSearch(data);
+	}
+	
+	@Override
+	public List<BookVO> bookFilter(String data) {
+		return bookMapper.bookFilter(data);
+	}
+	
+	@Override
+	public List<BookVO> boList(){
+		return bookMapper.boList();
+		
+	}
 
 
 ///////////////////////////////////////////		

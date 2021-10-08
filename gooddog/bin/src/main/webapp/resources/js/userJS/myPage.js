@@ -374,9 +374,10 @@ function dogList() {
 				for(var i=0; i<length; i++) {
 					let list = ''
 					list += '<div class="col-lg-3"></div>'
-					list += '<div class="col-lg-4 mt-40 mt-lg-0">'
-					list += '<img class="pet_img" src="#" style="width:300px; height:300px; margin: 3px; bottom:20px"></img></div>'
-					list += '<div class=" col-lg-5">' 
+					list += '<div class="col-lg-4 mt-40 mt-lg-0">' 
+					list += '<div id="previewDog'+i+'"><img class="pet_img" src="#" style="width:300px; height:300px; margin: 3px; bottom:20px"></img></div>'
+					list += '<input type="file" id="dog_modify_img" name="dog_modify_img" accept="image/*" onchange="previewDog(this,'+i+')"></div>'
+					list += '<div class=" col-lg-5">'   
 					list += '<div class="form-group has-placeholder div_pet_name">이름&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_name" type="text" value="'+data.doglist[i].pet_name+'"></div>'
 					list += '<div class="form-group has-placeholder div_pet_birth">나이&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_birth" type="text" value="'+data.doglist[i].pet_birth+'"></div>'
 					list += '<div class="form-group has-placeholder div_pet_ident">번호&nbsp&nbsp<input style="height:40px; width:300px;" class="pet_ident" type="text" value="'+data.doglist[i].pet_ident+'"></div>' 
@@ -406,12 +407,37 @@ $(document).on('click', '.pet_modify_btn', function(){
 			   pet_name : $(this).parent().parent().parent().parent().parent().find(".pet_name").val(),
 			   pet_birth : $(this).parent().parent().parent().parent().parent().find(".pet_birth").val(),
 			   pet_ident : $(this).parent().parent().parent().parent().parent().find(".pet_ident").val(),
-			   pet_spacies : $(this).parent().parent().parent().parent().parent().find(".pet_spacies").val()},
+			   pet_spacies : $(this).parent().parent().parent().parent().parent().find(".pet_spacies").val(),
+			   pet_img : document.getElementById("dog_modify_img").files[0].name},
 		success: function(data) { 
+			dogList(); 
 			alert("수정이 완료됐습니다")
 		} 
 		
 	})
+	
+	var fileData = new FormData();
+	fileData.append("file", $('#dog_modify_img')[0].files[0]);
+	$.ajax({ 
+    type: 'POST',
+    url: '../modifyFileDog',
+    data: fileData,
+    enctype: 'multipart/form-data',
+    processData: false, 
+    contentType: false,
+	dataType: "json",
+    cache: false,  
+    success: function () {
+	alert("업로드호출") 
+      // Handle upload success
+      // ... 
+    },
+    error: function () {
+      // Handle upload error
+      // ...
+    } 
+ 	 });
+	
 	
 }) 
   
@@ -975,95 +1001,6 @@ lossList();
 
 
 
-function fdRecommend1() {
-	
-	$.ajax({ 
-		type:'post',
-		url: '../fdRecommend1',
-		success: function(data){
-			$(".total_friend_hi").empty(); 
-			for(var i=0; i<data.length; i++){
-			//var i = Math.random() * data.length
-			let fd = '' 
-			fd += '<div class="col-xl-4 col-lg-5 col-md-5">'
-			fd += '<div class="item-media cover-image" style="background-image: url(&quot;images/gallery/15.jpg&quot;);">'
-			fd += '<img src="'+data[i].user_img+'" alt="img">'
-			fd += '</div></div><br><br>' 
-			fd += '<div class="col-xl-8 col-lg-7 col-md-7"><div style="margin:0px">'
-			fd += '<input type="hidden" class="friend_id" value="'+data[i].user_id+'">'
-			fd += '<input type="hidden" class="friend_nick" value="'+data[i].user_nick+'">'
-			fd += '<input type="hidden" class="friend_name2" value="'+data[i].user_name+'">'
-			fd += '<div style="font-size:20px; text-align:left">이름&nbsp&nbsp<a class="friend_name" style="color:black;">'+data[i].user_name+'</a></div>'
-			fd += '<div style="font-size:20px; text-align:left"">지역&nbsp&nbsp<a class="friend_addr" style="color:black;">'+data[i].user_addr+'</a></div>'
-			fd += '<div style="font-size:20px; text-align:left"">견종&nbsp&nbsp<a class="friend_spacies" style="color:black;">'+data[i].pet_spacies+'</a></div>'
-			fd += '<div style="display: inline-block; margin:0 5px; float:left;">'
-			fd += '<button type="button" class="btn btn-info btn-xs friend_click" style="margin-left: 12%;">추가</button></div></div></div><div></div>'  
-			$(".total_friend_hi").append(fd); 
-			}  
-		} 
-		 
-		   
-	})
-	
-} 
-fdRecommend1()
-
-function followingList() {
-	$.ajax({
-		type:'post',
-		url: 'followingList',
-		success: function(data){
-			$(".total_friend_view").empty();
-			const obj = JSON.parse(data);
-			var list = obj.frList
-			alert(list[0].follower_id)
-			for(var i=0; i<list.length; i++){
-			fdview=''
-			fdview += '<div class="col-xl-4 col-lg-5 col-md-5">'
-			fdview += '<div class="item-media cover-image" style="background-image: url(&quot;images/gallery/15.jpg&quot;);">'
-			fdview += '<img class= "friend_img" src="'+list[i].follower_img+'" alt="img">'
-			fdview += '</div></div><br><br>' 
-			fdview += '<div class="col-xl-8 col-lg-7 col-md-7"><div style="margin:0px">'
-			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'">'
-			fdview += '<div style="font-size:20px; text-align:left">이름&nbsp&nbsp<a class="friend_name" style="color:black;">'+list[i].follower_name+'</a></div>'
-			fdview += '<div style="font-size:20px; text-align:left"">닉네임&nbsp&nbsp<a class="friend_addr" style="color:black;">'+list[i].follower_nick+'</a></div>'
-			fdview += '<div style="display: inline-block; margin:0 5px; float:left;">'
-			fdview += '<button type="button" class="btn btn-info btn-xs friend_click" style="margin-left: 12%;">삭제</button></div></div></div><div></div>'  
-			$(".total_friend_view").append(fdview);   
-			} 
-		}
-	
-	}) 
-
-}
-
-followingList();
-
-
- 
-$(document).on('click', '.friend_click', function(){
-			$(this).html('추가되었습니다')
-			$(this).attr("disabled", true)
-	$.ajax({
-		type:'post',  
-		url: '../fdAdd', 
-		data:{ 
-			user_id : $(this).parent().parent().find('.friend_id').val(), 
-			user_nick : $(this).parent().parent().find('.friend_nick').val(), 
-			user_name : $(this).parent().parent().find('.friend_name2').val(),  
-			user_img : $(this).parent().parent().parent().parent().find('img').attr("src")
-			 
-		},
-		success: function(data){
-			
-			followingList();
-		} 
-	})  
-	
-})
-
-
-
 
 /*$(".friend_click").on('click', function(){
 	$.ajax({
@@ -1095,5 +1032,7 @@ $(document).on('click', '.friend_click', function(){
 										</div>
 									</div>*/
 	
+
+
 	 
 })

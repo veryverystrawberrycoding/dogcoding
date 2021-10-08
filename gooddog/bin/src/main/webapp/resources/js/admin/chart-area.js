@@ -1,115 +1,93 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
-Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#292b2c';
+	
+var dayCount = $('#dayCount').val();
+ dayCount = dayCount.replace(/{/g,'');
+ dayCount = dayCount.replace(/}/g,'');
+ dayCount = dayCount.replace(/\[/g,'');
+ dayCount = dayCount.replace(/\]/g,'');
 
-var maxvalue = Math.max(
-	  $('#daysum14').val(),
-  	  $('#daysum13').val(),
-	  $('#daysum12').val(),
-	  $('#daysum11').val(),
-	  $('#daysum10').val(),
-	  $('#daysum9').val(),
-	  $('#daysum8').val(),
-	  $('#daysum7').val(),
-	  $('#daysum6').val(),
-	  $('#daysum5').val(),
-	  $('#daysum4').val(),
-	  $('#daysum3').val(),
-	  $('#daysum2').val(),
-	  $('#daysum1').val()    	);
-var minvalue = Math.min(
-	  $('#daysum14').val(),
-  	  $('#daysum13').val(),
-	  $('#daysum12').val(),
-	  $('#daysum11').val(),
-	  $('#daysum10').val(),
-	  $('#daysum9').val(),
-	  $('#daysum8').val(),
-	  $('#daysum7').val(),
-	  $('#daysum6').val(),
-	  $('#daysum5').val(),
-	  $('#daysum4').val(),
-	  $('#daysum3').val(),
-	  $('#daysum2').val(),
-	  $('#daysum1').val()    	);
+const obj = JSON.stringify(dayCount);
+const obj_Json = JSON.parse(obj);
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
-  type: 'line',
+const spObj = obj_Json.split(",");
+
+var fullCount = spObj.length /2;
+var fullLabel;
+var fullData;
+
+var data = spObj[9];
+
+
+var array_label = [];
+
+
+var array_data = [];
+
+for(var i=0; i<fullCount; i++){
+	
+	var label = spObj[i];
+	var data = spObj[i+1];
+	
+	var labelS = label.split("=");
+	var dataS = data.split("=");
+//	alert("데이터확인 "+i+":::::::::::::::::::"+labelS[1]);
+	
+	
+	array_data[i] = labelS[1];
+	array_label[i] = dataS[1];	
+	
+	i++;
+	
+};
+
+	
+//alert(fullData);
+
+
+
+
+// logno=21, userlog=2021-09-26,
+// logno=21, userlog=2021-09-27, 
+// logno=20, userlog=2021-09-28, logno=16, userlog=2021-09-30, logno=10, userlog=2021-10-01
+
+new Chart(document.getElementById("myAreaChart"), {
+  type: 'bar',
   data: {
-    labels: [  
-    	$('#day14').val()+"일",
-    	$('#day13').val()+"일",
-    	$('#day12').val()+"일",
-    	$('#day11').val()+"일",
-    	$('#day10').val()+"일",
-    	$('#day9').val()+"일",
-    	$('#day8').val()+"일",
-    	$('#day7').val()+"일",
-    	$('#day6').val()+"일",
-    	$('#day5').val()+"일",
-    	$('#day4').val()+"일",
-    	$('#day3').val()+"일",
-    	$('#day2').val()+"일",
-    	$('#day1').val()+"일"
-    	],
-    datasets: [{
-      label: "Sessions",
-      lineTension: 0.3,
-      backgroundColor: "rgba(2,117,216,0.2)",
-      borderColor: "rgba(2,117,216,1)",
-      pointRadius: 5,
-      pointBackgroundColor: "rgba(2,117,216,1)",
-      pointBorderColor: "rgba(255,255,255,0.8)",
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(2,117,216,1)",
-      pointHitRadius: 50,
-      pointBorderWidth: 2,
-      data: [
-    	  $('#daysum14').val(),
-    	  $('#daysum13').val(),
-    	  $('#daysum12').val(),
-    	  $('#daysum11').val(),
-    	  $('#daysum10').val(),
-    	  $('#daysum9').val(),
-    	  $('#daysum8').val(),
-    	  $('#daysum7').val(),
-    	  $('#daysum6').val(),
-    	  $('#daysum5').val(),
-    	  $('#daysum4').val(),
-    	  $('#daysum3').val(),
-    	  $('#daysum2').val(),
-    	  $('#daysum1').val()    	  
-    	  ],
-    }],
+    labels: array_label,
+    datasets: [{ 
+        data : array_data,
+        label: '일별 방문자',
+        borderColor: "#3e95cd",
+		backgroundColor: ["#3e95cd",'#ffc107', "#8e5ea2","#3cba9f","#e8c3b9","#c45850",'#0074ff', '#dc3345'],
+        fill: false
+      }
+    ]
   },
-  options: {
-    scales: {
-      xAxes: [{
-        time: {
-          unit: 'date'
-        },
-        gridLines: {
-          display: false
-        },
-        ticks: {
-          maxTicksLimit: 14
+	 options: {
+        legend: {
+             labels: {
+                  fontColor: 'black' // label color
+
+                 }
+              },
+        scales: {
+            // y축
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    fontColor:'black' // y축 폰트 color
+
+
+                }
+             }],
+             // x축
+             xAxes: [{
+                ticks: {
+                    beginAtZero:false,
+                    fontColor:'black' // x축 폰트 color
+                }
+             }]
+		
         }
-      }],
-      yAxes: [{
-        ticks: {
-          min: minvalue,
-          max: maxvalue,
-          maxTicksLimit: 10
-        },
-        gridLines: {
-          color: "rgba(0, 0, 0, .125)",
-        }
-      }],
-    },
-    legend: {
-      display: false
     }
-  }
+  
 });
