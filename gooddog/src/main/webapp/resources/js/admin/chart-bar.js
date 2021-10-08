@@ -32,7 +32,7 @@ for(var i=0; i<fullCount2; i++){
 
 	array_data2[i] = labelS2[1];
 	array_label2[i] = dataS2[1];	
-	alert(array_data2[i]);
+
 	i++;
 	
 };

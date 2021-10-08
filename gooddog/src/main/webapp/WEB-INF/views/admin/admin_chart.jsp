@@ -114,7 +114,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-chart-area me-1"></i>
-                                	일별 방문자$
+                                	일별 방문자
                             </div>
                             <div class="card-body"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
                             <div class="card-footer small text-muted">
@@ -128,7 +128,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                               	         월별 방문자${weekCount}
+                               	         월별 방문자
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="50"></canvas></div>
                                     <div class="card-footer small text-muted">

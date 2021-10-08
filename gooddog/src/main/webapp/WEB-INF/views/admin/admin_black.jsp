@@ -110,7 +110,7 @@ function badcontentList(){
 		
 //						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">등록</button></td>'						
 						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="black_view_submit" class="black_view_btn">상세보기</a></td>'
-						returnHtml += '<td><button type="button" id="black_delete_submit" class="black_delete_btn" >삭제</button></td>'
+						returnHtml += '<td><button type="button" id="black_delete_submit" class="black_delete_btn" style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
 						
 							
 						

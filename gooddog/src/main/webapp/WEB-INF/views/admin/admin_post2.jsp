@@ -108,8 +108,8 @@ function galleryList(){
 						returnHtml += "<td class = 'gal_name'>"+gal_name+"</td>"
 		
 							
-						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="gallery_view_submit" class="gallery_view_btn">상세보기</a></td>'
-						returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn" >삭제</button></td>'
+						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="gallery_view_submit" class="gallery_view_btn"style= "border-radius: 0px; padding: 12px 20px;">상세보기</a></td>'
+						returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
 						
 							
 						

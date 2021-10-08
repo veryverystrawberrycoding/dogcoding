@@ -107,8 +107,8 @@ function bookList(){
 						returnHtml += "<td class = 'dic_name'>"+dic_name+"</td>"
 						
 						
-					    returnHtml += '<td><button type="button" id="book_modify_submit"  class="book_modify_btn" >상세보기</button></td>'
-						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn" >삭제</button></td>'
+					    returnHtml += '<td><button type="button" id="book_modify_submit"  class="book_modify_btn"style= "border-radius: 0px; padding: 12px 20px;" >상세보기</button></td>'
+						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
 						
 							
 						
