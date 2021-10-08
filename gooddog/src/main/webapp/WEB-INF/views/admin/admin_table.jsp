@@ -85,9 +85,8 @@ function userList(){
 						var useraddr = data.list[i].user_addr;
 						var usertel = data.list[i].user_tel;
 						
-						
-						returnHtml += "<tr>"
-						
+				
+						returnHtml += "<tr>"	
 						returnHtml += "<td class= 'userid'>"+userid+"</td>"
 						returnHtml += "<td>"+username+"</td>"
 						returnHtml += "<td>"+useraddr+"</td>"

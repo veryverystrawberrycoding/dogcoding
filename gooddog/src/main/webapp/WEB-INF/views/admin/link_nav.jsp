@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+        <style>
+            .nav-link{
+                font-size: 1.4rem;
+            }
+            .nav-link{
+                font-size: 18px;
+            }
+        
+
+        </style>
+
+
 <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">

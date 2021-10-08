@@ -57,7 +57,7 @@ new Chart(document.getElementById("myAreaChart"), {
         data : array_data,
         label: '일별 방문자',
         borderColor: "#3e95cd",
-		backgroundColor: ["#3e95cd",'#ffc107', "#8e5ea2","#3cba9f","#e8c3b9","#c45850",'#0074ff', '#dc3345'],
+		backgroundColor: "#FFC0CB",
         fill: false
       }
     ]

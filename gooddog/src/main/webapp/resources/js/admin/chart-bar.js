@@ -43,7 +43,7 @@ new Chart(document.getElementById("myBarChart"), {
       datasets: [
         {
           label: ["월별 방문자"],
-          backgroundColor: ["#3e95cd",'#ffc107', "#8e5ea2","#3cba9f","#e8c3b9","#c45850",'#007bff', '#dc3545'],
+          backgroundColor: 	'#87CEFA',
           data: array_data2
   		 
         }

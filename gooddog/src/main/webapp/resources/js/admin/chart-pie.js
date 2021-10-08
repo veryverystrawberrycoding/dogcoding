@@ -12,11 +12,10 @@ var myChart = new Chart(ctx, {
         datasets: [{
 			data: [menCount, womenCount], //컨트롤러에서 모델로 받아온다.
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)'
+                '#3e95cd','	#DB7093'
 
             ],
-              backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745','#9370db'],
+             
 		
    }],
   },	
