@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gooddog.domain.GalleryVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.mapper.FriendMapper;
 
@@ -22,5 +23,9 @@ public class FriendServiceImpl implements FriendService {
 	public List<HashMap<String,Object>> fdRecommend2(UserVO vo){
 		return friendMapper.fdRecommend2(vo);
 	}
+	
+	public List<GalleryVO> fdGallery(String user_id) {
+		return friendMapper.fdGallery(user_id);
+	}
 
-} 
+}  

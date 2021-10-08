@@ -169,21 +169,26 @@ $(function(){
 	
 	
 	$("#loginClick").on('click', function(){ 
-		$.ajax({
-			type: 'post',
-			url: 'loginComplete',
-			data: {user_id : $("#username").val(),
-					user_pwd : $("#password").val()},
-			success: function(data){
-				if(data==''){ 
-					$("#id_pwd_error").text("아이디, 비밀번호가 일치하지 않습니다.")
-				}else {
-				location.href = "/mainPage"  
-				}
-			}  
-			 
-		})
-	})
+      $.ajax({
+         type: 'post',
+         url: '/loginComplete', 
+         data: {user_id : $("#username").val(),
+               user_pwd : $("#password").val()},
+         success: function(data){
+            if(data=="z"){  
+               $("#id_pwd_error").text("아이디, 비밀번호가 일치하지 않습니다.")
+            }else if(data=="smith_O"){
+            location.href = "/admin/admin_chart.do"   
+            } else if(data=="ban"){
+			alert("정지된 유저입니다.") 
+			} 
+			else { 
+            location.href = "/mainPage";
+            }  
+         }   
+           
+      })
+   }) 
 	
 
 	

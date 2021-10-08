@@ -177,11 +177,16 @@ public class BoardController {
 	public void kakao() {
 		
 	}
+
 	
 	@RequestMapping("/friendView")
 	public void friendView() {
 		logger.info("friendView");
 	}
-	
+	  
+	@RequestMapping("/chattingPage")
+	public void chattingPage() {
+		    
+	}
 	
 }

@@ -20,7 +20,9 @@
       (select substr(c.user_addr,1,2) as user_addr from user as c where c.user_id=#{user_id})) group by a.user_id;
 	</select>
 	
-	
-	
+	<select id="fdGallery" resultType="GalleryVO" parameterType="String">
+		select * from gallery user_id = #{user_id}
+	</select>   
+	 
  
 </mapper>

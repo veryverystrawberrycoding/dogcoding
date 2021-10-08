@@ -588,35 +588,8 @@ public class AdminController {
 //	}
 	/////////////////////////관리자 실종신고  페이징/////////
 	
-//	@ResponseBody
-//	@RequestMapping(value="/lossList", method=RequestMethod.POST)
-//	public void lossList(Locale locale, Model model, LossVO LossVO, HttpServletResponse response ){
-//		
-//		web.init(response); 
-//		response.setContentType("application/json");
-//		
-//		
-//		LossVO loss = new LossVO();
-//		
-//		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-//		
-//		
-//		int lossCount = 0;							// 전체 사용자 수
-//		try {
-//			lossCount = AdminService.lossCount(loss);
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}  
-//	 
+
 	
-//			page.pageProcess(nowPage, lossCount, 5, 5);		
-//			loss.setLimitStart(page.getLimitStart());
-//			loss.setListCount(page.getListCount());
-		
-//			System.out.println(lossCount+"북카운트가져옴" );
-//			List<LossVO> list = null;  
-//			list = AdminService.adminpost3(loss); 	
 
 //			System.out.println(list+"list가져옴" );
 //			Map<String, Object> data = new HashMap<String, Object>();
@@ -645,28 +618,5 @@ public class AdminController {
 			// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}	
-	
-	
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
+	 
+} 

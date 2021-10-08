@@ -1,5 +1,12 @@
 package com.gooddog.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,7 +17,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,8 +27,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.KakaoOAuthToken;
 import com.gooddog.domain.KakaoProfile;
+import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.service.LogJoinService;
 
@@ -47,26 +55,43 @@ public class LogJoinController {
 		}	 
 		  
 		//로그인
-		@PostMapping("/loginComplete")
-		public UserVO login(UserVO vo, HttpServletRequest req, RedirectAttributes red) {
-			HttpSession session = req.getSession();
-			
-				UserVO info = logJoinService.login(vo);
-				red.addFlashAttribute("msg", false); 
-			if(info==null) { 
-				//session.setAttribute("user", null); 
-				return info; 
-			} else if(info.getUser_author()=="1"){
-				//logJoinService.userLog(vo);
-				return info;
-			} 
-				else {    
-				session.setAttribute("user", info);
-				//logJoinService.userLog(vo);
-				return info;  
-			}   
-			  
-		} 
+		 @PostMapping("/loginComplete")
+		    public String login(UserVO vo, HttpServletRequest req, RedirectAttributes red) throws ParseException {
+		       HttpSession session = req.getSession();
+		       
+		          UserVO info = logJoinService.login(vo);
+		          red.addFlashAttribute("msg", false); 
+		       if(info==null) { 
+		          //session.setAttribute("user", null); 
+		          return "z"; 
+		       } else if(info.getUser_id().equals("smith_O")){
+		          session.setAttribute("admin", info);
+		          logJoinService.userLog(vo);
+		          System.out.println("관리자 로그인");
+		          return info.getUser_id();
+		       } else { 
+		    	  BlackVO bvo = logJoinService.blackCheck(vo.getUser_id());
+		    	  SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+		    	  Date nowdate = java.sql.Timestamp.valueOf(LocalDateTime.now()); 
+
+		    	  if(bvo==null) { 
+		          session.setAttribute("user", info);
+		          logJoinService.userLog(vo);
+		          System.out.println("어디서 호출되나1");
+		          return info.getUser_id();   
+		    	  } else {
+		    		  if(nowdate.before(fm.parse(bvo.getBlack_end()))) {
+		    			  return "ban";  
+		    		  } else {  
+		    			  System.out.println("어디서 호출되나3");
+		    			  session.setAttribute("user", info);
+				          logJoinService.userLog(vo); 
+				          return info.getUser_id();  
+		    		  }
+		    	  }
+		       }   
+		          
+		    }  
 		
 		//카카오 로그인
 		@RequestMapping("/oauthkakao")

@@ -3,6 +3,7 @@ package com.gooddog.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,10 +24,13 @@ import com.gooddog.domain.FrList;
 import com.gooddog.domain.FrListt;
 import com.gooddog.domain.FriendsVO;
 import com.gooddog.domain.FriendssVO;
+import com.gooddog.domain.GalleryVO;
+import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.repository.FriendRepository;
 import com.gooddog.repository.FrienddRepository;
 import com.gooddog.service.FriendService;
+import com.gooddog.service.MypageService;
 
 @RestController
 public class FriendController {
@@ -38,9 +42,11 @@ public class FriendController {
 	private FrienddRepository frienddRepository;
 	
 	@Autowired
-	
 	private FriendService friendService;
 	
+	@Autowired
+	private MypageService mypageService;
+	 
 	@Autowired
     MongoTemplate mongoTemplate;
 	
@@ -114,7 +120,7 @@ public class FriendController {
 	    if(frienddRepository.findByFollowerId(vo.getUser_id())==null) {
 	    	FriendssVO fdd = new FriendssVO(vo.getUser_id(), list2);
 	    	frienddRepository.insert(fdd);
-	    	
+	    	 
 	    } else {
 	    	Update update2 = new Update(); 	
 	    	update2.push("frListt").each(list2);
@@ -130,8 +136,10 @@ public class FriendController {
 	 
 	@PostMapping("followingList")
 	public String followingList( HttpServletRequest req) throws JsonProcessingException{
+		 
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
+
 		return friendRepository.findByFollowingId(sessionvo.getUser_id());
 		
 	} 
@@ -156,6 +164,36 @@ public class FriendController {
 		query.addCriteria(criteria.orOperator(criteria_arr));
 		return mongoTemplate.find(query, ChatLog.class, receiver);
 	} 
+	
+	@PostMapping("yourPet")
+	public Map<String,Object> yourPet(UserVO vo){
+		Map <String,Object> map = new HashMap<String,Object>();
+		List<PetVO> list = new ArrayList<PetVO>();
+		list = mypageService.dogList(vo.getUser_id());
+		map.put("yourPet", list);   
+		return map;  
+	}
+	
+	@PostMapping("yourFollowing")
+	public String yourFollowing(UserVO vo) throws JsonProcessingException {
+		if(friendRepository.findByFollowingId(vo.getUser_id())==null) {
+		return "fail";
+		} else {
+		return friendRepository.findByFollowingId(vo.getUser_id());
+		} 
+	}
+	
+	@PostMapping("yourFollower")
+	public String yourFollower(UserVO vo) throws JsonProcessingException {
+		
+		if(frienddRepository.findByFollowerId(vo.getUser_id())==null) {
+			return "fail";
+			} else { 
+			return frienddRepository.findByFollowerId(vo.getUser_id());
+			} 
+		
+	}
+	
 	
 	
 }

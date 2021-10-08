@@ -25,8 +25,10 @@ public interface LogJoinMapper {
 	 
 	 void userLog(UserVO vo);
 	 
-	 void userLogout(UserVO vo); 
-
+	 void userLogout(UserVO vo);
+	 
+	 BlackVO blackCheck(@Param("user_id") String user_id);
+  
 		//유저 불러오기
 		List<UserVO> getUserInfo();
 		//블랙 유저 불러오기

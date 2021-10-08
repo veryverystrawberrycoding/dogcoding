@@ -3,6 +3,7 @@ package com.gooddog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.UserVO;
 import com.gooddog.mapper.LogJoinMapper;
 
@@ -45,6 +46,8 @@ public class LogJoinServcieImpl implements LogJoinService {
 		logJoinMapper.userLogout(vo);
 	}  
 	
-	
+	public BlackVO blackCheck(String user_id) {
+		return logJoinMapper.blackCheck(user_id);
+	} 
 }   
  

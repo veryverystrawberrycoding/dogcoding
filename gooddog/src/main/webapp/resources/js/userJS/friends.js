@@ -434,7 +434,7 @@ function followingList() {
 	$.ajax({
 		type:'post',
 		url: 'followingList',
-		success: function(data){
+		success: function(data){ 
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data);
 			var list = obj.frList
@@ -462,15 +462,15 @@ function followerList() {
 		success: function(data){
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
-			var list = obj.frList
-			alert(list[0].follower_id)
+			var list = obj.frListt
+			alert(list[0].following_id)
 			for(var i=0; i<list.length; i++){
-			fdview=''
+			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
-			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].follower_img+'" alt="img">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].following_img+'" alt="img">'
 			fdview += '<span class="online_icon"></span></div><div class="user_info">' 
-			fdview += '<span class="chat_content" style="cursor:pointer;">'+list[i].follower_nick+'</span><p>'+list[i].follower_name+'</p></div></div>'
-			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
+			fdview += '<span class="chat_content" style="cursor:pointer;">'+list[i].following_nick+'</span><p>'+list[i].following_name+'</p></div></div>'
+			fdview += '<input type="hidden" class="friend_id" value="'+list[i].following_id+'"></li>' 
 			$(".total_friend_view").append(fdview);     
 			}  
 		}  
@@ -486,12 +486,8 @@ $(".follower").on('click', function(){
 	followerList();
 })
 
-	const eventSource = new EventSource("http://localhost:8082/chat/roomNum/4");
-	eventSource.onmessage = (event) => {  
-	alert("호출 확인");
-	const data = JSON.parse(event.data);
-	initMyMessage(data);    
-}  
+	
+
  
 $(document).on('click', '.chat_content',function(){
 	let value = $(this).parent().parent().parent().find(".friend_id").val();
@@ -606,27 +602,31 @@ async function addMessage(){
 	 
 }
 
- 
-
 document.querySelector("#chat-outgoing-button").addEventListener("click", ()=> {
- 	addMessage();
-	 
-}) 
-
+ 	addMessage(); 
+	  
+	 }) 
+ 
 
 document.querySelector("#chat-outgoing-msg").addEventListener("keydown", (e)=> {
 	console.log(e.keyCode)
 	if(e.keyCode==13){
 	addMessage(); 
 	}
-})
+}) 
+ 
+
+
 
 $(document).on('click','.profile_click',function(){
 		let frd = $(this).parent().parent().parent().find(".friend_id").val();
-		window.open('/profile?name='+frd+'','','width=1000,height=800,left=200,resizable = no, scrollbars = no');
-		 
-	})
+		window.open('/profile?name='+frd+'','','width=650,height=720,left=200,resizable = no, scrollbars = no');
+		  
+	})    
+  
 
 
- 
+
+
+
 })
