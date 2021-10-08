@@ -2,7 +2,7 @@
 $(function(){
 	//alert("start");
 	let dogInfo
-
+	
 	//반려견 목록 조회 
 	dogList();
 	
@@ -20,31 +20,29 @@ $(function(){
 	let today = new Date();
 	let year = today.getFullYear();
 	let month = today.getMonth()+1;  // 월
+	let date = today.getDate();
+	
+	let todayStr = year+'-'+month+'-0'+date
+	//alert (todayStr)
+	//오늘 날짜로 설정
+	$('.weight_date').val(todayStr);
 		
-
 	//alert(year+','+ month);
 	$('#selectYear').val(year).prop("selected", true);
 	$('#selectMonth option:eq('+month+')').prop("selected", true);
+	//weightListGraph(year, month);
 	
 	//selectList로 년도를 선택해서 값 추출
     $('#selectYear').change(function() {
         let changeYear = $('#selectYear option:selected').val();
-        //alert('year:'+year);
-		// 차트 지우기
-		//$("#myChart").empty();
-		// 차트 그리기 		
-		//createChart(month);
+
 	});	//end of change 
 	
 			
 	//selectList로 월을 선택해서 값 추출
     $('#selectMonth').change(function() {
         let changeMonth = $('#selectMonth option:selected').val();
-        //alert('month:'+month);
-		// 차트 지우기
-		//$("#myChart").empty();
-		// 차트 그리기 		
-		//createChart(month);
+
 	});	//end of change 
 
 
@@ -54,10 +52,9 @@ $(function(){
 	});	//end of function		
 
 
-	//$('#selectDog').append();
+
 
 }) //end of function
-
 
 
 // 반려견 목록 조회
@@ -81,7 +78,7 @@ function dogList() {
 				list += '<img src="$../../resources/images/profile/'+data.doglist[i].pet_img+'" alt="img">'
 				list += '</div>'
 				list += '<div class=myDogInfo-breed>'
-				list += '<a href="" id="mainFaceButton"><img src="../../resources/images/icons/search.png" width="50px" height="50px">견종찾기</a>'
+				list += '<div class="mainFaceButton" id="mainFaceButton"><img src="../../resources/images/icons/search.png" width="50px" height="50px">견종찾기</div>'
 				list += '</div>'
 				list += '</div>'
 				list += '<header class="myDogInfo-header">'
@@ -121,8 +118,8 @@ function dogList() {
 				list += '</article>'
 				$("#totalPetList").append(list); 
 				
-				$("#selectDog").append("<option class='pet_no' value='"+data.doglist[i].pet_no+"'>"+data.doglist[i].pet_name+"</option>");
-				
+				$("#selectDog_weight").append("<option class='pet_no' value='"+data.doglist[i].pet_no+"'>"+data.doglist[i].pet_name+"</option>");
+				$("#selectDog_walk").append("<option class='pet_no' value='"+data.doglist[i].pet_no+"'>"+data.doglist[i].pet_name+"</option>");
 				
 			} // end of for 
 			
@@ -147,7 +144,7 @@ function dogAdd(){
 		list += '<a href="#">프로필 사진 추가</a>'
 		list += '</div>'
 		list += '<div class=myDogInfo-breed>'
-		list += '<a href="" id="mainFaceButton"><img src="../../resources/images/icons/search.png" width="50px" height="50px">견종찾기</a>'
+		list += '<div class="mainFaceButton" id="mainFaceButton"><img src="../../resources/images/icons/search.png" width="50px" height="50px">견종찾기</div>'
 		list += '</div>'
 		list += '</div>'
 		list += '<header class="myDogInfo-header">'
@@ -216,48 +213,80 @@ $(document).on('click', '#pet_delete_btn', function(){
 	})	
 })
 
-// 반려견 체중 조회
+// 반려견 체중 조회 - 테이블 버튼 이벤트
 $(document).on('click', '#weightListBtn', function(){
 	
 	let year = $('#selectYear').val();
 	let month = $('#selectMonth').val();
-	let 
+	 
 	//alert(year+','+ month);
-	//weightListSelect(year, month);
+	weightListTable(year, month);
 });
 
-//반려견 체중 조회
-function weightListSelect(year, month){
+//반려견 체중 조회 
+function weightListTable(year, month){
+		//alert("start weightListTable");
 		
 		// 리스트 생성
 		let weightList = [];
-		let chartLabels = [];
-		let chartData = [];
 		
-		
+		let pet_no = $('#selectDog_weight').val();
+		alert(pet_no);
 		$.ajax({
 			type:'POST',
-			url:"/monthWeight",
+			url:"/weightList",
 			data: {
 				year: year,
-				month: month
+				month: month,
+				pet_no: pet_no
 				},			
 			//dataType: "json",
 			//contentType: "application/json; charset=utf-8;",
 			success : function(data) {
-				//alert("성공." + data.weightList ); 
-				weightList=data.weightList;
-				for (let i=0; i<data.weightList.length; i++){
-					weightList.push(data.weightList[i]);	
-					//chartLabels.push(data.weightList[i].weight_date);
-					//chartData.push(data.weightList[i].weight_content);	
-				} //end of for
+				createWeightTable(data)
 			},
 			error: function() {
 				alert("ERROR : weightList data load fail" );
 			}
 		}); //end of ajax;  
-		alert(weightList);
+		//alert(weightList);
+}
+
+// 반려견 체중 조회 - 그래프 버튼 이벤트
+$(document).on('click', '#weightGraphBtn', function(){
+	
+	let year = $('#selectYear').val();
+	let month = $('#selectMonth').val();
+	 
+	//alert(year+','+ month);
+	weightListGraph(year, month);
+});
+
+
+//반려견 체중 조회 - 그래프
+function weightListGraph(year, month){
+		//alert("start weightListTable");
+		
+		let pet_no = $('#selectDog_weight').val();
+		//alert("pet_no:"+pet_no);
+		$.ajax({
+			type:'POST',
+			url:"/weightList",
+			data: {
+				year: year,
+				month: month,
+				pet_no: pet_no
+				},			
+			//dataType: "json",
+			//contentType: "application/json; charset=utf-8;",
+			success : function(data) {
+				createWeightGraph(data)
+			},
+			error: function() {
+				alert("ERROR : weightList data load fail" );
+			}
+		}); //end of ajax;  
+		//alert(weightList);
 }
 
 
@@ -295,44 +324,12 @@ $(document).on('click', '#weightInsertBtn', function(){
 	
 }); // end of function
 
-// 반려견 체중 목록 테이블 그리기 
-$(document).on('click', '#weightListBtn', function(){
-		
-		// 리스트 생성
-		let weightList = [];
-		let weight_date = [];
-		let weight_content = [];
-		
 
-		
-	
-		
-		$.ajax({
-			type:'POST',
-			url:"/monthWeight",
-			data: {
-					year:year,
-					month:month
-				  },			
-			//dataType: "json",
-			//contentType: "application/json; charset=utf-8;",
-			success : function (data) {
-				createWeightTable(data)
-			}
-				,
-			error: function() {
-				alert("ERROR : weightList data load fail" );
-			}
-		}); //end of ajax; 
-		
-	
-}); // end of function
 
 
 function createWeightTable(data){
 	
-	
-	alert("성공."  ); 
+	//alert("성공."  ); 
 				//$('#weightTableBox').append('<table id="weightTable">');
 				$('#weightTable').empty();
 				for (let i=0; i<data.weightList.length; i++){
@@ -397,39 +394,83 @@ $(document).on('click', '#weightDeleteBtn', function(){
 		
 }); // end of function	
 
-/*// 반려견 체중 목록 테이블 그리기 
-function createTable(month){
-	
-}
-
 
 // 반려견 체중 그래프 그리기
-function createChart(month){
+function createWeightGraph(data){
+	
+	let weightList = data.weightList; 
+	let chartLabels = [];
+	let chartData = [];
+	let selectDog=$('#selectDog_weight option:selected').text();
+	let ctx;
+	let utilityChart;
+	
+	let year = $('#selectYear').val();
+	let month = $('#selectMonth').val();
+	let lastDate = new Date(year, month, 0);
+	let days=lastDate.getDate() 
+	//alert(typeof(days))
+	//alert(days)
+	let day 
+	
+	for(let i=1; i<days+1; i++){
+		//alert(weightList[i-1].weight_date);
+		chartLabels.push(i);
+		//chartData.push(i);
+		let flag = false;
+		//alert(i)
+		for(let j=0; j<weightList.length; j++ ){
+			//날짜만 추출 
+			day=weightList[j].weight_date.slice(-2)
+			//alert('안'+ i+','+j);
+			if (i==parseInt(day)){
+				//alert(i+','+j+','+"같음"+weightList[j].weight_content)
+				chartData.push(weightList[j].weight_content);
+				flag = true;
+				break;
+			}
+			else{
+				//alert('else')
+			}
+		}
+		
+		if(!flag){
+		chartData.push(0);
+		//alert('break 되니 ???')
+		}
 
-	let ctx = document.getElementById('myChart').getContext('2d');
-	let utilityChart = new Chart(ctx, {
+	}
+	//alert('length: '+chartData.length)
+	//alert(chartData)
+	
+
+	
+	ctx = document.getElementById('myChart').getContext('2d');
+	
+	utilityChart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'bar',
  
     // The data for our dataset
     data: {
-        	labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월','8월','9월','10월','11월','12월'],
-        	//labels: chartLabels,
+        	//labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월','8월','9월','10월','11월','12월'],
+        	labels: chartLabels,
 			datasets: [{
-            label: '강아지 이름',
+            label: selectDog,
             fill: false,
             backgroundColor: 'rgb(84,193,196,0.5)',
             borderColor: 'rgb(84,193,196)',
-            data: [NaN, 10, 5, 2, NaN, 30, 45, 12, 41, 23, 12, 32],
-			//data: chartData
+            //data: [NaN, 10, 5, 2, NaN, 30, 45, 12, 41, 23, 12, 32],
+			data: chartData
         }]
     },
- 
+
     // Configuration options
     options: {
         legend: {
              labels: {
                   fontColor: 'black' // label color
+
                  }
               },
         scales: {
@@ -438,6 +479,8 @@ function createChart(month){
                 ticks: {
                     beginAtZero:true,
                     fontColor:'black' // y축 폰트 color
+
+
                 }
              }],
              // x축
@@ -450,4 +493,4 @@ function createChart(month){
         }
     }
 	});
-}*/
+}

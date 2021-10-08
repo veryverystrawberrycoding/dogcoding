@@ -23781,7 +23781,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	display: flex;
 	height : 50px;
 	line-height:50px;
-	margin : 20px 0 20px 10px;
+	margin : 20px 0 20px 50px;
 	font-size : 20px;
 }
 .weightInput div{
@@ -23797,7 +23797,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	background-color: #fff0f1;
 	height : 50px;
 	border-color: #fff0f1;
-	/* border-radius : 25px; */
+	border-radius : 25px;
 	padding : 0 10px 0 10px;
 	color : gray;
 	text-align : right;
@@ -23807,7 +23807,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	width: 80px;
 	font-size : 20px;
 	text-align : right;
-	/* border-radius : 25px; */
+	border-radius : 25px;
 	background-color: #fff0f1;
 	padding : 11px 12px 11px 12px;
 	text-align : right;
@@ -23826,20 +23826,24 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	 display : flex;
 	 flex-direction : row;
 	 flex-wrap:wrap;
-	 margin-top : 20px;
-	 margin-left : 20px; 
+	 margin-top : 10px;
+	 margin-left : 50px; 
 	 font-size: 20px;
 	 
 }
-#selectYear, #selectMonth{
-	/*  background-color: #fbebd0;  */
-	 border-radius : 25px;
-	 font-size: 20px;
-	/*  text-align : right; */
+
+.sort-period select{
+	border-radius : 25px;
+	font-size: 20px;
 }
 
+
 .sort-period div{
-	margin-right : 10px;
+	margin-right : 5px;
+}
+
+#weightListBtn {
+	margin-right: 20px;
 }
 .weightGraph{
 	text-decoration:none;
@@ -23856,9 +23860,9 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 
 #weightTable input[type="date"] {
 	background-color: #fff0f1;
-	height : 50px;
+	height : 30px;
 	border-color: #fff0f1;
-	/* border-radius : 25px; */
+	border-radius : 25px;
 	padding : 0 10px 0 10px;
 	color : gray;
 	text-align : right;
@@ -23868,13 +23872,24 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 }
 #weightTable input[type="text"] {
 	width: 80px;
+	height : 30px;
 	font-size : 20px;
 	text-align : right;
-	/* border-radius : 25px; */
+	border-radius : 25px;
 	background-color: #fff0f1;
 	padding : 11px 5px 11px 12px;
 	text-align : right;
 }
+
+#graph {
+	display: flex;
+	justify-content: center;
+
+}
+#graph-box{
+	width: 600px;
+}
+
 
 
 #myPage-widget-title {

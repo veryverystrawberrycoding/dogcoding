@@ -11,11 +11,13 @@
 	SELECT * 
 	FROM (SELECT weight_no,DATE_FORMAT(weight_date,'%Y-%m-%d') weight_date, weight_content
 			FROM pet p inner join weight w
-			WHERE p.user_id = #{user_id} AND p.pet_no = #{pet_no}
+			WHERE p.pet_no = w.pet_no
+			AND p.user_id = #{user_id} 
+			AND p.pet_no = #{pet_no}
 			AND DATE_FORMAT(weight_date,'%YYYY')=#{year}
 			<if test='month != 0'>AND DATE_FORMAT(weight_date,'%m')=#{month}</if>
 			ORDER BY weight_date DESC 
-			LIMIT 7) d 
+			<!-- LIMIT 7 -->) d 
 	ORDER BY d.weight_date 
 	</select>
 	

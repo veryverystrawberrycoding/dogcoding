@@ -123,3 +123,8 @@ $(function(){
 	});
 		
 });
+
+// 동적으로 만들어진 버튼 클릭 
+$(document).on('click', '#mainFaceButton', function(){
+		window.open("/breedCheck",'','width=800,height=500,left=200');
+})

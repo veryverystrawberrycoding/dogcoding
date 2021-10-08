@@ -1,18 +1,14 @@
 package com.gooddog.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.query.criteria.internal.expression.function.LengthFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -84,9 +80,8 @@ public class PlaceController {
 		System.out.println(mapList);
 		System.out.println("paging: "+paging);
 		
-		List countList = new ArrayList();
-		List prevalueList = new ArrayList();
-		List percentList = new ArrayList();
+		List<Integer> countList = new ArrayList<Integer>();
+		List<Float> percentList = new ArrayList<Float>();
 		
 		
 		//mapList의 place_no를 통해서 리뷰 수와 리뷰 평가 값 가져오기 
