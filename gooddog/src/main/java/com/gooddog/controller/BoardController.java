@@ -24,10 +24,7 @@ public class BoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 
-	@RequestMapping("/chartbox") //http://localhost:8082/board/list
-	public void chatbox() {
-		logger.info("chartbox");
-	}
+
 	
 	//@@@@@@@@@@@@@@@@@나머지 컨트롤@@@@@@@@@@@@@@@@@@//
 	@RequestMapping("/register") //http://localhost:8082/board/register
@@ -45,10 +42,7 @@ public class BoardController {
 		logger.info("index");
 	}
 	
-	@RequestMapping("/chat") //http://localhost:8082/board/chat
-	public void chat() {
-		logger.info("chat");
-	}
+	
 	
 	@RequestMapping("/friend") //http://localhost:8082/board/friend
 	public void friend(HttpServletRequest req) {
@@ -108,15 +102,15 @@ public class BoardController {
 		logger.info("callingView");
 	}
 	
-	@RequestMapping("/bookList") //http://localhost:8082/board/bookList
-	public void bookList() {
-		logger.info("bookList");
-	}
+//	@RequestMapping("/bookList") //http://localhost:8082/board/bookList
+//	public void bookList() {
+//		logger.info("bookList");
+//	}
 	
-	@RequestMapping("/bookView") //http://localhost:8082/board/bookView
-	public void bookView() {
-		logger.info("bookView");
-	}
+//	@RequestMapping("/bookView") //http://localhost:8082/board/bookView
+//	public void bookView() {
+	//	logger.info("bookView");
+//	}
 	
 		@RequestMapping("/mypageDog") //http://localhost:8082/board/mypageDog
 	public String mypageDog(UserVO vo, HttpServletRequest req) {

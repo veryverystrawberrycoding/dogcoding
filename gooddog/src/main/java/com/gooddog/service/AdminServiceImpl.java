@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
@@ -155,32 +156,32 @@ public void galleryDelete(GalleryVO vo) {
 AdminMapper.galleryDelete(vo);
 
 }
-
-//////////////////////////loss 정보 가져오기 /////////////////////	
-
-@Override 
-public int lossCount(LossVO lossVO) throws Exception {
-
-int result = 0;
-result = AdminMapper.lossCount();
-
-return result;
-}
+///////////////////////////badcontnet/////////////////////////
 @Override
-public List<LossVO> adminpost3(LossVO lossVO) {
-return AdminMapper.adminpost3(lossVO) ;
-//TODO Auto-generated method stub
-}
-//////gallery 수정/////
-//public void bookModify(BookVO vo) {
-//System.out.println("엄");
-//AdminMapper.bookModify(vo); 
-//}
-///////////////ㅣㅐㄴㄴ 삭제 ///////////////
-public void lossDelete(LossVO vo) {
-AdminMapper.lossDelete(vo);
+public List<BadcontentVO> badcontent(BadcontentVO badcontentVO) {
+	return AdminMapper.badcontent(badcontentVO) ;
 
 }
+
+
+@Override
+public void badcontentDelete(BadcontentVO vo) {
+	AdminMapper.badcontentDelete(vo);
+	
+} 
+
+
+@Override
+public int badcontentCount(BadcontentVO badcontent) {
+	
+	int result = 0;
+	result = AdminMapper.badcontentCount();
+
+	return result;
+	}
+
+
+
 
 }
 

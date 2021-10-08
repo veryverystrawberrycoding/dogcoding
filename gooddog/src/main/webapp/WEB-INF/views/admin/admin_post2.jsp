@@ -39,6 +39,18 @@
 
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+   .pagenations{
+      display:flex;
+      justify-content: center;
+   }
+   .pagenations a{
+      margin-right: 10px;
+       margin: 0 1px 0 25px;
+   }
+
+</style>
+
 
 
 <script type="text/javascript">
@@ -95,8 +107,8 @@ function galleryList(){
 						returnHtml += "<td class ='gal_no'>"+gal_no+"</td>"
 						returnHtml += "<td class = 'gal_name'>"+gal_name+"</td>"
 		
-//						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">등록</button></td>'						
-						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">상세보기</button></td>'
+							
+						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="gallery_view_submit" class="gallery_view_btn">상세보기</a></td>'
 						returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn" >삭제</button></td>'
 						
 							
@@ -130,25 +142,8 @@ function pageGo(pageNum){
 	}
 }
 
-//-----------------------info  수정 기능----------------------
-galleryList();
 
-//$(document).on('click', '.gallery_modify_btn', function(){
-//	$.ajax({
-//		type:'post',
-//		url:'../bookModify',
-//		data: {dic_no : $(this).parent().parent().parent().parent().parent().find("dic_no").val(),
-//			   dic_name : $(this).parent().parent().parent().parent().parent().find("dic_name").val(),
-//			   dic_img : $(this).parent().parent().parent().parent().parent().find("dic_img").val(),
-//			   dic_content : $(this).parent().parent().parent().parent().parent().find("dic_cnt").val(),
-//			   dic_heart : $(this).parent().parent().parent().parent().parent().find("dic_heart").val()},
-//		success: function(data) { 
-//			alert("수정이 완료됐습니다")
-//		} 
-		
-//	}) 
-	
-//}) 
+
 // -----------------------info 삭제 기능 on-------------------------- 
 
 $(document).on('click', '.gallery_delete_btn', function(){
@@ -219,18 +214,12 @@ $(document).on('click', '.gallery_delete_btn', function(){
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">갤러리 관리</h2>
                     
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
                    			info
                             </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
+                            
                             
                                 
                             
@@ -254,12 +243,16 @@ $(document).on('click', '.gallery_delete_btn', function(){
                                 </table>
                             </div>
                             <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
+                             <!--  <a href="javascript:pageGo(0)">이전</a>
                              <div class="userpage" id="pageId"> </div>
                               <a href="javascript:pageGo(999)">다음</a>
-                        </div>
+                        </div>-->
                         
-                   
+                         <div class="pagenations">
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <a class="page" id="pageId" > </a>
+                              <a href="javascript:pageGo(999)">다음</a>
+                              </div>    
 
                
                         

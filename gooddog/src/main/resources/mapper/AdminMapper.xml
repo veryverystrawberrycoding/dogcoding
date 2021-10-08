@@ -58,7 +58,7 @@
 
 	<select id="adminpost" parameterType="BookVO" resultType="BookVO">
 		<![CDATA[ 
-		    SELECT * FROM book WHERE dic_no ORDER BY dic_no asc LIMIT #{limitStart}, #{listCount}
+		    SELECT * FROM book WHERE dic_no ORDER BY dic_no desc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -76,7 +76,7 @@
          SELECT count(*) FROM book 
          ]]>
 </select>
-<!-- /////////////////////info 수정 기능  -->
+<!-- /////////////////////info 가져오기 기능  -->
 	<select id="bookModify" parameterType="BookVO" resultType="BookVO">
 		<![CDATA[
 		select * from book WHERE dic_no = #{dic_no}
@@ -96,11 +96,9 @@
 
 <!-- 000000000000000000000000000000000000000adminpost2000000000000000000000000000000000000 -->
 
-		
-
 	<select id="adminpost2" parameterType="GalleryVO" resultType="GalleryVO">
 		<![CDATA[ 
-SELECT * FROM gallery WHERE gal_no ORDER BY  gal_no asc LIMIT #{limitStart}, #{listCount}
+SELECT * FROM gallery WHERE gal_no ORDER BY  gal_no desc LIMIT #{limitStart}, #{listCount}
 		
 		
 		]]>
@@ -128,9 +126,43 @@ SELECT * FROM gallery WHERE gal_no ORDER BY  gal_no asc LIMIT #{limitStart}, #{l
          ]]>
 </select>		
 			
+			
+			
+<!-- 000000000000000000000000000000000000000배드컨탠츠000000000000000000000000000000000000 -->
+<!-- 00000000000000000000000000000000000000000000000000000000000000000000000000000 -->
+	<select id="badcontent" parameterType="BadcontentVO" resultType="BadcontentVO">
+		<![CDATA[ 
+SELECT * FROM badcontent WHERE gal_no ORDER BY  gal_no desc LIMIT #{limitStart}, #{listCount}
+		
+		
+		]]>
+		
+				
+	</select>
+	
+	<!-- 페이징  -->
+
+
+
+<select parameterType="BadcontentVO" resultType="int" id="badcontentCount">
+
+<![CDATA[
+         SELECT count(*) FROM badcontent 
+         ]]>
+</select>
+
+<!--  ////////////배드컨텐츠 삭제 기능//////////// -->
+
+<select parameterType="BadcontentVO"  id="badcontentDelete">
+
+<![CDATA[ 
+         delete from gallery where gal_no =#{gal_no} 
+         ]]>
+</select>				
+<!-- -000000000000000000000000000000000000000000000000000000000000000 -->			
 <!-- 000000000000000000000000000000000000000adminpost3000000000000000000000000000000000000 -->
 
-		
+		 
 
 	<select id="adminpost3" parameterType="LossVO" resultType="LossVO">
 		<![CDATA[ 

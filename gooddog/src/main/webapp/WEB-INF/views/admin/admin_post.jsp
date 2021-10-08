@@ -40,7 +40,17 @@
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+<style>
+   .pagenations{
+      display:flex;
+      justify-content: center;
+   }
+   .pagenations a{
+      margin-right: 10px;
+       margin: 0 1px 0 25px;
+   }
 
+</style>
 <script type="text/javascript">
 //------테이블 만들기 및 페이징 -------
 $(document).ready(function(){
@@ -89,15 +99,15 @@ function bookList(){
 						var dic_no = data.list[i].dic_no;		
 						var dic_name = data.list[i].dic_name;
 						
-						
+						  
 						
 						returnHtml += "<tr>"
 						
 						returnHtml += "<td class ='dic_no'>"+dic_no+"</td>"
 						returnHtml += "<td class = 'dic_name'>"+dic_name+"</td>"
-		
-	//					returnHtml += '<td><button type="submit" id="book_delete_submit" class="book_create_btn">등록</button></td>'						
-						returnHtml += '<td><a href= "../bookList" class="book_modify_btn" >상세보기</a></td>'
+						
+						
+					    returnHtml += '<td><button type="button" id="book_modify_submit"  class="book_modify_btn" >상세보기</button></td>'
 						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn" >삭제</button></td>'
 						
 							
@@ -135,37 +145,22 @@ function pageGo(pageNum){
 bookList();
 
 
-//$(document).on('click', '.book_modify_btn', function(){
-//	$.ajax({
-//		type:'post',
-//		url:'/bookModify',async    : false,
-//		data: {dic_no : $(this).parent().parent().find(".dic_no").val(),
-//			   dic_name : $(this).parent().parent().find(".dic_name").val()},
-//		success: function(data) { 
-//			alert("수정이 완료됐습니다")
-//		} 
-		
-//	})      
-	//   페이지를 어떻게 넘겨야하지??? ajax로 페이지를 넘길 수 없나
-	
-//}) 
-
 //-------------------------------------테스트------------------------
 $(document).on('click','.book_modify_btn', function(){
 alert("등록")
 ///////////////////////////////////////////////////////////////
-//$.ajax({
-//	type : 'post',
-//		url : '/bookModify',
-//		async : false,
-//	    data:{dic_no :$(this).parent().parent().find(".dic_no").text()},
+$.ajax({
+	type : 'post',
+		url : '/bookView',
+		async : false,
+	    data:{dic_no :$(this).parent().parent().find(".dic_no").text()},
 	    
-//		success:function(data){
-//			alert("페이지이동");
-//			location.href = "/bookModify?dic_no="+$(this).parent().parent().find(".dic_no").text()
-//		} 
+		success:function(data){
+			alert("페이지이동");
+			location.href = "/bookView?dic_no='+dic_no+'"
+		} 
 	})
-//})
+})
 // -----------------------info 삭제 기능 on-------------------------- 
 
 $(document).on('click', '.book_delete_btn', function(){
@@ -173,7 +168,7 @@ $(document).on('click', '.book_delete_btn', function(){
 	$.ajax({
 		type:'post',
 		url:'/bookDelete',
-		
+		async : false,
   	data: {dic_no : $(this).parent().parent().find(".dic_no").text()},
 	success: function(data){
 			alert("삭제완료");
@@ -237,18 +232,12 @@ $(document).on('click', '.book_delete_btn', function(){
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">백과사전 관리</h2>
                     
-                       <div class="card mb-4" style="float: left; width: 45%; text-align: center;">
+                       <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
                    			info
                             </div>
-                            <form action="/admin_post/search" method="get">
-                            	<div class="search">
-                            		<input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-      
-                            	</div>
-                            	<input type="submit" style="float: right;" value="검색">
-                            </form>
+                            <div class= "pagenations"><a href ="../bookForm">등록버튼이다잇</a>  </div>
                             
                                 
                             
@@ -273,12 +262,16 @@ $(document).on('click', '.book_delete_btn', function(){
                                 </table>
                             </div>
                             <!--  page -->
-                              <a href="javascript:pageGo(0)">이전</a>
+                         <!--       <a href="javascript:pageGo(0)">이전</a>
                              <div class="userpage" id="pageId"> </div>
                               <a href="javascript:pageGo(999)">다음</a>
-                        </div>
+                        </div> -->
                         
-                   
+       <div class="pagenations">
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <a class="page" id="pageId" > </a>
+                              <a href="javascript:pageGo(999)">다음</a>
+                              </div>                
 
                
                         

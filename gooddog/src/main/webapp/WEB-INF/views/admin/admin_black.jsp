@@ -12,13 +12,15 @@
 <html class="no-js">
 <!--<![endif]-->
   
+  
+  
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>관리자 - 신고</title>
+	<title>관리자 - 게시판 정보</title>
 	<link href="/resources/css/userCSS/admin-styles.css" rel="stylesheet" />
 	 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" ></script>
@@ -36,8 +38,145 @@
 	<![endif]-->
 
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+   .pagenations{
+      display:flex;
+      justify-content: center;
+   }
+   .pagenations a{
+      margin-right: 10px;
+       margin: 0 1px 0 25px;
+   }
+
+</style>
+
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+//받아와야하는 리스트 만들기 	
+	badcontentList();
+});
+
+function badcontentList(){
+
+		var returnHtml = "";
+		var pageHtml = '';
+			
+			
+		var page = $('#page').val();
+		$.ajax({	
+			type:'POST',
+			data: 'page='+page,
+			url:"/badcontentList",
+			dataType: "json",
+			async    : false,
+			success : function(data) {
+		
+				var nextPage = data.nextPage;
+				var prevPage = data.prevPage;
+				var pageIn = data.pageIn;
+				var startPage = data.page.startPage;
+				var endPage = data.page.endPage;
+				endPage = endPage +1;
+				for(var p=startPage; p<endPage; p++){
+				
+					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
+				}
+				
+		
+				$('#pageId').html(pageHtml);
+				$('#page').val(pageIn);
+				$('#nextPage').val(nextPage);
+				$('#prevPage').val(prevPage);
+
+				
+				var cnt = data.list.length; 
+					
+				if(cnt == 0){
+					alert("사용자가 없습니다");
+				}else{
+					for(var i=0; i<cnt; i++){
+						var gal_no = data.list[i].gal_no;		
+						var u_id = data.list[i].u_id;
+						
+						
+//리스트 뿌리기 						
+						returnHtml += "<tr>"
+						
+						returnHtml += "<td class ='gal_no'>"+gal_no+"</td>"
+						returnHtml += "<td class = 'u_id'>"+u_id+"</td>"
+		
+//						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">등록</button></td>'						
+						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="black_view_submit" class="black_view_btn">상세보기</a></td>'
+						returnHtml += '<td><button type="button" id="black_delete_submit" class="black_delete_btn" >삭제</button></td>'
+						
+							
+						
+						returnHtml += "</tr>"
+						
+					}
+				}
+				
+				$('#blackList1').html(returnHtml);
+			}
+			
+	});
+	
+
+	
+}
+
+function pageGo(pageNum){
+	if(pageNum == 0){
+	// 이전페이지
+		$('#page').val($('#prevPage').val());
+		badcontentList();
+	}else if(pageNum == 999){
+	// 다음페이지
+		$('#page').val($('#nextPage').val());
+		badcontentList();
+	}else{
+		$('#page').val(pageNum);		// 사용자가 누른 페이지
+		badcontentList();
+	}
+}
+
+
+
+// -----------------------관리 버튼 on-------------------------- 
+$(document).on('click', '.black_delete_btn', function(){
+	alert($(this).parent().parent().find(".gal_no").text())
+	$.ajax({
+		type:'post',
+		url:'/badcontentDelete',
+  	data: {gal_no : $(this).parent().parent().find(".gal_no").text()},
+	success: function(data){
+			alert("삭제완료");
+			badcontentList(); 
+		} 
+	})
+})
+
+//----------------------------------갤러리 불러오기 -------------------------------
+
+
+</script>
 
 <body>
+
+
+
+	<form>
+	<input type="hidden" name="page" id="page" value="1" />
+	<input type="hidden" name="nextPage" id="nextPage" />
+	<input type="hidden" name="prevPage" id="prevPage" /> 
+	</form>
+
+
+
+
 	
 	<c:set var="now" value="<%=new java.util.Date() %>"/>
 
@@ -65,58 +204,72 @@
         </nav>
        
         <div id="layoutSidenav">
-        	<!-- Linknav -->
+        
+            <!-- Linknav -->
             <%@include file ="link_nav.jsp" %>
-            
+
             <div id="layoutSidenav_content">
             
-                <main>
+                 <main>
                     <div class="container-fluid px-4">
                         <h2 class="mt-4">신고 관리</h2>
                     
-                       <div class="card mb-2">
+                       <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-address-card me-1"></i>
-                                신고
+                                <i class="fas fa-address-card me-1" ></i>
+                   			info
                             </div>
-                            <div class="card-body" >
+                            
+                            
+                                
+                            
+                            <div class="">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
+                                            <th>신고 글 번호</th>
+                                            <th>신고자</th>
+                                            <th>상세보기</th>
+                                            
+                                            <th>삭제</th>
+                                            
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>아이디</th>
-                                            <th>주소</th>
-                                            <th>이름</th>
-                                            <th>전화번호</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                    	<c:forEach items="${customerList}" var="customer">
-                                    		<tr>
-                                    			<td>${customer.memId}</td>
-                                    			<td>${customer.memAddr}</td>
-                                    			<td>${customer.memName}</td>
-                                    			<td>${customer.memPhone}</td>
-                                    		</tr>
-                                    	</c:forEach>
+                                  
+                                    <tbody id="blackList1">
+                                    	
+                                    	
                                     </tbody>
                                 </table>
-                                
-                                
                             </div>
-                        </div>
+                            <!--  page -->
+                             <!--  <a href="javascript:pageGo(0)">이전</a>
+                             <div class="userpage" id="pageId"> </div>
+                              <a href="javascript:pageGo(999)">다음</a>
+                        </div>-->
+                        
+                         <div class="pagenations">
+                              <a href="javascript:pageGo(0)">이전</a>
+                             <a class="page" id="pageId" > </a>
+                              <a href="javascript:pageGo(999)">다음</a>
+                              </div>    
+
+               
+                        
+                         
                         
                     </div>
+                  
+                  
+
+                       
+                    
                 </main>
-                    </div>
+                   
 		
+
+
+
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>

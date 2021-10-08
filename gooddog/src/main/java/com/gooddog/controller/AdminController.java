@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
@@ -237,16 +238,90 @@ public class AdminController {
 	
 	
 
-
+/////////관리자 black 페이지//////
 	
 	@RequestMapping(value="/admin/admin_black.do",method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_black(Model m, HttpServletResponse response) {
 
+		 
+		//  기능 툴	
+		web.init(response);
 		return new ModelAndView("/admin/admin_black") ;
 	}
+///////////////////////////////관리자 book delete //////////////////	
+		@ResponseBody
+		@PostMapping("/badcontentDelete")
+		public void  badcontentDelete(BadcontentVO vo) {
+			System.out.println("배드 컨텐츠 작동 중");
+			AdminService.badcontentDelete(vo);
+		}		
+		
+		
 	
-	/////////////////////////관리자 info 페이지///////////
+///////////////관리자 black 페이징////////////
+	@ResponseBody
+	@RequestMapping(value="/badcontentList", method=RequestMethod.POST)
+	public void badcontentList(Locale locale, Model model, BadcontentVO BadcontentVO, HttpServletResponse response ){
+		
+		web.init(response); 
+		response.setContentType("application/json");
+		
+		
+		BadcontentVO badcontent = new BadcontentVO();
+		
+		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		
+		
+		int badcontentCount = 0;							// 전체 사용자 수
+		try {
+			badcontentCount = AdminService.badcontentCount(badcontent);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	 
+		
+		page.pageProcess(nowPage, badcontentCount, 5, 5);		
+		badcontent.setLimitStart(page.getLimitStart());
+		badcontent.setListCount(page.getListCount());
+		
+		System.out.println(badcontent+"북카운트가져옴" );
+		List<BadcontentVO> list = null;  
+		list = AdminService.badcontent(badcontent); 	
+
+		System.out.println(list+"list가져옴" );
+		Map<String, Object> data = new HashMap<String, Object>();
+		
+		int nextPage = page.getNextPage();	// 다음페이지
+		int prevPage =page.getPrevPage();	// 이전페이지
+		int pageIn = page.getPage();
 	
+		data.put("list", list); 
+		data.put("prevPage", prevPage);
+		data.put("nextPage", nextPage);
+		data.put("pageIn", pageIn);
+		data.put("page", page);		
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(response.getWriter(), data);
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	
+	}
+	
+	////////////////////////////////////////////////////////////
+	/////////////////////////관리자 info 페이지/////////////////////
+	////////////////////////////////////////////////////////////
 	@RequestMapping(value = "/admin/admin_post.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_post(Model m, HttpServletResponse response) {
 	 
@@ -259,19 +334,6 @@ public class AdminController {
 		return new ModelAndView("/admin/admin_post") ;
 		
 	}
-	
-/////////////////////////관라자 book 수정/////////////
-//	@PostMapping("/bookModify")
-//	public void bookModify(BookVO vo) {
-//		System.out.println("컨트롤키 작동");
-//		AdminService.bookModify(vo);
-//	} 
-//	@RequestMapping(value = "/bookModify", method ={RequestMethod.GET, RequestMethod.POST})
-//	public void bookModify(BookVO vo, Model model) {
-//		System.out.println("컨트롤키 작동");
-//		model.addAttribute("bookModify",AdminService.bookModify(vo)); // => 모델로 넘겨야함
-//	}
-	
 
 ///////////////////////////////관리자 book delete //////////////////	
 	@ResponseBody
@@ -280,20 +342,7 @@ public class AdminController {
 		System.out.println(vo.getDic_no());
 		AdminService.bookDelete(vo);
 	}
-//	@RequestMapping(value = "/admin/admin_post.do", method = RequestMethod.GET)
-//	public String delete(@ModelAttribute("BookVO")  @RequestParam("dic_no") int dic_no, RedirectAttributes redirect , Model model) {		
-//		try {
-			
-//			AdminService.bookDelete(dic_no);
-//			redirect.addFlashAttribute("msg", "삭제가 완료되었습니다.");
-			
-//		} catch (Exception e) {
-//			redirect.addFlashAttribute("msg", "오류가 발생되었습니다.");
-			
-//		}
-		
-//		return "redirect:/admin/admin_post";
-//	}
+
 	
 ///////////////////////admin_post 페이징////////////////////////////////
 	@ResponseBody
@@ -439,85 +488,107 @@ public class AdminController {
 	
 	}
 	//0000000000000000000000000000000000000000admin_post300000000000000000000000000000000000
-	@RequestMapping(value = "/admin/admin_post3.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_post3(Model m, HttpServletResponse response) {
+//	@RequestMapping(value = "/admin/admin_post3.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	public ModelAndView admin_post3(Model m, HttpServletResponse response) {
 	 
 	//  기능 툴	
-	web.init(response);
+//	web.init(response);
 
 	
  	
 		
-		return new ModelAndView("/admin/admin_post3") ;
+//		return new ModelAndView("/admin/admin_post3") ;
 		
-	}
+//	}
 	
 //////////////////00000000000000000000000/admin_post3 삭제/0000000000000000000000000000/////////
-	@ResponseBody
-	@PostMapping("/lossDelete")
-	public void lossDelete(LossVO vo) {
-		System.out.println(vo.getLoss_no());
-		AdminService.lossDelete(vo);
-	}
+//	@ResponseBody
+//	@PostMapping("/lossDelete")
+//	public void lossDelete(LossVO vo) {
+//		System.out.println(vo.getLoss_no());
+//		AdminService.lossDelete(vo);
+//	}
 	/////////////////////////관리자 실종신고  페이징/////////
 	
-	@ResponseBody
-	@RequestMapping(value="/lossList", method=RequestMethod.POST)
-	public void lossList(Locale locale, Model model, LossVO LossVO, HttpServletResponse response ){
-		
-		web.init(response); 
-		response.setContentType("application/json");
-		
-		
-		LossVO loss = new LossVO();
-		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int lossCount = 0;							// 전체 사용자 수
-		try {
-			lossCount = AdminService.lossCount(loss);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-	 
-		
-		page.pageProcess(nowPage, lossCount, 5, 5);		
-		loss.setLimitStart(page.getLimitStart());
-		loss.setListCount(page.getListCount());
-		
-		System.out.println(lossCount+"북카운트가져옴" );
-		List<LossVO> list = null;  
-		list = AdminService.adminpost3(loss); 	
-
-		System.out.println(list+"list가져옴" );
-		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
-		int pageIn = page.getPage();
+//	@ResponseBody
+//	@RequestMapping(value="/lossList", method=RequestMethod.POST)
+//	public void lossList(Locale locale, Model model, LossVO LossVO, HttpServletResponse response ){
+//		
+//		web.init(response); 
+//		response.setContentType("application/json");
+//		
+//		
+//		LossVO loss = new LossVO();
+//		
+//		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+//		
+//		
+//		int lossCount = 0;							// 전체 사용자 수
+//		try {
+//			lossCount = AdminService.lossCount(loss);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}  
+//	 
 	
-		data.put("list", list); 
-		data.put("prevPage", prevPage);
-		data.put("nextPage", nextPage);
-		data.put("pageIn", pageIn);
-		data.put("page", page);		
+//			page.pageProcess(nowPage, lossCount, 5, 5);		
+//			loss.setLimitStart(page.getLimitStart());
+//			loss.setListCount(page.getListCount());
+		
+//			System.out.println(lossCount+"북카운트가져옴" );
+//			List<LossVO> list = null;  
+//			list = AdminService.adminpost3(loss); 	
+
+//			System.out.println(list+"list가져옴" );
+//			Map<String, Object> data = new HashMap<String, Object>();
+		
+//			int nextPage = page.getNextPage();	// 다음페이지
+//			int prevPage =page.getPrevPage();	// 이전페이지
+//			int pageIn = page.getPage();
+	
+//			data.put("list", list); 
+//			data.put("prevPage", prevPage);
+//			data.put("nextPage", nextPage);
+//			data.put("pageIn", pageIn);
+//			data.put("page", page);		
 		
 		
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			mapper.writeValue(response.getWriter(), data);
-		} catch (JsonGenerationException e) {
+//			ObjectMapper mapper = new ObjectMapper();
+//			try {
+//				mapper.writeValue(response.getWriter(), data);
+//			} catch (JsonGenerationException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
+//				e.printStackTrace();
+//			} catch (JsonMappingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
+//				e.printStackTrace();
+//			} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+//				e.printStackTrace();
+//			}	
+	
 	
 	}
-}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

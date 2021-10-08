@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GoodDog_gallery_View</title>
+	<title>GoodDog_book_View</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +21,8 @@
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
-	<script src="${path}/resources/js/userJS/gallery.js"></script>
+	<script src="${path}/resources/js/userJS/book.js"></script>
+
 
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -29,7 +30,9 @@
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
 
+
 </head> 
+
 
 
 <body>
@@ -45,25 +48,28 @@
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
 
 								<div class="item-content">
-							<c:if test="${item.gal_no != null}" >
-									<form action="/galleryOK?gal_no=${item.gal_no }" method="post" id="gallery_insert_form" >
-							</c:if>						
-									<form action="/galleryOK?gal_no=0" method="post" id="gallery_insert_form" > <!-- enctype="multipart/form-data" -->	
+							<c:if test="${item.dic_no != null}" >
+									<form action="/bookOK?dic_no=${item.dic_no }" method="post" id="book_insert_form" >
+							</c:if>													
+									<form action="/bookOK?dic_no=0" method="post" id="book_insert_form" > <!-- enctype="multipart/form-data" -->	
 										<h5>Image</h5><br>
-										<c:if test="${item.gal_no != null}" >
-										<img src="${path}/resources/images/gallery/${item.gal_img}" width="300px" style="margin-left:35%;" alt="img" ><br><br>
+										<c:if test="${item.dic_no != null}" >
+										<img src="${path}/resources/images/book/${item.dic_img}" width="300px" style="margin-left:35%;" alt="img" ><br><br>
 										</c:if>	
-										<input type="file" id="gal_img" name="gal_img" value="${item.gal_img}">
+										<input type="file" id="dic_img" name="dic_img" value="${item.dic_img}">
 										<hr>
+										<h5>제목</h5><br>
+										<textarea aria-required="true" rows="4" cols="45"  name="dic_name" id="dic_name" class="form-control" placeholder="내용을 입력하세요">${item.dic_name}</textarea>
+										<br>
 										<h5>Contents</h5><br>
-										<textarea aria-required="true" rows="4" cols="45"  name="gal_name" id="gal_name" class="form-control" placeholder="내용을 입력하세요">${item.gal_name}</textarea>
+										<textarea aria-required="true" rows="4" cols="45"  name="dic_content" id="dic_content" class="form-control" placeholder="내용을 입력하세요">${item.dic_content}</textarea>
 										<br>
 										<h5>Hash Tag</h5><br>
-										<input type="text" name= "gal_tag" value="${item.gal_tag}" placeholder="'태그1','태그2' 형식으로 입력하세요">
-										<br><br>
+						- 			<input type="text" name= "dic_tag" value="${item.dic_tag}" placeholder= "태그를 입력하세요">
+										<br><br> 	
 										
 										<div class="form-group">
-										<button type="submit" id="gallery_submit_button" name="gallery_submit_button" class="btn btn-maincolor" style="margin-left:35%;">Submit
+										<button type="submit" id="book_submit_button" name="book_submit_button" class="btn btn-maincolor" style="margin-left:35%;">Submit
 										</button>
 										</div>
 			
@@ -96,4 +102,3 @@
 
 </body>
 </html>
-

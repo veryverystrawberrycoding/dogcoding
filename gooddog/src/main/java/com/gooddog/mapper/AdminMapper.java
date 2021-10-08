@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
@@ -56,22 +57,15 @@ public void bookDelete(BookVO vo);
 
 
 
-
-
-
-
-
-
-
 ///////////////////////갤러리 리스트 보기 //////////////////////
 public List<GalleryVO>adminpost2(GalleryVO vo);
 public int galleryCount();
 ////////갤러리 삭제//////
 public void galleryDelete(GalleryVO vo);
-
-////////////////////실종신고 리스트보기////////////////////////
-public List<LossVO>adminpost3(LossVO vo);
-public int lossCount();
-////////실종신고 삭제//////
-public void lossDelete(LossVO vo);
+///////////////////////////////////////////
+//////////////////////////////////////////
+public List<BadcontentVO> badcontent(BadcontentVO vo);
+public int badcontentCount();
+//////////////////// 
+public void badcontentDelete(BadcontentVO vo);
 }

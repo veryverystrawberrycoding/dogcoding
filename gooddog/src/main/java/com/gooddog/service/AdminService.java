@@ -3,6 +3,7 @@ package com.gooddog.service;
 import java.util.List;
 import java.util.Map;
 
+import com.gooddog.domain.BadcontentVO;
 import com.gooddog.domain.BlackVO;
 import com.gooddog.domain.BookVO;
 import com.gooddog.domain.GalleryVO;
@@ -51,21 +52,19 @@ public interface AdminService {
 		public List<GalleryVO>	 adminpost2(GalleryVO galleryVO);
 ////////////////////////////////////////////////
 
-///////book 삭제/////////
+///////갤러리 삭제/////////
 public void galleryDelete(GalleryVO vo);
 ////////////페이징/////
 public int galleryCount(GalleryVO galleryVO) throws Exception;
 
 
+/////////////////////////////////////////////////
+public List<BadcontentVO> badcontent(BadcontentVO badcontentVO);
 
-////////////////////////////실종신고 정보 가져오기/////////////////////		
-public List<LossVO>	 adminpost3(LossVO lossVO);
-////////////////////////////////////////////////
-//public void bookModify(BookVO vo);
-///////book 삭제/////////
-public void lossDelete(LossVO vo);
-////////////페이징/////
-public int lossCount(LossVO lossVO) throws Exception;
+////////////////////////badcount삭제///////////////////////
+public void badcontentDelete(BadcontentVO vo);
+//////////////////////////badcount페이징///////////////////////
+public int badcontentCount(BadcontentVO badcontentVO) throws Exception;
 
 }
 

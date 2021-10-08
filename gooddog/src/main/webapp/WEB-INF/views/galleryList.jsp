@@ -85,7 +85,7 @@
 								</form>
 							</div>
 							
-							<div id="gallist" style="margin:0 10% 0 10%">
+							<div id="gallist">
 							
 							<div class="row isotope-wrapper masonry-layout c-gutter-0" >
 							
@@ -119,7 +119,7 @@
 								</div>
 								
 								<!-- 여기까지 반복 -->
-								
+							
 								</c:forEach>
 								
 								<!-- <div class="item-content gradientdarken-background">
