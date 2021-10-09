@@ -200,6 +200,14 @@ public void addBlackList(BlackVO vo) {
 	AdminMapper.addBlackList(vo);
 }
 
+////블랙 리스트 삭제/////
+@Override
+public void blacklistDelete(BlackVO vo) {
+	AdminMapper.blacklistDelete(vo);
+
+	
+}
+
 
 
 

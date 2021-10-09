@@ -48,6 +48,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 신고
                             </a>
+                            
                         </div>
                     </div>           
                 </nav>

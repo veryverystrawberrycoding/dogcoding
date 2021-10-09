@@ -559,7 +559,7 @@
 					</div>
 					</c:if>
 					<c:if test="${not empty sessionScope.user}">
-
+  
 					<div id="login-header" style="display:flex;">
 						<%-- <img src="/resources/images/profile/${user.user_img}" width="30px" height="30px"> --%>
 						<div style=margin-right:30px;>${user.user_nick}</div>

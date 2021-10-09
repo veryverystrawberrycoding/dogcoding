@@ -65,7 +65,7 @@ public class LogJoinController {
 		          //session.setAttribute("user", null); 
 		          return "z"; 
 		       } else if(info.getUser_id().equals("smith_O")){
-		          session.setAttribute("admin", info);
+		          session.setAttribute("user", info);
 		          logJoinService.userLog(vo);
 		          System.out.println("관리자 로그인");
 		          return info.getUser_id();

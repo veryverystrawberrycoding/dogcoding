@@ -49,6 +49,11 @@
       margin-right: 10px;
        margin: 0 1px 0 25px;
    }
+   .card-header{
+   		display: flex;
+   		justify-content : space-between;
+   		
+   }
 
 </style>
 <script type="text/javascript">
@@ -107,9 +112,12 @@ function bookList(){
 						returnHtml += "<td class = 'dic_name'>"+dic_name+"</td>"
 						
 						
-					    returnHtml += '<td><button type="button" id="book_modify_submit"  class="book_modify_btn"style= "border-radius: 0px; padding: 12px 20px;" >상세보기</button></td>'
-						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
+
+		
+					    returnHtml += '<td><a href="../bookView?dic_no='+dic_no+'" id="book_view_submit" class="book_view_btn" style ="color:#FFA07A">상세보기</a></td>'
 						
+							
+						returnHtml += '<td><button type="button" id="book_delete_submit" class="book_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
 							
 						
 						returnHtml += "</tr>"
@@ -146,21 +154,21 @@ bookList();
 
 
 //-------------------------------------테스트------------------------
-$(document).on('click','.book_modify_btn', function(){
-alert("등록")
+//$(document).on('click','.book_modify_btn', function(){
+//alert("등록")
 ///////////////////////////////////////////////////////////////
-$.ajax({
-	type : 'post',
-		url : '/bookView',
-		async : false,
-	    data:{dic_no :$(this).parent().parent().find(".dic_no").text()},
+//$.ajax({
+//	type : 'post',
+//		url : '/bookView',
+//		async : false,
+//	    data:{dic_no :$(this).parent().parent().find(".dic_no").text()},
 	    
-		success:function(data){
-			alert("페이지이동");
-			location.href = "/bookView?dic_no='+dic_no+'"
-		} 
-	})
-})
+//		success:function(data){
+//			alert(data.);
+//			location.href = "/bookView?dic_no=data.dic_no"
+//		} 
+//	})
+//})
 // -----------------------info 삭제 기능 on-------------------------- 
 
 $(document).on('click', '.book_delete_btn', function(){
@@ -230,15 +238,15 @@ $(document).on('click', '.book_delete_btn', function(){
             
                  <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">백과사전 관리</h2>
+                        
                     
                        <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-address-card me-1" ></i>
-                   			info
+                                <div><i class="fas fa-address-card me-1" ></i>백과사전 관리</div>
+                   			        <a href ="../bookForm" style="color :#FF6347">등록</a> 
                             </div>
-                            <div class= "pagenations"><a href ="../bookForm">등록버튼이다잇</a>  </div>
-                            
+                           
+                    
                                 
                             
                             <div class="">
@@ -268,22 +276,12 @@ $(document).on('click', '.book_delete_btn', function(){
                         </div> -->
                         
        <div class="pagenations">
-                              <a href="javascript:pageGo(0)">이전</a>
-                             <a class="page" id="pageId" > </a>
-                              <a href="javascript:pageGo(999)">다음</a>
-                              </div>                
-
-               
-                        
-                         
-                        
-                    </div>
-                  
-                  
-
-                       
-                    
-                </main>
+       <a href="javascript:pageGo(0)">이전</a>
+       <a class="page" id="pageId" > </a>
+       <a href="javascript:pageGo(999)">다음</a>
+       </div>           
+       </div>
+       </main>
                    
 		
 

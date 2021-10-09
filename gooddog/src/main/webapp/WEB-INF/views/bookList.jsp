@@ -91,7 +91,7 @@ p.a{font-weight:900;
 											<img style="width:300px; height:300px;" src="${path}/resources/images/book/${book.dic_img }" alt="img">
 											
 											<div class="media-links">
-												<a class="abs-link" title="" href="bookView?no=${book.dic_no}"></a>
+											 	<a class="abs-link" title="" href="bookView?dic_no=${book.dic_no}"></a>
 											</div>
 										</div>
 										<div class="item-content">								

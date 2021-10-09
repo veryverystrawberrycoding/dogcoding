@@ -36,31 +36,27 @@ public interface AdminService {
 		public int getWomenCount();
 		public List<Map<String,String>> getDayCount();
 		public List<Map<String, String>> getweekCount();
-	
-		///////info(book) 정보가져오기//////
-		
-		public List<BookVO>	 adminpost(BookVO bookVO);
-////////////////////////////////////////////////
-		//book수정////
-//		public BookVO bookModify(BookVO vo);
-	///////book 삭제/////////
-		public void bookDelete(BookVO vo);
-		////////////페이징/////
-		public int bookCount(BookVO bookVO) throws Exception;
-		
-		
-	//	void bookDelete(int dic_no);
-////////////////////////////갤러리 정보 가져오기/////////////////////		
-		public List<GalleryVO>	 adminpost2(GalleryVO galleryVO);
-////////////////////////////////////////////////
+//////블랙리스트 삭제////////// 
+public void blacklistDelete(BlackVO vo);
 
+///////info(book) 정보가져오기//////
+		
+public List<BookVO>	 adminpost(BookVO bookVO);
+///////////book 삭제/////////
+public void bookDelete(BookVO vo);
+////////////book페이징/////
+public int bookCount(BookVO bookVO) throws Exception;
+		
+////////////////////////////갤러리 정보 가져오기/////////////////////		
+public List<GalleryVO>	 adminpost2(GalleryVO galleryVO);
+////////////////////////////////////////////////
 ///////갤러리 삭제/////////
 public void galleryDelete(GalleryVO vo);
 ////////////페이징/////
 public int galleryCount(GalleryVO galleryVO) throws Exception;
 
 
-/////////////////////////////////////////////////
+////////////////////////게시글 신고 정보 가져오기 /////////////////////////
 public List<BadcontentVO> badcontent(BadcontentVO badcontentVO);
 
 ////////////////////////badcount삭제///////////////////////

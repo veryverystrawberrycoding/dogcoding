@@ -32,9 +32,13 @@ public interface AdminMapper {
 		int userCount();
 		
 		List<UserVO> getUserInfo(UserVO vo);
-	
-		int blackCount();
-		
+////////브랙리스트 페이징 카운트 /////	
+       public int blackCount();
+////////블랙리스트 추가/////////////
+public void addBlackList(BlackVO vo);
+/////////////블랙리스트 삭제/////
+public void blacklistDelete(BlackVO vo);
+
 		List<BlackVO> getBlackInfo(BlackVO vo);
 	
 		int getMenCount();
@@ -55,10 +59,6 @@ int bookCount();
 ////////백과사전 삭제//////
 public void bookDelete(BookVO vo);
 
-// 블랙리스트 추가
-public void addBlackList(BlackVO vo);
-
-
 
 ///////////////////////갤러리 리스트 보기 //////////////////////
 public List<GalleryVO>adminpost2(GalleryVO vo);
@@ -66,7 +66,7 @@ public int galleryCount();
 ////////갤러리 삭제//////
 public void galleryDelete(GalleryVO vo);
 ///////////////////////////////////////////
-//////////////////////////////////////////
+///////////////////신고 기능 ///////////////////////
 public List<BadcontentVO> badcontent(BadcontentVO vo);
 public int badcontentCount();
 //////////////////// 

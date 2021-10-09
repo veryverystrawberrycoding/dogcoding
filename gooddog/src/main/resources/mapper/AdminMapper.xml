@@ -42,7 +42,12 @@
 
 	]]>
 	</insert>
-	 
+	 <select parameterType="BlackVO"  id="blacklistDelete">
+
+<![CDATA[
+         delete from black where black_no =#{black_no} 
+         ]]>
+</select>
 	
 	<!--  통계  -->
 	 		
@@ -52,10 +57,13 @@
 			</resultMap>	
 	 		<select id="getDayCount" resultMap="dayMap" parameterType="UserLogVO">
 	 			<![CDATA[
-	 			SELECT DATE(`log_date`) AS `userlog`,
-				       COUNT(`log_no`) AS `logno`
-				  FROM userlog
-				 GROUP BY `userlog`;
+	 		SELECT * 
+              FROM	
+              (SELECT DATE(`log_date`) AS `userlog`,
+                   COUNT(`log_no`) AS `logno` 
+              FROM userlog  
+             GROUP BY userlog order by userlog desc limit 10)a order by userlog asc;
+
 				 	]]>
 			</select> 
 	 

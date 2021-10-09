@@ -30,10 +30,17 @@
 		<script src="${path}/resources/js/userJS/book.js"></script>
 
 
+<style>
 
-
-
-
+.book_items {
+    display: flex;
+    margin-left: 5%;
+    flex-direction: row;
+}
+.book_items1 img {
+    border-radius: 50%;
+}
+</style>
 </head>
 
 <body>
@@ -47,21 +54,21 @@
 						
 						
 							<article class="ls vertical-item box-shadow content-padding post type-event status-publish format-standard has-post-thumbnail">
-						
+						<div class="book_buttons">
 						<c:if test="${sessionScope.user.getUser_id() eq item.user_id }">
 						<div class="gallery_user_buttons">
 							<div class="gallery_buttons1">
 							<a href="/bookForm?dic_no=${item.dic_no}">
 							<img src="${path}/resources/images/gallery/edit.png" width="40px" height="40px"></a>
 							</div>
-							<div class="book_buttons2" id="book_buttons2">
+							<!--  <div class="book_buttons2" id="book_buttons2">
 							<a href="/bookDelete?dic_no=${item.dic_no}">
 							<img src="${path}/resources/images/gallery/delete.png" width="40px" height="40px"></a>
-							</div>
+							</div>-->
 						</div>
 						
 					</c:if>
-				
+				</div>
 					<hr>
 
 								<div class="item-media post-thumbnail">
@@ -73,7 +80,7 @@
 								<div class="book_items">
 								<div class="book_items1">
 								<a href="#"><img src="${path}/resources/images/profile/${item.user_img}" width="30px" height="30px" >
-								${item.user_nick}</a>
+								${item.user_nick}</a>　
 								</div>
 								<!-- 로그인 안 한 경우 하얀하트에 조회수만 -->
 								

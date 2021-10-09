@@ -63,10 +63,10 @@ public class BookController {
  //상세보기
 	
 	@RequestMapping(value="/bookView")
-	public void bookView(Model m, BookVO vo,HttpServletRequest req) {
+	public void bookView(Model m, BookVO vo,HttpServletRequest req) throws Exception{
 		
 		//세션
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();	
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		if(sessionvo != null) {
 			vo.setUser_id(sessionvo.getUser_id());
@@ -74,7 +74,9 @@ public class BookController {
 
 		int no = vo.getDic_no(); 
 		//게시글 내용
+		
 		Map<String, Object> result = bookService.bookNoList(no);
+		
 		m.addAttribute("item",result);
 		
 		//System.out.println(result.get("gal_tag"));
@@ -95,7 +97,7 @@ public class BookController {
 			
 		}
 		m.addAttribute("tag",ta);
-		
+	
 		// 댓글 조회 
 		//List<Map<String, Object>> commentList=galleryService.commentList(vo.getGal_no());
 		vo.setPnum(0); 

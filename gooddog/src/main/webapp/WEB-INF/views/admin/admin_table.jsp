@@ -185,7 +185,7 @@ $(document).on('click', '.user_stop', function(){
             	
                 <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">회원 관리</h2>
+                  
                     
                        <div class="card mb-4" >
                             <div class="card-header">

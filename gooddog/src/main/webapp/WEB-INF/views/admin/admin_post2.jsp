@@ -108,8 +108,12 @@ function galleryList(){
 						returnHtml += "<td class = 'gal_name'>"+gal_name+"</td>"
 		
 							
-						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="gallery_view_submit" class="gallery_view_btn"style= "border-radius: 0px; padding: 12px 20px;">상세보기</a></td>'
-						returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
+
+		
+						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="gallery_view_submit" class="gallery_view_btn" style ="color:#FFA07A">상세보기</a></td>'
+						
+				returnHtml += '<td><button type="button" id="gallery_delete_submit" class="gallery_delete_btn"style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
+
 						
 							
 						
@@ -212,12 +216,12 @@ $(document).on('click', '.gallery_delete_btn', function(){
             
                  <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">갤러리 관리</h2>
+                        
                     
                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
-                   			info
+                   			갤러리 관리
                             </div>
                             
                             

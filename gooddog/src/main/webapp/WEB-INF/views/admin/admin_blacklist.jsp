@@ -71,6 +71,8 @@ function blackList(){
 			data: 'page='+page,
 			url:"/blackList",
 			dataType: "json",
+			async    : false,
+			
 			success : function(data) {
 			
 				var nextPage = data.nextPage;
@@ -108,12 +110,12 @@ function blackList(){
 						
 						returnHtml += "<tr>"
 						
-						returnHtml += "<td>"+black_no+"</td>"
-						returnHtml += "<td>"+user_id+"</td>"
+						returnHtml += "<td id=black_no>"+black_no+"</td>"
+						returnHtml += "<td id=user_id>"+user_id+"</td>"
 						returnHtml += "<td>"+black_start+"</td>"
 						returnHtml += "<td>"+black_end+"</td>"
 						returnHtml += "<td>"+black_content+"</td>"	
-						returnHtml += "<td><button type='button' class='black_restore' style= 'border-radius: 0px; padding: 12px 20px;' >해지</button></td>"	
+						returnHtml += "<td><button type='button' id='black_restore' class='black_restore' style= 'border-radius: 0px; padding: 12px 20px;' >해지</button></td>"	
 						
 						returnHtml += "</tr>"
 						
@@ -124,7 +126,7 @@ function blackList(){
 			}
 	});
 }
-
+//-------------페이징 ---------
 function pageGo(pageNum){
 	if(pageNum == 0){
 	// 이전페이지
@@ -139,7 +141,25 @@ function pageGo(pageNum){
 		blackList();
 	}
 }
-
+blackList();
+//-------------blacklist 삭제 기능 -----------------------
+$(document).on('click', '.black_restore', function(){
+	alert("블랙리스트 삭제 ")
+	var black_no = $('#black_no').text()
+	alert(black_no)
+	$.ajax({
+		type:'post',
+		url:'/blacklistDelete',
+		async : false,
+  	data: {black_no:black_no},
+	success: function(data){
+			alert("삭제완료");
+			blackList(); 
+		} ,error:function(request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}					
+	})
+})
 
 </script>
 
@@ -184,6 +204,7 @@ function pageGo(pageNum){
             	
                 <main>
                     <div class="container-fluid px-4">
+                  
                        
                         
                         
@@ -193,7 +214,7 @@ function pageGo(pageNum){
                                 블랙리스트	 목록
                             </div>
                           
-                            <div class="card-body">
+                            <div class="">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -221,20 +242,19 @@ function pageGo(pageNum){
                               <a href="javascript:pageGo(999)">다음</a>
                               </div>
                         </div>
-                    </div>s
+                   
                 </main>
-                    </div>
+                    
 		
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>
 <script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="resources/js/admin/chart-order.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" ></script>
         <script src="resources/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" ></script>
-    
          <script src="resources/js/admin/datatables-simple-demo.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+		 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
 </body>
 
 </html>

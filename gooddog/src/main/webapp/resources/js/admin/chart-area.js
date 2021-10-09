@@ -10,7 +10,7 @@ const obj_Json = JSON.parse(obj);
 
 const spObj = obj_Json.split(",");
 
-var fullCount = spObj.length /2;
+var fullCount = spObj.length ;
 var fullLabel;
 var fullData;
 

@@ -83,10 +83,6 @@ public class AdminController {
 	 
 	//  기능 툴	
 	web.init(response);
-
-	
- 	
-		
 		return new ModelAndView("/admin/admin_blacklist") ;
 		
 	}
@@ -138,6 +134,16 @@ public class AdminController {
 						
 			return "ok";
 		}
+		
+		@ResponseBody
+		@PostMapping("/blacklistDelete")
+		public void  blacklistDelete(BlackVO vo) {
+			System.out.println("배드 컨텐츠 작동 중");
+			AdminService.blacklistDelete(vo);
+			
+			vo.getUser_id();
+			System.out.println(	vo.getUser_id());
+		}
 	/**
 	 * 회원 목록
 	 * @param UserVO
@@ -166,7 +172,7 @@ public class AdminController {
 		}
 	
 		
-		page.pageProcess(nowPage, userCount, 5, 5);		
+		page.pageProcess(nowPage, userCount, 10, 5);		
 		user.setLimitStart(page.getLimitStart());
 		user.setListCount(page.getListCount());
 		
@@ -230,7 +236,7 @@ public class AdminController {
 		}
 	
 		
-		page.pageProcess(nowPage, blackCount, 5, 5);		
+		page.pageProcess(nowPage, blackCount, 10, 5);		
 		black.setLimitStart(page.getLimitStart());
 		black.setListCount(page.getListCount());
 		
@@ -270,6 +276,7 @@ public class AdminController {
 		}
 		
 	}
+	
 	
 	@GetMapping("/admin_table/search")
 	public String search(@RequestParam(value="keyword") String keyword, Model model) {
@@ -359,7 +366,7 @@ public class AdminController {
 		}  
 	 
 		
-		page.pageProcess(nowPage, badcontentCount, 5, 5);		
+		page.pageProcess(nowPage, badcontentCount, 10, 5);		
 		badcontent.setLimitStart(page.getLimitStart());
 		badcontent.setListCount(page.getListCount());
 		
@@ -445,7 +452,7 @@ public class AdminController {
 		}  
 	 
 		
-		page.pageProcess(nowPage, bookCount, 5, 5);		
+		page.pageProcess(nowPage, bookCount, 10, 5);		
 		book.setLimitStart(page.getLimitStart());
 		book.setListCount(page.getListCount());
 		
@@ -528,7 +535,7 @@ public class AdminController {
 		}  
 	 
 		
-		page.pageProcess(nowPage, galleryCount, 5, 5);		
+		page.pageProcess(nowPage, galleryCount, 10, 5);		
 		gallery.setLimitStart(page.getLimitStart());
 		gallery.setListCount(page.getListCount());
 		
@@ -565,58 +572,5 @@ public class AdminController {
 		}	
 	
 	}
-	//0000000000000000000000000000000000000000admin_post300000000000000000000000000000000000
-//	@RequestMapping(value = "/admin/admin_post3.do", method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView admin_post3(Model m, HttpServletResponse response) {
-	 
-	//  기능 툴	
-//	web.init(response);
 
-	
- 	
-		
-//		return new ModelAndView("/admin/admin_post3") ;
-		
-//	}
-	
-//////////////////00000000000000000000000/admin_post3 삭제/0000000000000000000000000000/////////
-//	@ResponseBody
-//	@PostMapping("/lossDelete")
-//	public void lossDelete(LossVO vo) {
-//		System.out.println(vo.getLoss_no());
-//		AdminService.lossDelete(vo);
-//	}
-	/////////////////////////관리자 실종신고  페이징/////////
-	
-
-	
-
-//			System.out.println(list+"list가져옴" );
-//			Map<String, Object> data = new HashMap<String, Object>();
-		
-//			int nextPage = page.getNextPage();	// 다음페이지
-//			int prevPage =page.getPrevPage();	// 이전페이지
-//			int pageIn = page.getPage();
-	
-//			data.put("list", list); 
-//			data.put("prevPage", prevPage);
-//			data.put("nextPage", nextPage);
-//			data.put("pageIn", pageIn);
-//			data.put("page", page);		
-		
-		
-//			ObjectMapper mapper = new ObjectMapper();
-//			try {
-//				mapper.writeValue(response.getWriter(), data);
-//			} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (IOException e) {
-			// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}	
-	 
-} 
+}

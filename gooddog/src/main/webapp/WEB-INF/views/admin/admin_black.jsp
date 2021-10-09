@@ -108,9 +108,13 @@ function badcontentList(){
 						returnHtml += "<td class ='gal_no'>"+gal_no+"</td>"
 						returnHtml += "<td class = 'u_id'>"+u_id+"</td>"
 		
-//						returnHtml += '<td><button type="submit" id="gallery_delete_submit" class="gallery_modify_btn">등록</button></td>'						
-						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="black_view_submit" class="black_view_btn">상세보기</a></td>'
+
+						returnHtml += '<td><a href="../galleryView?gal_no='+gal_no+'" id="black_view_submit" class="black_view_btn"style ="color:#FFA07A">상세보기</a></td>'
 						returnHtml += '<td><button type="button" id="black_delete_submit" class="black_delete_btn" style= "border-radius: 0px; padding: 12px 20px;" >삭제</button></td>'
+
+						
+						
+
 						
 							
 						
@@ -212,12 +216,11 @@ $(document).on('click', '.black_delete_btn', function(){
             
                  <main>
                     <div class="container-fluid px-4">
-                        <h2 class="mt-4">신고 관리</h2>
-                    
+                       
                        <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-address-card me-1" ></i>
-                   			info
+                   			신고 관리
                             </div>
                             
                             
@@ -225,12 +228,11 @@ $(document).on('click', '.black_delete_btn', function(){
                             
                             <div class="">
                                 <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
+                                    <thead >
+                                        <tr >
                                             <th>신고 글 번호</th>
                                             <th>신고자</th>
                                             <th>상세보기</th>
-                                            
                                             <th>삭제</th>
                                             
                                         </tr>
