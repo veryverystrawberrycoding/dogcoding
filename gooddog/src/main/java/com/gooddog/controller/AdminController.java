@@ -286,22 +286,36 @@ public class AdminController {
 		//성별
 		int womenCount = AdminService.getWomenCount();
   		int menCount = AdminService.getMenCount();
-  		
-  		
+  
+		// 전체 가입자수
+  		int totaluser = AdminService.totaluser();
+		// 전체 가입자수
+  		int dayuser = AdminService.dayuser();
+		// 전체 가입자수
+  		int monthuser = AdminService.monthuser();
+		// 전체 가입자수
+  		int yearuser = AdminService.yearuser();
+  		 m.addAttribute("totaluser",totaluser);
+  		 m.addAttribute("dayuser",dayuser);
+  		 m.addAttribute("monthuser",monthuser);
+  		 m.addAttribute("yearuser",yearuser);
   		 m.addAttribute("dayCount",dayCount);
          m.addAttribute("weekCount",weekCount);
   		 m.addAttribute("menCount",menCount);
          m.addAttribute("womenCount",womenCount); 
-         
+         System.out.println(totaluser);
+         System.out.println(dayuser);
+         System.out.println(monthuser);
+         System.out.println(yearuser); 
          //\\String dayCount1 = new ObjectMapper().writeValueAsString(dayCount);
          
-         System.out.println(dayCount);
-         System.out.println(dayCount.get(0));
-         System.out.println(dayCount.get(1));
-         System.out.println("#############getValue##############");
-         System.out.println(dayCount.get(0).values());
-         System.out.println(dayCount.get(0).values().toArray()[0]);
- 
+//         System.out.println(dayCount);
+//         System.out.println(dayCount.get(0));
+//         System.out.println(dayCount.get(1));
+//         System.out.println("#############getValue##############");
+//         System.out.println(dayCount.get(0).values());
+//         System.out.println(dayCount.get(0).values().toArray()[0]);
+// 
          
 //        System.out.println(dayCount);
 //         String weekCount1 = new ObjectMapper().writeValueAsString(weekCount);
@@ -310,8 +324,7 @@ public class AdminController {
 		return new ModelAndView("/admin/admin_chart") ;
 	}
 	
-	
-	
+
 
 	
 	

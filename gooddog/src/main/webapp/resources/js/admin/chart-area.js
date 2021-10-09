@@ -10,7 +10,7 @@ const obj_Json = JSON.parse(obj);
 
 const spObj = obj_Json.split(",");
 
-var fullCount = spObj.length /2;
+var fullCount = spObj.length  ;
 var fullLabel;
 var fullData;
 
@@ -30,7 +30,7 @@ for(var i=0; i<fullCount; i++){
 	var labelS = label.split("=");
 	var dataS = data.split("=");
 //	alert("데이터확인 "+i+":::::::::::::::::::"+labelS[1]);
-	
+
 	
 	array_data[i] = labelS[1];
 	array_label[i] = dataS[1];	
@@ -40,7 +40,7 @@ for(var i=0; i<fullCount; i++){
 };
 
 	
-//alert(fullData);
+
 
 
 
