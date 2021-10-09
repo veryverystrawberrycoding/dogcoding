@@ -172,7 +172,8 @@ public class BoardController {
 			return "/mypageModify"; 
 		}   
 	} 
-	 
+	
+	
 	@RequestMapping("/kakao")
 	public void kakao() {
 		

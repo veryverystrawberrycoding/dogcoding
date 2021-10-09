@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gooddog.domain.PetVO;
+import com.gooddog.domain.WalkingVO;
 import com.gooddog.domain.WeightVO;
 import com.gooddog.mapper.MypageDogCareMapper;
 
@@ -36,6 +37,26 @@ public class MypageDogCareServiceImpl implements MypageDogCareService {
 	// 반려견 체중 삭제 
 	public void deleteWeight(WeightVO vo) {
 		dogMapper.deleteWeight(vo);
+	}
+	
+	// 반려견 산책 리스트 조회
+	public List<WalkingVO> walkList(WalkingVO vo) {
+		return dogMapper.walkList(vo);
+	}
+	
+	// 반려견 산책 입력
+	public void insertWalk(WalkingVO vo) {
+		dogMapper.insertWalk(vo);
+	}
+	
+	// 반려견 산책 수정 
+	public void modifyWalk(WalkingVO vo) {
+		dogMapper.modifyWalk(vo);
+	}
+	
+	// 반려견 산책 삭제 
+	public void deleteWalk(WalkingVO vo) {
+		dogMapper.modifyWalk(vo);
 	}
 
 }

@@ -39,6 +39,37 @@
 	WHERE weight_no = #{weight_no} 
 	</delete>
 	
+	<!-- 산책 기록  -->
+	<select id="walkList" parameterType="WalkingVO" resultType="WalkingVO">
+	SELECT * 
+	FROM (SELECT walk_no,DATE_FORMAT(walk_date,'%Y-%m-%d') walk_date, walk_content
+			FROM pet p inner join walking w
+			WHERE p.pet_no = w.pet_no
+			AND p.pet_no = #{pet_no}
+			AND DATE_FORMAT(walk_date,'%YYYY')=#{year}
+			<if test='month != 0'>AND DATE_FORMAT(walk_date,'%m')=#{month}</if>
+			ORDER BY walk_date DESC 
+			<!-- LIMIT 7 -->) d 
+	ORDER BY d.walk_date 
+	</select>
 	
+	
+	<insert id="insertWalk" parameterType="WalkingVO">
+	INSERT INTO walking
+	(walk_content, walk_date, pet_no)
+	VALUES(#{walk_content},sysdate(),#{pet_no})
+	</insert>
+	
+	<update id="modifyWalk" parameterType="WalkingVO">
+	UPDATE walking 
+	SET walk_date = sysdate(),
+		walk_content = #{walk_content}
+	WHERE walk_no = #{walk_no}
+	</update>
+	
+	<delete id="deleteWalk" parameterType="WalkingVO">
+	DELETE FROM walking
+	WHERE walk_no = #{walk_no}
+	</delete>
 
 </mapper>

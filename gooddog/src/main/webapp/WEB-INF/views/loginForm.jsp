@@ -34,6 +34,15 @@
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
 
+	<style >
+	input[type="text"], input[type="password"]{
+		width : 30px;
+		border-radius : 25px;
+		font-size : 20px;	
+	}
+	
+	
+	</style>
 </head>
 
 <body>
@@ -85,9 +94,9 @@
 
 											<div class="login-btn">
 												<button type="button" class="woocommerce-Button button mt-0" name="login" id="loginClick" value="Login" style="text-align:center; ">로그인</button><br>
-												<a onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" name="kakaologin" value="kakaologin" >
+												<%-- <a onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=051d848d1ca964220e821cd809db3584&redirect_uri=http://localhost:8082/oauthkakao&response_type=code'" name="kakaologin" value="kakaologin" >
 													<img src="${path}/resources/images/icons/kakao_login_medium_narrow.png" alt="카카오로그인">
-												</a>
+												</a> --%>
 											</div>
 											<div class="find-idpw">
 													<div><a href="#">아이디 찾기</a></div>

@@ -94,7 +94,7 @@
 					<div id="login-header" style="display:flex;">
 
 						<div style=margin-left:30px;>${user.user_nick}</div>
-						<div style=margin-left:30px;><a href="mypageDogCare">마이페이지</a></div>
+						<div style=margin-left:30px;><a href="mypageModify">마이페이지</a></div>
 						<div style=margin-left:30px;><a href="logout" id="session_logout">로그아웃</a></div>
 
 					</div> 
@@ -164,7 +164,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./callingList">Friend</a>
+											<a class="main-menu" href="./friend">Friend</a>
 										</h5>
 										<p class="explain">
 											동네 친구 <br/>
@@ -180,7 +180,7 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./chat">Chat</a>
+											<a class="main-menu" href="./chattingPage">Chat</a>
 										</h5>
 										<p class="explain">
 											친구랑<br/>
