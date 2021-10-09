@@ -68,7 +68,7 @@ $(function(){
 					content +='<img style="width:300px; height:300px;" src="/resources/images/book/'+bookList[i].dic_img+'" alt="img">'
 												
 					content +='<div class="media-links">'
-					content +='<a class="abs-link" title="" href="bookView?no='+bookList[i].dic_no+'"></a>'
+					content +='<a class="abs-link" title="" href="bookView?dic_no='+bookList[i].dic_no+'"></a>'
 					content +='</div>'
 					content +='</div>'
 					content +='<div class="item-content">'						

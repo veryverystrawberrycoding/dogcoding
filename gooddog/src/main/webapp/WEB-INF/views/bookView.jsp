@@ -79,7 +79,7 @@
 								</div>
 								<div class="book_items">
 								<div class="book_items1">
-								<a href="#"><img src="${path}/resources/images/profile/${item.user_img}" width="30px" height="30px" >
+								<a href="#"><img src="${path}/resources/images/userimg/${item.user_img}" width="30px" height="30px" >
 								${item.user_nick}</a>　
 								</div>
 								<!-- 로그인 안 한 경우 하얀하트에 조회수만 -->
@@ -183,7 +183,7 @@
 													</div>
 												</c:if>
 													
-													<img alt="img" src="${path}/resources/images/profile/${rl.user_img}">
+													<img alt="img" src="${path}/resources/images/userimg/${rl.user_img}">
 													<h4>${rl.user_nick }</h4>
 													
 													

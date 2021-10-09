@@ -17,8 +17,8 @@
 	
 	<insert id="join" parameterType="UserVO">
 	<![CDATA[
-		Insert into user (user_id,user_name,user_nick,user_pwd,user_birth,user_gender,user_addr,user_tel,user_date)
-		values(#{user_id},#{user_name},#{user_nick},#{user_pwd},#{user_birth},#{user_gender},#{user_addr},#{user_tel},sysdate())
+		Insert into user (user_id,user_name,user_nick,user_pwd,user_birth,user_gender,user_addr,user_tel,user_date,user_img)
+		values(#{user_id},#{user_name},#{user_nick},#{user_pwd},#{user_birth},#{user_gender},#{user_addr},#{user_tel},sysdate(),#{user_img})
 		]]>
 	</insert>
 	 

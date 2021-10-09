@@ -257,7 +257,7 @@ $(function(){
 			comment +=  '<input type="hidden" value="'+commentList[i].bookre_no+'" id="bookreno">'
 			comment += 	'</div>'
 			}
-			comment += 	'<img alt="img" src="/resources/images/profile/'+commentList[i].user_img+'">'
+			comment += 	'<img alt="img" src="/resources/images/userimg/'+commentList[i].user_img+'">'
 			comment += 	'<h4>'+commentList[i].user_nick+'</h4>'
 			comment += 	'<p class="small-text text-left color-main4">'+commentList[i].bookre_date+'</p>'
 			comment += 	'</div>'
