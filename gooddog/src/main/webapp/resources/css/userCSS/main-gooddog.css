@@ -23787,13 +23787,13 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 .weightInput div{
 	margin-left : 10px;
 }
-.weightInput select{
+.weightInput select, .walkInput select {
 	background-color: #fff0f1;
 	padding : 0 10px 0 10px;
-	/* border-radius : 25px; */
+	border-radius : 25px;
 }
 
-.weightInput input[type="date"] {
+.weightInput input[type="date"] , .walkInput input[type="date"]{
 	background-color: #fff0f1;
 	height : 50px;
 	border-color: #fff0f1;
@@ -23803,7 +23803,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	text-align : right;
 	
 }
-.weightInput input[type="text"]{
+.weightInput input[type="text"], .walkInput input[type="text"]{
 	width: 80px;
 	font-size : 20px;
 	text-align : right;
@@ -23826,8 +23826,8 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	 display : flex;
 	 flex-direction : row;
 	 flex-wrap:wrap;
-	 margin-top : 10px;
-	 margin-left : 50px; 
+	 padding-top : 10px;
+	 padding-left : 50px; 
 	 font-size: 20px;
 	 
 }
@@ -23848,17 +23848,17 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 .weightGraph{
 	text-decoration:none;
 }
-#weightTableBox{
+#weightTableBox, #walkTableBox{
 	display : flex;
 	justify-content: center;
 }
-#weightTable{
+#weightTable, #walkTable{
 	width : 80%; 
-	border-bottom : solid 1px #54C1C4;
+	/* border-bottom : solid 1px #54C1C4; */
 	font-size : 20px;
 }
 
-#weightTable input[type="date"] {
+#weightTable input[type="date"], #walkTable input[type="date"] {
 	background-color: #fff0f1;
 	height : 30px;
 	border-color: #fff0f1;
@@ -23880,18 +23880,52 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	padding : 11px 5px 11px 12px;
 	text-align : right;
 }
+#walkTable input[type="text"]{
+	width: 150px;
+	height : 30px;
+	font-size : 20px;
+	text-align : right;
+	border-radius : 25px;
+	background-color: #fff0f1;
+	padding : 11px 5px 11px 12px;
+	text-align : center;
+}
 
 #graph {
 	display: flex;
 	justify-content: center;
+	margin-top : 30px;
 
 }
 #graph-box{
 	width: 600px;
 }
-
-
-
+.walkInput {
+	display : flex;
+	flex-direction: column;
+	justify-content: center;
+	height : 50px;
+	line-height:50px;
+	margin : 50px 0 50px 0px;
+}
+.timerBtns {
+	display : flex;
+	justify-content: center;
+}
+.timerBtns div{
+	margin : 5px;
+}
+.walkInput img {
+	width: 40px;
+	height:40px;
+}
+.timer {
+	font-size : 55px;
+}
+#pet_noList label {
+	margin : 0 5px 0 5px;
+	font-size : 20px;
+}
 #myPage-widget-title {
 	font-size:32px;
 }

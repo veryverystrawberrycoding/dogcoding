@@ -40,6 +40,38 @@ public class AdminServiceImpl implements AdminService {
 
 
 
+@Override
+public int totaluser() {
+	int result = 0;
+	result = AdminMapper.totaluser();
+	return result;
+}
+
+
+@Override
+public int dayuser() {
+	int result = 0;
+	result = AdminMapper.dayuser();
+	return result;
+}
+
+
+@Override
+public int monthuser() {
+	int result = 0;
+	result = AdminMapper.monthuser();
+	return result;
+}
+
+
+@Override
+public int yearuser() {
+	int result = 0;
+	result = AdminMapper.yearuser();
+	return result;
+}
+
+
 	@Override
 	public int getMenCount() {
 		int result = 0;
@@ -54,7 +86,8 @@ public class AdminServiceImpl implements AdminService {
 		result = AdminMapper.getWomenCount();
 		return result;
 	}
-		
+	
+	
 	@Override
 	public List<Map<String, String>> getDayCount() {
 		
@@ -207,6 +240,7 @@ public void blacklistDelete(BlackVO vo) {
 
 	
 }
+
 
 
 

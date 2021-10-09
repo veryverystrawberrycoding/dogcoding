@@ -16,7 +16,7 @@
 		<a href="mypageDogCare">반려견 정보</a>
 	</li>
 	<li class="cat-item">
-		<a href="#">활동 내역 </a>
+		<a href="mypageList">활동 내역 </a>
 	</li>
 	<li class="cat-item">
 		<a href="mypageModify">회원정보 관리</a>

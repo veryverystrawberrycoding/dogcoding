@@ -32,7 +32,7 @@ public class ChattingController {
  
 	private final ChatRepository chatRepository;
 	private final MultiRepository multiRepository;
-	
+	 
 	//귓속말 할 때 사용함
 	@GetMapping(value="/chat/receiver/{receiver}", produces=MediaType.TEXT_EVENT_STREAM_VALUE) //SSE프로토콜
 	public Flux<ChatLog> getMeg(UserVO vo, @PathVariable String receiver, HttpServletRequest req) {

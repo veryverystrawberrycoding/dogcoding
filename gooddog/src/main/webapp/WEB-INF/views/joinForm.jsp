@@ -34,8 +34,69 @@
 		<script src="js/vendor/respond.min.js"></script>
 		<script src="js/vendor/jquery-1.12.4.min.js"></script>
 	<![endif]-->
+	<style>
+	
+	article{
+		padding : 50px; 
+	}
+	a {
+		font-size : 20px;
+		font-weight : bold;
+		padding-left : 10px;
+	}
 
+	
+	#user_pwd_chk{
+		font-size : 16px;
+		font-weight : normal;
+		color : red;
+		padding-left : 10px;
+	}
+	.profile-box{
+		text-align: center;
+	}
+	
+ 	#preview_join img{
+		/* border-radius: 10px; */
+		height: 300px;
+	} 
+	
+	input[type="text"], input[type="password"], input[type="tel"], input[type="number"]{
+		border-radius : 25px;
+		font-size : 20px;
+		margin-top : 5px;
+	}
+	
+	lable {
+		margin-right: 10px;
+	}
+	
+	.flex-row{
+		display: flex;
+	}
+	.gender-box{
+		padding-left : 10px;
+		font-size : 20px;
+		font-weight : normal;
+	}
+	
+	.btn.btn-info{
+		height : 50px;
+	}
+	.btn.btn-outline-info{
+		border-radius : 25px;
+		margin-left: 10px;
+		height : 50px;
+		
+	}
+	
+	.confirmBtn{
+		display: flex;
+		justify-content: center;
+	}
+	</style>
 </head>
+
  
 <body>
 <script type="text/javascript">
@@ -130,14 +191,18 @@ function previewImage(f){
 						
 						</div> 
 						<main class="col-lg-8">
-							<article>
+							<article class="post-with-author box-shadow vertical-item post type-post status-publish format-standard has-post-thumbnail">
 								<div >
-									<h4 style="text-align: left;">회원 가입</h4><br>
+									<h2 style="text-align: center;">회원 가입</h2><br>
 								</div>
-								<input type="file" name="join_file" id="join_file" accept="image/*" onchange="previewImage(this)" />
-								<div id="preview_join"></div>
-								<br>  
+								
+								<a>프로필 사진 </a><br>
+								<div class="profile-box">
+									<div id="preview_join"><img alt="" src="../../resources/images/userdog/defualt.png" ></div><br>
+									<input type="file" name="join_file" id="join_file" accept="image/*" onchange="previewImage(this)" />
+								 </div>
 								<div> 
+									<br> 
 									<div>  
 										<form action="#"> 
 											<div id="image_container"">
@@ -147,50 +212,58 @@ function previewImage(f){
 											<div>
 											<a>아이디</a>
 											</div>  
-											<div>
-												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" style="width: 550px;"><button type="button" class="btn btn-success btn-sm" id="idClick">중복확인</button><br><br>
+											<div class="flex-row">
+												<input type="text" id="user_id" name="user_id" placeholder="아이디" class="input-text" ><button type="button" class="btn btn-outline-info" id="idClick">중복확인</button><br><br>
 											</div>
+											<br>
 											<div> 
 											<a>비밀번호</a>
 											</div>
 											<div>
-												<input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호" style="width: 700px;"><a id="user_pwd_chk"></a><br><br>
+												<input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호"><a id="user_pwd_chk"></a>
 											</div>
+											<br>
 											<a>비밀번호 확인</a>  
 											<div>
-												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" style="width: 700px;"><a id="user_pwd_chk2"></a><br><br>
+												<input type="password" id="user_pwd2" name="user_pwd2"placeholder="비밀번호 확인" ><a id="user_pwd_chk2"></a>
 											</div>
+											<br>
 											<a>이름</a>
 											<div> 
-												<input type="text" id="user_name" name="user_name" placeholder="이름" style="width: 700px;"><br><br>
+												<input type="text" id="user_name" name="user_name" placeholder="이름" >
 											</div>
+											<br>
 											<a>생년월일</a> 
 											<div>
-												<input type="number" id="user_birth" name="user_birth" style="width: 200px;" min="1900" max="2010" ><label>년</label>
-												<input type="number" id="user_birth" name="user_birth" style="width: 100px;" min="1" max="12"><label>월</label>
-												<input type="number" id="user_birth" name="user_birth" style="width: 100px;" min="1" max="31"><label>일</label><br><br>
+												<input type="number" id="user_birth" name="user_birth" style="width: 150px;" min="1900" max="2010" ><label>&nbsp;년</label>
+												<input type="number" id="user_birth" name="user_birth" style="width: 100px;" min="1" max="12"><label>&nbsp;월</label>
+												<input type="number" id="user_birth" name="user_birth" style="width: 100px;" min="1" max="31"><label>&nbsp;일</label>
 											</div>
+											<br>
 											<a>성별</a>
-											<div style="width: 650px;">
-											 	<b>남</b>&nbsp&nbsp&nbsp<input type="radio" value="1" class="user_gender" name="user_gender">&nbsp&nbsp&nbsp<b>여</b>&nbsp&nbsp&nbsp<input type="radio" value="2" class="user_gender" name="user_gender"><br><br>
+											<div class="gender-box">
+											 	<a>남</a>&nbsp&nbsp&nbsp<input type="radio" value="1" class="user_gender" name="user_gender">&nbsp&nbsp&nbsp<a>여</a>&nbsp&nbsp&nbsp<input type="radio" value="2" class="user_gender" name="user_gender"><br><br>
 											</div>
 											<a>주소</a>
+											<div class="flex-row">
+												<input type="text" id="sample6_address" name="user_addr1" placeholder="주소"  readonly; ">
+												<button type="button" class="btn btn-outline-info" id="addrClick">주소 찾기</button><br><br>   
+											</div>
+											<br>
 											<div>
-												<input type="text" id="sample6_address" name="user_addr1" placeholder="주소" style="width:500px; readonly; ">
-												<button type="button" class="btn btn-success btn-sm" id="addrClick">주소입력</button><br><br>   
-										 
-												<input type="text" id="sample6_extraAddress" name="user_addr1" placeholder="주소" style="width:500px;" readonly><br><br>
+												<input type="text" id="sample6_extraAddress" name="user_addr1" placeholder="상세 주소"  readonly><br><br>
 											</div>
 											<a>전화번호</a>
 											<div>      
-												<input maxlength="11" type="tel" id="user_tel" name="user_tel" placeholder="연락처" style="width: 700px;"><br><br>
+												<input maxlength="11" type="tel" id="user_tel" name="user_tel" placeholder="연락처" ><br><br>
 											</div>
 											<a>닉네임</a>
-											<div> 
-												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" style="width: 550px;">&nbsp&nbsp<button type="button" class="btn btn-success btn-sm" id="nickOkay">중복확인</button><br><br>
+											<div class="flex-row"> 
+												<input type="text" id="user_nick" name="user_nick" placeholder="닉네임" class="input-text" >&nbsp&nbsp<button type="button" class="btn btn-outline-info" id="nickOkay">중복확인</button><br><br>
 											</div>
-											<div style="float:center">
-											<button style="float:center" class="btn btn-success" type="button" id="join_submit" value="확인">확인</button>  
+											<br>
+											<div class="confirmBtn">
+												<button style="float:center" class="btn btn-info" type="button" id="join_submit" value="확인">확인</button>  
 											</div>
 										</form> 
 									</div>

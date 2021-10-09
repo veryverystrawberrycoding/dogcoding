@@ -21,7 +21,6 @@ $(function(){
 				data:{
 					user_nick: $("#user_nick_modify").val()
 				},success: function(data){
-				alert(data);
 				if(data==$("#user_nick_modify").val()) {
 					alert("중복 된 닉네임입니다.")
 					nick_modify = false;
@@ -94,14 +93,14 @@ $(function(){
 							type:'post',
 							url:'/noPwdModify',
 							data: {
-								user_nick : $("#modify_user_nick").val(),
-								user_tel : $("#modify_user_tel").val(),
+								user_nick : $("#user_nick_modify").val(),
+								user_tel : $("#user_modify_tel").val(),
 								user_addr : adr
 									
 								}, success:function(fd){
 										alert("수정이 완료되었습니다.")
-										location.href = "/mainPage"
-								} 
+										location.reload();
+								}  
 								
 							})
 		
@@ -526,16 +525,16 @@ $("#modify_user_pwd3").on('keyup', function(){
 })*/
 
 $("#pwd_modify_btn").click(function(){
-	if(!($("#modify_user_pwd")=='') || !($("#modify_user_pwd2")=='') || !($("#modify_user_pwd3")=='')){
+	if(($("#modify_user_pwd").val()=='') || ($("#modify_user_pwd2").val()=='')){
 				$("#modify_error").text("비밀번호를 입력해주세요.");
-				return false;
+				return false;   
 	} else if(!user_pwCheck.test($("#modify_user_pwd2").val())){
 				$("#modify_error").text("비밀번호 형식은 영문+숫자+특수문자 8~16자리입니다.");
 				return false;
 	} else if(!user_pwCheck.test($("#modify_user_pwd3").val())){
 				$("#modify_error").text("비밀번호 형식은 영문+숫자+특수문자 8~16자리입니다.");
 				return false;
-	} else if($("#modify_user_pwd2")!=$("#modify_user_pwd3")){
+	} else if($("#modify_user_pwd2").val()!=$("#modify_user_pwd3").val()){
 				$("#modify_error").text("변경 할 비밀번호가 일치하지 않습니다.");
 	} else {
 	
@@ -590,7 +589,7 @@ function myGalList() {
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 			} 
 			}else{ 
@@ -599,7 +598,7 @@ function myGalList() {
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);	
 			}
 			}  
@@ -621,7 +620,7 @@ $(document).on('click', '.paging3', function(){
 	 
 	
 	$(this).css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	}) 
 	
@@ -640,7 +639,7 @@ $(document).on('click', '.paging3', function(){
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}  
 		} else { for(var x=start1; x<data.length; x++){
@@ -648,7 +647,7 @@ $(document).on('click', '.paging3', function(){
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}
 			
@@ -665,7 +664,7 @@ $(document).on('click', '.nextgal', function(){
 		"color": "#000000"
 	})
 	$("#paging3"+page1+"").css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	})
 	
@@ -688,7 +687,7 @@ $(document).on('click', '.nextgal', function(){
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}   
 		}  
@@ -704,7 +703,7 @@ $(document).on('click', '.pregal', function(){
 		"color": "#000000"
 	})
 	$("#paging3"+page1+"").css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	})
 	
@@ -727,7 +726,7 @@ $(document).on('click', '.pregal', function(){
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
-			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}   
 		} 
@@ -764,13 +763,13 @@ function myGalReply(){
 			{  
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss)  
 			}} else { 
 			for(var x=0; x<onepage2; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss) 
 			}	
 			}
@@ -790,7 +789,7 @@ $(document).on('click', '.paging2', function(){
 	 
 	
 	$(this).css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	}) 
 	
@@ -807,13 +806,13 @@ $(document).on('click', '.paging2', function(){
 			for(var x=start2; x<end2; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss);
 		}  
 		} else { for(var x=start2; x<data.length; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss);
 		}
 			
@@ -830,7 +829,7 @@ $(document).on('click', '.nextgalre', function(){
 		"color": "#000000" 
 	})
 	$("#paging2"+page2+"").css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	})
 	
@@ -867,7 +866,7 @@ $(document).on('click', '.pregalre', function(){
 		"color": "#000000"
 	})
 	$("#paging2"+page2+"").css({
-		"background":"orange",
+		"background":"#ed8e82",
 		"color": "#ffffff"
 	})
 	
@@ -911,7 +910,7 @@ $("#img_modify_btn").click(function(){
 		url:'../modifyImg',
 		data: {user_img : document.getElementById("modify_file").files[0].name},
 		success:function(){
-			
+			alert("수정이 완료되었습니다.")
 		}
 	}) 
 	$.ajax({

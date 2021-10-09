@@ -223,7 +223,7 @@
 									<div class="card-header" role="tab" id="collapse03_header">
 										<h5>
 											<a class="collapsed" data-toggle="collapse" href="#collapse03" aria-expanded="false" aria-controls="collapse03">											
-												메뉴
+												상세정보
 											</a>
 										</h5>
 									</div>

@@ -24,14 +24,25 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 
-	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-		<script src="js/vendor/jquery-1.12.4.min.js"></script>
-	<![endif]-->
+	<style>
+	.my_gal_list div{
+		margin : 0 0 10px 0;
+		padding: 10px;
+	}
+
+	#myGal.item-content{
+		padding : 0 ;
+	}
+	
+	.my_galre_list div{
+		margin : 0 0 10px 0;
+		padding: 10px;
+	}
+	
+	</style>
 
 </head>
  
@@ -85,81 +96,62 @@
 			<!-- header with two Bootstrap columns - left for logo and right for navigation and includes (search, social icons, additional links and buttons etc -->
 			
 
-			<section class="ls gallery-page s-py-60 s-py-md-90 s-py-xl-160 container-px-15">
+			<section class="ls s-py-60 s-pt-md-90 s-py-lg-90 s-py-xl-160">
 				
-								<div class="container"> 
-									<div class="row">
-								
-								<div class="col-md-3">>
-								
-								</div>
-								
-								<div class="col-md-5">
+				<div class="container">
+				<div class="row c-gutter-60">
+					<main class="col-lg-7 col-xl-8 order-lg-2">
+					<!-- <article class="post"> -->
+						<div class="row">
+									
+						<!-- 	<div class="col-md-3">
+							
+							</div> -->
+									
+							<div class="col-md-6">
+							<h3>Gallery 게시글</h3>
 								<div class="my_gal_list">
 								</div>
 								<ul class="pagination gal_page">
 								</ul>	 
-								</div>
-								<div class="col-md-4">
-									<div class="my_galre_list">
-										
-									</div>
-									<ul class="pagination galre_page">
-									 
-									</ul>
-									<div class="loss_alert">
-									
-									</div>
-								</div> 
 							</div>
- 
-							</div>
-								<div class="row mt-30">
-								<div class="col-sm-12 text-center">
-									<nav class="navigation pagination " role="navigation">
-										<h2 class="screen-reader-text">Posts navigation</h2>
-										<div class="nav-links">
-											<a class="prev page-numbers" href="blog-right.html">
-												<i class="fa fa-chevron-left"></i>
-												<span class="screen-reader-text">Previous page</span>
-											</a>
-											<span class="page-numbers current">
-												<span class="meta-nav screen-reader-text">Page </span>
-												1
-											</span>
-											<a class="page-numbers" href="blog-right.html">
-												<span class="meta-nav screen-reader-text">Page </span>
-												...
-											</a>
-											<a class="page-numbers" href="blog-right.html">
-												<span class="meta-nav screen-reader-text">Page </span>
-												5
-											</a>
-											<a class="next page-numbers" href="blog-right.html">
-												<span class="screen-reader-text">Next page</span>
-												<i class="fa fa-chevron-right"></i>
-											</a>
-										</div>
-									</nav>
+							
+							<div class="col-md-6">
+							<h3>댓글</h3>
+								<div class="my_galre_list">
 								</div>
+								<ul class="pagination galre_page">
+								 
+								</ul>
+								<div class="loss_alert">
+								
+								</div>
+							</div> 
+	
 						</div>
-					
-							
-							</section>
-
-							
-
+				<!-- 	</article> -->
+ 					</main> 
+ 					
+		 				<aside class="col-lg-3 col-xl-3 order-lg-1 mb-0">
+							<div class="widget widget_categories">
+								<%@ include file="./MypageCategories.jsp" %>
 							</div>
-							
-							
-							
-							
-							<!-- .isotope-wrapper-->
+						</aside>
+ 					</div>
+ 
+				</div>
 
-						
-		
+				<div class="row mt-30">
 
-			<%@ include file="./footer.jsp"%> 
+				</div>
+
+							
+			</section>
+
+							
+
+		</div>
+		<%@ include file="./footer.jsp"%> 
 
 			
 		</div><!-- eof #box_wrapper -->

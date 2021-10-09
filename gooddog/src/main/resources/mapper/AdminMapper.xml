@@ -57,12 +57,14 @@
 			</resultMap>	
 	 		<select id="getDayCount" resultMap="dayMap" parameterType="UserLogVO">
 	 			<![CDATA[
+
 	 		SELECT * 
               FROM	
               (SELECT DATE(`log_date`) AS `userlog`,
                    COUNT(`log_no`) AS `logno` 
               FROM userlog  
              GROUP BY userlog order by userlog desc limit 10)a order by userlog asc;
+
 
 				 	]]>
 			</select> 
@@ -93,6 +95,32 @@
 				<select id="getWomenCount" resultType="int" parameterType="UserVO">
 						<![CDATA[
 							select count(*) from user where user_gender=2; 
+						]]>
+					</select>
+					
+					
+			<!-- 전체 회원 수 -->
+			<select id="totaluser" resultType="int" parameterType="UserVO">
+						<![CDATA[
+							select count(user_id) from user;
+						]]>
+					</select>
+			<!-- 어제 신규 가입자 수 -->
+			<select id="dayuser" resultType="int" parameterType="UserVO">
+						<![CDATA[
+							SELECT count(user_id) FROM user WHERE user_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 day ) AND NOW();
+						]]>
+					</select>
+			<!-- 이번달 신규 가입자 수 -->
+			<select id="monthuser" resultType="int" parameterType="UserVO">
+						<![CDATA[
+							SELECT count(user_id) FROM user WHERE user_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 MONTH  ) AND NOW();
+						]]>
+					</select>
+			<!-- 올해 신규 가입자 수 -->
+			<select id="yearuser" resultType="int" parameterType="UserVO">
+						<![CDATA[
+						    SELECT count(user_id) FROM user WHERE user_date BETWEEN DATE_ADD(NOW(),INTERVAL -12 MONTH  ) AND NOW();
 						]]>
 					</select>
 <!-- 000000000000000000000000000000000000000admin_post000000000000000000000000000000000000 -->

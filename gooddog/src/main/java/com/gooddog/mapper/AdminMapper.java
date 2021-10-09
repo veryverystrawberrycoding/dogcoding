@@ -71,4 +71,9 @@ public List<BadcontentVO> badcontent(BadcontentVO vo);
 public int badcontentCount();
 //////////////////// 
 public void badcontentDelete(BadcontentVO vo);
+
+int totaluser();
+int dayuser();
+int monthuser();
+int yearuser();
 }

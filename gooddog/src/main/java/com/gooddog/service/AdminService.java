@@ -67,6 +67,10 @@ public int badcontentCount(BadcontentVO badcontentVO) throws Exception;
 
 //유저에서  블랙리스트 등록하기 
 public void addBlackList(BlackVO vo);
+public int totaluser();
+public int dayuser();
+public int monthuser();
+public int yearuser();
 
 
 

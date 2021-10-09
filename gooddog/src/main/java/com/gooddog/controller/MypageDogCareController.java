@@ -3,17 +3,21 @@ package com.gooddog.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gooddog.domain.PetVO;
 import com.gooddog.domain.UserVO;
+import com.gooddog.domain.WalkingVO;
 import com.gooddog.domain.WeightVO;
+import com.gooddog.service.LogJoinService;
 import com.gooddog.service.MypageDogCareService;
 
 
@@ -23,16 +27,33 @@ public class MypageDogCareController {
 	@Autowired
 	private MypageDogCareService dogCare; 
 	
+	@Autowired 
+	LogJoinService logjoinService;
+	
 	@RequestMapping(value="/mypageDogCare")
-	public String mypage(HttpSession session, PetVO vo) throws Exception {
+	public String mypage(HttpSession session, PetVO vo, UserVO uvo, Model m) throws Exception {
 		//세션 정보 받기 
 		UserVO user = (UserVO) session.getAttribute("user");
 		//System.out.println(user);
-
+		if(user==null) {
+			return "redirect:/loginForm";
+		}  
+		else {
+		vo.setUser_id(user.getUser_id());
+		UserVO myvo = logjoinService.userSelect(uvo);
+		m.addAttribute("myvo", myvo); 
 		
-		//dogCare.weightList(vo);
-		return "mypageDogCare";
+			return "/mypageDogCare"; 
+		} 
+		
+//		//dogCare.weightList(vo);
+//		return "mypageDogCare";
+		
+		
 	}
+	
+	
+
 	
 	@RequestMapping(value="/weightList", method=RequestMethod.POST)
 	@ResponseBody
@@ -97,6 +118,56 @@ public class MypageDogCareController {
 		
 		return msg;
 	}
+	
+	
+	@RequestMapping(value="/walkList", method=RequestMethod.POST)
+	@ResponseBody
+	public Object walkList(HttpSession session, WalkingVO vo) {
+
+		System.out.println(vo.getPet_no()+","+vo.getYear()+","+vo.getMonth());
+		
+		
+		
+		//강아지 체중 정보 리스트 조회 
+		List<WalkingVO> walkList = dogCare.walkList(vo);
+		System.out.println(walkList);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("walkList",walkList);
+
+		return map;
+
+	}
+	
+	
+	// 반려견 산책 기록 
+	@RequestMapping(value="/insertWalk", method=RequestMethod.POST) //
+	@ResponseBody
+	public String insertWalk(HttpServletRequest request, WalkingVO vo) {
+		String msg="통신 완료";
+		
+		String[] pet_no_list = request.getParameterValues("pet_no");
+		int size = pet_no_list.length;
+		System.out.println("pet_no_list의 사이즈 : " + size);
+		System.out.println("pet_no_list : "+pet_no_list);
+		System.out.println(vo.getWalk_content());
+		
+		int[] int_pet_no_list = new int[size];
+
+		// String 배열을 int 배열로 형변화
+		for (int i = 0; i < size; i++) {
+			int_pet_no_list[i] = Integer.parseInt(pet_no_list[i]);
+		}
+		
+		// pet_no_list에 저장된 값만큼 insert 반복
+		for (int i=0; i<size; i++) {
+			vo.setPet_no(int_pet_no_list[i]);
+			dogCare.insertWalk(vo); 
+		}
+		
+		return msg;
+	}	
 	
 	
 //	@RequestMapping("/mypageFace") // http://localhost:8082/mypageFace ,method=RequestMethod.GET
