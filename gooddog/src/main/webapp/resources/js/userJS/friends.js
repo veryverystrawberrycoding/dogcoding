@@ -112,7 +112,7 @@ function stackBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius )
 			throw new Error("unable to access local image data: " + e);
 			return;
 		}
-	  } 
+	  }
 	} catch(e) {
 	  alert("Cannot access image");
 	  throw new Error("unable to access image data: " + e);
@@ -404,16 +404,19 @@ function fdRecommend1() {
 		type:'post',
 		url: '../fdRecommend1',
 		success: function(data){
-						let n
 						let rds = [];
 						for(var i=0; i<5; i++) {
-						n = Math.floor(Math.random() * data.length);
-						if (rds.indexOf(n) === -1) {
+						let n = Math.floor(Math.random() * data.length);
+						if (! sameNum(n)) {
 						rds.push(n);
 						} else {
 						i--;
 						} 
-						}   	
+						} 
+						function sameNum (n) {
+						return rds.find((e) => (e === n));
+						}
+						
 			$(".total_friend_hi").empty(); 
 			$(".total_friend_hi").append('<div class="col-md-1"></div>')
 			if(data.length<5){
@@ -490,6 +493,8 @@ function followerList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
 			var list = obj.frListt
+			alert(list[0].following_id);
+			alert(list[0].following_name)
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
@@ -528,8 +533,8 @@ $(document).on('click', '.chat_content',function(){
 	let img = $(this).parent().prev().find(".profile_click").attr("src");
 	let nick = $(this).text()
 	$(".user_nick_click").text(nick)
-	$(".user_id_click").val(value) 
-	$(".big_user_img").attr("src",img); 
+	$(".user_id_click").val(value)
+	$(".user_img").attr("src",img); 
 	$("#chat-box").empty();
 	const eventSource = new EventSource("http://localhost:8082/chat/receiver/"+value+"");
 	eventSource.onmessage = (event) => { 
@@ -547,8 +552,10 @@ $(document).on('click', '.friend_click', function(){
 		type:'post',  
 		url: '../fdAdd', 
 		data:{ 
-			user_id : $(this).parent().parent().find('.friend_id').val() 
-	  
+			user_id : $(this).parent().parent().find('.friend_id').val(), 
+			user_nick : $(this).parent().parent().find('.friend_nick').val(), 
+			user_name : $(this).parent().parent().find('.friend_name2').val(),  
+			user_img : $(this).parent().parent().parent().parent().find('img').attr("src")
 			  
 		},
 		success: function(data){
@@ -587,6 +594,8 @@ function getSendMsgBox(receiver, msg, time){
 function initMyMessage(data){ 
 	let chatBox = document.querySelector("#chat-box");
 	let msgBox = document.querySelector("#chat-outgoing-msg")
+	
+	//alert(msgBox.value);
 	let chatOutgoingBox = document.createElement("div");
 	chatOutgoingBox.className = "outgoing-box";
 	let a = data.createAt.substring(5,10)

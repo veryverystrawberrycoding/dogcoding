@@ -44,7 +44,7 @@ public class ChattingController {
 		System.out.println(chatRepository.mFindBySender(sender, receiver).subscribeOn(Schedulers.boundedElastic()));
 		return chatRepository.mFindBySender(sender, receiver) 
 			.subscribeOn(Schedulers.boundedElastic());
-	}  
+	} 
 	
 	@CrossOrigin  
 	@PostMapping("/chat") 
@@ -54,7 +54,7 @@ public class ChattingController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/multiChat")  
+	@PostMapping("/multiChat") 
 	public Mono<MultichatVO> addMsg(@RequestBody MultichatVO vo, HttpServletRequest req){
 		vo.setCreateAt(LocalDateTime.now());
 		HttpSession session = req.getSession();  

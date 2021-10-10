@@ -9,10 +9,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 @Data
-@Document(collection="multichat")
+@Document(collection="chat")
 public class MultichatVO {
 
-	@Id 
+	@Id
 	private String id;
 	 
 	private String roomNum; 
