@@ -187,7 +187,7 @@ $(document).on('click', '.black_delete_btn', function(){
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin-chart.do">관리자 페이지</a>
+            <a class="navbar-brand ps-3" href="admin_chart.do">관리자 페이지</a>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             

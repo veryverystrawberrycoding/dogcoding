@@ -46,7 +46,7 @@
                             
                               <a class="nav-link" href="admin_black.do">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                신고
+                                신고관리
                             </a>
                             
                         </div>

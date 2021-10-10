@@ -43,13 +43,13 @@ $(document).ready(function(){
 	userList();
 });
 
+// 페이징 처리
 function userList(){
 
 		var returnHtml = "";
 		var pageHtml = '';
-			
-			
 		var page = $('#page').val();
+		
 		$.ajax({	
 			type:'POST',
 			data: 'page='+page,
@@ -68,7 +68,6 @@ function userList(){
 					pageHtml += "<a href='javascript:pageGo("+p+");'>"+p+"</a>"+"&nbsp;&nbsp;&nbsp;&nbsp;";
 				}
 					
-		
 				$('#pageId').html(pageHtml);
 				$('#page').val(pageIn);
 				$('#nextPage').val(nextPage);
@@ -85,7 +84,6 @@ function userList(){
 						var useraddr = data.list[i].user_addr;
 						var usertel = data.list[i].user_tel;
 						
-				
 						returnHtml += "<tr>"	
 						returnHtml += "<td class= 'userid'>"+userid+"</td>"
 						returnHtml += "<td>"+username+"</td>"
@@ -93,19 +91,14 @@ function userList(){
 						returnHtml += "<td>"+usertel+"</td>"
 						returnHtml += "<td><button type='button' class='user_stop'style= 'border-radius: 0px; padding: 12px 20px;'>정지</button></td>"	
 						returnHtml += "</tr>"
-						
-					
 					}
-				}
-				
-				
+				}			
 				$('#userList1').html(returnHtml);
 			}
 	});
 }
 
-
-
+// 페이지 넘기기 
 function pageGo(pageNum){
 	if(pageNum == 0){
 	// 이전페이지
@@ -122,10 +115,9 @@ function pageGo(pageNum){
 }
 
 
-
+//정지 버튼 클릭시 유저id넘기고 블랙리스트추가창 오픈
 $(document).on('click', '.user_stop', function(){
   let userid = $(this).parent().parent().find(".userid").text();
-  alert(userid)
    window.open('addblack.do?userid='+userid+'','_blank','width=600 ,height=400') 
     
 })
@@ -157,7 +149,7 @@ $(document).on('click', '.user_stop', function(){
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin-chart.do">관리자 페이지</a>
+            <a class="navbar-brand ps-3" href="admin_chart.do">관리자 페이지</a>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             

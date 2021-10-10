@@ -61,89 +61,53 @@ public class AdminController {
 	      session.invalidate();
 	      return "redirect:/mainPage";
 	   }  
+		
+	   // 차트페이지 
+		@RequestMapping(value="/admin/admin_chart.do",method = {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView admin_chart(Model m, HttpServletResponse response) {
+			//일별 데이터
+			List<Map<String,String>> dayCount= AdminService.getDayCount();
+			//주별 데이터
+			List<Map<String,String>> weekCount= AdminService.getweekCount();
+			//성별 데이터
+			int womenCount = AdminService.getWomenCount();
+	  		int menCount = AdminService.getMenCount();
+	  
+			// 전체 회원 수
+	  		int totaluser = AdminService.totaluser();
+			// 어제 가입자 수
+	  		int dayuser = AdminService.dayuser();
+			// 이번달 가입자 수
+	  		int monthuser = AdminService.monthuser();
+			// 올해 가입자 수
+	  		int yearuser = AdminService.yearuser();
+	  		// 모델에 각 데이터 담기 
+	  	     m.addAttribute("totaluser",totaluser);
+	  		 m.addAttribute("dayuser",dayuser);
+	  		 m.addAttribute("monthuser",monthuser);
+	  		 m.addAttribute("yearuser",yearuser);
+	  		 m.addAttribute("dayCount",dayCount);
+	         m.addAttribute("weekCount",weekCount);
+	  		 m.addAttribute("menCount",menCount);
+	         m.addAttribute("womenCount",womenCount); 
+	         
+//	         System.out.println(totaluser);
+//	         System.out.println(dayuser);
+//	         System.out.println(monthuser);
+//	         System.out.println(yearuser); 
+	         
+			return new ModelAndView("/admin/admin_chart") ;
+		}
+		
 	
-	
-	//관리자페이지 회원 뷰 
+	//관리자페이지 회원관리 페이지 
 	@RequestMapping(value = "/admin/admin_table.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_table(Model m, HttpServletResponse response) {
-	 
-	//  기능 툴	
-	web.init(response);
 
-	
- 	
-		
 		return new ModelAndView("/admin/admin_table") ;
-		
 	}
 	
-	//관리자페이지 블랙리스트 뷰 
-	@RequestMapping(value = "/admin/admin_blacklist.do", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_blacklist(Model m, HttpServletResponse response) {
-	 
-	//  기능 툴	
-	web.init(response);
-		return new ModelAndView("/admin/admin_blacklist") ;
-		
-	}
-	
-	//관리자페이지 블랙티스트 추가 페이지 
-		@RequestMapping(value = "/admin/addblack.do", method = {RequestMethod.GET, RequestMethod.POST})
-		public ModelAndView addblack(Model m, HttpServletResponse response) {
-		  
-		//  기능 툴	
-		web.init(response);
-
-
-			return new ModelAndView("/admin/addblack") ;
-			
-		}
-		
-		// 블랙리스트 추가
-		@ResponseBody
-		@RequestMapping(value = "/admin/blackadd.do" , method= { RequestMethod.POST})
-		public String BlackListAdd(BlackVO vo,Model m,String term) {
-	
-			String[] arr = term.split(" ");
-			int termday = Integer.parseInt(arr[0]);
-			
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(new Date());
-			DateFormat ddddd = new SimpleDateFormat("yyyy-MM-dd");
-			
-//			System.out.println("날짜적용전");
-//			System.out.println(ddddd.format(cal.getTime()));
-//			System.out.println("id값="+vo.getUser_id());
-//			System.out.println("사유="+vo.getBlack_content());
-			
-			vo.setBlack_start(ddddd.format(cal.getTime()));
-			cal.add(Calendar.DATE, +termday);
-			vo.setBlack_end(ddddd.format(cal.getTime()));
-			
-			// vo 데이터 확인 user_id,black_start,black_end,black_content
-			System.out.println("ID="+vo.getUser_id()+"///////START="+vo.getBlack_start()+"/////////END="+vo.getBlack_end()+"///////CONTENT="+vo.getBlack_content());
-			
-			AdminService.addBlackList(vo);
-			
-//			System.out.println("날짜적용");
-//			System.out.println(ddddd.format(cal.getTime()));
-			
-			// 아이디, 시작기간, 끝기간, 사유
-			// 시작기간 now()
-		    
-						
-			return "ok";
-		}
-		
-		@ResponseBody
-		@PostMapping("/blacklistDelete")
-		public void  blacklistDelete(BlackVO vo) {
-			System.out.println("배드 컨텐츠 작동 중");
-			AdminService.blacklistDelete(vo);
-			
-			vo.getUser_id();
-			System.out.println(	vo.getUser_id());
-		}
+	// 회원 목록 페이징 및 리스트
 	/**
 	 * 회원 목록
 	 * @param UserVO
@@ -159,19 +123,18 @@ public class AdminController {
 		
 		
  		UserVO user = new UserVO();
+ 		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		int nowPage = web.getInt("page", 1);  		
 		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int userCount = 0;							// 전체 사용자 수
+		// 전체 사용자 수
+		int userCount = 0;							
 		try {
 			userCount = AdminService.getUserCount(user);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace(); 
 		}
 	
-		
+		// 10개의 데이터 뿌리고 다음페이지 생성
 		page.pageProcess(nowPage, userCount, 10, 5);		
 		user.setLimitStart(page.getLimitStart());
 		user.setListCount(page.getListCount());
@@ -180,9 +143,10 @@ public class AdminController {
 		list = AdminService.getUserList(user);		
 			
 		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
+		// 다음페이지
+		int nextPage = page.getNextPage();	
+		// 이전페이지
+		int prevPage =page.getPrevPage();	
 		int pageIn = page.getPage();
 	
 		data.put("list", list); 
@@ -207,9 +171,55 @@ public class AdminController {
 		}
 		
 	}
+	
+	//관리자페이지 블랙리스트 추가 페이지 
+		@RequestMapping(value = "/admin/addblack.do", method = {RequestMethod.GET, RequestMethod.POST})
+		public ModelAndView addblack(Model m, HttpServletResponse response) {
+			  
+		return new ModelAndView("/admin/addblack") ;
+				
+		}
+		// 블랙리스트 추가
+		@ResponseBody
+		@RequestMapping(value = "/admin/blackadd.do" , method= { RequestMethod.POST})
+		public String BlackListAdd(BlackVO vo,Model m,String term) {
+		
+			//가져온 정지기간을 date스타일로 변환
+			String[] arr = term.split(" ");
+			int termday = Integer.parseInt(arr[0]);
+					
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(new Date());
+			DateFormat ddddd = new SimpleDateFormat("yyyy-MM-dd");
+				
+				
+			// 현재 날짜
+			vo.setBlack_start(ddddd.format(cal.getTime()));
+			// 정지 기간 적용
+			cal.add(Calendar.DATE, +termday);
+			// 현재 날짜 + 정지 기간 적용
+			vo.setBlack_end(ddddd.format(cal.getTime()));
+					
+			// vo 데이터 확인 user_id,black_start,black_end,black_content
+		    // System.out.println("ID="+vo.getUser_id()+"///////START="+vo.getBlack_start()+"/////////END="+vo.getBlack_end()+"///////CONTENT="+vo.getBlack_content());
+					
+			AdminService.addBlackList(vo);
 
+			return "ok";
+		}
+			
+
+	//관리자페이지 블랙리스트 페이지 
+	@RequestMapping(value = "/admin/admin_blacklist.do", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_blacklist(Model m, HttpServletResponse response) {
+
+		return new ModelAndView("/admin/admin_blacklist") ;
+		
+	}
+	
+	// 블랙리스트 목록 페이징 
 	/**
-	 * 회원 목록
+	 * 블랙리스트 목록
 	 * @param BlackVO
 	 * @return
 	 * @throws Exception
@@ -223,35 +233,30 @@ public class AdminController {
 		
 		
 		BlackVO black = new BlackVO();
+		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		int nowPage = web.getInt("page", 1);  		
 		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int blackCount = 0;							// 전체 사용자 수
+		// 전체 사용자 수
+		int blackCount = 0;							
 		try {
 			blackCount = AdminService.getblackCount(black);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	
-		
+		// 10개의 데이터 뿌리고 다음페이지 생성
 		page.pageProcess(nowPage, blackCount, 10, 5);		
 		black.setLimitStart(page.getLimitStart());
 		black.setListCount(page.getListCount());
 		
 		List<BlackVO> list = null;
 		list = AdminService.getBlackList(black);	
-		System.out.println(nowPage);
-		System.out.println(page.getListCount());
-		System.out.println(blackCount);
-		System.out.println(page.getLimitStart());
-	    System.out.println(list);
 	
 		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
+		// 다음페이지
+		int nextPage = page.getNextPage();	
+		// 이전페이지
+		int prevPage =page.getPrevPage();
 		int pageIn = page.getPage();
 	
 		data.put("list", list); 
@@ -277,172 +282,26 @@ public class AdminController {
 		
 	}
 	
-	
-	@GetMapping("/admin_table/search")
-	public String search(@RequestParam(value="keyword") String keyword, Model model) {
-        
-	    return "/admin/admin_table";
-	}
-	// 차트 
-	@RequestMapping(value="/admin/admin_chart.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_chart(Model m, HttpServletResponse response) {
-		//일별 
-		List<Map<String,String>> dayCount= AdminService.getDayCount();
-		//주별
-		List<Map<String,String>> weekCount= AdminService.getweekCount();
-		//성별
-		int womenCount = AdminService.getWomenCount();
-  		int menCount = AdminService.getMenCount();
-  
-		// 전체 가입자수
-  		int totaluser = AdminService.totaluser();
-		// 전체 가입자수
-  		int dayuser = AdminService.dayuser();
-		// 전체 가입자수
-  		int monthuser = AdminService.monthuser();
-		// 전체 가입자수
-  		int yearuser = AdminService.yearuser();
-  		 m.addAttribute("totaluser",totaluser);
-  		 m.addAttribute("dayuser",dayuser);
-  		 m.addAttribute("monthuser",monthuser);
-  		 m.addAttribute("yearuser",yearuser);
-  		 m.addAttribute("dayCount",dayCount);
-         m.addAttribute("weekCount",weekCount);
-  		 m.addAttribute("menCount",menCount);
-         m.addAttribute("womenCount",womenCount); 
-         System.out.println(totaluser);
-         System.out.println(dayuser);
-         System.out.println(monthuser);
-         System.out.println(yearuser); 
-         //\\String dayCount1 = new ObjectMapper().writeValueAsString(dayCount);
-         
-//         System.out.println(dayCount);
-//         System.out.println(dayCount.get(0));
-//         System.out.println(dayCount.get(1));
-//         System.out.println("#############getValue##############");
-//         System.out.println(dayCount.get(0).values());
-//         System.out.println(dayCount.get(0).values().toArray()[0]);
-// 
-         
-//        System.out.println(dayCount);
-//         String weekCount1 = new ObjectMapper().writeValueAsString(weekCount);
-//         System.out.println(weekCount1);
-      
-		return new ModelAndView("/admin/admin_chart") ;
-	}
-	
-
-
-	
-	
-
-/////////관리자 black 페이지//////
-	
-	@RequestMapping(value="/admin/admin_black.do",method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView admin_black(Model m, HttpServletResponse response) {
-
-		 
-		//  기능 툴	
-		web.init(response);
-		return new ModelAndView("/admin/admin_black") ;
-	}
-///////////////////////////////관리자 book delete //////////////////	
-		@ResponseBody
-		@PostMapping("/badcontentDelete")
-		public void  badcontentDelete(BadcontentVO vo) {
-			System.out.println("배드 컨텐츠 작동 중");
-			AdminService.badcontentDelete(vo);
-		}		
-		
-		
-	
-///////////////관리자 black 페이징////////////
+	// 블랙리스트 해지
 	@ResponseBody
-	@RequestMapping(value="/badcontentList", method=RequestMethod.POST)
-	public void badcontentList(Locale locale, Model model, BadcontentVO BadcontentVO, HttpServletResponse response ){
-		
-		web.init(response); 
-		response.setContentType("application/json");
-		
-		
-		BadcontentVO badcontent = new BadcontentVO();
-		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int badcontentCount = 0;							// 전체 사용자 수
-		try {
-			badcontentCount = AdminService.badcontentCount(badcontent);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-	 
-		
-		page.pageProcess(nowPage, badcontentCount, 10, 5);		
-		badcontent.setLimitStart(page.getLimitStart());
-		badcontent.setListCount(page.getListCount());
-		
-		System.out.println(badcontent+"북카운트가져옴" );
-		List<BadcontentVO> list = null;  
-		list = AdminService.badcontent(badcontent); 	
-
-		System.out.println(list+"list가져옴" );
-		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
-		int pageIn = page.getPage();
-	
-		data.put("list", list); 
-		data.put("prevPage", prevPage);
-		data.put("nextPage", nextPage);
-		data.put("pageIn", pageIn);
-		data.put("page", page);		
-		
-		
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			mapper.writeValue(response.getWriter(), data);
-		} catch (JsonGenerationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	
+	@PostMapping("/blacklistDelete")
+	public void  blacklistDelete(BlackVO vo) {
+			
+		//System.out.println("배드 컨텐츠 작동 중");
+		AdminService.blacklistDelete(vo);
+				
+		//vo.getUser_id();
+		//System.out.println(	vo.getUser_id());
 	}
 	
-	////////////////////////////////////////////////////////////
-	/////////////////////////관리자 info 페이지/////////////////////
-	////////////////////////////////////////////////////////////
+	// 백과사전 페이지 
 	@RequestMapping(value = "/admin/admin_post.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_post(Model m, HttpServletResponse response) {
-	 
-	//  기능 툴	
-	web.init(response);
-
-	
- 	
 		
 		return new ModelAndView("/admin/admin_post") ;
-		
 	}
 
-///////////////////////////////관리자 book delete //////////////////	
-	@ResponseBody
-	@PostMapping("/bookDelete")
-	public void bookDelete(BookVO vo) {
-		System.out.println(vo.getDic_no());
-		AdminService.bookDelete(vo);
-	}
-
-	
-///////////////////////admin_post 페이징////////////////////////////////
+	// 백과사전 페이징 및 리스트
 	@ResponseBody
 	@RequestMapping(value="/bookList", method=RequestMethod.POST)
 	public void bookList(Locale locale, Model model, BookVO BookVO, HttpServletResponse response ){
@@ -452,11 +311,11 @@ public class AdminController {
 		
 		
  		BookVO book = new BookVO();
+ 	    // 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		int nowPage = web.getInt("page", 1);  		
 		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int bookCount = 0;							// 전체 사용자 수
+		// 전체 사용자 수
+		int bookCount = 0;							
 		try {
 			bookCount = AdminService.bookCount(book);
 		} catch (Exception e) {
@@ -464,20 +323,19 @@ public class AdminController {
 			e.printStackTrace();
 		}  
 	 
-		
+		// 10개의 데이터 뿌리고 다음페이지 생성
 		page.pageProcess(nowPage, bookCount, 10, 5);		
 		book.setLimitStart(page.getLimitStart());
 		book.setListCount(page.getListCount());
-		
-		System.out.println(bookCount+"북카운트가져옴" );
+	
 		List<BookVO> list = null;  
 		list = AdminService.adminpost(book); 	
 
-		System.out.println(list+"list가져옴" );
 		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
+		// 다음페이지
+		int nextPage = page.getNextPage();	
+		// 이전페이지
+		int prevPage =page.getPrevPage();	
 		int pageIn = page.getPage();
 	
 		data.put("list", list); 
@@ -502,65 +360,136 @@ public class AdminController {
 		}	
 	
 	}
-//00000000000000000000000000000000000000000admin_post20000000000000000000000000000000
-	
+
+	// 백과사전 삭제 기능
+	@ResponseBody
+	@PostMapping("/bookDelete")
+	public void bookDelete(BookVO vo) {
+		//System.out.println(vo.getDic_no());
+		AdminService.bookDelete(vo);
+	}
+
+
+	// 갤러리 관리 페이지 
 	@RequestMapping(value = "/admin/admin_post2.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView admin_post2(Model m, HttpServletResponse response) {
 	 
-	//  기능 툴	
-	web.init(response);
-
-	
- 	
-		
 		return new ModelAndView("/admin/admin_post2") ;
 		
 	}
 	
-//////////////////00000000000000000000000/admin_post2 삭제/0000000000000000000000000000/////////
+	// 갤러리 페이징 및 리스트
+		@ResponseBody
+		@RequestMapping(value="/galleryList", method=RequestMethod.POST)
+		public void galleryList(Locale locale, Model model, GalleryVO GalleryVO, HttpServletResponse response ){
+			
+			web.init(response); 
+			response.setContentType("application/json");
+			
+			
+			GalleryVO gallery = new GalleryVO();
+			// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+			int nowPage = web.getInt("page", 1);  		
+			
+			// 전체 사용자 수
+			int galleryCount = 0;						
+			try {
+				galleryCount = AdminService.galleryCount(gallery);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}  
+		 
+			// 10개의 데이터 뿌리고 다음페이지 생성
+			page.pageProcess(nowPage, galleryCount, 10, 5);		
+			gallery.setLimitStart(page.getLimitStart());
+			gallery.setListCount(page.getListCount());
+			
+			
+			List<GalleryVO> list = null;  
+			list = AdminService.adminpost2(gallery); 	
+
+			System.out.println(list+"list가져옴" );
+			Map<String, Object> data = new HashMap<String, Object>();
+			// 다음페이지
+			int nextPage = page.getNextPage();
+			// 이전페이지
+			int prevPage =page.getPrevPage();	
+			int pageIn = page.getPage();
+		
+			data.put("list", list); 
+			data.put("prevPage", prevPage);
+			data.put("nextPage", nextPage);
+			data.put("pageIn", pageIn);
+			data.put("page", page);		
+			
+			
+			ObjectMapper mapper = new ObjectMapper();
+			try {
+				mapper.writeValue(response.getWriter(), data);
+			} catch (JsonGenerationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		
+		}
+
+	// 갤러리 삭제 기능
 	@ResponseBody
 	@PostMapping("/galleryDelete")
 	public void galleryDelete(GalleryVO vo) {
-		System.out.println(vo.getGal_no());
+		//System.out.println(vo.getGal_no());
 		AdminService.galleryDelete(vo);
 	}
-	/////////////////////////관리자 갤러리  페이징/////////
 	
+	
+	//신고 관리 페이지
+	@RequestMapping(value="/admin/admin_black.do",method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView admin_black(Model m, HttpServletResponse response) {
+
+		return new ModelAndView("/admin/admin_black") ;
+	}
+	
+	//신고관리 페이지 페이징 및 리스트
 	@ResponseBody
-	@RequestMapping(value="/galleryList", method=RequestMethod.POST)
-	public void galleryList(Locale locale, Model model, GalleryVO GalleryVO, HttpServletResponse response ){
+	@RequestMapping(value="/badcontentList", method=RequestMethod.POST)
+	public void badcontentList(Locale locale, Model model, BadcontentVO BadcontentVO, HttpServletResponse response ){
 		
 		web.init(response); 
 		response.setContentType("application/json");
 		
+		BadcontentVO badcontent = new BadcontentVO();
+		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
+		int nowPage = web.getInt("page", 1);  		
 		
-		GalleryVO gallery = new GalleryVO();
-		
-		int nowPage = web.getInt("page", 1);  		// 현재 페이지 번호를 가져옴, 없으면 1부터 시작
-		
-		
-		int galleryCount = 0;							// 전체 사용자 수
+		// 전체 사용자 수
+		int badcontentCount = 0;						
 		try {
-			galleryCount = AdminService.galleryCount(gallery);
+			badcontentCount = AdminService.badcontentCount(badcontent);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
 	 
+		// 10개의 데이터 뿌리고 다음페이지 생성
+		page.pageProcess(nowPage, badcontentCount, 10, 5);		
+		badcontent.setLimitStart(page.getLimitStart());
+		badcontent.setListCount(page.getListCount());
 		
-		page.pageProcess(nowPage, galleryCount, 10, 5);		
-		gallery.setLimitStart(page.getLimitStart());
-		gallery.setListCount(page.getListCount());
-		
-		System.out.println(galleryCount+"북카운트가져옴" );
-		List<GalleryVO> list = null;  
-		list = AdminService.adminpost2(gallery); 	
+		List<BadcontentVO> list = null;  
+		list = AdminService.badcontent(badcontent); 	
 
-		System.out.println(list+"list가져옴" );
 		Map<String, Object> data = new HashMap<String, Object>();
-		
-		int nextPage = page.getNextPage();	// 다음페이지
-		int prevPage =page.getPrevPage();	// 이전페이지
+		// 다음페이지
+		int nextPage = page.getNextPage();	
+		// 이전페이지
+		int prevPage =page.getPrevPage();	
 		int pageIn = page.getPage();
 	
 		data.put("list", list); 
@@ -568,7 +497,6 @@ public class AdminController {
 		data.put("nextPage", nextPage);
 		data.put("pageIn", pageIn);
 		data.put("page", page);		
-		
 		
 		ObjectMapper mapper = new ObjectMapper();
 		try {
@@ -583,7 +511,15 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-	
+
 	}
 
+	//신고관리 삭제 기능
+	@ResponseBody
+	@PostMapping("/badcontentDelete")
+		public void  badcontentDelete(BadcontentVO vo) {
+		//System.out.println("배드 컨텐츠 작동 중");
+		AdminService.badcontentDelete(vo);
+	}		
 }
+

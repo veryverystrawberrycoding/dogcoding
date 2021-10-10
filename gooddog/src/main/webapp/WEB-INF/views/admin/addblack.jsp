@@ -7,9 +7,9 @@
 <!DOCTYPE html>
 <html style="background: white;">
 
+
 <%
 String userid = (String)request.getParameter("userid");
- 
 %>
 
 <head>
@@ -33,17 +33,16 @@ String userid = (String)request.getParameter("userid");
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="/Food/resources/js/vendor/modernizr-2.8.3.min.js"></script>
 <script type="text/javascript">
+
 $(function(){
 	
+	// add 버튼 클릭시 
 	$('#add').click(function(){
 		var userid = $('#userid').text()
 		var black_content = $('#black_content').val()
 		var term = $('#term').val()
 		
-		alert(userid);
-		alert(black_content);
-		alert(term);
-		
+		// id,사유,기간 컨트롤러로 값 보내기
 		$.ajax({
 			url:"blackadd.do", 
 			type:"POST",

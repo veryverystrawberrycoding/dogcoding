@@ -5,51 +5,35 @@ var dayCount = $('#dayCount').val();
  dayCount = dayCount.replace(/\[/g,'');
  dayCount = dayCount.replace(/\]/g,'');
 
+// dayCount에 값을 json 형식으로 변환한다
 const obj = JSON.stringify(dayCount);
 const obj_Json = JSON.parse(obj);
-
 const spObj = obj_Json.split(",");
 
-
+//변수의 길이
 var fullCount = spObj.length ;
-
 var fullLabel;
 var fullData;
-
 var data = spObj[9];
-
-
 var array_label = [];
-
-
 var array_data = [];
 
 for(var i=0; i<fullCount; i++){
-	
+	// 방문자수 값
 	var label = spObj[i];
+	// 날짜 값
 	var data = spObj[i+1];
 	
 	var labelS = label.split("=");
 	var dataS = data.split("=");
 //	alert("데이터확인 "+i+":::::::::::::::::::"+labelS[1]);
 
-	
 	array_data[i] = labelS[1];
 	array_label[i] = dataS[1];	
 	
 	i++;
 	
 };
-
-	
-
-
-
-
-
-// logno=21, userlog=2021-09-26,
-// logno=21, userlog=2021-09-27, 
-// logno=20, userlog=2021-09-28, logno=16, userlog=2021-09-30, logno=10, userlog=2021-10-01
 
 new Chart(document.getElementById("myAreaChart"), {
   type: 'bar',

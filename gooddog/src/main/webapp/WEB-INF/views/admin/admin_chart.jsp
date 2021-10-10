@@ -43,7 +43,7 @@
 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="admin-chart.do">관리자 페이지</a>
+            <a class="navbar-brand ps-3" href="admin_chart.do">관리자 페이지</a>
             <!-- Navbar Search-->
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             
@@ -95,7 +95,7 @@
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
                                     <div class="card-body" style= " text-align: center; ">${monthuser}</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="card-footer d-flex align-items-center justify-content-between" >
                                         <a class="small text-white stretched-link" >　　　　이번달 신규 가입자　</a>
                                     
                                     </div>

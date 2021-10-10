@@ -1,10 +1,9 @@
+// 성별 차트 
 
 var menCount = $('#menCount').val();
-
 var womenCount = $('#womenCount').val();
 
 var ctx = document.getElementById("myPieChart").getContext('2d');
-//var memCount = "${memCount}"
 var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
@@ -15,8 +14,6 @@ var myChart = new Chart(ctx, {
                 '#3e95cd','	#DB7093'
 
             ],
-             
-		
    }],
   },	
 });
