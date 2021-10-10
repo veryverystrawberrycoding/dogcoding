@@ -282,10 +282,10 @@
 				<div class="col-sm-4 col-xl-3 chat f-left-color"><div class="card mb-sm-3 mb-md-0 contacts_card">
 					<div class="card-header"> 
 						<div class="input-group">
-							<input type="text" placeholder="친구이름을 입력해주세요" name="" class="form-control search">
+							<input type="text" placeholder="친구이름을 입력해주세요" name="" class="form-control search" id="search_friend">
 							<div class="input-group-prepend"> 
 								<span class="input-group-text search_btn"></span>
-							</div>  
+							</div>   
 						</div>
 					</div>
 					<div class="card-body contacts_body">
@@ -296,7 +296,7 @@
 						<ui class="contacts total_friend_view">  
 					
 						</ui>
-						 
+						  
 					</div>
 					<div class="card-footer"></div>
 				</div>

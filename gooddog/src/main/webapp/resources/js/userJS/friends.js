@@ -503,9 +503,9 @@ function followerList() {
 	
 	}) 
 }
- 
+var flagFollow = true;
 $(".following").on('click', function(){
-	
+	flagFollow = true;
 	$(this).css('color', '#FF6F61')
 	$(".follower").css('color', 'white') 
 	
@@ -513,6 +513,7 @@ $(".following").on('click', function(){
 }) 
 
 $(".follower").on('click', function(){
+	flagFollow = false;
 	$(this).css('color', '#FF6F61') 
 	$(".following").css('color', 'white')
 	followerList();
@@ -635,7 +636,6 @@ document.querySelector("#chat-outgoing-button").addEventListener("click", ()=> {
  
 
 document.querySelector("#chat-outgoing-msg").addEventListener("keydown", (e)=> {
-	console.log(e.keyCode)
 	if(e.keyCode==13){
 	addMessage(); 
 	}
@@ -657,6 +657,69 @@ $(document).on('click', '.recommend_img_click', function(){
 })
 
 
+$(document).on('keyup', '#search_friend', function(){
+	if(flagFollow==true){
+		$.ajax({
+		type:'post',
+		url: 'followingList',
+		success: function(data){
+			const obj = JSON.parse(data);
+			var list = obj.frList
+			$(".total_friend_view").empty();
+			for(var i=0; i<list.length; i++){
+			let sch= list[i].follower_nick
+			if(sch.indexOf($("#search_friend").val())!=-1){ 	
+			fdview=''  
+			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="/resources/images/userimg/'+list[i].follower_img+'" alt="img">'
+			fdview += '</div><div class="user_info">' 
+			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].follower_nick+'</Strong></span><p style="font-size:12px;">'+list[i].follower_name+'</p></div></div>'
+			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
+			$(".total_friend_view").append(fdview);     
+			} else {
+				continue;
+			} 
+			}  
+		} 	 
+	})
+	} else if(flagFollow=false) {
+	
+     $.ajax({
+		type:'post',
+		url: 'followerList',
+		success: function(data){
+			$(".total_friend_view").empty();
+			const obj = JSON.parse(data); 
+			var list = obj.frListt
+			for(var i=0; i<list.length; i++){
+			let sch= list[i].following_nick 
+			if(sch.indexOf($("#search_friend").val())!=-1){ 
+			fdview='' 
+			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="/resources/images/userimg/'+list[i].following_img+'" alt="img">'
+			fdview += '</div><div class="user_info">' 
+			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].following_nick+'</Strong></span><p style="font-size:12px;">'+list[i].following_name+'</p></div></div>'
+			fdview += '<input type="hidden" class="friend_id" value="'+list[i].following_id+'"></li>' 
+			$(".total_friend_view").append(fdview);      
+			} else {
+				continue;
+			}
+			} 
+		}   
+	
+	}) 
+}	
+	 
+	
+	
+	 
+})
+
+
+
+	
+	
+	
 
 
 
