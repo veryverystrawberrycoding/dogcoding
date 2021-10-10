@@ -548,6 +548,7 @@ $(document).on('click', '.friend_click', function(){
 			$(this).html('팔로잉')
 			$(this).attr("disabled", true)
 			$(this).css("background-color", "#ed8e82")
+			$(this).css("color", "white")
 	$.ajax({ 
 		type:'post',  
 		url: '../fdAdd', 

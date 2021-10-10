@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mypage-DogCare</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 
 	<meta name="description" content="">
@@ -108,8 +108,6 @@ function previewDog(f,i){
 <%@ include file="./header.jsp"%> 
 
 <!-- 바디 -->
-
-
 
 			<section class="ls s-py-60 s-pt-md-90 s-py-lg-90 s-py-xl-160">
 				<div class="container">
@@ -247,41 +245,17 @@ function previewDog(f,i){
 				 					<table id="walkTable"></table>
 				 				</div>
 
-					            
 							</div>
 							</article><!-- #post-## -->
-							
-
-
 
 						</main>
-
-						<aside class="col-lg-3 col-xl-3 order-lg-1 mb-0">
-
-							<div class="widget widget_categories">
-							<%@ include file="./MypageCategories.jsp" %>
-							</div>
-	
-						</aside>
-
-
-
 
 					</div>
 
 				</div>
 			</section>
 			
-			
-			
-			
-			
-			
-			
 		<%@ include file="./footer.jsp"%> 
-		
-
-
 
 	<script src="${path}/resources/js/compressed.js"></script>
 	<script src="${path}/resources/js/main.js"></script>

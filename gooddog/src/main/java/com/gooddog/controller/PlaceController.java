@@ -31,19 +31,6 @@ public class PlaceController {
 	@RequestMapping(value="/mapList")
 	public String placeList() throws Exception{
 		
-//		// 장소 목록 개수 조회
-//		int placeCount = placeService.placeCount();
-//		
-//		// 페이징 객체 
-//		Paging paging = new Paging();
-//		paging.setCri(criteria);
-//		paging.setTotalCount(placeCount);
-//		
-//		// 장소 목록 조회 - 페이지 변수 입력
-//		List<Map<String, Object>> mapList = placeService.placeList(criteria); 
-//		
-//		m.addAttribute("mapList", mapList);
-//		m.addAttribute("paging",paging);
 		System.out.println("mapList 페이지 호출");
 		return "mapList";
 	}
@@ -52,27 +39,22 @@ public class PlaceController {
 	@ResponseBody
 	@RequestMapping(value="/ajaxMapList", method=RequestMethod.POST)
 	public Object ajaxMapList(Criteria criteria, PlaceVO vo, Model m) throws Exception{
-		//String message = "통신완료지롱";
+		
 		System.out.println("place_group: "+criteria.getPlace_group());
 		System.out.println("page: "+criteria.getPage());
 		
 		String keyword = criteria.getKeyword();
 		System.out.println("keyword: "+keyword);
-		//System.out.println("keyword isEmpty: "+keyword.isEmpty());
-		//if (keyword.isEmpty()) {criteria.setKeyword(null);}
-		//System.out.println("keyword: "+keyword);
 		System.out.println("addr_1: "+criteria.getAddr_1());
 		System.out.println("addr_2: "+criteria.getAddr_2());
-		//System.out.println("addr_2 isEmpty: "+criteria.getAddr_2().isEmpty());
+		
 		// 장소 목록 개수 조회
 		int placeCount = placeService.ajaxPlaceCount(criteria);
-		//System.out.println("placeCount: "+placeCount);
 		
 		// 페이징 객체 
 		Paging paging = new Paging();
 		paging.setCri(criteria);
 		paging.setTotalCount(placeCount);
-		//System.out.println("startPage: "+paging.getStartPage());
 		
 		// 장소 목록 조회 - 페이지 변수 입력
 		List<Map<String, Object>> mapList = placeService.ajaxPlaceList(criteria);

@@ -168,13 +168,15 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 			type : "post",
 			success:function(data){
 				
+								
+				//동적으로 장소 목록 리스트 생성 
+				//createPlaceList(data)
+				
 				$("#place-info").empty(); //장소 목록 비우기 
 				
 				let mapList = data.mapList; //장소 리스트
 				let place_group=data.place_group; //장소 필터링 번호
 				let placeCount=data.placeCount; // 장소 조회결과 개수
-				let startPage = data.paging.startPage; //시작 페이지
-				let endPage = data.paging.endPage; //끝 페이지 
 				let keyword = data.keyword; //검색어
 				let countList = data.countList; // 리뷰 개수 리스트
 				let percentList = data.percentList; //리뷰 분석 만족도
@@ -216,45 +218,8 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				//지도에 마커 표시하기 			
 				mapMaker(mapList);
 				
-				// 페이징 =============================
-				$(".pagination").empty();
-
-				//alert(startPage+','+endPage);
-				//alert(endPage);
-				
-				// 빈리스트 
-				let paging_prev = [];
-				let paging_next = [];
-				let paging_info = [];
-				
-				// 이전페이지 버튼 
-				paging_prev += '<li class="page-item" id="gdpage-item">'
-				paging_prev += '<div id="prevBtn" class="page-link">'
-				paging_prev += '<i class="fa fa-chevron-left"></i>'
-				paging_prev += '</div>'
-				paging_prev += '</li>'	
-				// 페이지 영역에 추가	
-				$(".pagination").append(paging_prev);			
-				
-				// 페이지 그룹 버튼 : 3page씩 표시 
-				for(let i=startPage; i<endPage+1; i++){
-					paging_info += '<li class="page-item" id="gdpage-item">'
-					paging_info += '<div id="pageBtn" class="page-link">'+i+'</div>'
-					paging_info += '<input class="pageNo" type="hidden" value="'+i+'">'
-					paging_info += '</li>'
-				} // end of for
-				//페이지 영역에 추가 
-				$(".pagination").append(paging_info);
-				
-				// 다음페이지 버튼
-				paging_next += '<li class="page-item" id="gdpage-item">'
-				paging_next += '<div id="nextBtn" class="page-link">'
-				paging_next += '<i class="fa fa-chevron-right"></i>'
-				paging_next += '</div>'
-				paging_next += '</li>'
-				
-				//페이지 영역에 추가 
-				$(".pagination").append(paging_next);
+				// 페이징 
+				createPaging(data.paging);
 				
 			},
 			error: function(){
@@ -264,7 +229,12 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 		
 } //end of function getAjaxMapList;
 
+function createPlaceList(data){
+	
+	
+}
 
+// 지도 객채 생성 
 function mapMaker(mapList){
 	
 	// 지도 옵션 설정 
@@ -356,4 +326,46 @@ function setBounds() {
     // 이때 지도의 중심좌표와 레벨이 변경될 수 있습니다
     map.setBounds(bounds);
 }
+
+
+
+// 페이징 객체 생성 
+function createPaging(paging){
+	let startPage = paging.startPage;
+	let endPage = paging.endPage;
+	$(".pagination").empty();
+
+	// 리스트 선언 
+	let paging_prev = [];
+	let paging_next = [];
+	let paging_info = [];
 	
+	// 이전페이지 버튼 
+	paging_prev += '<li class="page-item" id="gdpage-item">'
+	paging_prev += '<div id="prevBtn" class="page-link">'
+	paging_prev += '<i class="fa fa-chevron-left"></i>'
+	paging_prev += '</div>'
+	paging_prev += '</li>'	
+	// 페이지 영역에 추가	
+	$(".pagination").append(paging_prev);			
+	
+	// 페이지 그룹 버튼 : 3page씩 표시 
+	for(let i=startPage; i<endPage+1; i++){
+		paging_info += '<li class="page-item" id="gdpage-item">'
+		paging_info += '<div id="pageBtn" class="page-link">'+i+'</div>'
+		paging_info += '<input class="pageNo" type="hidden" value="'+i+'">'
+		paging_info += '</li>'
+	} // end of for
+	//페이지 영역에 추가 
+	$(".pagination").append(paging_info);
+	
+	// 다음페이지 버튼
+	paging_next += '<li class="page-item" id="gdpage-item">'
+	paging_next += '<div id="nextBtn" class="page-link">'
+	paging_next += '<i class="fa fa-chevron-right"></i>'
+	paging_next += '</div>'
+	paging_next += '</li>'
+	
+	//페이지 영역에 추가 
+	$(".pagination").append(paging_next);
+}	

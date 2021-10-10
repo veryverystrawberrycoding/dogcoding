@@ -198,6 +198,14 @@ ul.c-controls li a:hover {
     -webkit-border-radius:0 !important;
 }
 
+#your_info {
+	margin-top: 50px;
+}
+
+#myDogBox { 
+	height : 300px;
+}
+
 	</style> 
 </head> 
 <body>

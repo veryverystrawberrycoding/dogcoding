@@ -13,9 +13,6 @@
 
 <ul>
 	<li class="cat-item">
-		<a href="mypageDogCare">반려견 정보</a>
-	</li>
-	<li class="cat-item">
 		<a href="mypageList">활동 내역 </a>
 	</li>
 	<li class="cat-item">

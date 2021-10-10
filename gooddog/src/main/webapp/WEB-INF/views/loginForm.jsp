@@ -11,7 +11,7 @@
 <!--<![endif]-->
  
 <head>
-	<title>GoodDog Login</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">

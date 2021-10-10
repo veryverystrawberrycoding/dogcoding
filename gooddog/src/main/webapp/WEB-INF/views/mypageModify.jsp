@@ -11,7 +11,7 @@
 <!--<![endif]-->
  
 <head>
-	<title>Mypage</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,6 +36,7 @@
 	.myInfo a{
 		font-size : 20px;
 	}
+
 	.myInfo input[type="text"], .myInfo input[type="password"], .myInfo input[type="tel"]{
 		border-radius : 25px;
 		font-size : 20px;
@@ -55,6 +56,7 @@
 
 	.flex-box {
 		display: flex;
+		align-items: center;
 	}
 	
 	.confirmBtn{
@@ -66,6 +68,7 @@
 	}
 	.btn.btn-outline-info{
 		margin-left: 10px;
+	
 		
 	}
 	

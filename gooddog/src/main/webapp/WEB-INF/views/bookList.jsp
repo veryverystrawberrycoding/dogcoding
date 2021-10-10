@@ -8,7 +8,7 @@
 
  
 <head>
-	<title>bookList</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 	<!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">

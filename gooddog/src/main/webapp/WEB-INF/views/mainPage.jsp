@@ -6,7 +6,7 @@
 <html>
 
 <head>
-	<title>GoodDog_main</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -183,8 +183,9 @@
 											<a class="main-menu" href="./chattingPage">Chat</a>
 										</h5>
 										<p class="explain">
-											친구랑<br/>
-											이야기
+											반려인들과<br/>
+											채팅
+											
 										</p>
 									</div>
 								</div>

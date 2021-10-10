@@ -6,7 +6,7 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
-	<title>Venator</title>
+	<title>GoodDog</title>
 
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -35,9 +35,11 @@
 		}
 		.card{
 			
-			height: 500px;
+			height: 700px;
 			border-radius: 15px !important;
-			background-color: rgba(235,149,141,0.6) !important;
+			background-color: #f7d1cc !important;
+			border : 1px solid white;
+			font-size : 20px;
 		} 
 		.contacts_body{
 			padding:  0.75rem 0 !important;
@@ -106,7 +108,7 @@
 		}
 		.contacts li{
 			width: 100% !important;
-			padding: 5px 10px;
+			padding: 5px 40px;
 			margin-bottom: 15px !important;
 		}
 	.active{
@@ -170,36 +172,38 @@
 		margin-right: 20px;
 	}
 	.msg_cotainer{
-		margin-top: auto;
+		margin-top: 10px;
 		margin-bottom: auto;
 		margin-left: 10px;
 		border-radius: 25px;
 		background-color: #82ccdd;
-		padding: 10px;
+		padding: 10px 20px;
 		position: relative;
 	}
 	.msg_cotainer_send{
-		margin-top: auto;
+		margin-top: 10px;
 		margin-bottom: auto;
 		margin-right: 10px;
 		border-radius: 25px;
 		background-color: #78e08f;
-		padding: 10px;
+		padding: 10px 20px;
 		position: relative;
 	}
 	.msg_time{
 		position: absolute;
 		left: 0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
+		bottom: -20px;
+		color: rgba(255,255,255);
+		font-size: 14px;
+		/* margin-bottom: 10px; */
 	}
 	.msg_time_send{
 		position: absolute;
 		right:0;
-		bottom: -15px;
-		color: rgba(255,255,255,0.5);
-		font-size: 10px;
+		bottom: -20px;
+		color: rgba(255,255,255);
+		font-size: 14px;
+		/* margin-bottom: 10px; */
 	}
 	.msg_head{
 		position: relative;
@@ -248,6 +252,56 @@
 	} 
 	} 
 	
+	.container-fluid.h-100.w-75{
+		margin-bottom: 50px;
+	}
+	
+	.card2 {
+		padding : 10px;
+		background-color: white;
+		border: 3px solid #ec646a;
+		color : #ed8e82;
+		font-size : 20px;
+	}
+	.card2 p {
+		color : gray;
+	}
+	.card2 .avatar {
+		margin :0 0 15px 0;
+	}
+
+	.card2 .avatar img {
+	    width: 100px;
+	    height: 130px;
+/* 	    -webkit-border-radius: 50%;
+	    -moz-border-radius: 50%; */
+	    border-radius: 50%;
+	    border: 3px solid #ec646a;
+	}
+	
+	.btn-comment.friend_click {
+		background-color: white;
+		height : 34px;
+		border-radius: 17px; 
+		border: 2px solid #ec646a;
+		padding: 0 25px 0 25px;
+	
+	}
+	
+	
+	.contacts_body {
+		overflow-x: hidden;
+    	overflow-y: auto;
+	
+	}
+	.form-control.search{
+		color : white;
+	}
+	
+	.row { 
+		margin-bottom : 10px;
+	}
+	
 	
 
 
@@ -276,10 +330,11 @@
 			<br>
 			<h2 style="text-align:center;"><Strong>메신저</Strong></h2>
 			<br>
-			</section> 
-			<div class="container-fluid h-100 w-75">
+			</section>
+			<section class="container">
+			<div> <!-- class="container-fluid h-100 w-75" -->
 			<div class="row justify-content-center h-100">
-				<div class="col-sm-4 col-xl-3 chat f-left-color"><div class="card mb-sm-3 mb-md-0 contacts_card">
+				<div class="col-sm-4 col-xl-4 chat f-left-color"><div class="card mb-sm-3 mb-md-0 contacts_card">
 					<div class="card-header"> 
 						<div class="input-group">
 							<input type="text" placeholder="친구이름을 입력해주세요" name="" class="form-control search" id="search_friend">
@@ -350,6 +405,7 @@
 				</div>
 			</div>
 		</div>
+		</section> 
 		 
 
 	 <%@ include file="./footer.jsp"%> 
