@@ -25,9 +25,9 @@
   <link href="/resources/css/userCSS/start.css" rel="stylesheet" />
   
 <style> 
-.container{max-width:1170px; margin:auto;}
+.container{max-width:500px; margin:auto;}
 img{ max-width:100%;}
-.inbox_people { 
+.inbox_people {  
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
   overflow: hidden;
@@ -95,15 +95,17 @@ img{ max-width:100%;}
   display: inline-block;
   padding: 0 0 0 10px;
   vertical-align: top;
-  width: 92%;
+  width: 70%;
+
+  
  }
  .received_withd_msg p {
   background: #ebebeb none repeat scroll 0 0;
   border-radius: 3px;
-  color: #646464;
-  font-size: 14px;
+  color: #646464; 
+  font-size: 20px;
   margin: 0;
-  padding: 5px 10px 5px 12px;
+  padding: 15px 10px 15px 12px;
   width: 100%;
 }
 .time_date {
@@ -112,25 +114,25 @@ img{ max-width:100%;}
   font-size: 12px;
   margin: 8px 0 0;
 }
-.received_withd_msg { width: 57%;}
+.received_withd_msg { width: 60%;}
 .mesgs {
-  float: left;
+  float: left; 
   padding: 30px 15px 0 25px;
   width: 100%; 
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #9ad1d3 none repeat scroll 0 0;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 20px;
   margin: 0; color:#fff;
-  padding: 5px 10px 5px 12px;
+  padding: 15px 10px 15px 12px;
   width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{ overflow:hidden; margin:26px 0 26px; width:70%; float:right;}
 .sent_msg {
   float: right;
-  width: 46%;
+  width: 60%;  
 }
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -148,18 +150,19 @@ img{ max-width:100%;}
   border-radius: 50%;
   color: #fff;
   cursor: pointer;
-  font-size: 17px;
-  height: 33px;
-  position: absolute;
+  font-size: 15px;  
+  height: 30px; 
+  position: absolute; 
   right: 0;
-  top: 11px;
-  width: 33px;
+  width: 20px;
+
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
   height: 516px;
-  overflow-y: auto;
+  overflow-y: scroll; 
 }
+
 </style>
 	<!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
@@ -181,29 +184,38 @@ img{ max-width:100%;}
     	 <%@ include file ="/WEB-INF/views/header.jsp" %>
    
  <div class="container">
- <br> 
-<h3 class=" text-center">익명채팅방</h3>
+ <br> <br> 
+<h3 class=" text-center" style="font-size:40px; "><Strong>익명채팅방</Strong></h3>
+<br>  
+<br> 
 <input id="multi_hidden_id" type="hidden" value=${user.user_id }>
 <div class="messaging"> 
-      <div class="inbox_msg">
+      <div class="inbox_msg"> 
        
         <div class="mesgs">
           <div class="msg_history">
            
           </div>
-          <div class="type_msg" style="height:70px">
-            <div class="input_msg_write">  
-              <input id="out_write_msg" type="text" class="write_msg" placeholder="메시지를 입력해주세요" />
-              <button id="msg_send_btn" class="msg_send_btn" type="button" ></button>
-            </div> 
-          </div>  
+          <div class="type_msg justify-content-center" style="height:70px; justify-content: center;">
+ 
+            <div class="input_msg_write" style="margin-top:10px">
+            <div class="container">
+            <div class="row">
+            <div class="col-sm-10">
+             <input style="justify-content: center;" id="out_write_msg" type="text" class="write_msg justify-content-center" placeholder="메시지를 입력해주세요" />
+            </div>
+            <div class="col-sm-2">
+            <input id="msg_send_btn" style="float: right; background: #9ad1d3; width:80%; border-radius: 3%; color:white; cursor:pointer" type="button" value="입력"/>
+            </div>
+            </div>    
+            </div>  
+          </div>   
         </div>  
       </div> 
-       
-      
-      <p class="text-center top_spac"> Design by <a target="_blank" href="https://www.linkedin.com/in/sunil-rajput-nattho-singh/">Sunil Rajput</a></p>
+        
       
     </div></div>
+    </div>
      <%@ include file ="/WEB-INF/views/footer.jsp" %>
 	 	<script src="${path}/resources/js/userJS/multi.js"></script>
 </body> 

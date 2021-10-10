@@ -154,7 +154,7 @@ $(function(){
 						location.href = "/mainPage" 
 					} 
 			 
-			 
+			  
 		})
 		}
 	})  
@@ -591,14 +591,21 @@ function myGalList() {
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
+			glist += '<div style=" cursor: pointer;" class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			$(".my_gal_list").append(glist); 
+
 			} 
-			}else{ 
+			}else{  
 			for(var x=0; x<onepage1; x++){
 			glist = ''	 
 			glist += '<div class="vertical-item text-center content-padding box-shadow ">'
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+
 			$(".my_gal_list").append(glist);	
 			}
 			}  
@@ -640,6 +647,9 @@ $(document).on('click', '.paging3', function(){
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+
 			$(".my_gal_list").append(glist);
 		}  
 		} else { for(var x=start1; x<data.length; x++){
@@ -648,6 +658,8 @@ $(document).on('click', '.paging3', function(){
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}
 			
@@ -688,6 +700,8 @@ $(document).on('click', '.nextgal', function(){
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
 			$(".my_gal_list").append(glist);
 		}   
 		}  
@@ -727,6 +741,9 @@ $(document).on('click', '.pregal', function(){
 			glist += '<div class="item-media"><img src="../resources/images/gallery/'+data[x].gal_img+'" alt="img" style="width:200px;height:200px;">'
 			glist += '<div class="media-links"><a class="abs-link" title="" href="gallery-single.html"></a></div></div>'
 			glist += '<div class="item-content" id="myGal"><h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+			glist += '<div class="media-links"><a class="abs-link" title="" href="/galleryView?gal_no='+data[x].gal_no+'"></a></div></div>'
+			glist += '<div class="item-content"><h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4></div></div>'
+
 			$(".my_gal_list").append(glist);
 		}   
 		} 
@@ -763,13 +780,18 @@ function myGalReply(){
 			{  
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
+
 			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+
 			$(".my_galre_list").append(glistss)  
 			}} else { 
 			for(var x=0; x<onepage2; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
 			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss) 
 			}	
 			}
@@ -807,12 +829,15 @@ $(document).on('click', '.paging2', function(){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
 			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss);
 		}  
 		} else { for(var x=start2; x<data.length; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
 			glistss += '<h4><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+
 			$(".my_galre_list").append(glistss);
 		}
 			
@@ -850,7 +875,7 @@ $(document).on('click', '.nextgalre', function(){
 			for(var x=start2; x<end2; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss);
 		}   
 		}  
@@ -887,7 +912,7 @@ $(document).on('click', '.pregalre', function(){
 			for(var x=start2; x<end2; x++){
 			glistss=''
 			glistss += '<div class="vertical-item text-center content-padding box-shadow">'
-			glistss += '<h4 class="mt-3 mb-0"><a href="gallery-single.html">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
+			glistss += '<h4 class="mt-3 mb-0"><a href="/galleryView?gal_no='+data[x].gal_no+'">'+data[x].gal_name+'</a></h4><p class="mt-4 px-lg-3">'+data[x].galre_content+'</p></div>'
 			$(".my_galre_list").append(glistss);
 		}   
 		} 
@@ -993,49 +1018,12 @@ function lossList(){
 			
 		}
 		
-		
+		 
 	}) 
 
 	
 }
 lossList(); 
-	
-///////////////////////////////////////////////////여기부터는 친구관련////////////////////////////////////////////////////
-
-
-
-
-
-/*$(".friend_click").on('click', function(){
-	$.ajax({
-		type:'post',
-		url:'../fdFollow',
-		data: {
-			
-		}
-		
-		
-		
-		
-	})
-	
-})*/
-
-
-/*<div class="col-xl-4 col-lg-5 col-md-5">
-										<div class="item-media cover-image" style="background-image: url(&quot;images/gallery/15.jpg&quot;);">
-											<img src="images/gallery/15.jpg" alt="img">
-											<div class="media-links">
-												<a class="abs-link" title="" href="event-single-left.html"></a>
-											</div>
-										</div>  
-									</div>
-									<div class="col-xl-8 col-lg-7 col-md-7">
-										<div style="margin:0px">
-											
-										</div>
-									</div>*/
-	
 
 
 	 

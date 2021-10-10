@@ -18,8 +18,7 @@ String uid = (String)request.getParameter("name");
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
-
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 <style>
 	@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
@@ -140,21 +139,12 @@ ul.c-controls li a:hover {
     overflow: hidden;
     text-align: center;
     background-color: #fff;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(23, 162, 184, 0.5);
 }
 .card.hovercard .card-background {
     height: 130px;
 }
-.card-background img {
-    -webkit-filter: blur(25px);
-    -moz-filter: blur(25px);
-    -o-filter: blur(25px);
-    -ms-filter: blur(25px);
-    filter: blur(25px);
-    margin-left: -100px;
-    margin-top: -200px;
-    min-width: 130%;
-}
+
 .card.hovercard .useravatar {
     position: absolute;
     top: 15px;
@@ -181,8 +171,7 @@ ul.c-controls li a:hover {
     padding:0 5px;
     font-size: 20px;
     line-height: 1;
-    color: #262626;
-    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -190,7 +179,8 @@ ul.c-controls li a:hover {
 .card.hovercard .card-info {
     overflow: hidden;
     font-size: 12px;
-    line-height: 20px;
+    padding-top: 3px;
+    line-height: 30px; 
     color: #737373;
     text-overflow: ellipsis;
 }
@@ -207,24 +197,23 @@ ul.c-controls li a:hover {
 <body>
     <div class="card hovercard"> 
         <div class="card-background">
-            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
-            <!-- http://lorempixel.com/850/280/people/9/ -->
-        </div>
-        <div class="useravatar">
-            <img alt="" src="${uvo.user_img }">
-            <input type="hidden" id="your_id" value="<%=uid%>">
+    
         </div> 
-        <div class="card-info"> <span id="frd_nick" class="card-title">${uvo.user_nick }</span>
-
-        </div>   
+        <div class="useravatar">
+            <img alt="" src="/resources/images/userimg/${uvo.user_img }">
+            <input type="hidden" id="your_id" value="<%=uid%>">
+        </div>  
+        <div class="card-info"><Strong><span id="frd_nick" class="card-title">${uvo.user_nick }</span></Strong><button style="font-size:15px; color:black; cursor:pointer" id="profile_follow" class="profile_follow">팔로잉하기</button>
+        <button id="follow_delete">삭제하기</button></div> 
     </div> 
+      
         <div class="container" role="group" aria-label="...">
-        <div class="row"> 
+        <div class="row">  
         <div class="col-sm-4 text-center" id="your_pet" style="cursor:pointer; background-color:orange; height:50px; ">
             나의 펫
         </div>
         <div class="col-sm-4 text-center" id="your_following" style="cursor:pointer; height:50px">
-            팔로잉 
+            팔로잉
         </div>  
         <div class="col-sm-4 text-center" id="your_follower" style="cursor:pointer; background-color:orange; height:50px"> 
             팔로워
@@ -233,23 +222,12 @@ ul.c-controls li a:hover {
    	    </div>
       <div class="container">
       	<div class="row your_info" id="your_info">
-      	 	<c:forEach items="${ pvo }" var="pet"> 
-	      		<div class="col-sm-12 text-center"> 
-	      		<img class="img-responsive center-block" src="${pet.pet_img}" style="width:330px; height:330px;"/>
-	      		<br><br>    
-	      		<span>${ pet.pet_name }</span>  
-	      		</div>  
-	      		<div class="col-sm-1"></div> 
-	      		<div class="col-sm-10">
-	      		<hr>
-	      		</div>  
-	      		<div class="col-sm-1"></div>
-      		</c:forEach> 
-      	</div> 
+      	
+     </div>
      </div>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>    
 <script src="${path}/resources/js/compressed.js"></script>
-<script src="${path}/resources/js/main.js"></script>
+
 <script src="${path}/resources/js/userJS/profile.js"></script>    
 <script type="text/javascript"> 
 

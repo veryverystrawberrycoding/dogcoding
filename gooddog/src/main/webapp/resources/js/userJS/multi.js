@@ -32,9 +32,8 @@ function initMyMessage(data){
 	//alert(msgBox.value);
 	let chatOutgoingBox = document.createElement("div");
 	chatOutgoingBox.className = "outgoing-boxes";
-	alert(data.createAt) 
 	let a = data.createAt.substring(5,10)
-	let b = data.createAt.substring(11,16)
+	let b = data.createAt.substring(11,16) 
 	let d = data.createAt.substring(17,19)
 	let c = a + " " + b 
 	chatOutgoingBox.innerHTML = getSendMsgBox(data.sender, data.msg, c, d); 
@@ -42,9 +41,9 @@ function initMyMessage(data){
 	msgBox.value='';
 	
 	 
-	document.querySelector(".msg_history").scrollTop = document.querySelector("#chat-box").scrollHeight;  
+	document.querySelector(".msg_history").scrollTop = document.querySelector(".msg_history").scrollHeight;  
 } 
-	  
+	   
  
 
 async function addMessage(){
@@ -72,15 +71,19 @@ async function addMessage(){
 }
  
 document.querySelector("#msg_send_btn").addEventListener("click", ()=> {
- 	addMessage(); 
-	   
-	 })  
- 
+ 	if($("#out_write_msg").val()!=''){
+ 		addMessage();  
+}  
+	 })   
+  
 
 document.querySelector("#out_write_msg").addEventListener("keydown", (e)=> {
-	console.log(e.keyCode)
+	
+	console.log(e.keyCode) 
 	if(e.keyCode==13){ 
+		if($("#out_write_msg").val()!=''){ 
 	addMessage(); 
+	}
 	}
 })  
  

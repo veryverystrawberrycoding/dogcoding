@@ -40,12 +40,13 @@ public class ChattingController {
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		vo.setUser_id(sessionvo.getUser_id());
 		String sender = vo.getUser_id();
+		System.out.println("화긴");
 		System.out.println(chatRepository.mFindBySender(sender, receiver).subscribeOn(Schedulers.boundedElastic()));
 		return chatRepository.mFindBySender(sender, receiver) 
 			.subscribeOn(Schedulers.boundedElastic());
 	} 
 	
-	@CrossOrigin 
+	@CrossOrigin  
 	@PostMapping("/chat") 
 	public Mono<ChatLog> setMsg(@RequestBody ChatLog chat){
 		chat.setCreateAt(LocalDateTime.now());
@@ -60,7 +61,7 @@ public class ChattingController {
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
 		vo.setSender(sessionvo.getUser_id());
 		vo.setRoomNum("one");  
-		return multiRepository.save(vo);  
+		return multiRepository.save(vo);   
 	}
 	 
 	@CrossOrigin

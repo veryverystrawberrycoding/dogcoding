@@ -404,29 +404,60 @@ function fdRecommend1() {
 		type:'post',
 		url: '../fdRecommend1',
 		success: function(data){
+						let rds = [];
+						for(var i=0; i<5; i++) {
+						let n = Math.floor(Math.random() * data.length);
+						if (! sameNum(n)) {
+						rds.push(n);
+						} else {
+						i--;
+						} 
+						} 
+						function sameNum (n) {
+						return rds.find((e) => (e === n));
+						}
+						
 			$(".total_friend_hi").empty(); 
 			$(".total_friend_hi").append('<div class="col-md-1"></div>')
+			if(data.length<5){
 			for(var i=0; i<data.length; i++){
 			//var i = Math.random() * data.length
 			let fd = '' 
 			fd += '<div class="col-md-2"><div class="card2"><canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>'
-			fd += '<div class="avatar"><img src="'+data[i].user_img+'" alt="" /></div>'
-			fd += '<div class="content"><p>'+data[i].user_nick+'<br>'+data[i].user_addr+'</p>'
+			fd += '<div class="avatar recommend_img_click" style="cursor:pointer;"><img src="/resources/images/userimg/'+data[i].user_img+'" alt="" /></div>'
+			fd += '<div class="content"><p><Strong style="font-size:18px;">'+data[i].user_nick+'</Strong><br><span style="font-size:15px;">'+data[i].user_addr+'</span></p>'
 			fd += '<input type="hidden" class="friend_id" value="'+data[i].user_id+'">'
 			fd += '<input type="hidden" class="friend_nick" value="'+data[i].user_nick+'">'
-			fd += '<input type="hidden" class="friend_name2" value="'+data[i].user_name+'">'
+			fd += '<input type="hidden" class="friend_name2" value="'+data[i].user_name+'">' 
 			fd += '<input type="hidden" class="friend_spacies" value="'+data[i].pet_spacies+'">'
-			fd += '<p><button type="button" class="btn btn-default">팔로잉</button></p></div></div></div>' 
-			$(".total_friend_hi").append(fd); 
-			}  
-			$(".total_friend_hi").append('<div class="col-md-1"></div>') 
-		}   
+			fd += '<p style="font-size:15px;"><button type="button" class="btn-comment friend_click" id="follow">추가</button></p></div></div></div>' 
+			$(".total_friend_hi").append(fd);   
+			}   
+			$(".total_friend_hi").append('<div class="col-md-1"></div>')
+				
+			}else { 
+			for(var i=0; i<5; i++){
+			var a = rds[i]
+			let fd = ''
+			fd += '<div class="col-md-2"><div class="card2"><canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>'
+			fd += '<div class="avatar recommend_img_click" style="cursor:pointer;"><img src="/resources/images/userimg/'+data[a].user_img+'" alt="" /></div>'
+			fd += '<div class="content"><p><Strong style="font-size:18px;">'+data[a].user_nick+'</Strong><br><span style="font-size:15px;">'+data[a].user_addr+'</span></p>'
+			fd += '<input type="hidden" class="friend_id" value="'+data[a].user_id+'">'
+			fd += '<input type="hidden" class="friend_nick" value="'+data[a].user_nick+'">'
+			fd += '<input type="hidden" class="friend_name2" value="'+data[a].user_name+'">' 
+			fd += '<input type="hidden" class="friend_spacies" value="'+data[a].pet_spacies+'">'
+			fd += '<p style="font-size:15px;"><button type="button" class="btn-comment friend_click" id="follow">추가</button></p></div></div></div>' 
+			$(".total_friend_hi").append(fd);
+			}   
+			$(".total_friend_hi").append('<div class="col-md-1"></div>')
+			} 
+		}    
 	})
 }  
 fdRecommend1()
 
 
-
+ 
 
 
 
@@ -443,13 +474,13 @@ function followingList() {
 			fdview=''
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
 			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].follower_img+'" alt="img">'
-			fdview += '<span class="online_icon"></span></div><div class="user_info">' 
-			fdview += '<span class="chat_content" style="cursor:pointer;">'+list[i].follower_nick+'</span><p>'+list[i].follower_name+'</p></div></div>'
+			fdview += '</div><div class="user_info">' 
+			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].follower_nick+'</Strong></span><p style="font-size:12px;">'+list[i].follower_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
 			$(".total_friend_view").append(fdview);     
 			}  
 		} 
-	
+	 
 	})  
 
 }
@@ -463,26 +494,32 @@ function followerList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
 			var list = obj.frListt
-			alert(list[0].following_id)
+			alert(list[0].following_id);
+			alert(list[0].following_name)
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
 			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].following_img+'" alt="img">'
-			fdview += '<span class="online_icon"></span></div><div class="user_info">' 
-			fdview += '<span class="chat_content" style="cursor:pointer;">'+list[i].following_nick+'</span><p>'+list[i].following_name+'</p></div></div>'
+			fdview += '</div><div class="user_info">' 
+			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].following_nick+'</Strong></span><p style="font-size:12px;">'+list[i].following_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].following_id+'"></li>' 
-			$(".total_friend_view").append(fdview);     
+			$(".total_friend_view").append(fdview);      
 			}  
-		}  
+		}   
 	
 	}) 
 }
 
 $(".following").on('click', function(){
+	
+	$(this).css('color', '#FF6F61')
+	$(".follower").css('color', 'white')
 	followingList();
 }) 
 
 $(".follower").on('click', function(){
+	$(this).css('color', '#FF6F61') 
+	$(".following").css('color', 'white')
 	followerList();
 })
 
@@ -491,9 +528,11 @@ $(".follower").on('click', function(){
  
 $(document).on('click', '.chat_content',function(){
 	let value = $(this).parent().parent().parent().find(".friend_id").val();
+	let img = $(this).parent().prev().find(".profile_click").attr("src");
 	let nick = $(this).text()
 	$(".user_nick_click").text(nick)
-	$(".user_id_click").val(value) 
+	$(".user_id_click").val(value)
+	$(".user_img").attr("src",img); 
 	$("#chat-box").empty();
 	const eventSource = new EventSource("http://localhost:8082/chat/receiver/"+value+"");
 	eventSource.onmessage = (event) => { 
@@ -504,9 +543,10 @@ $(document).on('click', '.chat_content',function(){
   
  
 $(document).on('click', '.friend_click', function(){
-			$(this).html('추가되었습니다')
+			$(this).html('팔로잉')
 			$(this).attr("disabled", true)
-	$.ajax({
+			$(this).css("background-color", "#ed8e82")
+	$.ajax({ 
 		type:'post',  
 		url: '../fdAdd', 
 		data:{ 
@@ -514,11 +554,11 @@ $(document).on('click', '.friend_click', function(){
 			user_nick : $(this).parent().parent().find('.friend_nick').val(), 
 			user_name : $(this).parent().parent().find('.friend_name2').val(),  
 			user_img : $(this).parent().parent().parent().parent().find('img').attr("src")
-			 
+			  
 		},
 		success: function(data){
 			
-			followingList();
+			followingList(); 
 		} 
 	})  
 	
@@ -541,12 +581,12 @@ function getSendMsgBox(receiver, msg, time){
 	}else{  
 		let message = ''  
 			message += '<div class="d-flex justify-content-start mb-4 outgoing-box">'
-			message += '<div class="img_cont_msg"><img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">'
+			message += '<div class="img_cont_msg">'
 			message += '</div><div class="msg_cotainer">'+msg+''
 			message += '<span class="msg_time">'+time+'</span></div></div>'
 			return message;
 	}  
-	
+	 
 }
 
 function initMyMessage(data){ 
@@ -589,15 +629,9 @@ async function addMessage(){
 		headers:{
 			"Content-Type":"application/json;charset=utf-8"
 		}    
-	});
-	console.log(response);  
+	}); 
 	
-	let parseResponse = await response.json();
-	
-	console.log(parseResponse);
-	
-	chatOutgoingBox.innerHTML = getSendMsgBox($(".user_id_click").val(),msgBox.value, now);  
-	chatBox.append(chatOutgoingBox);   
+
 	msgBox.value='';  
 	 
 }
@@ -624,6 +658,12 @@ $(document).on('click','.profile_click',function(){
 		  
 	})    
   
+
+$(document).on('click', '.recommend_img_click', function(){
+		var fid = $(this).parent().parent().find(".friend_id").val()
+		window.open('/profile?name='+fid+'','','width=650,height=720,left=200,resizable = no, scrollbars = no');
+})
+
 
 
 
