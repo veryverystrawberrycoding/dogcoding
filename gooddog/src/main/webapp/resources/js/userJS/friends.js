@@ -469,11 +469,10 @@ function followingList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data);
 			var list = obj.frList
-			alert(list[0].follower_id)
 			for(var i=0; i<list.length; i++){
 			fdview=''
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
-			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].follower_img+'" alt="img">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="/resources/images/userimg/'+list[i].follower_img+'" alt="img">'
 			fdview += '</div><div class="user_info">' 
 			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].follower_nick+'</Strong></span><p style="font-size:12px;">'+list[i].follower_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
@@ -499,7 +498,7 @@ function followerList() {
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
-			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="'+list[i].following_img+'" alt="img">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="/resources/images/userimg/'+list[i].following_img+'" alt="img">'
 			fdview += '</div><div class="user_info">' 
 			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].following_nick+'</Strong></span><p style="font-size:12px;">'+list[i].following_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].following_id+'"></li>' 
@@ -509,11 +508,12 @@ function followerList() {
 	
 	}) 
 }
-
+ 
 $(".following").on('click', function(){
 	
 	$(this).css('color', '#FF6F61')
-	$(".follower").css('color', 'white')
+	$(".follower").css('color', 'white') 
+	
 	followingList();
 }) 
 
@@ -527,6 +527,7 @@ $(".follower").on('click', function(){
 
  
 $(document).on('click', '.chat_content',function(){
+	$(".user_img").css("display", "inline") 
 	let value = $(this).parent().parent().parent().find(".friend_id").val();
 	let img = $(this).parent().prev().find(".profile_click").attr("src");
 	let nick = $(this).text()
@@ -654,14 +655,14 @@ document.querySelector("#chat-outgoing-msg").addEventListener("keydown", (e)=> {
 
 $(document).on('click','.profile_click',function(){
 		let frd = $(this).parent().parent().parent().find(".friend_id").val();
-		window.open('/profile?name='+frd+'','','width=650,height=720,left=200,resizable = no, scrollbars = no');
+		window.open('/profile?name='+frd+'','','width=850,height=720,left=200,resizable = no, scrollbars = no');
 		  
 	})    
-  
+   
 
 $(document).on('click', '.recommend_img_click', function(){
 		var fid = $(this).parent().parent().find(".friend_id").val()
-		window.open('/profile?name='+fid+'','','width=650,height=720,left=200,resizable = no, scrollbars = no');
+		window.open('/profile?name='+fid+'','','width=850,height=720,left=200,resizable = no, scrollbars = no'); 
 })
 
 

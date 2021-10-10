@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/> 
 <!DOCTYPE html>
-<html>  
+<html class="no-js">
 <head>
 <%
 String uid = (String)request.getParameter("name");
@@ -19,8 +19,14 @@ String uid = (String)request.getParameter("name");
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
 	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+	 
+	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 <style>
-	@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
 
 body {
     padding: 30px 0px 60px;
@@ -139,8 +145,8 @@ ul.c-controls li a:hover {
     overflow: hidden;
     text-align: center;
     background-color: #fff;
-    background-color: rgba(23, 162, 184, 0.5);
-}
+    background-color: rgba(255, 111, 97, 0.5);
+}  
 .card.hovercard .card-background {
     height: 130px;
 }
@@ -203,23 +209,24 @@ ul.c-controls li a:hover {
             <img alt="" src="/resources/images/userimg/${uvo.user_img }">
             <input type="hidden" id="your_id" value="<%=uid%>">
         </div>  
-        <div class="card-info"><Strong><span id="frd_nick" class="card-title">${uvo.user_nick }</span></Strong><button style="font-size:15px; color:black; cursor:pointer" id="profile_follow" class="profile_follow">팔로잉하기</button>
-        <button id="follow_delete">삭제하기</button></div> 
+        <div class="card-info"><Strong><span id="frd_nick" class="card-title">${uvo.user_nick }</span></Strong><Strong><a style="font-size:15px; color:black; cursor:pointer" id="profile_follow" class="profile_follow">팔로잉</a>
+        <a style="font-size:15px; color:black; cursor:pointer" id="follow_delete">삭제하기</a></Strong></div>   
     </div> 
-      
-        <div class="container" role="group" aria-label="...">
+      	<br>
+      	<br>
+        <div class="container" role="group" aria-label="..."> 
         <div class="row">  
-        <div class="col-sm-4 text-center" id="your_pet" style="cursor:pointer; background-color:orange; height:50px; ">
-            나의 펫
-        </div>
-        <div class="col-sm-4 text-center" id="your_following" style="cursor:pointer; height:50px">
-            팔로잉
+        <div class="col-sm-4 text-center align-self-center" id="your_pet" style="cursor:pointer; background-color:#5E7E9B; height:50px; color:white; line-height: 50px;">
+            <Strong>나의 펫</Strong> 
+        </div> 
+        <div class="col-sm-4 text-center align-middle" id="your_following" style="cursor:pointer; background-color:#FFFFFF; color:black; height:50px; line-height: 50px;">
+            <Strong>팔로잉</Strong> 
         </div>  
-        <div class="col-sm-4 text-center" id="your_follower" style="cursor:pointer; background-color:orange; height:50px"> 
-            팔로워
+        <div class="col-sm-4 text-center align-self-center" id="your_follower" style="cursor:pointer; background-color:#FFFFFF; color:black; height:50px; line-height: 50px;"> 
+            <Strong>팔로워</Strong>  
         </div>   
-        </div>   
-   	    </div>
+        </div>    
+   	    </div> 
       <div class="container">
       	<div class="row your_info" id="your_info">
       	

@@ -264,7 +264,7 @@
 <%@ include file="./header.jsp"%> 
 		
 	<br><br>
-	<h2 style="text-align:center;">친구 추천</h2>
+	<h2 style="text-align:center;"><Strong>친구 추천</Strong></h2>
 	<br>
 		<section class="container">
 	<div class="row total_friend_hi">
@@ -272,7 +272,10 @@
  	</div>
  
 			<br>
-			
+			<hr>
+			<br>
+			<h2 style="text-align:center;"><Strong>메신저</Strong></h2>
+			<br>
 			</section> 
 			<div class="container-fluid h-100 w-75">
 			<div class="row justify-content-center h-100">
@@ -305,8 +308,8 @@
 						<input id="hidden_id" type="hidden" value="${user.user_id}">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="" class="rounded-circle user_img">
-								</div>  
+									<img src="" class="rounded-circle user_img" style="display:none">
+								</div>   
 								<div class="user_info">
 									<span class="user_nick_click"></span>
 									<input type="hidden" class="user_id_click">
@@ -366,7 +369,28 @@
 		$('.action_menu').toggle();
 		});
 	});
+	function followingList() {
+	$.ajax({
+		type:'post',
+		url: 'followingList',
+		success: function(data){ 
+			$(".total_friend_view").empty();
+			const obj = JSON.parse(data);
+			var list = obj.frList 
+			for(var i=0; i<list.length; i++){
+			fdview=''
+			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
+			fdview += '<img style="cursor:pointer" class= "rounded-circle user_img friend_img profile_click" src="/resources/images/userimg/'+list[i].follower_img+'" alt="img">'
+			fdview += '</div><div class="user_info">' 
+			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].follower_nick+'</Strong></span><p style="font-size:12px;">'+list[i].follower_name+'</p></div></div>'
+			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
+			$(".total_friend_view").append(fdview);     
+			}  
+		} 
+	 
+	})  
 
+}	
 
 
 	</script>
