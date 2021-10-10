@@ -79,7 +79,7 @@
 								</div>
 								<div class="book_items">
 								<div class="book_items1">
-								<a href="#"><img src="${path}/resources/images/userimg/${item.user_img}" width="30px" height="30px" >
+								<a href="#"><img src="${path}/resources/images/userimg/${item.user_img}" width="40px" height="40px" >
 								${item.user_nick}</a>　
 								</div>
 								<!-- 로그인 안 한 경우 하얀하트에 조회수만 -->
@@ -212,7 +212,7 @@
 						<div id="page">
 						
 						<nav aria-label="Pagination">
-								<ul class="pagination">
+								<ul class="pagination" style="width:400px; margin-left:30%">
 									
 									<li class="page-item">
 										<a class="page-link" id="p_pre">

@@ -277,7 +277,7 @@ $(function(){
 			var pnum = result.page //페이지 수
 			
 				paging += '<nav aria-label="Pagination">'
-				paging += '<ul class="pagination">'
+				paging += '<ul class="pagination" style="width:400px; margin-left:30%">'
 				paging += '<li class="page-item">'
 				paging += '<a class="page-link" id="p_pre">'
 				paging += '<i class="fa fa-chevron-left"></i>'

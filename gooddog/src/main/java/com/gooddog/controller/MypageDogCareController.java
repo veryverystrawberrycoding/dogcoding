@@ -90,7 +90,7 @@ public class MypageDogCareController {
 	@ResponseBody
 	public String insertWeight(WeightVO vo) {
 		String msg="통신 완료";
-		System.out.println(vo.getPet_no());
+		System.out.println("insertWeight 호출" + vo.getPet_no());
 		dogCare.insertWeight(vo);
 		
 		return msg;

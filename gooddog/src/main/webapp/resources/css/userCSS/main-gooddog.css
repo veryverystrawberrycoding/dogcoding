@@ -23724,6 +23724,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 }
 .dog-img img{
 	border-radius:5%;
+	height : 200px;
 }
 .myDogInfo-title{
 	display : flex;
@@ -23735,7 +23736,7 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 
 .myDogInfo-breed{
 	position : absolute;
-	margin-top:300px;	
+	margin-top: 270px;;	
 }
 
 .myDogInfo-breed a{
@@ -23842,6 +23843,9 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	margin-right : 5px;
 }
 
+/* .sort-period img {
+	padding-right: 10px;
+} */
 #weightListBtn {
 	margin-right: 20px;
 }
@@ -23926,6 +23930,11 @@ aside.col-lg-4.order-lg-1.mb-0.filterNstore{
 	margin : 0 5px 0 5px;
 	font-size : 20px;
 }
+
+#walkListBtn {
+	margin-right: 20px;
+}
+
 #myPage-widget-title {
 	font-size:32px;
 }

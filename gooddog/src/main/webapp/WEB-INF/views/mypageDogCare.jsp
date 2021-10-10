@@ -40,6 +40,71 @@
 </head> 
 
 <body>
+
+<script type="text/javascript">
+function previewImage1(f){
+ 
+	var file = f.files;
+ 
+	// 확장자 체크
+	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+		// 선택한 파일 초기화
+		f.outerHTML = f.outerHTML;
+
+		document.getElementById('preview2').innerHTML = '';
+ 
+	} 
+	else { 
+
+		// FileReader 객체 사용
+		var reader = new FileReader();
+
+		// 파일 읽기가 완료되었을때 실행
+		reader.onload = function(rst){
+			document.getElementById('preview2').innerHTML = '<img src="' + rst.target.result + '">';
+		}
+
+		// 파일을 읽는다
+		reader.readAsDataURL(file[0]);
+
+	} 
+}
+
+function previewDog(f,i){
+ 
+	var file = f.files;
+ 
+	// 확장자 체크
+	if(!/\.(gif|jpg|jpeg|png)$/i.test(file[0].name)){
+		alert('gif, jpg, png 파일만 선택해 주세요.\n\n현재 파일 : ' + file[0].name);
+
+		// 선택한 파일 초기화
+		f.outerHTML = f.outerHTML;
+
+		document.getElementById('previewDog'+i+'').innerHTML = '';
+ 
+	} 
+	else { 
+
+		// FileReader 객체 사용
+		var reader = new FileReader();
+ 
+		// 파일 읽기가 완료되었을때 실행
+		reader.onload = function(rst){ 
+			document.getElementById('previewDog'+i+'').innerHTML = '<img src="' + rst.target.result + '">';
+		}
+
+		// 파일을 읽는다
+		reader.readAsDataURL(file[0]);
+
+	} 
+}
+
+
+
+</script>
 <%@ include file="./header.jsp"%> 
 
 <!-- 바디 -->
@@ -101,8 +166,8 @@
 						                    </select>
 						                </div>
 						                <div id="weightListBtn"><img alt="목록" src="${path}/resources/images/icons/list.png" style="width:40px; height:40px;"></div>
-				 						<div id="weightGraphBtn"><img alt="목록" src="${path}/resources/images/icons/fluctuation.png" style="width:40px; height:40px;"></div>
-					                </div>
+<%-- 				 						<div id="weightGraphBtn"><img alt="목록" src="${path}/resources/images/icons/fluctuation.png" style="width:40px; height:40px;"></div>
+ --%>					                </div>
 					            
 
 					            <div id="graph">
@@ -169,7 +234,7 @@
 						                    </select>
 						                </div>
 						                <div id="walkListBtn"><img alt="목록" src="${path}/resources/images/icons/list.png" style="width:40px; height:40px;"></div>
-				 						<div id="walkGraphBtn"><img alt="목록" src="${path}/resources/images/icons/fluctuation.png" style="width:40px; height:40px;"></div>
+				 						<%-- <div id="walkGraphBtn"><img alt="목록" src="${path}/resources/images/icons/fluctuation.png" style="width:40px; height:40px;"></div> --%>
 					                </div>
 					            
 

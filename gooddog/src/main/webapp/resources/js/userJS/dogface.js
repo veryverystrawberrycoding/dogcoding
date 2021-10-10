@@ -122,25 +122,27 @@ $(function(){
 		
 	});
 	
-	$(document).ready(function() {
-		/*const dfMessenger = document.querySelector('df-messenger');
-            dfMessenger.addEventListener('df-messenger-loaded', function () {
-                // Handle event
-                let dfIcon = dfMessenger.shadowRoot.querySelector("#widgetIcon");
-                if(dfIcon) {
+$(document).ready(function(){
+      const dfMessenger = document.querySelector('df-messenger');
+        dfMessenger.addEventListener('df-messenger-loaded', function () {
+            //챗봇 아이콘 위치 조정  
+           /* let dfIcon = dfMessenger.shadowRoot.querySelector("#widgetIcon");
+               if(dfIcon) {
                     dfIcon.style.bottom = "50px";
                 }*/
-
-
-		$r1 = document.querySelector("df-messenger");
-        $r2 = $r1.shadowRoot.querySelector("df-messenger-chat");
-        /*$r5 = $r2.shadowRoot.querySelector("df-message-list");*/
+        dfchat = dfMessenger.shadowRoot.querySelector("df-messenger-chat");
+    
         var sheet = new CSSStyleSheet;
         sheet.replaceSync('div.chat-wrapper[opened="true"] { height: 410px; width: 300px; }'); //챗봇 사이즈 
-        $r2.shadowRoot.adoptedStyleSheets = [ sheet ];
+        dfchat.shadowRoot.adoptedStyleSheets = [ sheet ];
 
-		})	
+      })
+
+   })
+
+});
 
 
-
+$(document).on('click', '#mainFaceButton', function(){
+	window.open("/breedCheck",'','width=800,height=500,left=200');
 });

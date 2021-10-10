@@ -37,7 +37,7 @@ $(function(){
 	
 	$('#hashtagsearch').ready(function(){
 
-/*		var hashtagsearch = $('#hashtagsearch');
+		var hashtagsearch = $('#hashtagsearch');
 		
 		
 		var in1 = $('<a class="hashTag" id="hashTag"  style="cursor:pointer">#강아지</a>');
@@ -50,9 +50,9 @@ $(function(){
 		hashtagsearch.append(in2)
 		hashtagsearch.append(in3)
 		hashtagsearch.append(in4)
-		hashtagsearch.append(in5)*/
+		hashtagsearch.append(in5)
 	
-		$.ajax({
+		/*$.ajax({
 		        type : 'GET',                             
 		        url : ' http://127.0.0.1:5000/tag',
 		        success : function(result){
@@ -74,7 +74,7 @@ $(function(){
 					}
 		
 				
-		})
+		})*/
 	})
 	
 	//게시글 상세 해시태그
@@ -104,7 +104,7 @@ $(function(){
 		$.ajax({
 		        type: "delete",
 		        url: "/galHeartDown",
-		        data:{ galno:galno, userid:'a123'},
+		        data:{ galno:galno},
 		        success: function(result) {
 					$('#gallery_items2').empty();
 				    var tag = $('#gallery_items2');
@@ -133,7 +133,7 @@ $(function(){
 			$.ajax({
 		        type: "put",
 		        url: "/galHeartUp",
-		        data:{ galno:galno, userid:'a123'},
+		        data:{ galno:galno},
 		        success: function(result) {
 					$('#gallery_items2').empty();
 				    var tag = $('#gallery_items2');
@@ -306,7 +306,7 @@ $(function(){
 			var pnum = result.page //페이지 수
 			
 				paging += '<nav aria-label="Pagination">'
-				paging += '<ul class="pagination">'
+				paging += '<ul class="pagination" style="width:400px; margin-left:30%">'
 				paging += '<li class="page-item">'
 				paging += '<a class="page-link" id="p_pre">'
 				paging += '<i class="fa fa-chevron-left"></i>'

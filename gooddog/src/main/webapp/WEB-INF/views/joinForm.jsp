@@ -24,7 +24,7 @@
 	<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css">
 	<link rel="stylesheet" href="${path}/resources/css/animations.css">
 	<link rel="stylesheet" href="${path}/resources/css/font-awesome.css">
-	<link rel="stylesheet" href="${path}/resources/css/main.css" class="color-switcher-link">
+	<link rel="stylesheet" href="${path}/resources/css/userCSS/main-gooddog.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/css/shop.css" class="color-switcher-link">
 	<link rel="stylesheet" href="${path}/resources/js/vendor/jquery-3.3.1.min.js">
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>

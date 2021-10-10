@@ -18,6 +18,8 @@ public interface MypageMapper {
 	
 	void dogDelete(PetVO vo);
 	
+	void dogInsert (PetVO vo);
+	
 	int passCheck(UserVO vo);
 	
 	void userModify(UserVO vo);

@@ -12,7 +12,7 @@
 	
 	<select id="dogModify" parameterType="PetVO">
 		<![CDATA[
-		UPDATE pet SET pet_name=#{pet_name}, pet_ident=#{pet_ident}, pet_birth=#{pet_birth}, pet_spacies=#{pet_spacies} WHERE pet_no=#{pet_no} 
+		UPDATE pet SET pet_img=#{pet_img}, pet_name=#{pet_name}, pet_ident=#{pet_ident}, pet_birth=#{pet_birth}, pet_spacies=#{pet_spacies} WHERE pet_no=#{pet_no} 
 	]]>
 	</select>
 	

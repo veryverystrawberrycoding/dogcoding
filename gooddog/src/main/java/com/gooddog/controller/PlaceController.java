@@ -106,7 +106,7 @@ public class PlaceController {
 			else {
 				//긍정 리뷰
 				positive = Integer.parseInt(prevalue.get(0).get("count").toString());
-				percent = ((float)positive/count)*100;
+				percent = Math.round(((float)positive/count)*100);
 			}
 			
 			countList.add(count);
@@ -165,7 +165,7 @@ public class PlaceController {
 		
 		//긍정 리뷰
 		int positive = Integer.parseInt(prevalue.get(0).get("count").toString());
-		float percent = ((float)positive/count)*100;
+		float percent = Math.round(((float)positive/count)*100);
 		m.addAttribute("percent",percent);
 	
 

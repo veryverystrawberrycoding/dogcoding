@@ -49,6 +49,7 @@
 	
 	#preview3 img {
 		border-radius: 10px;
+		height : 250px;
 	 }
 
 
@@ -67,6 +68,7 @@
 		margin-left: 10px;
 		
 	}
+	
 	
 	
 	</style>

@@ -77,6 +77,7 @@
 										
 											<div class="col-md-6">		
 												<c:forEach var="p" items="${prevalue}">
+												<img src="${path}/resources/images/place/${p.pre_value}.png" style="width:30px">
 												<p class="progress-title">${p.pre_value} - ${p.count}개</p>
 												<div class="progress">
 													<div class="progress-bar progress-bar-striped bg-warning" role="progressbar" data-transitiongoal="${p.count}" aria-valuemin="0" aria-valuemax="${total.total}">

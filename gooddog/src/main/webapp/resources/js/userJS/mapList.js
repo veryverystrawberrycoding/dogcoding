@@ -3,15 +3,8 @@ $(function(){
 	let place_group=0; // 그룹 없음, 전체리스트
 	let startPage=1; // 시작 페이지 
 	let keyword='';
-	//let keyword = $('.place-search > input').val();
 	getAjaxMapList(place_group, startPage,keyword);
 	
-	//mapMaker();
-	
-	
-	
-	
-   	//let area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
    	let area0 = ["시/도 선택","서울","인천","대전","광주","대구","울산","부산","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
 	let area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
    	let area2 = ["계양구","남구","남동구","동구","부평구","서구","연수구","중구","강화군","옹진군"];
@@ -32,10 +25,9 @@ $(function(){
  
  	$("select[name=sido]").each(function() {
 	
-		for (let i=0; i<area0.length; i++){
+		for (let i=0; i<area0.length; i++) {
 			$(this).append("<option value='"+area0[i]+"'>"+area0[i]+"</option>");
 		}
-		
 		$("select[name=gugun]").append("<option value=''>구/군 선택</option>");
 	
 	})//end of each 
@@ -48,25 +40,28 @@ $(function(){
 	$("select[name=sido]").change(function() {
 		// 검색창 초기화 
 		$('.place-search > input').val('');
+		
 		let areaIndenx = $("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
 		let area = "area" + areaIndenx;
 		addr_1 = $(this).val()
-		//alert(addr_1);
-	
+		
+		//셀렉트박스 구군 초기화
 		$("select[name=gugun] option").remove();
+		
 		
 		if(area == "area0"){
 			$("select[name=gugun]").append("<option value=''>구/군 선택</option>");
 		}
 		else{
 			$("select[name=gugun]").append("<option value=''>구/군 선택</option>");
+			
 			$.each(eval(area), function() {  //나중에 eval 함수 대체할 것 !! 
-			 $("select[name=gugun]").append("<option value='"+this+"'>"+this+"</option>");
-			   }); //end of each
+				$("select[name=gugun]").append("<option value='"+this+"'>"+this+"</option>");
+			}); //end of each
 			 
 		}//end of else
 		
-		// mapList 재호출 
+		// mapList 호출 
 		getAjaxMapList(place_group, startPage, keyword, addr_1);
 	
 	}); //end of change  
@@ -77,9 +72,8 @@ $(function(){
 		$('.place-search > input').val('');
 		
 		let addr_2 = $(this).val()
-		//alert(addr_1 +','+ addr_2);
 		
-		// mapList 재호출 
+		// mapList 호출 
 		getAjaxMapList(place_group, startPage, keyword, addr_1, addr_2);
 	});
 	
@@ -94,24 +88,28 @@ $(".place-filter").click(function(){
 	// 주소창 초기화 
 	$("select[name=sido]").val('시/도 선택');
 	$("select[name=gugun]").val('');
+	
 	// 검색창 초기화 
 	$('.place-search > input').val('');
+	
 	 // 클릭한 필터링 번호 변수에 저장 
 	let place_group = $(this).attr('data-filter');
-	//let keyword = '';
-	getAjaxMapList(place_group);
 	
+	getAjaxMapList(place_group);
 	
 }); // end of click
 
 $('#map-search-btn').click(function(){
-	let place_group=0; // 그룹 없음, 전체리스트
-	let startPage=1; // 사직 페이지 
-	//let addr_1 = $("select[name=sido]").val();
-	//let addr_2 = $("select[name=gugun]").val();
-	let keyword = $('.place-search > input').val();
-	alert(keyword)
 	
+	let place_group=0; // 그룹 없음, 전체리스트
+	let startPage=1; // 시작 페이지 
+	
+	// 주소창 초기화 
+	$("select[name=sido]").val('시/도 선택');
+	$("select[name=gugun]").val('');
+	
+	// 검색어
+	let keyword = $('.place-search > input').val();
 
 	getAjaxMapList(place_group, startPage, keyword);
 })
@@ -119,22 +117,24 @@ $('#map-search-btn').click(function(){
 
 // 페이지:  이전 버튼 누르면 페이지 그룹 이동
 $(document).on('click', '#prevBtn', function(){
+	
 	let startPage=$(this).parent().parent().find('.pageNo:first').val();
 	let place_group = $(this).parent().parent().parent().parent().find('.place_group').val();
 	let keyword = $('.place-search > input').val();
-	let movePage=parseInt(startPage)-1;
 	
+	let movePage=parseInt(startPage)-1;
 	if (!keyword) getAjaxMapList(place_group, movePage);
 	else getAjaxMapList(place_group, movePage, keyword);
-	//alert(movePage);
 	
 });
 
 // 페이지 : 해당 페이지로 이동 
 $(document).on('click', '#pageBtn', function(){
+	
 	let movePage=$(this).parent().find('.pageNo').val();
 	let place_group = $(this).parent().parent().parent().parent().find('.place_group').val();
 	let keyword = $('.place-search > input').val();
+	
 	if (!keyword) getAjaxMapList(place_group, movePage);
 	else getAjaxMapList(place_group, movePage, keyword);
 	
@@ -142,6 +142,7 @@ $(document).on('click', '#pageBtn', function(){
 
 // 페이지:  다음 버튼 누르면 페이지 그룹 이동
 $(document).on('click', '#nextBtn', function(){
+	
 	let endPage=$(this).parent().parent().find('.pageNo:last').val();
 	let place_group = $(this).parent().parent().parent().parent().find('.place_group').val();
 	let keyword = $('.place-search > input').val();
@@ -149,14 +150,11 @@ $(document).on('click', '#nextBtn', function(){
 	let movePage = parseInt(endPage)+1;
 	if (!keyword) getAjaxMapList(place_group, movePage);
 	else getAjaxMapList(place_group, movePage, keyword);
-	//alert(movePage);
-	
 	
 });
 
-//ajax로 Map리스트 받아오기 
+//ajax로 MapList 받아오기 
 function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
-		//alert("getAjaxMapList ==> place_group:"+place_group+ ", page: "+page)
 	
 		$.ajax({
 			url : "ajaxMapList",
@@ -169,45 +167,54 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 			},
 			type : "post",
 			success:function(data){
-				//alert(data.mapList[0].place_name);
-				$("#place-info").empty();
-				let mapList = data.mapList;
-				let place_group=data.place_group;
-				let placeCount=data.placeCount;
-				let paging = data.paging; 
-				let startPage = data.paging.startPage;
-				let endPage = data.paging.endPage;
-				let keyword = data.keyword;
-				let countList = data.countList // 리뷰개수 
-				let percentList = data.percentList // 리뷰 만족도 
-				let place_info = [];
 				
-				$('.placeCount').text(placeCount);
+				$("#place-info").empty(); //장소 목록 비우기 
+				
+				let mapList = data.mapList; //장소 리스트
+				let place_group=data.place_group; //장소 필터링 번호
+				let placeCount=data.placeCount; // 장소 조회결과 개수
+				let startPage = data.paging.startPage; //시작 페이지
+				let endPage = data.paging.endPage; //끝 페이지 
+				let keyword = data.keyword; //검색어
+				let countList = data.countList; // 리뷰 개수 리스트
+				let percentList = data.percentList; //리뷰 분석 만족도
+				let place_info = []; 
+				
+				$('.placeCount').text(placeCount); //검색 결과 : 000건
 				
 				place_info += '<input class="place_group" type="hidden" value="'+place_group+'">';	
 				place_info += '<input class="keyword" type="hidden" value="'+keyword+'">';	
-				if (mapList.length == 0) {place_info +='<div class="text-center">검색결과가 없습니다.</div>' }
+				
+				if (mapList.length == 0) {
+					place_info +='<div class="text-center">검색결과가 없습니다.</div>' 
+				} // end of if
+				
 				$.each(mapList, function(i){
 					place_info += '<li class="media" id="storebox" >';
 					place_info += '<div>';
 					place_info += '<a class="media-image" href="mapView?place_no='+mapList[i].place_no+'">';
-					//place_info += '<img src="../../resources/images/place/cafe.jpg">';
 					place_info += '<img src="../../resources/images/place/place_img/'+mapList[i].place_img+'">';
 					place_info += '</a>';
 					place_info += '</div>';
 					place_info += '<div class="media-body">';
 					place_info += '<h4>';
-					place_info += '<a class="place_name" id="place_name" href="mapView?place_no='+mapList[i].place_no+'">'+mapList[i].place_name+'&nbsp;</a>';
+					place_info += '<a class="place_name" id="place_name" href="mapView?place_no='+mapList[i].place_no+'">'
+					place_info += mapList[i].place_name+'&nbsp;'
+					place_info += '</a>';
 					place_info += '</h4>';
 					place_info += '<p class="item-meta">';
 					place_info += '<span class="place_addr">'+mapList[i].place_addr+'&nbsp;</span>';
-					place_info += '<p id="review_info">리뷰 수 : '+countList[i]+' | 만족도: '+percentList[i]+'%  | '+mapList[i].place_tag+'</p>';
+					place_info += '<p id="review_info">'
+					place_info += '리뷰 수 : '+countList[i]+' | 만족도: '+percentList[i]+'%  | '+mapList[i].place_tag
+					place_info += '</p>';
 					place_info += '</p>';
 					place_info += '</li>';
 				}); //end of each
 				
 				$("#place-info").append(place_info);
 				
+				//지도에 마커 표시하기 			
+				mapMaker(mapList);
 				
 				// 페이징 =============================
 				$(".pagination").empty();
@@ -222,7 +229,6 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				
 				// 이전페이지 버튼 
 				paging_prev += '<li class="page-item" id="gdpage-item">'
-				//paging_prev += '<a id="prevBtn" class="page-link" href="/ajaxMapList?page='+(startPage-1)+'"/>'
 				paging_prev += '<div id="prevBtn" class="page-link">'
 				paging_prev += '<i class="fa fa-chevron-left"></i>'
 				paging_prev += '</div>'
@@ -230,13 +236,10 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				// 페이지 영역에 추가	
 				$(".pagination").append(paging_prev);			
 				
-				
 				// 페이지 그룹 버튼 : 3page씩 표시 
 				for(let i=startPage; i<endPage+1; i++){
 					paging_info += '<li class="page-item" id="gdpage-item">'
-					//paging_info += '<a id="pageBtn" class="page-link" href="/ajaxMapList?page='+i+'"/>'
 					paging_info += '<div id="pageBtn" class="page-link">'+i+'</div>'
-					//paging_info += '<span class="sr-only">(current)</span>'
 					paging_info += '<input class="pageNo" type="hidden" value="'+i+'">'
 					paging_info += '</li>'
 				} // end of for
@@ -245,15 +248,13 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 				
 				// 다음페이지 버튼
 				paging_next += '<li class="page-item" id="gdpage-item">'
-				//paging_next += '<a id="nextBtn" class="page-link" href="/ajaxMapList?page='+(endPage+1)+'"/>'
 				paging_next += '<div id="nextBtn" class="page-link">'
 				paging_next += '<i class="fa fa-chevron-right"></i>'
 				paging_next += '</div>'
 				paging_next += '</li>'
+				
 				//페이지 영역에 추가 
 				$(".pagination").append(paging_next);
-							
-				mapMaker(mapList);
 				
 			},
 			error: function(){
@@ -261,34 +262,29 @@ function getAjaxMapList(place_group, page, keyword, addr_1, addr_2){
 			}
 		}) // end of ajax
 		
-		
-		
 } //end of function getAjaxMapList;
-
-
-
 
 
 function mapMaker(mapList){
 	
 	// 지도 옵션 설정 
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
 	        center: new kakao.maps.LatLng(37.46678006447162, 126.88914422740852), // 지도의 중심좌표 독산역
 	        level: 6 // 지도의 확대 레벨
 	    };  
 	
 	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	let map = new kakao.maps.Map(mapContainer, mapOption); 
 	
 	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
+	let geocoder = new kakao.maps.services.Geocoder();
 		
 	// 지도를 재설정할 범위정보를 가지고 있을 LatLngBounds 객체를 생성합니다
-	var bounds = new kakao.maps.LatLngBounds();    
+	let bounds = new kakao.maps.LatLngBounds();    
 	
-	var j =0 ;			
-	for (var i=0, l=mapList.length; i<l; i++){
+	let j =0 ;			
+	for (let i=0, l=mapList.length; i<l; i++){
 		//alert(l)
 
 		geocoder.addressSearch(mapList[i].place_addr, function(result, status) {
@@ -296,19 +292,19 @@ function mapMaker(mapList){
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
 				
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
 				// 마커 이미지의 이미지 주소입니다
-				var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png'; 
+				let imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png'; 
 				
 				// 마커 이미지의 이미지 크기 입니다
-			    var imageSize = new kakao.maps.Size(35, 50); 
+			    let imageSize = new kakao.maps.Size(35, 50); 
 			    
 			    // 마커 이미지를 생성합니다    
-			    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+			    let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
 					
 				// 마커를 생성합니다
-			    var marker = new kakao.maps.Marker({
+			    let marker = new kakao.maps.Marker({
 			        map: map, // 마커를 표시할 지도
 			        position: coords//, // 마커를 표시할 위치
 			        //title : positions[j].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
@@ -317,13 +313,11 @@ function mapMaker(mapList){
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 
-				// LatLngBounds 객체에 좌표를 추가합니다				
-				//alert(coords);				    
+				//LatLngBounds 객체에 좌표를 추가합니다				
 				//bounds.extend(coords);
-				//alert(bounds);	
 
 			    // 마커에 표시할 인포윈도우를 생성합니다 
-			    var infowindow = new kakao.maps.InfoWindow({
+			    let infowindow = new kakao.maps.InfoWindow({
 			        content: '<div style="padding-left: 10px">-'+mapList[j].place_name+'</div>' // 인포윈도우에 표시할 내용
 			    });
 			
@@ -341,13 +335,7 @@ function mapMaker(mapList){
 	// 지도 범위 재설정 
 	//setBounds();
 
-
-	
-
 } // end of function mapMaker
-
-
-
 
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 function makeOverListener(map, marker, infowindow) {
