@@ -308,9 +308,9 @@
 						<input id="hidden_id" type="hidden" value="${user.user_id}">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="" class="rounded-circle user_img" style="display:none">
+									<img src="" class="rounded-circle big_user_img" style="display:none">
 								</div>   
-								<div class="user_info">
+								<div class="user_info"> 
 									<span class="user_nick_click"></span>
 									<input type="hidden" class="user_id_click">
 								</div>

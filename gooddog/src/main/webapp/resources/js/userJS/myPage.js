@@ -142,7 +142,7 @@ $(function(){
 			url : '/joinForm/join',
 			data: {user_id : $("#user_id").val(),
 				   user_pwd : $("#user_pwd").val(),
-					user_name : $("#user_name").val(),
+					user_name : $("#user_name").val(), 
 					user_birth : $("#user_birth").val(),
 					user_gender : $(".user_gender").val(),
 					user_addr : addrplus,
@@ -153,7 +153,7 @@ $(function(){
 						alert('완료')
 						location.href = "/mainPage" 
 					} 
-			 
+			  
 			  
 		})
 		}

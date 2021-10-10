@@ -34,8 +34,6 @@ function followerList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
 			var list = obj.frListt
-			alert(list[0].following_id);
-			alert(list[0].following_name)
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
@@ -233,7 +231,6 @@ $("#your_following").on('click', function(){
 				
 			const obj = JSON.parse(data);
 			var list = obj.frList
-			alert(list[0].follower_id)
 			var fdview = ''
 			$("#your_info").empty(); 
 			fdview += '<div class="panel panel-default" style="width:100%"><ul class="list-group" id="contact-list">'
@@ -251,7 +248,7 @@ $("#your_following").on('click', function(){
 			return false; 
 		}  
 		}  
-	})   
+	})    
 	
 	
 })
@@ -307,7 +304,6 @@ $("#your_follower").on('click', function(){
 
 $(document).on('click', '.neighbor', function(){
 	var fid = $(this).parent().find(".hidden_n_id").val()
-	alert(fid);
 	window.open('/profile?name='+fid+'','','width=850,height=720,left=200,resizable = no, scrollbars = no');
 
 })

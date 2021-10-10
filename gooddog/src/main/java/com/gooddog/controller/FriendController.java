@@ -153,13 +153,12 @@ public class FriendController {
 	}
 	//팔로잉, 팔로워
 	@PostMapping("fdAdd")
-	public void fdAdd(UserVO vo, HttpServletRequest req) throws JsonProcessingException {
+	public void fdAdd(UserVO voo, HttpServletRequest req) throws JsonProcessingException {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
-		 
+		UserVO vo = logJoinService.userSelect(voo); 
 		ObjectMapper mapper = new ObjectMapper();
-		System.out.println(vo.getUser_name());
-		System.out.println(friendRepository.findByFollowingId(sessionvo.getUser_id()));
+		 
 		FrList fd2 = new FrList(vo.getUser_id(), vo.getUser_name(), vo.getUser_nick(), vo.getUser_img());
 		  //처음만들었을떄 리스트화
 		ArrayList<FrList> list = new ArrayList<>();
