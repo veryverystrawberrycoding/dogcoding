@@ -144,9 +144,9 @@ function pageGo(pageNum){
 blackList();
 //-------------blacklist 삭제 기능 -----------------------
 $(document).on('click', '.black_restore', function(){
-	alert("블랙리스트 삭제 ")
+
 	var black_no = $('#black_no').text()
-	alert(black_no)
+	
 	$.ajax({
 		type:'post',
 		url:'/blacklistDelete',
