@@ -176,7 +176,7 @@
 		margin-bottom: auto;
 		margin-left: 10px;
 		border-radius: 25px;
-		background-color: #82ccdd;
+		background-color: #ffffff;
 		padding: 10px 20px;
 		position: relative;
 	}
@@ -185,7 +185,7 @@
 		margin-bottom: auto;
 		margin-right: 10px;
 		border-radius: 25px;
-		background-color: #78e08f;
+		background-color: #fffa9a;
 		padding: 10px 20px;
 		position: relative;
 	}
@@ -276,7 +276,7 @@
 /* 	    -webkit-border-radius: 50%;
 	    -moz-border-radius: 50%; */
 	    border-radius: 50%;
-	    border: 3px solid #ec646a;
+	    border: 1px solid #ec646a;
 	}
 	
 	.btn-comment.friend_click {
@@ -299,7 +299,7 @@
 	}
 	
 	.row { 
-		margin-bottom : 10px;
+		margin-bottom : 50px;
 	}
 	
 	

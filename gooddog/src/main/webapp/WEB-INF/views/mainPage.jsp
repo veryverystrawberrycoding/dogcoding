@@ -128,11 +128,11 @@
 								<div class="media icon-special mr-xl-4 text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./galleryList">Gallery</a>
+											<a class="main-menu" href="./friend">Friend</a>
 										</h5>
 										<p class="explain">
-											강아지 <br/>
-											자랑하기
+											동네친구<br>
+											찾기
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -144,11 +144,10 @@
 								<div class="media icon-special text-xl-right">
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./bookList">Info</a>
+											<a class="main-menu" href="./chattingPage">Chat</a>
 										</h5>
 										<p class="explain">
-											강아지 <br/>
-											백과사전
+											오픈 채팅 <br/>
 										</p>
 									</div>
 									<div class="icon-styled">
@@ -164,11 +163,12 @@
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./friend">Friend</a>
+										
+										<a class="main-menu" href="./mypageDogCare">Dog Care</a>	
 										</h5>
 										<p class="explain">
-											동네 친구 <br/>
-											찾기
+											산책 기록 <br/> 
+											체중 기록
 										</p>
 									</div>
 								</div>
@@ -176,16 +176,17 @@
 								<div class="mt-40 hidden-above-lg"></div>
 								<div class="media icon-special ml-xl-4">
 									<div class="icon-styled">
+									
 										<img src="../../resources/images/icons/02.png" alt="img">
 									</div>
 									<div class="media-body">
 										<h5 class="links-darkgrey">
-											<a class="main-menu" href="./chattingPage">Chat</a>
+											<a class="main-menu" href="./galleryList">Gallery</a>
+											
 										</h5>
 										<p class="explain">
-											반려인들과<br/>
-											채팅
-											
+											강아지 <br/>
+											자랑하기
 										</p>
 									</div>
 								</div>
@@ -198,12 +199,12 @@
 									<div class="media-body">
 										<h5 class="links-darkgrey">
 
-											<a class="main-menu" href="./mypageDogCare">Dog Care</a>
+											<a class="main-menu" href="./bookList">Info</a>
 
 										</h5>
 										<p class="explain">
-											산책 기록 <br/> 
-											체중 기록
+											강아지 <br/>
+											백과사전
 										</p>
 									</div>
 								</div>

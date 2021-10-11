@@ -206,6 +206,13 @@ ul.c-controls li a:hover {
 	height : 300px;
 }
 
+.list-group-item{
+	width : 700px;
+}
+..list-group{
+	align-items: center;
+}
+
 	</style> 
 </head> 
 <body>
@@ -225,7 +232,7 @@ ul.c-controls li a:hover {
         <div class="container" role="group" aria-label="..."> 
         <div class="row">  
         <div class="col-sm-4 text-center align-self-center" id="your_pet" style="cursor:pointer; background-color:#5E7E9B; height:50px; color:white; line-height: 50px;">
-            <Strong>나의 펫</Strong> 
+            <Strong>펫 정보</Strong> 
         </div> 
         <div class="col-sm-4 text-center align-middle" id="your_following" style="cursor:pointer; background-color:#FFFFFF; color:black; height:50px; line-height: 50px;">
             <Strong>팔로잉</Strong> 

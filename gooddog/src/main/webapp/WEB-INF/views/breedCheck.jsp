@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html class="no-js">
 <head>
-	<title>Venator</title>
+	<title>GoodDog</title>
 	<meta charset="utf-8">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,6 +20,18 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.js" type="text/javascript"></script>
 	<script src="${path}/resources/js/vendor/modernizr-custom.js"></script>
 	<script src="${path}/resources/js/userJS/dogface.js"></script>
+	
+	<style>
+	.animate.animated.fadeInUp {
+		display:flex;
+		line-height : 50px;
+		/* justify-content: center; */
+	}
+	.animate.animated.fadeInUp img {
+		margin : 0 30px 0 120px;
+	}
+	
+	</style>
 
 </head>
 

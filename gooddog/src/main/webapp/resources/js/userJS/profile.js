@@ -277,7 +277,7 @@ $("#your_follower").on('click', function(){
 				 
 				 
 			$("#your_info").empty();  
-			const obj = JSON.parse(data);  
+			const obj = JSON.parse(data);   
 			var list = obj.frListt 
 			var fdview='' 
 			$("your_info").append('<div class="panel panel-default" style="width:100%"><ul class="list-group" id="contact-list">')

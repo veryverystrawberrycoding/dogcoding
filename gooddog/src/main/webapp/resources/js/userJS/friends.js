@@ -383,8 +383,8 @@ function fdRecommend1() {
 				}
 				return rds;
 				}
-				rred();  
-				alert(rds); 
+				if(data.length>3){
+				rred();  }
 			$(".total_friend_hi").empty(); 
 			$(".total_friend_hi").append('<div class="col-md-1"></div>')
 			if(data.length<5){
@@ -461,8 +461,6 @@ function followerList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
 			var list = obj.frListt
-			alert(list[0].following_id);
-			alert(list[0].following_name)
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
