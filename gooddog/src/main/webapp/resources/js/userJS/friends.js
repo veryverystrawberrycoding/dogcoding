@@ -367,23 +367,24 @@ function fdRecommend1() {
 		type:'post',
 		url: '../fdRecommend1',
 		success: function(data){
-
-						let rds = []; 
-
-						for(var i=0; i<5; i++) {
-						let n = Math.floor(Math.random() * data.length);
-						if (! sameNum(n)) {
-						rds.push(n);
-						} else {
-						i--
-						} 
-						} 
- 
-						function sameNum (n) {
-						return rds.find((e) => (e === n));
-						} 
-						
-
+				let rds = [];
+				
+				function rred () {
+				for(var i=0; i<5; i++) {
+				let n = Math.floor(Math.random() * data.length);
+				if (notSame(n)) {
+				rds.push(n);
+				} else {
+				i--;
+				}
+				}
+				function notSame (n) {
+				return rds.every((e) => n !== e);
+				}
+				return rds;
+				}
+				rred();  
+				alert(rds); 
 			$(".total_friend_hi").empty(); 
 			$(".total_friend_hi").append('<div class="col-md-1"></div>')
 			if(data.length<5){

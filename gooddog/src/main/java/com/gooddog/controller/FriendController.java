@@ -73,8 +73,7 @@ public class FriendController {
 		FriendsVO mvo = mongoTemplate.findOne(query, FriendsVO.class, "following");
 		
 		//지역과 강아지 견종이 모두 유사한 경우, 중복데이터 제거
-		for(i=0; i<join.size(); i++) {
-			System.out.println(join.get(i).get("user_id"));
+		for(i=0; i<join.size(); i++) { 
 			for(k=0; k<i; k++) {
 				if(join.get(i).get("user_id").equals(join.get(k).get("user_id"))) {
 					join.remove(i);
@@ -88,8 +87,7 @@ public class FriendController {
 		for(x=0; x<flist.size(); x++) {
 			for(y=0; y<join.size(); y++) {
 				if(flist.get(x).getFollower_id().equals(join.get(y).get("user_id"))){
-						System.out.println(join.get(y).get("user_id")); 
-						join.remove(y);
+						join.remove(y); 
 						y--;
 				}
 			}
