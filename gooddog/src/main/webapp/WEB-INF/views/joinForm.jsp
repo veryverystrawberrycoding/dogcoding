@@ -246,7 +246,7 @@ function previewImage(f){
 											</div>
 											<a>주소</a>
 											<div class="flex-row">
-												<input type="text" id="sample6_address" name="user_addr1" placeholder="주소"  readonly; ">
+												<input type="text" id="sample6_address" name="user_addr1" placeholder="주소"  readonly>
 												<button type="button" class="btn btn-outline-info" id="addrClick">주소 찾기</button><br><br>   
 											</div>
 											<br>

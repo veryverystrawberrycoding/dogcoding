@@ -34,8 +34,6 @@ function followerList() {
 			$(".total_friend_view").empty();
 			const obj = JSON.parse(data); 
 			var list = obj.frListt
-			alert(list[0].following_id);
-			alert(list[0].following_name)
 			for(var i=0; i<list.length; i++){
 			fdview='' 
 			fdview += '<li><div class="d-flex bd-highlight"><div class="img_cont">'
@@ -229,22 +227,19 @@ $("#your_following").on('click', function(){
 				$("#your_pet").css("background-color", "#FFFFFF")
 				$("#your_pet").css("color", "#000000")	
 				
-				
-				
 			const obj = JSON.parse(data);
 			var list = obj.frList
-			alert(list[0].follower_id)
-			var fdview = ''
-			$("#your_info").empty(); 
-			fdview += '<div class="panel panel-default" style="width:100%"><ul class="list-group" id="contact-list">'
-			for(var i=0; i<list.length; i++){
+			var fdview = '' 
+ 			$("#your_info").empty(); 
+			$("#your_info").append('<div class="panel panel-default" style="width:100%"><ul class="list-group" id="contact-list">')
+			for(var i=0; i<list.length; i++){ 
 			fdview += '<li class="list-group-item"><div class="container"><div class="row"><div class="col-sm-3"><input type="hidden" class="hidden_n_id" value="'+list[i].follower_id+'">'
 			fdview += '<img src="/resources/images/userimg/'+list[i].follower_img+'" style="border-radius: 70%; cursor:pointer;" class="img-responsive img-circle neighbor" />'
 			fdview += '</div><div class="col-sm-9 align-self-center"><span class="name">&nbsp;&nbsp;'+list[i].follower_nick+'</span><br/>'  
 			fdview += '<span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip" title="5842 Hillcrest Rd"></span>'
-			fdview += '<span class="visible-xs"> <span class="text-muted">'+list[i].follower_name+'</span><br/></span></div><div class="clearfix"></div></div></div></li>' 
-			$("#your_info").append(fdview);       
+			fdview += '<span class="visible-xs"> <span class="text-muted">'+list[i].follower_name+'</span><br/></span></div><div class="clearfix"></div></div></div></li>'    
 			}
+			$("#your_info").append(fdview);
 			$("#your_info").append('</ui></div>') 
 		} else {
 			alert("팔로잉 목록이 없습니다.")
@@ -287,13 +282,14 @@ $("#your_follower").on('click', function(){
 			fdview = ''
 			fdview += '<div class="panel panel-default" style="width:100%"><ul class="list-group" id="contact-list">'
 			for(var i=0; i<list.length; i++){
+			
 			fdview += '<li class="list-group-item"><div class="container"><div class="row"><div class="col-sm-3"><input type="hidden" class="hidden_n_id" value="'+list[i].following_id+'">'
 			fdview += '<img src="/resources/images/userimg/'+list[i].following_img+'" style="border-radius: 70%; cursor:pointer;"class="img-responsive img-circle neighbor" />'
 			fdview += '</div><div class="col-sm-9 align-self-center"><span class="name">&nbsp;&nbsp;'+list[i].following_nick+'</span><br/>'  
 			fdview += '<span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip" title="5842 Hillcrest Rd"></span>'
 			fdview += '<span class="visible-xs"> <span class="text-muted">'+list[i].following_name+'</span><br/></span></div><div class="clearfix"></div></div></div></li>' 
-			$("#your_info").append(fdview);        
-			} 
+			}
+			$("#your_info").append(fdview); 
 			$("#your_info").append('</ui></div>') 
 			} else {
 				alert("팔로워 목록이 없습니다.")
@@ -307,7 +303,6 @@ $("#your_follower").on('click', function(){
 
 $(document).on('click', '.neighbor', function(){
 	var fid = $(this).parent().find(".hidden_n_id").val()
-	alert(fid);
 	window.open('/profile?name='+fid+'','','width=850,height=720,left=200,resizable = no, scrollbars = no');
 
 })

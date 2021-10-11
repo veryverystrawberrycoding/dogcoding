@@ -150,7 +150,7 @@ $(function(){
 					user_nick : $("#user_nick").val(),
 					user_img : document.getElementById("join_file").files[0].name
 					}, success : function(data){
-						alert('완료')
+						alert('완료되었습니다.') 
 						location.href = "/mainPage" 
 					} 
 			 
@@ -206,11 +206,10 @@ $(function(){
 			url: 'idOkay',    
 			data: {user_id : $("#user_id").val()},
 			success: function(data){
-				alert(data);
 				if(data==$("#user_id").val()) {
 					alert("중복 된 아이디입니다")
 				}else {
-					alert("사용 가능한 아이디입니다") 
+					alert("사용 가능한 아이디입니다")  
 					$("#user_id").prop('readonly', true);
 					idCheck = true;
 				}  
@@ -239,11 +238,10 @@ $(function(){
 			alert("한글/영어로 입력하세요")
 		} else {
 		$.ajax({ 
-			type: 'post', 
+			type: 'post',  
 			url: '../nickOkay',
 			data: {user_nick : $("#user_nick").val()},
-			success: function(data){
-				alert(data);
+			success: function(data){ 
 				if(data==$("#user_nick").val()) {
 					alert("중복 된 닉네임입니다")
 				}else {
@@ -273,7 +271,7 @@ $(function(){
 			$("#user_pwd_chk").text("올바른 비밀번호입니다.")
 		}
 	})
-	
+	 
 	$("#user_pwd2").keyup(function(){
 		if($("#user_pwd2").val()==$("#user_pwd").val()){
 			$("#user_pwd_chk2").text("올바른 비밀번호입니다.") 
@@ -402,8 +400,7 @@ $(document).on('click', '.pet_modify_btn', function(){
     contentType: false,
 	dataType: "json",
     cache: false,  
-    success: function () {
-	alert("업로드호출") 
+    success: function () { 
       // Handle upload success
       // ... 
     },
@@ -895,7 +892,6 @@ $(".pet_submit_btn").click( function(){
 	dataType: "json",
     cache: false, 
     success: function () {
-	alert("업로드호출") 
       // Handle upload success
       // ... 
     },
@@ -936,7 +932,6 @@ function lossList(){
 		success:function(data){
 				$(".loss_alert").empty();
 			for(let i=0; i<data.length; i++){
-				alert(data[0].loss_no) 
 				var loss = ''
 				loss += '<div>펫 넘버 : '+data[i].loss_no+'</div>'
 				loss += '<div>펫 이름 : '+data[i].pet_name+'</div>'

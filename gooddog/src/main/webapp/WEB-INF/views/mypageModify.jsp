@@ -231,14 +231,14 @@
 												<a>주소</a>
 												<div>
 												<div class="flex-box"> 
-													<input type="text" id="sample6_address_modify" name="user_addr1" placeholder="주소"  widthvalue="${myvo.user_addr}" readonly>
+													<input type="text" id="sample6_address_modify" name="user_addr1" placeholder="주소"  value="${myvo.user_addr}" readonly>
 													<button type="button" class="btn btn-outline-info" id="addrClick_modify" style="width:150px">주소찾기</button><br><br>   
-												</div>
-												<br>
+												</div> 
+												<br> 
 												<a>나머지 주소</a>
 													<input type="text" id="sample6_extraAddress_modify" name="user_addr1" placeholder="주소"  readonly><br><br>
 												</div>
-												<a>전화번호</a>
+												<a>전화번호</a> 
 												<div>       
 													<input type="tel" maxlength="11" id="user_modify_tel" name="user_modify_tel" value="${myvo.user_tel}" placeholder="연락처" ><br><br>
 												</div>

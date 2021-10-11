@@ -369,7 +369,7 @@
 									<span class="user_nick_click"></span>
 									<input type="hidden" class="user_id_click">
 								</div>
-								<div class="video_cam">
+	 							<div class="video_cam">
 									<span><i class="fas fa-video"></i></span>
 								</div>
 							</div>
