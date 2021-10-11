@@ -49,43 +49,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 */
- 
-var mul_table = [
-        512,512,456,512,328,456,335,512,405,328,271,456,388,335,292,512,
-        454,405,364,328,298,271,496,456,420,388,360,335,312,292,273,512,
-        482,454,428,405,383,364,345,328,312,298,284,271,259,496,475,456,
-        437,420,404,388,374,360,347,335,323,312,302,292,282,273,265,512,
-        497,482,468,454,441,428,417,405,394,383,373,364,354,345,337,328,
-        320,312,305,298,291,284,278,271,265,259,507,496,485,475,465,456,
-        446,437,428,420,412,404,396,388,381,374,367,360,354,347,341,335,
-        329,323,318,312,307,302,297,292,287,282,278,273,269,265,261,512,
-        505,497,489,482,475,468,461,454,447,441,435,428,422,417,411,405,
-        399,394,389,383,378,373,368,364,359,354,350,345,341,337,332,328,
-        324,320,316,312,309,305,301,298,294,291,287,284,281,278,274,271,
-        268,265,262,259,257,507,501,496,491,485,480,475,470,465,460,456,
-        451,446,442,437,433,428,424,420,416,412,408,404,400,396,392,388,
-        385,381,377,374,370,367,363,360,357,354,350,347,344,341,338,335,
-        332,329,326,323,320,318,315,312,310,307,304,302,299,297,294,292,
-        289,287,285,282,280,278,275,273,271,269,267,265,263,261,259];
-        
-   
-var shg_table = [
-	     9, 11, 12, 13, 13, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 
-		17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 18, 18, 19, 
-		19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20,
-		20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21,
-		21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
-		22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23, 
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23,
-		23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 
-		23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24,
-		24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24 ];
+
 
 
 function stackBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius )
@@ -112,7 +76,9 @@ function stackBlurCanvasRGBA( canvas, top_x, top_y, width, height, radius )
 			throw new Error("unable to access local image data: " + e);
 			return;
 		}
-	  }
+
+	  } 
+
 	} catch(e) {
 	  alert("Cannot access image");
 	  throw new Error("unable to access image data: " + e);
@@ -362,7 +328,6 @@ function BlurStack()
 	this.next = null;
 }
 
-$( document ).ready(function() {
   var BLUR_RADIUS = 40;
   var sourceImages = [];
 
@@ -395,8 +360,6 @@ $( document ).ready(function() {
   }); 
 
 
- 
-});
 /////////////////////////// 여기서부터는 기능구현 ////////////////////////////////////
 function fdRecommend1() {
 	
@@ -404,19 +367,23 @@ function fdRecommend1() {
 		type:'post',
 		url: '../fdRecommend1',
 		success: function(data){
-						let rds = [];
+
+						let rds = []; 
+
 						for(var i=0; i<5; i++) {
 						let n = Math.floor(Math.random() * data.length);
 						if (! sameNum(n)) {
 						rds.push(n);
 						} else {
-						i--;
+						i--
 						} 
 						} 
+ 
 						function sameNum (n) {
 						return rds.find((e) => (e === n));
-						}
+						} 
 						
+
 			$(".total_friend_hi").empty(); 
 			$(".total_friend_hi").append('<div class="col-md-1"></div>')
 			if(data.length<5){
@@ -454,11 +421,10 @@ function fdRecommend1() {
 		}    
 	})
 }  
-fdRecommend1()
-
+fdRecommend1(); 
 
  
-
+ 
 
 
 function followingList() {
@@ -485,6 +451,7 @@ function followingList() {
 }
 followingList();
 
+
 function followerList() {
 	$.ajax({
 		type:'post',
@@ -508,7 +475,7 @@ function followerList() {
 	
 	}) 
 }
-var flagFollow = true;
+var flagFollow = true; 
 $(".following").on('click', function(){
 	flagFollow = true;
 	$(this).css('color', '#FF6F61')
@@ -518,30 +485,32 @@ $(".following").on('click', function(){
 }) 
 
 $(".follower").on('click', function(){
-	flagFollow = false;
+	flagFollow = false; 
 	$(this).css('color', '#FF6F61') 
 	$(".following").css('color', 'white')
 	followerList();
 })
-
+ 
 	
 
  
 $(document).on('click', '.chat_content',function(){
-	$(".user_img").css("display", "inline") 
+	$(".big_user_img").css("display", "inline") 
 	let value = $(this).parent().parent().parent().find(".friend_id").val();
 	let img = $(this).parent().prev().find(".profile_click").attr("src");
 	let nick = $(this).text()
 	$(".user_nick_click").text(nick)
-	$(".user_id_click").val(value)
-	$(".user_img").attr("src",img); 
+
+	$(".user_id_click").val(value)  
+	$(".big_user_img").attr("src",img); 
+
 	$("#chat-box").empty();
 	const eventSource = new EventSource("http://localhost:8082/chat/receiver/"+value+"");
 	eventSource.onmessage = (event) => { 
 	const data = JSON.parse(event.data);
 	initMyMessage(data); 
 	} 
-})     
+})      
   
  
 $(document).on('click', '.friend_click', function(){
@@ -570,7 +539,7 @@ $(document).on('click', '.friend_click', function(){
 //////////////////////////////////////////////////////////////////////////////////
 
 
- 
+
 
 
 
@@ -686,13 +655,11 @@ $(document).on('keyup', '#search_friend', function(){
 			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].follower_nick+'</Strong></span><p style="font-size:12px;">'+list[i].follower_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].follower_id+'"></li>' 
 			$(".total_friend_view").append(fdview);     
-			} else {
-				continue;
-			} 
+			}  
 			}  
 		} 	 
-	})
-	} else if(flagFollow=false) {
+	})  
+	} else if(flagFollow=false) { 
 	
      $.ajax({
 		type:'post',
@@ -711,27 +678,15 @@ $(document).on('keyup', '#search_friend', function(){
 			fdview += '<span class="chat_content" style="cursor:pointer;"><Strong>'+list[i].following_nick+'</Strong></span><p style="font-size:12px;">'+list[i].following_name+'</p></div></div>'
 			fdview += '<input type="hidden" class="friend_id" value="'+list[i].following_id+'"></li>' 
 			$(".total_friend_view").append(fdview);      
-			} else {
-				continue;
 			}
 			} 
 		}   
 	
 	}) 
 }	
+ 	 
 	 
 	
-	
 	 
-})
-
-
-
-	
-	
-	
-
-
-
-
+}) 
 })

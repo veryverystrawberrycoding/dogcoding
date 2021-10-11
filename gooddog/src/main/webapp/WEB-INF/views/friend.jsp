@@ -363,7 +363,7 @@
 						<input id="hidden_id" type="hidden" value="${user.user_id}">
 							<div class="d-flex bd-highlight">
 								<div class="img_cont">
-									<img src="" class="rounded-circle user_img" style="display:none">
+									<img src="" class="rounded-circle big_user_img" style="display:none">
 								</div>   
 								<div class="user_info">
 									<span class="user_nick_click"></span>
@@ -375,7 +375,7 @@
 							</div>
 							<span id="action_menu_btn"></span>
 							<div class="action_menu">
-								<ul>
+			 					<ul>
 									<li><i class="fas fa-user-circle"></i> View profile</li>
 									<li><i class="fas fa-users"></i> Add to close friends</li>
 									<li><i class="fas fa-plus"></i> Add to group</li>
@@ -420,12 +420,12 @@
 	<script src="${path}/resources/js/userJS/myPage.js"></script>
  	<script src="${path}/resources/js/userJS/friends.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
+		$(document).ready(function(){ 
 		$('#action_menu_btn').click(function(){
 		$('.action_menu').toggle();
 		});
 	});
-	function followingList() {
+	function followingList() { 
 	$.ajax({
 		type:'post',
 		url: 'followingList',

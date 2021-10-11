@@ -10,15 +10,10 @@ import reactor.core.publisher.Flux;
  
 public interface ChatRepository extends ReactiveMongoRepository<ChatLog, String> {
 	
-  @Tailable //커서를 안닫고 계속 유지한다. 클라이언트와 서버사이에  HTTP가 아닌 SSE
+  @Tailable //커서를 안닫고 계속 유지
   @Query("{ $or: [{sender : ?0, receiver : ?1}, {sender : ?1, receiver : ?0}]}")
   Flux<ChatLog> mFindBySender(String sender, String receiver); 
-   
-  @Tailable 
-  @Query("{ $or :[{roomNum : ?0}, roomNum : ?0}]}")  
-  Flux<ChatLog> mFindByRoomNum(Integer roomNum);
+
     
- }   
-    
- 
+} 
   

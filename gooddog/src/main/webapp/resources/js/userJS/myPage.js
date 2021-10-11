@@ -225,36 +225,7 @@ $(function(){
 		
 	})//idOkay
 	
-/*	$("#idClick").on('click', function(){
-   		if($("#user_id").val()==''){
-			alert("아이디를 입력해주세요.")
-		}
-		else if(!user_idCheck.test($("#user_id").val())){
-			alert("이메일 형식으로 입력해주세요.")
-		} else { 
-		$.ajax({ 
-			type: 'post', 
-			url: '/joinForm/idOkay',    
-			data: {user_id : $("#user_id").val()},
-			success: function(data){
-				alert(data);
-				if(data==$("#user_id").val()) {
-					alert("중복 된 아이디")
-				}else {
-					alert("사용 가능한 아이디") 
-					$("#user_id").prop('readonly', true);
-					idCheck = true;
-				} 
-			
-			
-			 }
-			
-		}) //ajax
-		}
-		 
-		
-		
-	})//idOkay*/
+
 	
 	
 	
@@ -274,9 +245,9 @@ $(function(){
 			success: function(data){
 				alert(data);
 				if(data==$("#user_nick").val()) {
-					alert("중복 된 닉네임")
+					alert("중복 된 닉네임입니다")
 				}else {
-					alert("사용 가능한 닉네임") 
+					alert("사용 가능한 닉네임입니다.") 
 					$("#user_nick").prop('readonly', true);
 					nickCheck = true;
 				} 
@@ -479,50 +450,7 @@ $(".logoutClick").click(function(){
 })
 
 
-/*let modifyCheck = false;
 
-$("#modify_user_pwd3").on('keyup', function(){
-	if(!user_pwCheck.test($("#modify_user_pwd2").val())){
-		$("#modify_test").text("비밀번호는 8~16자 영문/숫자/특수문자 조합입니다.")
-	} else if($("#modify_user_pwd2").val()!=$("#modify_user_pwd3").val()){
-		$("#modify_test").text("동일한 비밀번호를 입력해주세요")
-	} else {
-		$("#modify_test").text("비밀번호가 일치합니다.")
-	}
-})
-*/
-
-
-
-
-/*$("#user_modify").click(function(){
-	
-	
-	$.ajax({
-		type:'post',
-		url:'../passCheck',
-		data: {user_pwd : $("#modify_user_pwd").val()},
-		success: function(data){
-			if(data==null){
-				alert("비밀번호를 확인해주세요")
-			}else {
-			
-			$.ajax({
-				type:'post',
-				url: '../userModify',
-				data: {
-					user_pwd : $("modify_user_pwd3").val()
-					
-				}, success: function(data){
-					
-				}
-			})//ajax
-		}
-		}
-	
-	})
-
-})*/
 
 $("#pwd_modify_btn").click(function(){
 	if(($("#modify_user_pwd").val()=='') || ($("#modify_user_pwd2").val()=='')){
@@ -614,7 +542,7 @@ function myGalList() {
 			}
 				$(".gal_page").append('<li class="page-item"><a class="page-link nextgal" style="cursor:pointer;">다음</a></li>')
 		}      
-		  
+		   
 	}) 
 }  
 

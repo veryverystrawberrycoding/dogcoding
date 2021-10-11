@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -57,21 +55,26 @@ public class FriendController {
 	
 	//랜덤 친구추천
 	@PostMapping("fdRecommend1")
-	public List<HashMap<String, Object>> fdRecommend1(UserVO vo, HttpServletRequest req){
+	public List<HashMap<String, Object>> fdRecommend1(UserVO vo, HttpServletRequest req) throws Exception {
 		 HttpSession session = req.getSession();
 		 UserVO sessionvo = (UserVO)session.getAttribute("user");
 	     vo.setUser_id(sessionvo.getUser_id());
-	      
-	     List<HashMap<String,Object>> join = new ArrayList<>();
-	     join.addAll(friendService.fdRecommend1(vo));
-	     join.addAll(friendService.fdRecommend2(vo));
 	     int i = 0;
 	     int k = 0;
+		 int x = 0;
+		 int y = 0;
+		 int a = 0;
+	     List<HashMap<String,Object>> join = new ArrayList<>();
+	     //지역 , 키우는 강아지의 견종이 유사한 데이터 결합
+	     join.addAll(friendService.fdRecommend1(vo));
+	     join.addAll(friendService.fdRecommend2(vo));
+	     //팔로잉 목록 가져오기 ( 데이터 정제를 위해)
 		Query query = new Query().addCriteria(Criteria.where( "followingId" ).is(sessionvo.getUser_id()));
 		FriendsVO mvo = mongoTemplate.findOne(query, FriendsVO.class, "following");
-		List<FrList> flist = mvo.getFrList();
 		
+		//지역과 강아지 견종이 모두 유사한 경우, 중복데이터 제거
 		for(i=0; i<join.size(); i++) {
+			System.out.println(join.get(i).get("user_id"));
 			for(k=0; k<i; k++) {
 				if(join.get(i).get("user_id").equals(join.get(k).get("user_id"))) {
 					join.remove(i);
@@ -79,26 +82,26 @@ public class FriendController {
 				}
 			} 
 		}
-		
-		int x = 0;
-		int y = 0;
+		//팔로잉 목록에 들어있는 유저 제거
+		if(mvo!=null) {
+			List<FrList> flist = mvo.getFrList(); 
 		for(x=0; x<flist.size(); x++) {
 			for(y=0; y<join.size(); y++) {
 				if(flist.get(x).getFollower_id().equals(join.get(y).get("user_id"))){
+						System.out.println(join.get(y).get("user_id")); 
 						join.remove(y);
 						y--;
 				}
 			}
 		}
-	   
-	    int a = 0;
+		}
+	    //본인 제거
 	    for(a=0; a<join.size(); a++) {
 	    	if(join.get(a).get("user_id").equals(sessionvo.getUser_id())) {
 	    		join.remove(a);
 	    		a--; 
 	    	}
 	    }
-	     
 	     return join;
 		 
 	}
@@ -153,11 +156,12 @@ public class FriendController {
 	}
 	//팔로잉, 팔로워
 	@PostMapping("fdAdd")
-	public void fdAdd(UserVO vo, HttpServletRequest req) throws JsonProcessingException {
+	public void fdAdd(UserVO voo, HttpServletRequest req) throws JsonProcessingException {
 		HttpSession session = req.getSession();
 		UserVO sessionvo = (UserVO)session.getAttribute("user");
-		 
-		ObjectMapper mapper = new ObjectMapper();
+
+		UserVO vo = logJoinService.userSelect(voo); 
+
 		System.out.println(vo.getUser_name());
 		System.out.println(friendRepository.findByFollowingId(sessionvo.getUser_id()));
 		FrList fd2 = new FrList(vo.getUser_id(), vo.getUser_name(), vo.getUser_nick(), vo.getUser_img());
@@ -168,23 +172,23 @@ public class FriendController {
 	    FrListt fdd2 = new FrListt(sessionvo.getUser_id(), sessionvo.getUser_name(), sessionvo.getUser_nick(), sessionvo.getUser_img());
 	    ArrayList<FrListt> list2 = new ArrayList<>();
 	    list2.add(fdd2);
-	    
+	 
+	    //처음 팔로잉하거나 팔로우 당했을 때 새로운 도큐먼트를 생성
 		if(friendRepository.findByFollowingId(sessionvo.getUser_id())==null) {
-		     
-		    //String jsonString = mapper.writeValueAsString(fd2); 
-		     
 		FriendsVO fd = new FriendsVO(sessionvo.getUser_id(), list);  
 	    System.out.println(fd);
 		friendRepository.insert(fd);   
 		}  else {
+		//이미 도큐먼트가 있을 때 frList에 팔로우 정보 업데이트
 		Update update = new Update();
-		//frlist에 각각의 정보 저장 
-	    //리스트 객체 생성  
-	    System.out.println(fd2);
+		//frList에 각각의 정보 저장 
 	    update.push("frList").each(list);
-	    Query query = new Query().addCriteria(Criteria.where( "followingId" ).is(sessionvo.getUser_id()));
+	    //쿼리 Criteria객체에 싣기
+	    Query query = new Query().addCriteria(Criteria.where( "followingId" ).is(sessionvo.getUser_id()));//세션에 담긴 값
+	    //following 컬렉션, query문으로 찾은 도큐먼트에서 업데이트(push=추가) 실행
 	    mongoTemplate.updateFirst(query, update, "following");
-	     
+	    //팔로워도 같은 방식으로, 세션값이 아닌 팔로우한 유저정보값 넘기기
+	    
 	    if(frienddRepository.findByFollowerId(vo.getUser_id())==null) {
 	    	FriendssVO fdd = new FriendssVO(vo.getUser_id(), list2);
 	    	frienddRepository.insert(fdd);
@@ -217,12 +221,14 @@ public class FriendController {
 	    list2.add(fdd2);
 		
 	    Query query = new Query().addCriteria(Criteria.where( "followingId" ).is(sessionvo.getUser_id()));
-	    
 	    Query query2 = new Query().addCriteria(Criteria.where( "followerId" ).is(vo.getUser_id()));
 		Update update = new Update();
-		update.pull("frList", new BasicDBObject("follower_id", voo.getUser_id()));
 		Update update2 = new Update();
-		update2.pull("frListt",new BasicDBObject("follower_id", sessionvo.getUser_id()));  
+		
+		//BasicDBObject에 key와 value를 싣고 리스트 내부 데이터 pull(당겨오기)
+		update.pull("frList", new BasicDBObject("follower_id", voo.getUser_id()));
+		update2.pull("frListt",new BasicDBObject("follower_id", sessionvo.getUser_id())); 
+		//쿼리문 내부에서 update 실행, 팔로잉과 팔로워 동시 제거
 		mongoTemplate.updateFirst(query, update, "following");
 		mongoTemplate.updateFirst(query2, update2, "follower");
 		
@@ -298,7 +304,7 @@ public class FriendController {
 	
 		return flist;
 		
-	}
+	} 
 	
 	
 	
