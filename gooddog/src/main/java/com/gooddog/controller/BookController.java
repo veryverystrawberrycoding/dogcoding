@@ -86,17 +86,17 @@ public class BookController {
 		
 		//해시태그 처리
 		
-		ArrayList<String> ta = new ArrayList<String>();
-		String str = (String) result.get("dic_tag");
-		String[] strArr = str.split("[,]");
+//		ArrayList<String> ta = new ArrayList<String>();
+//		String str = (String) result.get("dic_tag");
+//		String[] strArr = str.split("[,]");
 		
-		for(int i = 0; i < strArr.length; i++) {
-			strArr[i]=strArr[i].replace("","");
-			//System.out.println(strArr[i]);
-			ta.add(strArr[i]);
-			
-		}
-		m.addAttribute("tag",ta);
+//		for(int i = 0; i < strArr.length; i++) {
+	//		strArr[i]=strArr[i].replace("","");
+//			//System.out.println(strArr[i]);
+//			ta.add(strArr[i]);
+//			
+//		}
+//		m.addAttribute("tag",ta);
 	
 		// 댓글 조회 
 		//List<Map<String, Object>> commentList=galleryService.commentList(vo.getGal_no());

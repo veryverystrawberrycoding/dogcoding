@@ -118,7 +118,7 @@
 									<br>
 									<br>
 
-									<input type="hidden" id="tagItem" value="${tag}">
+			<!--  					<input type="hidden" id="tagItem" value="${tag}">-->	
 									<div id="tagList">
 									
 									</div>
